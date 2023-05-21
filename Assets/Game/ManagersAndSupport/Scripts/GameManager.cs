@@ -1,0 +1,94 @@
+using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using UnityEngine;
+
+
+public class GameManager : MonoBehaviour
+{
+    public static GameManager Instance;
+
+    // Player progress and data variables
+    public int currentLevel = 1;
+    public int money;
+    public int experience;
+    public List<UnlockedItem> items;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        items = new List<UnlockedItem>();
+
+        LoadData(); // Load saved data when the GameManager starts
+    }
+
+    public void SaveData()
+    {
+        PlayerPrefs.SetInt(PlayerPrefsKeys.CurrentLevel, currentLevel);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.Money, money);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.Experience, experience);
+
+        // Save unlocked items
+        string unlockedItemsJson = JsonConvert.SerializeObject(items);
+        PlayerPrefs.SetString(PlayerPrefsKeys.UnlockedItems, unlockedItemsJson);
+
+        PlayerPrefs.Save();
+    }
+
+
+    public void LoadData()
+    {
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.CurrentLevel))
+        {
+            currentLevel = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentLevel);
+        }
+
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.Money))
+        {
+            money = PlayerPrefs.GetInt(PlayerPrefsKeys.Money);
+        }
+
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.Experience))
+        {
+            experience = PlayerPrefs.GetInt(PlayerPrefsKeys.Experience);
+        }
+        // Load unlocked items
+
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.UnlockedItems))
+        {
+            string unlockedItemsJson = PlayerPrefs.GetString(PlayerPrefsKeys.UnlockedItems);
+            items = JsonConvert.DeserializeObject<List<UnlockedItem>>(unlockedItemsJson);
+        }
+    }
+
+
+    public void UnlockItem(Item item)
+    {
+        if (!IsItemUnlocked(item))
+        {
+            UnlockedItem unlockedItem = new UnlockedItem(item, DateTime.UtcNow);
+            items.Add(unlockedItem);
+            // Save data if necessary
+            SaveData();
+        }
+    }
+
+    public bool IsItemUnlocked(Item item)
+    {
+        return items.Exists(unlockedItem => unlockedItem.item == item); // TODO: should be type
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveData();
+    }
+}
