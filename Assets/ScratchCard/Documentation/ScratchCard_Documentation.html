@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Scratch Card Documentation</title>
+    <meta content="From Ukraine with Love" name="description">
+    <link href="style.css?" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
+</head>
+<body>
+<div class="navbar clear">
+    <div class="row content">
+        <a href="#"><img class="logo" src="images/logo.png" alt="Scratch Card"></a>
+        <a class="right" href="https://assetstore.unity.com/packages/slug/228309" target="_blank"><i class="book"></i>&nbsp;Asset Store</a>
+        <a class="right" href="mailto:unitymedved@gmail.com" target="_blank"><i class="mail"></i>&nbsp;
+            unitymedved@gmail.com</a>
+    </div>
+</div>
+
+<div class="container clear">
+    <div class="row wrapper">
+        <div class="sidepanel">
+            <a class="title" href="#">Introduction</a>
+            <a class="section" href="#requirements">Requirements</a>
+            <a class="section" href="#howtoupgrade">How do I upgrade?</a>
+            <a class="section" href="#quickstart">Quick Start</a>
+            <a class="section" href="#scratchcardmanager">ScratchCardManager</a>
+            <div class="divider left"></div>
+            <a class="title" href="#howitworks">How it works</a>
+            <div class="divider left"></div>
+            <a class="title" href="#animations">Animations</a>
+            <a class="section" href="#playscratchanimation">Play scratch animation</a>
+            <a class="section" href="#recordanimation">Record scratch animation</a>
+            <div class="divider left"></div>
+            <a class="title" href="#apihelp">API Help</a>
+            <a class="section" href="#paintcontroller">ScratchCardManager</a>
+            <a class="section" href="#inputcontroller">ScratchCard</a>
+            <a class="section" href="#raycastcontroller">EraseProgress</a>
+            <a class="section" href="#scratchanimator">ScratchAnimator</a>
+            <a class="section" href="#scratchanimation">ScratchAnimation</a>
+            <a class="section" href="#scratchanimationrecorder">ScratchAnimationRecorder</a>
+            <div class="divider left"></div>
+            <a class="title" href="#frequentlyusedmethods">Frequently used methods</a>
+            <div class="divider left"></div>
+            <a class="title" href="#upgrading">Upgrading from version 1.x to 2.x</a>
+            <div class="divider left"></div>
+            <a class="title" href="#contacts">Contacts</a>
+            <div class="space double"></div>
+        </div>
+
+        <div class="right-col">
+
+            <h1>Introduction</h1>
+            <p>&emsp;«Scratch Card» - is an easy-to-use asset, which allows you to create scratch cards! All you need is add a
+                prefab, choose your scratch sprite and set up a few parameters!<br>
+                With «Scratch Card», you can scratch on components such as
+                <a href="https://docs.unity3d.com/ScriptReference/MeshRenderer.html" target="_blank">MeshRenderer</a>,
+                <a href="https://docs.unity3d.com/ScriptReference/SpriteRenderer.html" target="_blank">SpriteRenderer</a>, and
+                <a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-Image.html" target="_blank">Image</a>.<br>
+            &emsp;Asset supports <a href="https://docs.unity3d.com/Manual/built-in-render-pipeline.html" target="_blank">Standard</a>, <a href="https://docs.unity3d.com/Manual/universal-render-pipeline.html" target="_blank">URP</a>, and
+                <a href="https://docs.unity3d.com/Manual/high-definition-render-pipeline.html" target="_blank">HDRP</a> pipelines; works with <a href="https://docs.unity3d.com/Manual/class-InputManager.html" target="_blank">Input Manager (Old)</a>
+                and <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.3/manual/index.html" target="_blank">Input System Package (New)</a>.
+                No need to add any colliders for scratching.</p>
+
+            <h2 id="requirements">Requirements</h2>
+            <p>&emsp;For the correct work, «Scratch Card» requires:</p>
+            <li>Unity 2019.4 or newer;</li>
+            <li>GameObject with supported component:
+                <a href="https://docs.unity3d.com/ScriptReference/MeshRenderer.html" target="_blank">MeshRenderer</a>,
+                <a href="https://docs.unity3d.com/ScriptReference/SpriteRenderer.html" target="_blank">SpriteRenderer</a> or
+                <a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-Image.html" target="_blank">Image</a>;
+            </li>
+            <li>A Sprite as a surface for scratching.
+            </li>
+
+            <h2 id="howtoupgrade">How do I upgrade?</h2>
+            <p>&emsp;First, back up your project.<br>
+                Next, <a href="https://docs.unity3d.com/Manual/upm-ui-update2.html" target="_blank">update the asset</a> to the latest from Asset Store using Package Manager (Windows -> Package
+                Manager).<br>
+                The asset has a comparison list of APIs with changes. To check it, open the <a href="https://unitymedved.bitbucket.io/ScratchCard/2.0/Docs/v.2.0_API_Changes.pdf" target="_blank"><span class="path">v.2.0_API_Changes.pdf</span></a> file.<br>
+                Also, check out this section: <a href="#upgrading">Upgrading from version 1.x to 2.x</a>.<br>
+                If you have any issues or errors, contact me. I'll be happy to help!
+            </p>
+
+            <h2 id="quickstart">Quick Start</h2>
+            <p>&emsp;Add a prefab to the scene from path <span class="path">Assets/ScratchCard/Prefabs/ScratchCard.prefab</span>. In another way, add ScratchCard prefab to the scene by
+                clicking the right mouse button in the Hierarchy Window or using Unity menu: <span class="path">GameObject -> Scratch Card
+                    -> ...</span>:
+                <img class="center" src="images/createScratchCard.png" alt="Create Scratch Card" onload="this.width/=2;"></p>
+                <br>Set <span class="path">Main Camera</span> and <span class="path">Sprite</span> for scratching:
+                <img class="center" src="images/scratchCardManagerSetup.png" alt="ScratchCardManager setup" onload="this.width/=2;">
+            <br>That's all, your Scratch Card is ready!
+
+            <h2 id="scratchcardmanager">ScratchCardManager</h2>
+                &emsp;The «ScratchCard» prefab contains <mark>ScratchCardManager</mark> component that manages scratch and erase progress logic, let’s look at the component parameters:
+                <img class="center" src="images/scratchCardManager.png" alt="ScratchCardManager" onload="this.width/=2;">
+            <ul>
+                <li><span class="path">Scratch Card</span> - a reference to the <mark>ScratchCard</mark> component;</li>
+                <li><span class="path">Erase Progress</span> - a reference to the <mark>EraseProgress</mark> component;</li>
+                <li><span class="path">Main Camera</span> - a reference to the <mark>Camera</mark> component, if field doesn't have value
+                    <a href="https://docs.unity3d.com/ScriptReference/Camera-main.html" target="_blank">Camera.main</a> will be used;</li>
+                <li><span class="path">Render Type</span> - render type of the scratch surface object, can be: MeshRenderer, SpriteRenderer and Image. Choose the corresponding component to Render Type:</li>
+                <ul>
+                    <li><span class="path">Mesh Card</span> - a reference to the <mark>MeshRenderer</mark> component;</li>
+                    <li><span class="path">Sprite Card</span> - a reference to the <mark>SpriteRenderer</mark> component;</li>
+                    <li><span class="path">Image Card</span> - a reference to the <mark>Image</mark> component;</li>
+                </ul>
+                <li><span class="path">Sprite</span> - a sprite for scratch surface;</li>
+                <li><span class="path">Input Enabled</span> - whether to enable input;</li>
+                <li><span class="path">Use Pressure</span> - whether to use pressure with the input (like Apple pencil or any other tablet pen/touch device that support pressure);</li>
+                <li><span class="path">Check Canvas Raycasts</span> - prevent painting on components if any other canvas component lays above the scratch object;</li>
+                <li><span class="path">Canvases For Raycasts Blocking</span> - Canvases to ignore raycasts (children objects of <mark>Canvas</mark> will prevent scratching if they lay above scratch object);</li>
+                <li><span class="path">Brush Texture</span> - brush texture for scratching;</li>
+                <li><span class="path">Brush Opacity</span> - brush texture opacity;</li>
+                <li><span class="path">Brush Size</span> - size of the brush;</li>
+                <li><span class="path">Scratch Mode</span> - scratch mode can be «Erase» or «Restore». In Restore mode, user interactions restoring scratch card object instead of erasing;</li>
+            </ul>
+            &emsp;The <span class="button">Set Native Size</span> button sets scratch object native size.<br>
+
+            <div class="divider" style="width:24%; margin:30px 0;"></div>
+
+            <h1 id="howitworks">How it works</h1>
+            <p>&emsp;<mark>ScratchCardManager</mark> component manages <mark>ScratchCard</mark> and <mark>EraseProgress</mark> components.
+                <mark>ScratchCard</mark> component creates <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> and paints on it with user input.
+                <mark>EraseProgress</mark> component calculates an average red color of <mark>ScratchCard</mark> <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> to get its scratch progress value.
+            </p>
+
+            <div class="divider" style="width:24%; margin:30px 0;"></div>
+
+            <h1 id="animations">Animations</h1>
+            <p>&emsp;From version 2.0 asset supports scratch animations. Scratch Animation is the sequence of input data to simulate scratching. Scratch animation can be created manually or recorded as a sequence of user input actions.<br>
+                Scratch Animation stores in the <a href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html" target="_blank">ScriptableObject</a> that contains data about positions, brush pressures and timings of the scratch animation.<br>
+                Asset has built-in scratch animations, which are located by the path: <span class="path">Assets/ScratchCard/ScratchAnimations/</span>.
+            </p>
+
+            <h2 id="playscratchanimation">Play scratch animation</h2>
+            <p>
+                &emsp;You can use built-in animations or <a href="#recordanimation">create a new one</a>.<br>
+                To play scratch animation, add component <mark>ScratchAnimator</mark> to the GameObject with <mark>ScratchCardManager</mark> component. After, you need to set
+                a ScratchAnimation object into <span class="path">Scratch Animation</span> field:
+                <img class="center" src="images/scratchAnimator.png" alt="Scratch Animator Component" onload="this.width/=2;"><br>
+                <mark>ScratchAnimator</mark> component will play scratch animation in the playmode.<br>
+                To prevent playing on start, you can turn off flag <span class="path">PlayOnStart</span> and <a href="#scratchanimator">manage it using code</a>.
+            </p>
+
+            <h2 id="recordanimation">Record scratch animation</h2>
+            <p>
+                &emsp;To create a new scratch animation use Unity menu:
+                <span class="path">Assets -> Create -> Scratch Card -> Scratch Animation</span>:<br>
+                <img class="center" src="images/scratchAnimation.png" alt="Scratch Animation" onload="this.width/=2;"><br>
+                &emsp;Scratch Animation can be created by repeating user input interactions in the playmode or manually.<br>
+                Let's look on the first way to create scratch animation:<br>
+                After creating a Scratch Animation <a href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html" target="_blank">ScriptableObject</a>,
+                add a component <mark>ScratchAnimationRecorder</mark> to the GameObject with <mark>ScratchCardManager</mark> component and choose a Scratch Animation:
+                <img class="center" src="images/scratchAnimationRecorder.png" alt="Scratch Animation Recorder" onload="this.width/=2;"><br>
+                &emsp;After enter playmode, user input interaction will be written to the Scratch Animation <a href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html" target="_blank">ScriptableObject</a> by <mark>ScratchAnimationRecorder</mark>.<br>
+
+                &emsp;Let's look at the manual way to create scratch animation. You can create scratch animation using <span class="button">Add Hole Scratch</span> and <span class="button">Add Line Scratch</span> buttons:            </p>
+                <ul>
+                    <li>
+                        <span class="button">Add Hole Scratch</span> button adds data for hole scratching: position, brush scale and time of the action;<br>
+                        <span class="button">Add Line Scratch</span> button adds data for line scratching: position, brush scale and time of the action for start and for end of the segment.
+                    </li>
+                </ul>
+            <p>Let's add a hole and line data for example:</p>
+            <div class="images">
+                <img class="center2" src="images/scratchAnimationExample.png" alt="Scratch Animation Example" onload="this.width/=2;">
+                <img class="center2" src="images/scratchAnimation.gif" alt="Scratch Animation Example" onload="this.width/=1;"></div><br>
+            <p>Note that for <span class="path">Scratch Space</span> UV, you need to use UV-coords for scratching (from 0 to 1), in case of <span class="path">Scratch Space</span> Texture, you need to use texture coordinates.</p>
+
+            <div class="divider" style="width:24%; margin:30px 0;"></div>
+
+            <h1 id="apihelp">API Help</h1>
+            <h2 id="paintcontroller">ScratchCardManager</h2>
+            <p>&emsp;ScratchCardManager component creates and configures <mark>ScratchCard</mark> and <mark>EraseProgress</mark>.<br>
+                <u>Main public fields, properties, and methods:</u><br>
+                <code>public ScratchCard Card</code> - a reference to <mark>ScratchCard</mark> component;<br>
+                <code>public EraseProgress Progress</code> - a reference to <mark>EraseProgress</mark> component;<br>
+                <code>public ScratchCardRenderType RenderType</code> - render type of scratch card: MeshRenderer, SpriteRenderer or CanvasRenderer;<br>
+                <code>public MeshRenderer MeshRendererCard {...}</code> - reference to <a href="https://docs.unity3d.com/ScriptReference/MeshRenderer.html" target="_blank">MeshRenderer</a>;<br>
+                <code>public SpriteRenderer SpriteRendererCard {...}</code> - reference to <a href="https://docs.unity3d.com/ScriptReference/SpriteRenderer.html" target="_blank">SpriteRenderer</a>;<br>
+                <code>public Image CanvasRendererCard {...}</code> - reference to <a href="https://docs.unity.cn/Packages/com.unity.ugui@1.0/api/UnityEngine.UI.Image.html" target="_blank">Image</a>;<br>
+                <code>public bool ScratchSurfaceSpriteHasAlpha</code> - whether sprite for scratching has alpha-channel;<br>
+                <code>public ScratchMode Mode {...}</code> - scratch mode can be «Erase» or «Restore». In Restore mode, user interactions restoring scratch card object instead of erasing;<br>
+                <code>public Camera MainCamera {...}</code> - Main Camera of the scene;<br>
+                <code>public Sprite ScratchSurfaceSprite {...}</code> - a sprite for scratching;<br>
+                <code>public ProgressAccuracy ProgressAccuracy {...}</code> - progress accuracy can be «Default» or «High».<br>
+                <code>public Texture BrushTexture {...}</code> - brush texture for erasing;<br>
+                <code>public float BrushSize {...}</code> - brush size;<br>
+                <code>public float BrushOpacity {...}</code> - brush opacity value, with small amount (~0.1) user can scratch with opacity;<br>
+                <code>public bool InputEnabled {...}</code> - whether input is enabled;<br>
+                <code>public bool UsePressure {...}</code> - whether to user pressure for scratching. Can be useful for
+                <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.4/manual/Pen.html" target="_blank">pen, tablet, and stylus support</a> or
+                <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@1.4/manual/Touch.html" target="_blank">touch</a> device that support pressure;<br>
+                <code>public bool CheckCanvasRaycasts {...}</code> - whether to prevent scratching if any other canvas component lays above the scratch card object;<br>
+                <code>public Canvas[] CanvasesForRaycastsBlocking {...}</code> - canvases that will be used to check if raycast is blocking scratch card object;<br>
+                <code>public void Init()</code> - initialize scratch card manager;<br>
+                <code>public void InitSurfaceMaterial()</code> - initialize scratch card material;<br>
+                <code>public bool TrySelectCard(ScratchCardRenderType renderType)</code> -to  activate selected scratch card type;<br>
+                <code>public void SetNativeSize()</code> - to set scratch card native size.<br>
+            </p>
+
+            <h2 id="inputcontroller">ScratchCard</h2>
+            <p>&emsp;ScratchCard component creates and configures <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a>, gets data from the InputController, then renders the quads into RenderTexture.<br>
+                <u>Main public fields, properties, and methods:</u><br>
+                <code>public event Action&lt;ScratchCard&gt; OnInitialized</code> - an event for ScratchCard initialization, returns ScratchCard instance;<br>
+                <code>public event Action&lt;Vector2, float&gt; OnScratchHole</code> - an event for scratch hole, arguments: screen position and pressure;<br>
+                <code>public event Action&lt;Vector2, float&gt; OnScratchHoleSucceed</code> - an event for scratch hole, arguments: screen position and pressure. Will be invoked if hole intersects scratch card bounds;<br>
+                <code>public event Action&lt;Vector2, float, Vector2, float&gt; OnScratchLine</code> - an event for scratch line, arguments: screen positions and pressure;<br>
+                <code>public event Action&lt;Vector2, float, Vector2, float&gt; OnScratchLineSucceed</code> - an event for scratch line, arguments: screen positions and pressure. Will be invoked if line intersects scratch card bounds;<br>
+                <code>public Transform SurfaceTransform</code> - to transform of surface object;<br>
+                <code>public float BrushSize</code> - a size of the brush;<br>
+                <code>public Quality RenderTextureQuality</code> - the quality(size) of RenderTexture texture: High, Medium, Low;<br>
+                <code>public RenderTexture RenderTexture {...}</code> - <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> for scratching;<br>
+                <code>public ScratchMode Mode {...}</code> - scratch card mode: «Erase» or «Restore»;<br>
+                <code>public bool IsScratched {...}</code> - returns if user is scratched surface currently (input processed and some part of texture was scratched, if set as true,
+                <mark>EraseProgress</mark> will update progress value);<br>
+                <code>public bool IsScratching {...}</code> - returns if user is tried scratch surface currently (input processing);<br>
+                <code>public bool Initialized {...}</code> - returns if <mark>ScratchCard</mark> initialized;<br>
+                <code>public BaseData ScratchData {...}</code> - BaseData instance, class for converting screen-space coords to <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> position;<br>
+                <code>public ScratchCardInput Input {...}</code> - ScratchCardInput instance, class for processing user input;<br>
+                <code>public void Init()</code> - initialize <mark>ScratchCard</mark>;<br>
+                <code>public void SetRenderType(ScratchCardRenderType renderType, Camera mainCamera)</code> - set render type of <mark>ScratchCard</mark>;<br>
+                <code>public void Fill(bool setIsScratched = true)</code> - fills RenderTexture with white color (100% scratched surface), argument - set IsScratched property to true;<br>
+                <code>public void Clear(bool setIsScratched = true)</code> - fills RenderTexture with clear color (0% scratched surface), argument - set IsScratched property to true;<br>
+                <code>public void ScratchHole(Vector2 position, float pressure = 1f)</code> - scratches hole using texture position;<br>
+                <code>public void ScratchLine(Vector2 startPosition, Vector2 endPosition, float startPressure = 1f, float endPressure = 1f)</code> - scratches line using texture positions;<br>
+                <code>public Texture2D GetScratchTexture()</code> - returns scratch texture.
+                There are possible memory leaks in Unity if the created texture is not <a href="https://docs.unity3d.com/ScriptReference/Object.Destroy.html" target="_blank">destroyed</a> completely
+                <br>
+            </p>
+
+            <h2 id="raycastcontroller">EraseProgress</h2>
+            <p>&emsp;EraseProgress component calculates scratching progress in the range from 0 to 1, where 0 - the card is scratched completely, 1 - the scratch surface is whole.<br>
+                It creates and configures <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a>, and then shader calculates the average red-channel value of
+                <mark>ScratchCard</mark> <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a>.<br>
+                &emsp;Component supports two modes of getting scratch progress:<br>
+                &emsp;1) In the case of «Default» accuracy, progress will be calculated in the current frame, but with some inaccuracy. Using «Default» accuracy
+                component samples <mark>ScratchCard</mark> <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a> 225 times (15 times by horizontal and 15 times by vertical) in MaskProgress shader.
+                It is not recommended to increase the count samples, because a few users reported problems with 16x16 or more samples on some Android devices.<br>
+                &emsp;2) In the case of «High» accuracy, component will use <a href="https://docs.unity3d.com/ScriptReference/Rendering.AsyncGPUReadback.html" target="_blank">AsyncGPUReadback</a> if
+                <a href="https://docs.unity3d.com/ScriptReference/SystemInfo-supportsAsyncGPUReadback.html" target="_blank">SystemInfo.supportsAsyncGPUReadback</a> is supported
+                (if it's not, ProgressAccuracy will be switched to «Default»). High accuracy will provide accurate progress calculation, but with delay in a few frames (often 2 frames).<br>
+                <u>Main public fields, properties, and methods:</u><br>
+                <code>public event Action&lt;float&gt; OnProgress</code> - invokes, when user scratches/restores surface;<br>
+                <code>public event Action&lt;float&gt; OnCompleted</code> - invokes, when user completed scratching/restoring surface;<br>
+                <code>public ScratchCard Card { ... }</code> - a reference to the <mark>ScratchCard</mark> component;<br>
+                <code>public ProgressAccuracy ProgressAccuracy { ... }</code> - progress accuracy can be «Default» or «High»;<br>
+                <code>public float GetProgress()</code> - returns scratch erase progress in range from 0 to 1;<br>
+                <code>public void UpdateProgress()</code> - updates scratch progress;<br>
+                <code>public void ResetProgress()</code> - resets isCompleted flag for further interaction.
+            </p>
+
+            <h2 id="scratchanimation">ScratchAnimation</h2>
+            <p>&emsp;The <a href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html" target="_blank">ScriptableObject</a> that contains data about positions, pressures and timings of the scratch animation.<br>
+                <u>Main public fields, properties, and methods:</u><br>
+                <code>public ScratchAnimationSpace ScratchSpace</code> - space for scratching, can be UV or Texture. In case of UV,
+                ScratchAnimation will store UV coordinates of scratching, in case of Texture ScratchAnimation will store Texture positions of scratching;<br>
+                <code>public List&lt;BaseScratch&gt; Scratches</code> - scratches data of dots and lines;<br>
+                <code>public string ToJson()</code> - return serialized instance of ScratchAnimation in json format;<br>
+                <code>public void FromJson(string json)</code> - deserialize instance of ScratchAnimation from string in json format.<br>
+            </p>
+
+            <h2 id="scratchanimator">ScratchAnimator</h2>
+            <p>&emsp;The Component that animates scratching using <span class="path">ScratchAnimation.</span><br>
+                <u>Main public fields, properties, and methods:</u><br>
+                <code>public event Action OnPlay</code> - to start playing animation event;<br>
+                <code>public event Action OnPause</code> - to pause playing animation event;<br>
+                <code>public event Action OnStop</code> - to stop playing animation event;<br>
+                <code>public event Action OnCompleted</code> - to finish playing animation event;<br>
+                <code>public ScratchCard ScratchCard</code> - a reference to the <mark>ScratchCard</mark> component;<br>
+                <code>public ScratchAnimation ScratchAnimation</code> - a reference to the <a href="#scratchanimation">ScratchAnimation</a> ScriptableObject;<br>
+                <code>public bool PlayOnStart</code> - whether to play on <a href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html" target="_blank">Start</a> method;<br>
+                <code>public bool IsPlaying {...}</code> - returns if animation is playing;<br>
+                <code>public void Play()</code> - to play animation;<br>
+                <code>public void Pause()</code> - to pause animation;<br>
+                <code>public void Stop()</code> - to stop animation.<br>
+            </p>
+
+            <h2 id="scratchanimationrecorder">ScratchAnimationRecorder</h2>
+            <p>&emsp;The Component that records user input interaction with the ScratchCard into <span class="path">ScratchAnimation.</span>.<br>
+                <u>Main public fields, properties, and methods:</u><br>
+                <code>public ScratchCard ScratchCard</code> - a reference to the <mark>ScratchCard</mark> component;<br>
+                <code>public ScratchAnimation ScratchAnimation</code> - a reference to the <a href="#scratchanimation">ScratchAnimation</a> ScriptableObject;<br>
+                <code>public ScratchAnimationSpace AnimationSpace</code> - a space for scratching, can be UV or Texture. In case of UV,
+                ScratchAnimation will store UV coordinates of scratching, in case of Texture ScratchAnimation will store Texture positions of scratching;<br>
+                <code>public void Flush()</code> - write saved data to the <a href="#scratchanimation">ScratchAnimation</a> ScriptableObject.<br>
+            </p>
+
+            <div class="divider" style="width:24%; margin:30px 0;"></div>
+
+            <h1 id="frequentlyusedmethods">Frequently used methods</h1>
+            <p>Check if user scratched 90%+ of surface:
+                <span class="codequote">[SerializeField] private ScratchCardManager cardManager;    <span class="comment">//assign reference to the ScratchCardManager component in the Inspector</span>
+
+private void Start()
+{
+    cardManager.Progress.OnProgress += OnScratchProgress;
+}
+
+private void OnScratchProgress(float progress)
+{
+    if (progress >= 0.9f)
+    {
+        cardManager.Progress.OnProgress -= OnScratchProgress;
+        Debug.Log($"User scratched {Math.Round(progress * 100f, 2)}% of surface");
+    }
+}</span><br>
+                Clean the surface (set 100% scratched):<br>
+                <span class="codequote">[SerializeField] private ScratchCardManager cardManager;    <span class="comment">//assign reference to the ScratchCardManager component in the Inspector</span>
+...
+cardManager.FillScratchCard();
+</span><br>
+                Restore the surface (set 0% scratched):<br>
+                <span class="codequote">[SerializeField] private ScratchCardManager cardManager;    <span class="comment">//assign reference to the ScratchCardManager component in the Inspector</span>
+...
+cardManager.ClearScratchCard();
+</span><br>
+                Change scratch sprite in runtime:<br>
+                <span class="codequote">[SerializeField] private ScratchCardManager cardManager;    <span class="comment">//assign reference to the ScratchCardManager component in the Inspector</span>
+[SerializeField] private Sprite sprite;    <span class="comment">//assign reference to the Sprite in the Inspector</span>
+...
+cardManager.ScratchSurfaceSprite = sprite;
+</span><br>
+                You can get scratch texture in runtime (note that it should be <a href="https://docs.unity3d.com/ScriptReference/Object.Destroy.html" target="_blank">destroyed</a> as texture creation is definitely a possibility for memory leaks in Unity if you're not disposing of the old ones properly):<br>
+                <span class="codequote">[SerializeField] private ScratchCardManager cardManager;    <span class="comment">//assign reference to the ScratchCardManager component in the Inspector</span>
+...
+var texture = cardManager.Card.GetScratchTexture();    <span class="comment">//get scratch texture</span>
+</span><br>
+                User can scratch surface and restore it, to do that, set scratch mode to Restore using code:<br>
+                <span class="codequote">[SerializeField] private ScratchCardManager cardManager;    <span class="comment">//assign reference to the ScratchCardManager component in the Inspector</span>
+...
+cardManager.Mode = ScratchMode.Restore;
+</span>
+                For switching back to erase mode, set mode:<br>
+                <span class="codequote">cardManager.Mode = ScratchMode.Erase;
+</span><br>
+                You can scratch holes and lines from code:<br>
+                <span class="codequote">[SerializeField] private ScratchCardManager cardManager;    <span class="comment">//assign reference to the ScratchCardManager component in the Inspector</span>
+...
+cardManager.Card.ScratchHole(new Vector2(100f, 100f));    <span class="comment">//draws hole in [100, 100] texture (pixel) position</span>
+cardManager.Card.ScratchLine(new Vector2(100f, 100f), new Vector2(200f, 200f));    <span class="comment">//draws line from [100, 100] to [200, 100] in texture (pixel) positions</span>
+</span><br>
+                You can scratch using transform position:<br>
+                <span class="codequote">[SerializeField] private ScratchCardManager cardManager;    <span class="comment">//assign reference to the ScratchCardManager component in the Inspector</span>
+[SerializeField] private Transform someTransform;    <span class="comment">//assign reference to the Transform component in the Inspector</span>
+...
+<span class="comment">//scratch using transform position:</span>
+var position = cardManager.MainCamera.WorldToScreenPoint(SomeTransform.position);
+cardManager.Card.Input.Scratch(position);
+</span>
+
+            <div class="divider" style="width:24%; margin:30px 0;"></div>
+
+            <h1 id="upgrading">Upgrading from version 1.x to 2.x</h1>
+            <p>
+                &emsp;After upgrading from version 1.x to 2.x, prefab can lose reference to card object as types of fields were changed from
+                <a href="https://docs.unity3d.com/ScriptReference/GameObject.html" target="_blank">GameObject</a> to
+                <a href="https://docs.unity3d.com/ScriptReference/MeshRenderer.html" target="_blank">MeshRenderer</a>,
+                <a href="https://docs.unity3d.com/ScriptReference/SpriteRenderer.html" target="_blank">SpriteRenderer</a> and
+                <a href="https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-Image.html" target="_blank">Image</a>.
+                To fix type mismatch issue, asset has MigrationHelper class, that automatically updates <mark>ScratchCardManager</mark> fields. All you need to do is open
+                in the Editor your scenes/prefabs that contains <mark>ScratchCardManager</mark> component. MigrationHelper will upgrade fields and print to the
+                <a href="https://docs.unity3d.com/Manual/Console.html" target="_blank">Console</a> result of the migration:
+                <img class="center" src="images/migration.png" alt="Migration result" onload="this.width/=2;"><br>
+                Note that for successful migration GameObject with <mark>ScratchCardManager</mark> must be active.
+            </p>
+
+            <div class="divider" style="width:24%; margin:30px 0;"></div>
+
+            <h1 id="contacts">Contacts</h1>
+            Please let me know if you have any questions, ideas, or suggestions.<br>
+            E-mail: <a href="mailto:unitymedved@gmail.com">unitymedved@gmail.com</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,546 @@
+@font-face {
+    font-family: "Open Sans";
+    src: url("./fonts/OpenSans-Regular.woff2") format("woff2"),
+    url("./fonts/OpenSans-Regular.woff") format("woff");
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 55px;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 0;
+    font-size: 15px;
+    color: #333;
+    margin: 0;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 0.3em;
+    margin-block-end: 0.3em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 40px;
+}
+
+img {
+    padding-top: 4px;
+}
+
+p {
+    text-align: justify;
+}
+
+.book {
+    display: inline-block;
+    background-image: url(images/doc.svg);
+    height:20px;
+    width:20px;
+    vertical-align: bottom;
+    /*-webkit-filter: invert(100%);*/
+}
+
+.mail {
+    display: inline-block;
+    background-image: url(images/email.svg);
+    height:18px;
+    width:18px;
+    vertical-align: bottom;
+    /*-webkit-filter: invert(100%);*/
+}
+
+.justified {
+    text-align: justify;
+}
+
+.codequote {
+    color: #1256f1;
+    display: block;
+    padding: 10px;
+    margin: 0 0 10px;
+    font-size: 15px;
+    line-height: 1.42857143;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #f5f5f5;
+    /*border: 1px solid #ccc;*/
+    border-radius: 4px;
+    white-space: pre-wrap;
+}
+
+.comment {
+    color: #58a04c;
+}
+
+.variable {
+    color: #4a78b6;
+    font-weight: 600;
+}
+
+.component {
+    /*color: #4a8ab6;*/
+    font-weight: 600;
+}
+
+.path {
+    font-size: 15px;
+    padding: 1px 5px;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+    color: #e83e8c;
+    word-wrap: break-word;
+}
+
+.button {
+    font-size: 14px;
+    padding: 0 4px;
+    background-color: #585858;
+    border-radius: 4px;
+    color: #eff;
+    word-wrap: break-word;
+}
+
+.mark, mark {
+    padding: 0.2em;
+    background-color: #fcf8e3;
+}
+
+code {
+    color: #1256f1;
+    font-size: 15px;
+}
+
+.s0 {
+    color: #555555;
+}
+
+.s1 {
+    color: #569cd6;
+}
+
+.s2 {
+    color: #57a64a;
+}
+
+.s3 {
+    color: #d69d85;
+}
+
+.s4 {
+    color: #b5cea8;
+}
+
+h1 {
+    font-family: 'Open Sans', serif;
+    font-size: 39px;
+    line-height: 42px;
+    margin-bottom: 50px;
+    color: #0098f1;
+}
+
+h2 {
+    font-family: 'Open Sans', serif;
+    font-size: 28px;
+    line-height: 30px;
+    text-align: center;
+    margin-block-start: 40px;
+    margin-block-end: 30px;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    color: #0098f8;
+}
+
+p {
+    font-size: 12px;
+    line-height: 26px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/*.modifier {
+    color: #ff0000;
+}
+
+.type {
+    color: #ffa900;
+}
+
+.variable {
+    color: #bbcc00;
+}*/
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center2 {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 4px;
+    vertical-align: middle;
+}
+
+.images {
+    text-align:center;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: #0098f1;
+    color: #333;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    font-size: 15px;
+    text-align: right;
+    padding: 10px 0 0 0;
+    position: fixed;
+    z-index: 1;
+}
+
+.navbar a {
+    margin-right: 40px;
+    color: #000;
+}
+
+.navbar a:active {
+    text-decoration: underline;
+}
+
+.right a {
+    float: right;
+}
+
+.container {
+    width: 100%;
+}
+
+.top {
+    background-color: #0098f1;
+    height: 650px;
+}
+
+.clear {
+    height: 40px;
+    background-color: #0093E9;
+    background-image: linear-gradient(160deg, #f1c918 0%, #f1c918 30%, #fbe481 100%);
+}
+
+.row {
+    margin: auto;
+    display: block;
+}
+
+.content {
+    padding: 4px;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.sidepanel {
+    padding-left: 22px;
+    padding-top: 22px;
+    width: 200px;
+    margin-top: 44px;
+    overflow-x: hidden;
+    position: fixed;
+    height: 95%;
+    overflow-y: scroll;
+    background-color: #f8f9fa;
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+
+div::-webkit-scrollbar-track {
+}
+
+div::-webkit-scrollbar-thumb {
+    border-radius: 17px;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 17px;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.sidepanel a.title {
+    font-family: 'Open Sans', serif;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: left;
+    text-decoration: none;
+    color: #0098f8;
+    display: block;
+    padding-bottom: 12px;
+    padding-right: 4px;
+}
+
+.sidepanel a.section {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    text-align: left;
+    line-height: 30px;
+    display: block;
+    text-decoration: none;
+    color: #333;
+}
+
+.sidepanel a.sub-section {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    text-align: left;
+    line-height: 25px;
+    display: block;
+    text-decoration: none;
+    color: #333;
+    padding-left: 20px;
+
+}
+
+.sidepanel a.title:hover,
+.sidepanel a.section:hover,
+.sidepanel a.sub-section:hover {
+    text-decoration: underline;
+}
+
+.main-col {
+    width: 70%;
+    margin: auto;
+    text-align: center;
+}
+
+.main-col p {
+    font-size: 15px;
+    line-height: 24px;
+    margin-bottom: 36px;
+}
+
+.right-col {
+    margin-top: 52px;
+    padding-left: 22px;
+    padding-right: 12px;
+    padding-bottom: 22px;
+    text-align: left;
+    width: 100%;
+    margin-left: 220px;
+}
+
+.right-col h1 {
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 24px;
+}
+
+.right-col h2 {
+    font-size: 21px;
+    line-height: 24px;
+    margin-bottom: 30px;
+    text-align: left;
+    margin-block-start: 20px;
+    margin-block-end: 10px;
+}
+
+.right-col p {
+    font-size: 16px;
+    line-height: 22px;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
+.right-col a {
+    color: #0098f1;
+    text-decoration: none;
+}
+
+.right-col a:hover {
+    color: #0098f1;
+    text-decoration: underline;
+}
+
+.right-col ol {
+    margin-block-start: 10px;
+}
+
+.logo {
+    width: 67px;
+    height: 40px;
+    float: left;
+    margin: -13px 50px;
+    vertical-align: top;
+}
+
+.col {
+    width: 50%;
+    float: left;
+}
+
+.top-info {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
+    text-align: center;
+}
+
+.divider {
+    width: 40px;
+    height: 4px;
+    background: #0098f1;
+    border-radius: 30px;
+    margin: 8px auto;
+}
+
+.left {
+    margin: 20px 0;
+}
+
+.footer {
+    float: left;
+    width: 100%;
+    padding: 90px 0 20px;
+    font-size: 15px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.footer a {
+    color: #333;
+}
+
+.resp-break {
+    display: none;
+}
+
+.break {
+    display: block;
+}
+
+.space {
+    height: 30px;
+    width: 100%;
+    float: left;
+}
+
+.double {
+    height: 60px;
+}
+
+.links {
+    float: left;
+    padding-bottom: 8px;
+}
+
+/* Break Points */
+
+/* Extra small-small devices (phones, 420px and down) */
+@media only screen and (max-width: 420px) {
+
+    .logo {
+    }
+
+    .navbar {
+        height: auto;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .links {
+        float: none;
+    }
+}
+
+/* Extra small devices (phones, 650px and down) */
+@media only screen and (max-width: 650px) {
+
+    .logo {
+    }
+
+    .navbar a {
+        padding-bottom: 5px;
+        margin-left: 40px;
+        margin-right: 0;
+    }
+
+    .resp-break {
+        display: block;
+        margin: 17px;
+    }
+
+    .main-col {
+        width: 100%;
+    }
+
+    .wrapper {
+        display: block;
+    }
+
+    .sidepanel {
+        width: 100%;
+        text-align: center;
+        position: relative;
+        height: auto;
+    }
+
+    .sidepanel a.title,
+    .sidepanel a.section,
+    .sidepanel a.sub-section {
+        text-align: center;
+    }
+
+    .left {
+        margin: 20px auto;
+    }
+
+    .right-col {
+        position: relative;
+        margin-top: 20px;
+        margin-left: 0;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 650px and up) */
+@media only screen and (min-width: 650px) {
+
+    .logo {
+    }
+
+    .right a {
+        float: right;
+        padding-bottom: 5px;
+    }
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .logo {
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* End Break Points */
