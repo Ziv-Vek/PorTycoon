@@ -11,34 +11,27 @@ public class TouchManager : MonoBehaviour
   [SerializeField] private float touchDragDeadZone = 5f;
   
   // variables:
-  Vector2 startTouchPos = new Vector2();
   private bool isTouching = false;
   bool isFirstTouch = true;
   bool isMoving = false;
   
   // cached ref:
-  [SerializeField] private FloatingJoystick floatingJoystick;
-  //private PlayerMover playerMover;
-  //private PlayerInputActions playerInputActions;
   private Coroutine inputDragCoroutine;
   private Camera mainCam;
-  
   
   private PlayerInput playerInput;
   private InputAction touchPositionAction;
   private InputAction touchPressAction;
   
-
   #region EVENTS
-  public static event Action<Vector2> touchStarted;
-  public static event Action<Vector2> touchPerformed; 
-  public static event Action touchEnded;
+  public static event Action<Vector2> onTouchStarted;
+  public static event Action<Vector2> onTouchPerformed; 
+  public static event Action onTouchEnded;
   #endregion
 
   private void Awake() 
   {
     playerInput = GetComponent<PlayerInput>();
-    //controller = GetComponent<CharacterController>();
     touchPressAction = playerInput.actions.FindAction("TouchPress");
     touchPositionAction = playerInput.actions["TouchPosition"];
   }
@@ -66,29 +59,30 @@ public class TouchManager : MonoBehaviour
 
   void TouchPressed(InputAction.CallbackContext context)
   {
+    Vector2 startTouchPos = touchPositionAction.ReadValue<Vector2>();
+      
     isTouching = true;
     
-    touchStarted?.Invoke(touchPositionAction.ReadValue<Vector2>());
+    onTouchStarted?.Invoke(startTouchPos);
     
-    /*Vector2 screenTouchPos = touchPositionAction.ReadValue<Vector2>();
-    Vector3 worldTouchPos = mainCam.ScreenToWorldPoint(screenTouchPos);*/
-    //worldTouchPos.z = mainCam.nearClipPlane;
-
-    StartCoroutine(TouchDrag());
+    StartCoroutine(TouchDrag(startTouchPos));
   }
 
   void TouchCanceled(InputAction.CallbackContext context)
   {
     isTouching = false;
-    
-    touchEnded?.Invoke();
+    onTouchEnded?.Invoke();
   }
 
-  IEnumerator TouchDrag()
+  IEnumerator TouchDrag(Vector2 startTouchPos)
   {
+    var currentTouchPos = new Vector2();
+    
     while (isTouching)
     {
-      touchPerformed?.Invoke(touchPositionAction.ReadValue<Vector2>());
+      currentTouchPos = touchPositionAction.ReadValue<Vector2>();
+      if (Vector2.Distance(startTouchPos, currentTouchPos) > touchDragDeadZone)
+        onTouchPerformed?.Invoke(currentTouchPos);
       yield return null;
     }
   }
