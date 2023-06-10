@@ -1,35 +1,58 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
+[RequireComponent(typeof(ShipCargoHandler))]
 public class ShipController : MonoBehaviour
 {
     public Transform targetPoint;
     public Transform dockingPoint;
-    public float waitTimeDocking = 3f;
-    public float waitTimeTarget = 3f;
+    public float waitTimeAtSeaTarget = 3f;
     public float shipSpeed = 5f;
+    private ShipCargoHandler cargoHandler;
+
+    private void Awake()
+    {
+        cargoHandler = GetComponent<ShipCargoHandler>();
+    }
+
+    private void OnEnable()
+    {
+        cargoHandler.onCargoTransferCompleted += ProcessCargoTransferCompletion;
+    }
+
+    private void OnDisable()
+    {
+        cargoHandler.onCargoTransferCompleted -= ProcessCargoTransferCompletion;
+    }
 
     private void Start()
     {
         StartCoroutine(GoToTargetAndWaitAndReturn());
     }
 
+    private void ProcessCargoTransferCompletion()
+    {
+        StartCoroutine(GoToTargetAndWaitAndReturn());
+    }
+
     private IEnumerator GoToTargetAndWaitAndReturn()
     {
-        while (true)
-        {
-            // Move to the target point
-            yield return StartCoroutine(MoveToPosition(targetPoint.position, shipSpeed));
+        // Move to the target point at sea
+        yield return StartCoroutine(MoveToPosition(targetPoint.position, shipSpeed));
+   
+        // Instantiate new cargo on the ship
+        cargoHandler.InstantiateCargo();
+        
+        // Wait for the specified time
+        yield return new WaitForSeconds(waitTimeAtSeaTarget);
 
-            // Wait for the specified time
-            yield return new WaitForSeconds(waitTimeTarget);
+        // Move back to the docking point at pier
+        yield return StartCoroutine(MoveToPosition(dockingPoint.position, shipSpeed));
 
-            // Move back to the docking point
-            yield return StartCoroutine(MoveToPosition(dockingPoint.position, shipSpeed));
-
-            // Wait for the specified time
-            yield return new WaitForSeconds(waitTimeDocking);
-        }
+        // Transfer cargo to pier platform
+        yield return cargoHandler.StartCoroutine(cargoHandler.HandleCargoTransfer(0));
     }
 
     private IEnumerator MoveToPosition(Vector3 targetPosition, float speed)

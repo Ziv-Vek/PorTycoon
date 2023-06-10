@@ -15,8 +15,8 @@ public class PlayerMover : MonoBehaviour
     bool isMovementAllowed = true;
 
     // Cached ref:
-    [SerializeField] FloatingJoystick joystick;
     [SerializeField] Animator myAnimator;
+    FloatingJoystick joystick = null;
     CharacterController controller;
 
     private void Awake()
@@ -40,6 +40,9 @@ public class PlayerMover : MonoBehaviour
 
     private void Start()
     {
+        joystick = FloatingJoystick.Instance;
+        if (!joystick) throw new Exception("FloatingJoystick is missing.");
+        
         playerVelocity.y = 0f;
     }
 

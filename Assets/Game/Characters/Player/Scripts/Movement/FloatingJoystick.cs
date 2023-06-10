@@ -5,6 +5,14 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class FloatingJoystick : MonoBehaviour
 {
+    #region StaticInstanceGetter
+    private static FloatingJoystick _instance;
+    public static FloatingJoystick Instance
+    {
+        get { return _instance; }
+    }
+    #endregion
+    
     [SerializeField] Vector2 joystickSize = new Vector2(300, 300);
     [SerializeField] Vector2 joystickSizeMargin = new Vector2(5, 5);
     [SerializeField] float knobSpeed = 3f;
@@ -13,6 +21,11 @@ public class FloatingJoystick : MonoBehaviour
 
     [SerializeField] RectTransform outerJoystick;
     [SerializeField] RectTransform knob;
+
+    private void Awake()
+    {
+        _instance = this;
+    }
 
     private void Start()
     {
