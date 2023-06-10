@@ -18,7 +18,7 @@ public class CarryingHandler : MonoBehaviour, IGiveCargo, IReceiveCargo
 
     public GameObject GiveCargo()
     {
-        return cargoPlaces[currentNumOfCargoHolding - 1].GetChild(0).gameObject;
+        return cargoPlaces[--currentNumOfCargoHolding].GetChild(0).gameObject;
     }
 
     public int GetNumOfCargoHolding()
