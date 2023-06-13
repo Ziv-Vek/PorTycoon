@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1747431360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1747431361}
+  m_Layer: 0
+  m_Name: CargoPlace
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1747431361
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747431360}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 6.24, z: 1.46}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6393666875185864598}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6393666875185864599
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,6 +44,8 @@ GameObject:
   - component: {fileID: 469449496}
   - component: {fileID: 469449497}
   - component: {fileID: 469449500}
+  - component: {fileID: 469449509}
+  - component: {fileID: 2408597778701694754}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -33,6 +66,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6859095863179850257}
+  - {fileID: 1747431361}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -112,8 +146,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxMovementSpeed: 15
   turnSmoothTime: 0.12
-  joystick: {fileID: 0}
   myAnimator: {fileID: 707148206975379563}
+--- !u!114 &469449509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6393666875185864599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bbc561af71fc0a4abc339b8c8c2d625, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxCargoAllowed: 1
+  cargoPlaces:
+  - {fileID: 1747431361}
+--- !u!136 &2408597778701694754
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6393666875185864599}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.5
+  m_Height: 8.56
+  m_Direction: 1
+  m_Center: {x: 0, y: 5.3466506, z: 0}
 --- !u!1001 &6393666874916394490
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -169,7 +231,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 49bb47ba6dd90da448fde0b4b66a2995,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 49bb47ba6dd90da448fde0b4b66a2995,
         type: 3}
@@ -181,6 +243,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 49bb47ba6dd90da448fde0b4b66a2995,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8d972bbe415c25b488984119d30d8ac7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49bb47ba6dd90da448fde0b4b66a2995, type: 3}
 --- !u!95 &707148206975379563 stripped
