@@ -26,6 +26,7 @@ public class CargoTransferActionZone : MonoBehaviour
             var cargoGiver = other.gameObject.GetComponent<IGiveCargo>();
             if (cargoGiver == null) throw new Exception($"IGiveCargo missing at {other.gameObject.name}");
             
+            // 
             var cargoReceiver = connectedPlatformTransform.GetComponent<IReceiveCargo>();
             if (cargoReceiver == null) throw new Exception($"IReceiveCargo missing at {connectedPlatformTransform.gameObject.name}");
 
@@ -60,7 +61,7 @@ public class CargoTransferActionZone : MonoBehaviour
         {
             yield return new WaitForSeconds(timeDelayBetweenEachCargoDrop);
 
-            if (cargoGiver.GetNumOfCargoHolding() > 0)
+            if (cargoGiver.CurrentNumOfCargoHolding > 0)
             {
                 TransferSingleCargo(cargoGiver, cargoReceiver);
             }
