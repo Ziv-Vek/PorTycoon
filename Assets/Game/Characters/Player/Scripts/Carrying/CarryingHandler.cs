@@ -6,23 +6,21 @@ public class CarryingHandler : MonoBehaviour, IGiveCargo, IReceiveCargo
     // stats config:
     [SerializeField] private int maxCargoAllowed = 1;
     [SerializeField] private Transform[] cargoPlaces;
-    private int currentNumOfCargoHolding = 0;
+    public int CurrentNumOfCargoHolding { get; private set; } = 0;
 
-    public bool CanReceiverAcceptCargo => (cargoPlaces.Length - currentNumOfCargoHolding > 0);
+    public bool CanReceiverAcceptCargo => (cargoPlaces.Length - CurrentNumOfCargoHolding > 0);
     
     public void ReceiveCargo(GameObject cargo)
     {
-        cargo.transform.SetParent(cargoPlaces[currentNumOfCargoHolding], false);
-        currentNumOfCargoHolding++;
+        cargo.transform.SetParent(cargoPlaces[CurrentNumOfCargoHolding], false);
+        CurrentNumOfCargoHolding++;
     }
 
     public GameObject GiveCargo()
     {
-        return cargoPlaces[--currentNumOfCargoHolding].GetChild(0).gameObject;
+        if (CurrentNumOfCargoHolding - 1 <= 0)
+            throw new Exception($"{gameObject.name} trying to give cargo, but has ${CurrentNumOfCargoHolding} cargo.");
+        return cargoPlaces[--CurrentNumOfCargoHolding].GetChild(0).gameObject;
     }
-
-    public int GetNumOfCargoHolding()
-    {
-        return currentNumOfCargoHolding;
-    }
+    
 }

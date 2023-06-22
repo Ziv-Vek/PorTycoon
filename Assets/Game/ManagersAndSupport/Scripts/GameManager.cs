@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public int money;
     public int experience;
     public List<UnlockedItem> items;
+    public List<BoxData> boxesData;
 
     private void Awake()
     {
@@ -84,7 +85,7 @@ public class GameManager : MonoBehaviour
 
     public bool IsItemUnlocked(Item item)
     {
-        return items.Exists(unlockedItem => unlockedItem.item == item); // TODO: should be type
+        return items.Exists(unlockedItem => unlockedItem.item == item); 
     }
 
     private void OnApplicationQuit()

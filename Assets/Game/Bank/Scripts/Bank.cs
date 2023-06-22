@@ -35,6 +35,5 @@ public class Bank : MonoBehaviour
         currentMoney += moneyAmount;
         GameManager.Instance.money = currentMoney;
         UIManager.Instance.UpdateMoneyText(currentMoney);
-        GameManager.Instance.SaveData();
     }
 }

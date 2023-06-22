@@ -4,23 +4,22 @@ using UnityEngine;
 public class PlatformCargoHandler: MonoBehaviour, IReceiveCargo, IGiveCargo
 {
     [SerializeField] private Transform[] cargoPlaces;
-    private int currentNumOfCargoHolding = 0;
+    public int CurrentNumOfCargoHolding { get; private set; } = 0;
 
-    public bool CanReceiverAcceptCargo => (cargoPlaces.Length - currentNumOfCargoHolding > 0);
+    public bool CanReceiverAcceptCargo => (cargoPlaces.Length - CurrentNumOfCargoHolding > 0);
 
     public void ReceiveCargo(GameObject cargo)
     {
-        cargo.transform.SetParent(cargoPlaces[currentNumOfCargoHolding], false);
-        currentNumOfCargoHolding++;
+        cargo.transform.SetParent(cargoPlaces[CurrentNumOfCargoHolding], false);
+        CurrentNumOfCargoHolding++;
     }
 
     public GameObject GiveCargo()
     {
-        return cargoPlaces[--currentNumOfCargoHolding].GetChild(0).gameObject;
-    }
+        if (CurrentNumOfCargoHolding - 1 <= 0)
+            throw new Exception($"{gameObject.name} trying to give cargo, but has ${CurrentNumOfCargoHolding} cargo.");
 
-    public int GetNumOfCargoHolding()
-    {
-        return currentNumOfCargoHolding;
+        return cargoPlaces[--CurrentNumOfCargoHolding].GetChild(0).gameObject;
     }
+    
 }
