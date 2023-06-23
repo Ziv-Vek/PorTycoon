@@ -269,6 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
+  scratchBoard: {fileID: 7828701595937231211}
 --- !u!1001 &3194624749497678983
 PrefabInstance:
   m_ObjectHideFlags: 0

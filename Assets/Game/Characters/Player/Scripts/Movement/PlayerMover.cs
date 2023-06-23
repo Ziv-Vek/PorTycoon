@@ -96,4 +96,18 @@ public class PlayerMover : MonoBehaviour
     {
         isMovementAllowed = enableMovement;
     }
+
+    private void Update()
+    {
+        // Move player with wasd keys
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+        controller.Move(direction * (maxMovementSpeed * Time.deltaTime));
+        float targetAngel = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngel, ref turnSmoothVelocity, turnSmoothTime);
+        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        
+        UpdateAnimator(direction * maxMovementSpeed);
+    }
 }
