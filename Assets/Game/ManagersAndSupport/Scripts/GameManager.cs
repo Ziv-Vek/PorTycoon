@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
 
-
+[DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
     public int money;
     public int experience;
     public List<UnlockedItem> items;
-    public List<BoxData> boxesData;
+    public List<BoxData> boxes = new List<BoxData>();
+    //public List<BoxesCarrier> carriers;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
         }
 
         items = new List<UnlockedItem>();
+        //carriers = new List<BoxesCarrier>();
 
         LoadData(); // Load saved data when the GameManager starts
     }
@@ -44,8 +46,7 @@ public class GameManager : MonoBehaviour
 
         PlayerPrefs.Save();
     }
-
-
+    
     public void LoadData()
     {
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.CurrentLevel))
@@ -69,6 +70,17 @@ public class GameManager : MonoBehaviour
             string unlockedItemsJson = PlayerPrefs.GetString(PlayerPrefsKeys.UnlockedItems);
             items = JsonConvert.DeserializeObject<List<UnlockedItem>>(unlockedItemsJson);
         }
+
+        // Load boxes
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.Boxes))
+        {
+            string boxesJson = PlayerPrefs.GetString(PlayerPrefsKeys.Boxes);
+            boxes = JsonConvert.DeserializeObject<List<BoxData>>(boxesJson);
+        }
+        
+        // Load carriers
+        
+        
     }
 
 
@@ -87,7 +99,7 @@ public class GameManager : MonoBehaviour
     {
         return items.Exists(unlockedItem => unlockedItem.item == item); 
     }
-
+    
     private void OnApplicationQuit()
     {
         SaveData();

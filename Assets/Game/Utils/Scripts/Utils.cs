@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Utils: MonoBehaviour
 {
@@ -31,5 +32,15 @@ public class Utils: MonoBehaviour
             Console.WriteLine(e);
             throw;
         }
+    }
+
+    public float getRandomId()
+    {
+        return Random.Range(0f, 10000f);
+    }
+
+    public string GetUniqueID()
+    {
+        return Guid.NewGuid().ToString("N");
     }
 }

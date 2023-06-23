@@ -22,5 +22,4 @@ public class CarryingHandler : MonoBehaviour, IGiveCargo, IReceiveCargo
             throw new Exception($"{gameObject.name} trying to give cargo, but has ${CurrentNumOfCargoHolding} cargo.");
         return cargoPlaces[--CurrentNumOfCargoHolding].GetChild(0).gameObject;
     }
-    
 }
