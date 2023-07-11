@@ -9,4 +9,5 @@ public class Item : ScriptableObject
     public string type;
     public string rarity;
     public Color color;
-}
+}    
+

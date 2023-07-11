@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
+[ExecuteAlways]
 public class Utils: MonoBehaviour
 {
     #region StaticInstanceGetter
@@ -34,13 +34,8 @@ public class Utils: MonoBehaviour
         }
     }
 
-    public float getRandomId()
-    {
-        return Random.Range(0f, 10000f);
-    }
-
     public string GetUniqueID()
     {
-        return Guid.NewGuid().ToString("N");
+        return Guid.NewGuid().ToString();
     }
 }

@@ -5,5 +5,6 @@ internal static class PlayerPrefsKeys
     public const string Experience = "experience";
     public const string UnlockedItems = "unlockedItems";
     public const string Boxes = "boxes";
-    public const string BoxesCarrier = "carriers";
-}
+    public const string SaveableGameObjects = "entities";
+}    
+

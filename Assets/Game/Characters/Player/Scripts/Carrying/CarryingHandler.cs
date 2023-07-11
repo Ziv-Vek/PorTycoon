@@ -1,25 +1,82 @@
 using System;
 using UnityEngine;
 
-public class CarryingHandler : MonoBehaviour, IGiveCargo, IReceiveCargo
+public class CarryingHandler : MonoBehaviour, IGiveCargo, IReceiveCargo, ITransferCargo
 {
     // stats config:
-    [SerializeField] private int maxCargoAllowed = 1;
+    [SerializeField] private int maxCargoCapacity = 1;
     [SerializeField] private Transform[] cargoPlaces;
     public int CurrentNumOfCargoHolding { get; private set; } = 0;
+    [SerializeField] private CarriersTypes carrierType = CarriersTypes.player;
+    public GameObject[] boxes;
+
+    private void Awake()
+    {
+        boxes = new GameObject[maxCargoCapacity];
+    }
+    
+    private void Start()
+    {
+        if (cargoPlaces.Length != maxCargoCapacity)
+        {
+            throw new Exception("Number of cargo places is different from maximum cargo allowed");
+        }
+    }
 
     public bool CanReceiverAcceptCargo => (cargoPlaces.Length - CurrentNumOfCargoHolding > 0);
     
+    
+    public CarriersTypes GetCarrierType()
+    {
+        return carrierType;
+    }
+
+    public bool CheckCanReceiveCargo()
+    {
+        if (boxes == null) return false;
+        
+        foreach (var box in boxes)
+        {
+            if (box == null) return true;
+        }
+
+        return false;
+    }
+
+    public bool CheckCanGiveCargo()
+    {
+        for (int i = 0; i < boxes.Length; i++)
+        {
+            if (boxes[i] != null) break;
+            if (i == (boxes.Length - 1) && boxes[i] == null)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public bool CheckTryTransferCargo()
+    {
+        Debug.Log("called CheckTryTransferCargo()");
+        return true;
+    }
+
     public void ReceiveCargo(GameObject cargo)
     {
-        cargo.transform.SetParent(cargoPlaces[CurrentNumOfCargoHolding], false);
-        CurrentNumOfCargoHolding++;
+        int index = Array.FindIndex(boxes, i => i == null);
+        boxes[index] = cargo;
+        cargo.transform.SetParent(cargoPlaces[index]);
+        cargo.transform.localPosition = Vector3.zero;
     }
 
     public GameObject GiveCargo()
     {
-        if (CurrentNumOfCargoHolding - 1 <= 0)
-            throw new Exception($"{gameObject.name} trying to give cargo, but has ${CurrentNumOfCargoHolding} cargo.");
-        return cargoPlaces[--CurrentNumOfCargoHolding].GetChild(0).gameObject;
+        int index = Array.FindLastIndex(boxes, obj => obj != null);
+
+        GameObject box = boxes[index];
+        boxes[index] = null;
+        return box;
     }
 }

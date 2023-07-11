@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
 using UnityEngine;
-
+   
 public class CargoTransferActionZone : MonoBehaviour
 {
     [SerializeField] private PlatformCargoHandler connectedPlatformTransform;
     [SerializeField] private float timeDelayBetweenEachCargoDrop = 0.3f;
-    
+     
     [Tooltip("True if cargo will be transfered from a character to the Platform. False if in the other direction")]
     [SerializeField] private bool isPlatformReceivingCargo;
 
@@ -15,6 +15,11 @@ public class CargoTransferActionZone : MonoBehaviour
     #region EVENTS
     public event Action onCargoTransferCompleted;
     #endregion
+
+    public bool CheckTryTransferCargo()
+    {
+        return isCharacterOnPlatform;
+    }
 
     private void OnTriggerEnter(Collider other)
     {

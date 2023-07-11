@@ -1,21 +1,36 @@
 using UnityEngine;
 
 public class Box : MonoBehaviour
-{ 
-    private BoxData boxData;
-    
-    private void Start()
-    {
-        //boxData.id = 
+{
+    public string BoxName { set; get; }
 
-
-
-        //GetComponent<MeshFilter>().mesh = boxSo.mesh;
-        //GetComponent<MeshRenderer>().material = boxSo.mat;
-    }
-    
     public void SetParent(Transform parentTrans)
     {
         //gameObject.transform.SetParent(boxSo.parentTransform);
+    }
+
+    public struct BoxData
+    {
+        public Mesh mesh; 
+        public Material mat;
+        public string name;
+        public Item item;
+    }
+
+    public BoxData CaptureState()
+    {
+        BoxData data = new BoxData();
+    
+        data.mesh = GetComponent<MeshFilter>().mesh;
+        data.mat = GetComponent<MeshRenderer>().material;
+        data.name = gameObject.name;
+
+    
+        return data;
+    }
+
+    public void RestoreState(CarrierData state)
+    {
+        throw new System.NotImplementedException();
     }
 }

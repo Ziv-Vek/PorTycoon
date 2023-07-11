@@ -6,6 +6,8 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(ShipCargoHandler))]
 public class ShipController : MonoBehaviour
 {
+    // TODO: add save and restore position and movement direction from save
+    
     public Transform targetPoint;
     public Transform dockingPoint;
     public float waitTimeAtSeaTarget = 3f;
@@ -39,20 +41,24 @@ public class ShipController : MonoBehaviour
 
     private IEnumerator GoToTargetAndWaitAndReturn()
     {
-        // Move to the target point at sea
-        yield return StartCoroutine(MoveToPosition(targetPoint.position, shipSpeed));
-   
-        // Instantiate new cargo on the ship
-        cargoHandler.InstantiateCargo();
-        
-        // Wait for the specified time
-        yield return new WaitForSeconds(waitTimeAtSeaTarget);
+        while (true)
+        {
+            // Move to the target point at sea
+            yield return StartCoroutine(MoveToPosition(targetPoint.position, shipSpeed));
 
-        // Move back to the docking point at pier
-        yield return StartCoroutine(MoveToPosition(dockingPoint.position, shipSpeed));
+            // Instantiate new cargo on the ship
+            cargoHandler.InstantiateCargo();
 
-        // Transfer cargo to pier platform
-        yield return cargoHandler.StartCoroutine(cargoHandler.HandleCargoTransfer(0));
+            // Wait for the specified time
+            yield return new WaitForSeconds(waitTimeAtSeaTarget);
+
+            // Move back to the docking point at pier
+            yield return StartCoroutine(MoveToPosition(dockingPoint.position, shipSpeed));
+
+            // Transfer cargo to pier platform
+            yield return StartCoroutine(cargoHandler.HandleCargoTransfer());
+            //yield return StartCoroutine(cargoHandler.HandleCargoTransfer());
+        }
     }
 
     private IEnumerator MoveToPosition(Vector3 targetPosition, float speed)
