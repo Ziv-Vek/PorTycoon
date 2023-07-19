@@ -92,7 +92,7 @@ public class PlayerMover : MonoBehaviour
         myAnimator.SetFloat("forwardSpeed", speed);
     }
 
-    void ToggleMovement(bool enableMovement)
+    public void ToggleMovement(bool enableMovement)
     {
         isMovementAllowed = enableMovement;
     }
