@@ -9,7 +9,7 @@ public class Carrier: MonoBehaviour, ITransferBoxes
     public Transform[] boxesPlaces;
     
     // cached ref:
-    public GameObject[] boxes;
+    [HideInInspector] public GameObject[] boxes;
     
     // stats:
     public bool IsAttemptingToGiveCargo { get; set; }
@@ -23,7 +23,7 @@ public class Carrier: MonoBehaviour, ITransferBoxes
     {
         if (boxesPlaces.Length != maxBoxesCapacity)
         {
-            throw new Exception("Number of boxesPlaces is different from maximum boxes allowed");
+            throw new Exception($"{gameObject.name}: Number of boxesPlaces is different from maximum boxes allowed");
         }
     }
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 public class Conveyor : Carrier
@@ -78,8 +79,8 @@ public class Conveyor : Carrier
 
         while (isBeltMoving)
         {
-            box.transform.Translate((conveyorEnd.transform.position - box.position) * Time.deltaTime * beltSpeed);
-
+            box.transform.Translate((conveyorEnd.transform.position - box.position) * Time.deltaTime * beltSpeed, Space.World);
+            
             uvOffset += (beltSpeed * Time.deltaTime);
 
             materials = conveyorRenderer.materials;
