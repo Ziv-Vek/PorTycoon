@@ -16,22 +16,22 @@ public class MoneyThrower : MonoBehaviour
     
     private void OnEnable()
     {
-        if (TryGetComponent<CargoTransferActionZone>(out var actionZone))
+        /*if (TryGetComponent<CargoTransferActionZone>(out var actionZone))
         {
          actionZone.onCargoTransferCompleted += HandleThrowProcess;   
         }
         else
         {
             throw new Exception($"CargoTransferActionZone component missing on {this.gameObject.name}");
-        }
+        }*/
     }
 
     private void OnDisable()
     {
-        if (TryGetComponent<CargoTransferActionZone>(out var actionZone))
+        /*if (TryGetComponent<CargoTransferActionZone>(out var actionZone))
         {
             actionZone.onCargoTransferCompleted -= HandleThrowProcess;   
-        }
+        }*/
     }
 
     private void HandleThrowProcess()

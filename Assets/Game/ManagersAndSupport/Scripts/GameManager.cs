@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public int money;
     public int experience;
     public List<UnlockedItem> items;
-    public List<BoxData> boxes = new List<BoxData>();
+    //public List<BoxData> boxes = new List<BoxData>();
     //public List<BoxesCarrier> carriers;
     //[SerializeField] private Item[] items;
     public Dictionary<string, object> capturedState;
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
 
                 if (capturedState.ContainsKey(uId))
                 {
-                    saveableEntity.GetComponent<ISaveable>().RestoreState(capturedState[uId]);
+                    //saveableEntity.GetComponent<ISaveable>().RestoreState(capturedState[uId]);
                     /*foreach (ISaveable saveableComponent in saveableEntity.GetComponents<ISaveable>())
                     {
                         saveableEntity.GetComponent<ISaveable>().RestoreState(carriersState[uId]);    
@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.Boxes))
         {
             string boxesJson = PlayerPrefs.GetString(PlayerPrefsKeys.Boxes);
-            boxes = JsonConvert.DeserializeObject<List<BoxData>>(boxesJson);
+            //boxes = JsonConvert.DeserializeObject<List<BoxData>>(boxesJson);
         }
         
         // Load carriers
