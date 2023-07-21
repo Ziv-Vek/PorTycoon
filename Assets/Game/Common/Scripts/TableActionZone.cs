@@ -3,7 +3,6 @@ using UnityEngine;
 public class TableActionZone : MonoBehaviour
 {
     public ScratchBoard scratchBoard; // Drag the Canvas GameObject with the script attached here in the inspector
-    public BoxTable table;
     
     private void OnTriggerEnter(Collider other)
     {
