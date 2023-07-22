@@ -106,6 +106,7 @@ public class PlayerMover : MonoBehaviour
         controller.Move(direction * (maxMovementSpeed * Time.deltaTime));
         float targetAngel = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngel, ref turnSmoothVelocity, turnSmoothTime);
+        
         transform.rotation = Quaternion.Euler(0f, angle, 0f);
         
         UpdateAnimator(direction * maxMovementSpeed);

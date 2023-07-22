@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class SavingWrapper: MonoBehaviour
 {
-    void Update()
+    /*void Update()
     {
         if (Input.GetKeyDown("s"))
         {
@@ -25,5 +25,5 @@ public class SavingWrapper: MonoBehaviour
             PlayerPrefs.DeleteKey(PlayerPrefsKeys.Boxes);
             PlayerPrefs.DeleteKey(PlayerPrefsKeys.SaveableGameObjects);
         }
-    }
+    }*/
 }

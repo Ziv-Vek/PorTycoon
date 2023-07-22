@@ -1886,6 +1886,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1907757271}
     m_Modifications:
+    - target: {fileID: 469449500, guid: b5cd7a9ad16a4e7418924928bb100aca, type: 3}
+      propertyPath: turnSmoothTime
+      value: 0.001
+      objectReference: {fileID: 0}
     - target: {fileID: 469449501, guid: b5cd7a9ad16a4e7418924928bb100aca, type: 3}
       propertyPath: m_Height
       value: 7.7
@@ -3416,6 +3420,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2694882272728332842, guid: 49c12946b51d60346b2a8e8093be146a,
+        type: 3}
+      propertyPath: joystickSize.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2694882272728332842, guid: 49c12946b51d60346b2a8e8093be146a,
+        type: 3}
+      propertyPath: joystickSize.y
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2694882272728332842, guid: 49c12946b51d60346b2a8e8093be146a,
+        type: 3}
+      propertyPath: joystickSizeMargin.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2694882272728332842, guid: 49c12946b51d60346b2a8e8093be146a,
+        type: 3}
+      propertyPath: joystickSizeMargin.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4184821644995905028, guid: 49c12946b51d60346b2a8e8093be146a,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -3425,6 +3449,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859477383293269275, guid: 49c12946b51d60346b2a8e8093be146a,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.2627451
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49c12946b51d60346b2a8e8093be146a, type: 3}
