@@ -37,7 +37,7 @@ public class Carrier: MonoBehaviour, ITransferBoxes
         return box;
     }
 
-    public void ReceiveBox(GameObject cargo)
+    public virtual void ReceiveBox(GameObject cargo)
     {
         int index = Array.FindIndex(boxes, i => i == null);
         boxes[index] = cargo;

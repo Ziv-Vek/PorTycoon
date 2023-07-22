@@ -8,7 +8,7 @@ public class ShipCarrier: Carrier
     [SerializeField] Pier pier;
     private ITransferBoxes boxesReceiver;
 
-    public event Action<CarriersTypes> onShipDropBox;
+    
     
     public override void Awake()
     {
@@ -51,8 +51,6 @@ public class ShipCarrier: Carrier
         {
             IsAttemptingToGiveCargo = false;
         }
-        
-        onShipDropBox?.Invoke(carrierType);
         
         return box;
     }

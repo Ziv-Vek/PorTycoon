@@ -5,6 +5,8 @@ public class Pier: Carrier
 {
     private ITransferBoxes currentTransferPartner = null;
     
+    public event Action<CarriersTypes> onBoxDrop;
+    
     private void OnTriggerEnter(Collider other)
     {
         if (currentTransferPartner != null) return;
@@ -25,4 +27,17 @@ public class Pier: Carrier
         IsAttemptingToGiveCargo = false;
         currentTransferPartner = null;
     }
+    
+    public override void ReceiveBox(GameObject cargo)
+    {
+        int index = Array.FindIndex(boxes, i => i == null);
+        boxes[index] = cargo;
+        cargo.transform.SetParent(boxesPlaces[index]);
+        cargo.transform.localPosition = Vector3.zero;
+        cargo.transform.localRotation = gameObject.transform.rotation;
+        
+        onBoxDrop?.Invoke(CarriersTypes.pier);
+    }
+    
+    
 }
