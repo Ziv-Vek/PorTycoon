@@ -96,6 +96,16 @@ public class PlayerMover : MonoBehaviour
     {
         isMovementAllowed = enableMovement;
     }
+    
+    public void HideJoystick()
+    {
+        joystick.gameObject.SetActive(false);
+    }
+    
+    public void ShowJoystick()
+    {
+        joystick.gameObject.SetActive(true);
+    }
 
     private void Update()
     {

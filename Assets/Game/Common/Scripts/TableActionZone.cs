@@ -8,7 +8,7 @@ public class TableActionZone : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Check if the object that entered the trigger is tagged as "Player"
-        if (other.CompareTag("Player") && !scratchBoard.scratchBoard.activeSelf)
+        if (other.CompareTag("Player") && !scratchBoard.gameObject.activeSelf)
         {
             // Call the openCanvas function from the canvas script
             scratchBoard.Open();
@@ -18,7 +18,7 @@ public class TableActionZone : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         // Check if the object that stays in the trigger is tagged as "Player"
-        if (other.CompareTag("Player") && !scratchBoard.scratchBoard.activeSelf)
+        if (other.CompareTag("Player") && !scratchBoard.gameObject.activeSelf)
         {
             // Continuously call the openCanvas function from the canvas script
             scratchBoard.Open();

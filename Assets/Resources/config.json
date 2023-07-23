@@ -7,7 +7,7 @@
           "id": "1",
           "name": "Bear",
           "image": "bear",
-          "rarity": 1
+          "rarity": 3
         },
         {
           "id": "2",
@@ -19,7 +19,7 @@
           "id": "3",
           "name": "Lion",
           "image": "lion",
-          "rarity": 3
+          "rarity": 1
         }
       ]
     }
