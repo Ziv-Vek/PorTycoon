@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     [SerializeField] private TextMeshProUGUI moneyText;
+    [SerializeField] private TextMeshProUGUI starsText;
 
     private void Awake()
     {
@@ -24,5 +25,9 @@ public class UIManager : MonoBehaviour
     public void UpdateMoneyText(int money)
     {
         moneyText.text = money.ToString();
+    }
+    public void UpdateStarsText(int stars)
+    {
+        starsText.text = stars.ToString();
     }
 }

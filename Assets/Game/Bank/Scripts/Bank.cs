@@ -5,6 +5,8 @@ public class Bank : MonoBehaviour
 {
     public static Bank Instance;
     [SerializeField] int amountOfMoneyToThrow = 100;
+    public int CargoMoneyAmount = 5;
+    public int ScretchMoneyAmount = 5;
 
     private void Awake()
     {
@@ -36,8 +38,18 @@ public class Bank : MonoBehaviour
         GameManager.Instance.money = currentMoney;
         UIManager.Instance.UpdateMoneyText(currentMoney);
     }
+    public void DepositStars(int StarsAmount)
+    {
+        int currentStars = GameManager.Instance.money;
+        currentStars += StarsAmount;
+        GameManager.Instance.money = currentStars;
+        UIManager.Instance.UpdateStarsText(currentStars);
+    }
     public void AddMoneyToPile(MoneyPile pile)
     {
-        pile.AddMoney(5);
+        if(pile.gameObject.name == "CargoMoneyPile")
+            pile.AddMoney(CargoMoneyAmount);
+        if (pile.gameObject.name == "ScretchMoneyPile")
+            pile.AddMoney(ScretchMoneyAmount);
     }
 }

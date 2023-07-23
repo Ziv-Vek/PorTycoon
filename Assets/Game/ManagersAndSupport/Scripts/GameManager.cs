@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     // player settings
     public int money;
+    public int stars;
     public int experience;
     public List<UnlockedItem> UnlockedItems { get; set; }
 
