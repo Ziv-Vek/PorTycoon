@@ -47,6 +47,7 @@ public class ScratchBoard : MonoBehaviour
     public void Close()
     {
         playerMover.ToggleMovement(true);
+        playerMover.ShowJoystick();
         gameObject.SetActive(false);
     }
 
@@ -58,6 +59,7 @@ public class ScratchBoard : MonoBehaviour
         }
 
         playerMover.ToggleMovement(false);
+        playerMover.HideJoystick();
         NextItem();
         cardManager.Progress.OnProgress += OnScratchProgress;
         gameObject.SetActive(true);
