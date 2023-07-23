@@ -1,0 +1,21 @@
+{
+  "levels": [
+    {
+      "id": "1",
+      "items": [
+        {
+          "id": "item1",
+          "rarity": 1
+        },
+        {
+          "id": "item2",
+          "rarity": 2
+        },
+        {
+          "id": "item3",
+          "rarity": 3
+        }
+      ]
+    }
+  ]
+}

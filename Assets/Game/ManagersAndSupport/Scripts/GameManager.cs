@@ -1,22 +1,29 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
- 
+
 
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    // Player progress and data variables
-    public int currentLevel = 1;
+    // Managers
+    private ConfigManager ConfigManager { get; set; }
+    private StateManager StateManager { get; set; }
+
+
+    public GameConfig GameConfig { get; set; }
+    public LevelData CurrentLevel { get; set; }
+
+    // player settings
     public int money;
     public int experience;
-    public List<UnlockedItem> items;
+    public List<UnlockedItem> UnlockedItems { get; set; }
+
     //public List<BoxData> boxes = new List<BoxData>();
     //public List<BoxesCarrier> carriers;
     //[SerializeField] private Item[] items;
-    public Dictionary<string, object> capturedState;
 
     private void Awake()
     {
@@ -29,105 +36,23 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+        StateManager = gameObject.AddComponent<StateManager>();
 
         //items = new List<UnlockedItem>();
         //carriers = new List<BoxesCarrier>();
 
-        LoadData(); // Load saved data when the GameManager starts
+        LoadConfig();
+        StateManager.LoadData(); // Load saved data when the GameManager starts
     }
 
-    public void SaveData()
+    public void LoadConfig()
     {
-        PlayerPrefs.SetInt(PlayerPrefsKeys.CurrentLevel, currentLevel);
-        PlayerPrefs.SetInt(PlayerPrefsKeys.Money, money);
-        PlayerPrefs.SetInt(PlayerPrefsKeys.Experience, experience);
-
-        // Save unlocked items
-        string unlockedItemsJson = JsonConvert.SerializeObject(items);
-        PlayerPrefs.SetString(PlayerPrefsKeys.UnlockedItems, unlockedItemsJson);
-
-        //Save saveableEntities
-        if (capturedState == null)
-        {
-            capturedState = new Dictionary<string, object>();
-        }
-        
-        foreach (SaveableEntity saveableEntity in FindObjectsOfType<SaveableEntity>())
-        {
-            // TODO: add a situation where more then one ISaveable component is present on a GameObject
-            if (capturedState.ContainsKey(saveableEntity.GetUID()))
-            {
-                capturedState[saveableEntity.GetUID()] = saveableEntity.GetComponent<ISaveable>().CaptureState();
-            } 
-            else
-            {
-                capturedState.Add(saveableEntity.GetUID(), saveableEntity.GetComponent<ISaveable>().CaptureState());
-            }
-        }
-        
-        //Dictionary<string, object> capturedState = CarriersManager.Instance.CaptureState();
-        string stateJson = JsonConvert.SerializeObject(capturedState);
-        PlayerPrefs.SetString(PlayerPrefsKeys.SaveableGameObjects, stateJson);
-        
-        PlayerPrefs.Save();
+        ConfigManager = new ConfigManager();
+        GameConfig = ConfigManager.Config;
+        CurrentLevel = ConfigManager.GetLevelConfig("1");
     }
-    
-    public void LoadData()
-    {
-        if (PlayerPrefs.HasKey((PlayerPrefsKeys.SaveableGameObjects)))
-        {
-            string capturedStateJson = PlayerPrefs.GetString(PlayerPrefsKeys.SaveableGameObjects);
-            capturedState = JsonConvert.DeserializeObject<Dictionary<string, object>>(capturedStateJson);
 
-            print(capturedStateJson);
-            print(capturedState);
-
-            foreach (SaveableEntity saveableEntity in FindObjectsOfType<SaveableEntity>())
-            {
-                string uId = saveableEntity.GetUID();
-
-                if (capturedState.ContainsKey(uId))
-                {
-                    //saveableEntity.GetComponent<ISaveable>().RestoreState(capturedState[uId]);
-                    /*foreach (ISaveable saveableComponent in saveableEntity.GetComponents<ISaveable>())
-                    {
-                        saveableEntity.GetComponent<ISaveable>().RestoreState(carriersState[uId]);    
-                    }*/
-                }
-            }
-        }
-
-        if (PlayerPrefs.HasKey(PlayerPrefsKeys.CurrentLevel))
-        {
-            currentLevel = PlayerPrefs.GetInt(PlayerPrefsKeys.CurrentLevel);
-        }
-
-        if (PlayerPrefs.HasKey(PlayerPrefsKeys.Money))
-        {
-            money = PlayerPrefs.GetInt(PlayerPrefsKeys.Money);
-        }
-
-        if (PlayerPrefs.HasKey(PlayerPrefsKeys.Experience))
-        {
-            experience = PlayerPrefs.GetInt(PlayerPrefsKeys.Experience);
-        }
-        // Load unlocked items
-
-        if (PlayerPrefs.HasKey(PlayerPrefsKeys.UnlockedItems))
-        {
-            string unlockedItemsJson = PlayerPrefs.GetString(PlayerPrefsKeys.UnlockedItems);
-            items = JsonConvert.DeserializeObject<List<UnlockedItem>>(unlockedItemsJson);
-        }
-
-        // Load boxes
-        if (PlayerPrefs.HasKey(PlayerPrefsKeys.Boxes))
-        {
-            string boxesJson = PlayerPrefs.GetString(PlayerPrefsKeys.Boxes);
-            //boxes = JsonConvert.DeserializeObject<List<BoxData>>(boxesJson);
-        }
-        
-        // Load carriers
-    }
 
     /*public void UnlockItem(Item item)
     {
@@ -144,10 +69,9 @@ public class GameManager : MonoBehaviour
     {
         return items.Exists(unlockedItem => unlockedItem.item == item); 
     }*/
-   
+
     private void OnApplicationQuit()
     {
-        SaveData();
+        StateManager.SaveData(CurrentLevel, money, experience, UnlockedItems);
     }
 }
-
