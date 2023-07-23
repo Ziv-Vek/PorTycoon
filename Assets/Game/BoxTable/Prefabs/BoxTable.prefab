@@ -301,6 +301,10 @@ PrefabInstance:
       propertyPath: playerMover
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1002881187, guid: 0dc0c96519593414c942af79e7b1683d, type: 3}
+      propertyPath: scratchItemImage
+      value: 
+      objectReference: {fileID: 874331412}
     - target: {fileID: 2645596991563059296, guid: 0dc0c96519593414c942af79e7b1683d,
         type: 3}
       propertyPath: m_Name
@@ -454,5 +458,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01b263b1915f44c4583ac97439970c4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &7838685963210204852 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2645596991563059296, guid: 0dc0c96519593414c942af79e7b1683d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5224060292203902676}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &874331412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7838685963210204852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7118537a0964749abe4510cbb6c8dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
