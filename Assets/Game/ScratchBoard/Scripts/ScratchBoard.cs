@@ -8,7 +8,6 @@ using UnityEngine.Serialization;
 public class ScratchBoard : MonoBehaviour
 {
     public Camera mainCamera;
-    public GameObject scratchBoard;
     public float targetScratchProgress = 0.3f;
     public Item CurrentItem { get; set; }
 
@@ -25,7 +24,7 @@ public class ScratchBoard : MonoBehaviour
     void Start()
     {
         // get box table of the parent prefab
-        scratchBoard.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     void Update()
@@ -46,9 +45,9 @@ public class ScratchBoard : MonoBehaviour
     }
 
     public void Close()
-    {      
+    {
         playerMover.ToggleMovement(true);
-        scratchBoard.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public void Open()
@@ -61,7 +60,7 @@ public class ScratchBoard : MonoBehaviour
         playerMover.ToggleMovement(false);
         NextItem();
         cardManager.Progress.OnProgress += OnScratchProgress;
-        scratchBoard.SetActive(true);
+        gameObject.SetActive(true);
     }
 
     private void OnFinishedScratching()
@@ -81,6 +80,7 @@ public class ScratchBoard : MonoBehaviour
             cardManager.Progress.OnProgress -= OnScratchProgress;
             Close();
         }
+
         Bank.Instance.AddMoneyToPile(moneyPile);
         // TODO: Here we should invoke money throw
     }

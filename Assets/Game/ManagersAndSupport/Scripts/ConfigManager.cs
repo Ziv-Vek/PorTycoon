@@ -9,7 +9,7 @@ public class ConfigManager
     {
         LoadConfig();
     }
-
+    
 
     private GameConfig LoadConfig()
     {
@@ -30,20 +30,11 @@ public class ConfigManager
         var levelConfig = Config.levels.FirstOrDefault(level => level.id == levelID);
         if (levelConfig != null)
         {
-            // Calculate total weight
+            // Calculate probabilities
             float totalWeight = levelConfig.items.Sum(item => item.rarity);
-
             foreach (var item in levelConfig.items)
             {
-                // Compute the item's probability as the inverse proportion of its rarity
-                item.Probability = totalWeight / item.rarity;
-            }
-
-            // Normalize probabilities so that their sum is 1
-            float totalProbability = levelConfig.items.Sum(item => item.Probability);
-            foreach (var item in levelConfig.items)
-            {
-                item.Probability /= totalProbability;
+                item.Probability = item.rarity / totalWeight;
             }
 
             return levelConfig;
