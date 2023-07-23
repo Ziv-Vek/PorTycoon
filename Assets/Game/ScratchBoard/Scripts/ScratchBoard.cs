@@ -17,6 +17,8 @@ public class ScratchBoard : MonoBehaviour
     [SerializeField] private TableCarrier carrier;
     [SerializeField] private ScratchItemImage scratchItemImage;
 
+    [SerializeField] MoneyPile moneyPile;
+
     // internal indicator if the scratch card is done
     private bool _doneScratchCard = false;
 
@@ -44,7 +46,7 @@ public class ScratchBoard : MonoBehaviour
     }
 
     public void Close()
-    {
+    {      
         playerMover.ToggleMovement(true);
         scratchBoard.SetActive(false);
     }
@@ -79,6 +81,7 @@ public class ScratchBoard : MonoBehaviour
             cardManager.Progress.OnProgress -= OnScratchProgress;
             Close();
         }
+        Bank.Instance.AddMoneyToPile(moneyPile);
         // TODO: Here we should invoke money throw
     }
 

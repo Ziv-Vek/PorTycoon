@@ -7,7 +7,7 @@ public class ShipCarrier: Carrier
 {
     [SerializeField] Pier pier;
     private ITransferBoxes boxesReceiver;
-
+    [SerializeField] MoneyPile moneyPile;
     
     
     public override void Awake()
@@ -46,7 +46,7 @@ public class ShipCarrier: Carrier
 
         GameObject box = boxes[index];
         boxes[index] = null;
-
+        Bank.Instance.AddMoneyToPile(moneyPile);
         if (!CheckCanGiveBoxes())
         {
             IsAttemptingToGiveCargo = false;

@@ -36,4 +36,8 @@ public class Bank : MonoBehaviour
         GameManager.Instance.money = currentMoney;
         UIManager.Instance.UpdateMoneyText(currentMoney);
     }
+    public void AddMoneyToPile(MoneyPile pile)
+    {
+        pile.AddMoney(5);
+    }
 }
