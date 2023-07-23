@@ -15,7 +15,9 @@ public class ScratchBoard : MonoBehaviour
     [SerializeField] private ScratchCardManager cardManager;
     [SerializeField] private PlayerMover playerMover;
     [SerializeField] private TableCarrier carrier;
+    [SerializeField] private ScratchItemImage scratchItemImage;
 
+    // internal indicator if the scratch card is done
     private bool _doneScratchCard = false;
 
     void Start()
@@ -34,6 +36,13 @@ public class ScratchBoard : MonoBehaviour
         transform.position = mainCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, mainCamera.nearClipPlane + 20));
     }
 
+    private void NextItem()
+    {
+        CurrentItem = GameManager.Instance.CurrentLevel.GetRandomItemForLevel();
+        scratchItemImage.ChangeImage(CurrentItem.image);
+        cardManager.ClearScratchCard();
+    }
+
     public void Close()
     {
         playerMover.ToggleMovement(true);
@@ -48,19 +57,22 @@ public class ScratchBoard : MonoBehaviour
         }
 
         playerMover.ToggleMovement(false);
-        CurrentItem = GameManager.Instance.CurrentLevel.GetRandomItemForLevel();
+        NextItem();
         cardManager.Progress.OnProgress += OnScratchProgress;
-        cardManager.ClearScratchCard();
         scratchBoard.SetActive(true);
     }
 
     private void OnFinishedScratching()
     {
         _doneScratchCard = false;
+        GameManager.Instance.UnlockItem(CurrentItem);
+        Debug.Log("unlocked item: " + CurrentItem.name);
+        Debug.Log("Probability: " + CurrentItem.Probability);
+
         carrier.GiveBox();
         if (carrier.CheckCanGiveBoxes())
         {
-            CurrentItem = GameManager.Instance.CurrentLevel.GetRandomItemForLevel();
+            NextItem();
         }
         else
         {
@@ -77,7 +89,7 @@ public class ScratchBoard : MonoBehaviour
             _doneScratchCard = true;
             // apply function after X seconds
             cardManager.FillScratchCard();
-            Invoke(nameof(OnFinishedScratching), 2f);
+            Invoke(nameof(OnFinishedScratching), 1f);
 
             Debug.Log($"User scratched {Math.Round(progress * 100f, 2)}% of surface");
         }

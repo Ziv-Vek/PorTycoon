@@ -22,7 +22,9 @@ public class LevelData
         float randomValue = UnityEngine.Random.value;
 
         // Find which item this random value corresponds to
-       items = items.OrderBy(item => item.Probability).ToList();
+        items = items.OrderBy(a => Guid.NewGuid()).ThenBy(item => item.Probability).ToList();
+
+
         foreach (var item in items)
         {
             if (randomValue <= item.Probability)

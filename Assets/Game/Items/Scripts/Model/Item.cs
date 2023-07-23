@@ -4,10 +4,13 @@ using UnityEngine;
 public class Item
 {
     public string id;
-    // public string Name { get; set; }
-    // public Sprite Icon { get; set; }
-    // public string Type { get; set; }
-    // public Color Color { get; set; }
+    public string name;
+    public string description;
+    public string image;
+
+    // public Sprite Icon;
+    // public string Type;
+    // public Color Color;
     public int rarity;
     [System.NonSerialized] public float Probability; // We don't load this from the JSON, it's calculated in the code.
 }

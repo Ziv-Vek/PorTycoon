@@ -4,15 +4,21 @@
       "id": "1",
       "items": [
         {
-          "id": "item1",
+          "id": "1",
+          "name": "Bear",
+          "image": "bear",
           "rarity": 1
         },
         {
-          "id": "item2",
+          "id": "2",
+          "name": "Giraffe",
+          "image": "giraffe",
           "rarity": 2
         },
         {
-          "id": "item3",
+          "id": "3",
+          "name": "Lion",
+          "image": "lion",
           "rarity": 3
         }
       ]

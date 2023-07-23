@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -36,10 +37,10 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+
         StateManager = gameObject.AddComponent<StateManager>();
 
-        //items = new List<UnlockedItem>();
+        UnlockedItems = new List<UnlockedItem>();
         //carriers = new List<BoxesCarrier>();
 
         LoadConfig();
@@ -54,21 +55,11 @@ public class GameManager : MonoBehaviour
     }
 
 
-    /*public void UnlockItem(Item item)
+    public void UnlockItem(Item item)
     {
-        if (!IsItemUnlocked(item))
-        {
-            UnlockedItem unlockedItem = new UnlockedItem(item, DateTime.UtcNow);
-            items.Add(unlockedItem);
-            // Save data if necessary
-            SaveData();
-        }
-    }*/
-
-    /*public bool IsItemUnlocked(Item item)
-    {
-        return items.Exists(unlockedItem => unlockedItem.item == item); 
-    }*/
+        UnlockedItem unlockedItem = new UnlockedItem(item, DateTime.UtcNow);
+        UnlockedItems.Add(unlockedItem);
+    }
 
     private void OnApplicationQuit()
     {
