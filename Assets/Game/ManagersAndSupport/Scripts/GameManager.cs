@@ -62,6 +62,6 @@ public class GameManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        StateManager.SaveData(CurrentLevel, money, experience, UnlockedItems);
+        // StateManager.SaveData(CurrentLevel, money, experience, UnlockedItems);
     }
 }

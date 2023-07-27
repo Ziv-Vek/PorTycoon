@@ -5,6 +5,7 @@ using UnityEngine;
 public class NPCCarrier : Carrier
 {
     public Carrier targetCarrier;
+    public bool enabled = true;
     public MoneyPile moneyPile;
     [SerializeField] Animator myAnimator;
     public int waitTime = 2; // Might be taken from global state
@@ -21,20 +22,20 @@ public class NPCCarrier : Carrier
     {
         while (true)
         {
-            if (!targetCarrier.CheckCanGiveBoxes() || !CheckCanReceiveBoxes())
+            if (!targetCarrier.CheckCanGiveBoxes() || !CheckCanReceiveBoxes() || !enabled)
             {
                 yield return new WaitForSeconds(1);
                 continue;
             }
 
             // Take the box from the targetCarrier
-            myAnimator.SetFloat("forwardSpeed",100f);
+            myAnimator.SetFloat("forwardSpeed", 100f);
             ReceiveBox(targetCarrier.GiveBox());
             Debug.Log("Box Received from Target Carrier");
 
             // Wait for the specified amount of seconds
             yield return new WaitForSeconds(waitTime);
-            myAnimator.SetFloat("forwardSpeed",0);
+            myAnimator.SetFloat("forwardSpeed", 0);
 
             GiveBox();
             Debug.Log("Box Removed from NPC");
