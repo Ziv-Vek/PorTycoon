@@ -421,7 +421,7 @@ PrefabInstance:
         type: 3}
       propertyPath: brushTexture
       value: 
-      objectReference: {fileID: 2800000, guid: 4e6e55a2e5a854cac9c5f5fce2eeda8d, type: 3}
+      objectReference: {fileID: 2800000, guid: 6407cb4b2bd9f4a82b1e98830cae7837, type: 3}
     - target: {fileID: 3194624749503625379, guid: 0dc0c96519593414c942af79e7b1683d,
         type: 3}
       propertyPath: scratchSurfaceSprite
@@ -567,17 +567,17 @@ PrefabInstance:
     - target: {fileID: 8395592650411545749, guid: 0dc0c96519593414c942af79e7b1683d,
         type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 0.1882353
       objectReference: {fileID: 0}
     - target: {fileID: 8395592650411545749, guid: 0dc0c96519593414c942af79e7b1683d,
         type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0.21568628
       objectReference: {fileID: 0}
     - target: {fileID: 8395592650411545749, guid: 0dc0c96519593414c942af79e7b1683d,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.8862745
+      value: 0.8509804
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dc0c96519593414c942af79e7b1683d, type: 3}
