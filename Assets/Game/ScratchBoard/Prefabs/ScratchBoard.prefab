@@ -89,8 +89,9 @@ GameObject:
   - component: {fileID: 1250033940940932083}
   - component: {fileID: 1314781452550221492}
   - component: {fileID: 404918110068583803}
+  - component: {fileID: 874331412}
   m_Layer: 5
-  m_Name: Item
+  m_Name: ItemImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,6 +155,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &874331412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2645596991563059296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7118537a0964749abe4510cbb6c8dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7828701595937231211
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,9 +282,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
-  scratchBoard: {fileID: 7828701595937231211}
+  targetScratchProgress: 0.3
   cardManager: {fileID: 3194624749503625379}
   playerMover: {fileID: 0}
+  carrier: {fileID: 0}
+  scratchItemImage: {fileID: 874331412}
+  moneyPile: {fileID: 0}
 --- !u!1001 &3194624749497678983
 PrefabInstance:
   m_ObjectHideFlags: 0

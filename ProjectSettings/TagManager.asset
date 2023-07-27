@@ -7,6 +7,7 @@ TagManager:
   - CinemachineTarget
   - Pickable
   - Box
+  - NPC
   layers:
   - Default
   - TransparentFX
