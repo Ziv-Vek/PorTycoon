@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     public int money;
     public int stars;
     public int experience;
+    public int ShipSpeedLevel = 1;   
+    public int QuantityLevel = 1;
+    public int QualityLevel = 1;
     public List<UnlockedItem> UnlockedItems { get; set; }
 
     //public List<BoxData> boxes = new List<BoxData>();

@@ -34,7 +34,7 @@ public class ShipController : MonoBehaviour
         while (true)
         {
             // Move to the target point at sea
-            yield return StartCoroutine(MoveToPosition(targetPoint.position, shipSpeed));
+            yield return StartCoroutine(MoveToPosition(targetPoint.position));
 
             // Instantiate new cargo on the ship
             shipCarrier.InstantiateCargo();
@@ -43,7 +43,7 @@ public class ShipController : MonoBehaviour
             yield return new WaitForSeconds(waitTimeAtSeaTarget);
 
             // Move back to the docking point at pier
-            yield return StartCoroutine(MoveToPosition(dockingPoint.position, shipSpeed));
+            yield return StartCoroutine(MoveToPosition(dockingPoint.position));
 
             // Transfer cargo to pier platform
             yield return StartCoroutine(shipCarrier.TransferBoxesToPier());
@@ -51,10 +51,10 @@ public class ShipController : MonoBehaviour
         }
     }
 
-    private IEnumerator MoveToPosition(Vector3 targetPosition, float speed)
+    public IEnumerator MoveToPosition(Vector3 targetPosition)
     {
         float distance = Vector3.Distance(transform.position, targetPosition);
-        float timeToTravel = distance / speed;
+        float timeToTravel = distance / shipSpeed;
         float elapsedTime = 0f;
 
         Vector3 startPosition = transform.position;

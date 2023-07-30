@@ -1,98 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &439369033
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 439369034}
-  m_Layer: 0
-  m_Name: CargoPlace (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &439369034
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 439369033}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.84, y: 5.4, z: -7.2800293}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4783631021325034022}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &900754473
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 900754474}
-  m_Layer: 0
-  m_Name: CargoPlace (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &900754474
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 900754473}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.1099997, y: 5.4, z: -20.670044}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4783631021325034022}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1470475766
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1470475767}
-  m_Layer: 0
-  m_Name: CargoPlace (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1470475767
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1470475766}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.4700003, y: 5.4, z: -7.2800293}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4783631021325034022}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2027906367
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2027906368}
   m_Layer: 0
-  m_Name: CargoPlace
+  m_Name: CargoPlace (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2027906367}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.5699997, y: 5.4, z: -20.670044}
+  m_LocalPosition: {x: -3.1899993, y: 5.4, z: -20.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -134,8 +41,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4783631021325034022}
   - component: {fileID: 1845036984}
-  - component: {fileID: 6488617430443045410}
   - component: {fileID: 6498324534540412045}
+  - component: {fileID: 1007539779823360054}
+  - component: {fileID: 6390959921783722510}
   m_Layer: 0
   m_Name: Cargo ship
   m_TagString: Untagged
@@ -157,9 +65,6 @@ Transform:
   m_Children:
   - {fileID: 5037388800749361253}
   - {fileID: 2027906368}
-  - {fileID: 900754474}
-  - {fileID: 1470475767}
-  - {fileID: 439369034}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -179,28 +84,6 @@ MonoBehaviour:
   dockingPoint: {fileID: 0}
   waitTimeAtSeaTarget: 10
   shipSpeed: 60
---- !u!114 &6488617430443045410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4783631021325034023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 939f9ca29546449fa4bbdb4824d6259b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boxPrefab: {fileID: 4165853758446169201, guid: 143faf5b991d5c649a7ecd9e5ed2e0cd,
-    type: 3}
-  cargoPlaces:
-  - {fileID: 2027906368}
-  - {fileID: 900754474}
-  - {fileID: 1470475767}
-  - {fileID: 439369034}
-  cargoReceivingPlatform: {fileID: 0}
-  timeDelayBetweenEachCargoDrop: 2
-  currentNumOfCargoHolding: 0
 --- !u!114 &6498324534540412045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,7 +96,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf3b82946689b4949b91b42a1f9b1050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uniqueID: ac48ea4d-79e6-4e4b-b3a0-7aacde637795
+  uniqueID: afb4af6a-aa65-40b1-825c-81fbd4a3fcc3
+--- !u!114 &1007539779823360054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4783631021325034023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d1126921e1e4b55bf16b0f7df94c3f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxBoxesCapacity: 0
+  carrierType: 0
+  boxesPlaces: []
+  boxes: []
+  pier: {fileID: 0}
+  moneyPile: {fileID: 0}
+--- !u!114 &6390959921783722510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4783631021325034023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3820fb07f1274117861709c1d676142c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4783631021256949646
 PrefabInstance:
   m_ObjectHideFlags: 0

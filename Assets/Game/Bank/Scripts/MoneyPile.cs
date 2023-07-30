@@ -43,11 +43,15 @@ public class MoneyPile : MonoBehaviour
 
         if (moneyAmount % AmountForNewPile == 0)
         {
-            place.x += 4;
             PlusY = 0;
-            GetComponent<BoxCollider>().center = new Vector3(GetComponent<BoxCollider>().center.x + 0.22f, GetComponent<BoxCollider>().center.y, GetComponent<BoxCollider>().center.z);
-            GetComponent<BoxCollider>().size = new Vector3(GetComponent<BoxCollider>().size.x - 0.43f, GetComponent<BoxCollider>().size.y, GetComponent<BoxCollider>().size.z);
+            if (moneyAmount != 0)
+            {
+                place.x += 4;
+                GetComponent<BoxCollider>().center = new Vector3(GetComponent<BoxCollider>().center.x + 0.22f, GetComponent<BoxCollider>().center.y, GetComponent<BoxCollider>().center.z);
+                GetComponent<BoxCollider>().size = new Vector3(GetComponent<BoxCollider>().size.x - 0.43f, GetComponent<BoxCollider>().size.y, GetComponent<BoxCollider>().size.z);
+            }
         }
+
         if (moneyAmount == 0)
         {
             CancelInvoke();
@@ -62,9 +66,8 @@ public class MoneyPile : MonoBehaviour
             Money.transform.parent = gameObject.transform;
             PlusY += 1.1f;
             moneyAmount ++;
-            if (moneyAmount % AmountForNewPile == 0)
+            if (moneyAmount % AmountForNewPile == 0 )
             {
-                Debug.Log(moneyAmount);
                 place.x -= 4;
                 PlusY = 0;
                 GetComponent<BoxCollider>().center = new Vector3(GetComponent<BoxCollider>().center.x - 0.22f, GetComponent<BoxCollider>().center.y, GetComponent<BoxCollider>().center.z);

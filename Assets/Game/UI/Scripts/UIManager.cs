@@ -2,6 +2,8 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+
 
 public class UIManager : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI moneyText;
     [SerializeField] private TextMeshProUGUI starsText;
+    [SerializeField] GameObject UpgradeCanvas;
 
     private void Awake()
     {
@@ -29,5 +32,10 @@ public class UIManager : MonoBehaviour
     public void UpdateStarsText(int stars)
     {
         starsText.text = stars.ToString();
+    }
+    public void OpenUpgradeCanvas()
+    {
+        GameObject.Find("Player").GetComponent<PlayerInput>().enabled = false;
+        UpgradeCanvas.SetActive(true);
     }
 }

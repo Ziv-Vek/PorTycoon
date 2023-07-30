@@ -54,4 +54,35 @@ public class ShipCarrier: Carrier
         
         return box;
     }
+    public void addBoxPlace() 
+    {
+        Transform[] ArrayPlaces = new Transform[boxesPlaces.Length + 1];
+        for (int i = 0; i < boxesPlaces.Length; i++)
+        {
+            ArrayPlaces[i] = boxesPlaces[i];
+        }
+        Vector3 place;
+        if (GameManager.Instance.QuantityLevel == 1)
+        {
+            place = transform.GetChild(transform.childCount - 1).transform.position;
+            place = new Vector3(place.x + 6.3f, place.y, place.z);
+        }
+        else
+        { 
+            place = transform.GetChild(transform.childCount - 2).transform.position;
+            place = new Vector3(place.x, place.y, place.z + 6.5f);
+        }
+
+        GameObject newPlace = Instantiate(gameObject.transform.GetChild(1).gameObject, place, Quaternion.identity);
+        newPlace.transform.parent = gameObject.transform;
+
+        newPlace.name = "CargoPlace (" + (transform.childCount - 2) + ")";
+        newPlace.transform.localScale = new Vector3(1,1,1f);
+        ArrayPlaces[ArrayPlaces.Length - 1] = newPlace.transform;
+
+        boxesPlaces = ArrayPlaces;
+        try { Destroy(newPlace.transform.GetChild(0).gameObject); }
+        catch{ }
+        maxBoxesCapacity++;
+    }
 }

@@ -7,7 +7,7 @@ public class Carrier: MonoBehaviour, ITransferBoxes
     public int maxBoxesCapacity;
     public CarriersTypes carrierType;
     public Transform[] boxesPlaces;
-    
+
     // cached ref:
     [HideInInspector] public GameObject[] boxes;
     
@@ -77,5 +77,15 @@ public class Carrier: MonoBehaviour, ITransferBoxes
         }
 
         return true;
+    }
+    public void AddBox(GameObject box)
+    {
+        GameObject[] ArrayBoxes = new GameObject[boxes.Length + 1];
+        for (int i = 0; i < boxes.Length; i++)
+        {
+            ArrayBoxes[i] = boxes[i];
+        }
+      //  ArrayBoxes[ArrayBoxes.Length - 1] = box;
+        boxes = ArrayBoxes;
     }
 }
