@@ -5940,7 +5940,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1381819863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8149,7 +8149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1845036984, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
       propertyPath: shipSpeed
-      value: 50
+      value: 11.5
       objectReference: {fileID: 0}
     - target: {fileID: 1845036984, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
       propertyPath: targetPoint
