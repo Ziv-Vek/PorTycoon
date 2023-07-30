@@ -39,6 +39,7 @@ public class ScratchBoard : MonoBehaviour
 
     private void NextItem()
     {
+        carrier.GiveBox();
         CurrentItem = GameManager.Instance.CurrentLevel.GetRandomItemForLevel();
         scratchItemImage.ChangeImage(CurrentItem.image);
         cardManager.ClearScratchCard();
@@ -72,7 +73,6 @@ public class ScratchBoard : MonoBehaviour
         Debug.Log("unlocked item: " + CurrentItem.name);
         Debug.Log("Probability: " + CurrentItem.Probability);
 
-        carrier.GiveBox();
         if (carrier.CheckCanGiveBoxes())
         {
             NextItem();

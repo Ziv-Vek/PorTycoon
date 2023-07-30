@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4433794247578170}
   - component: {fileID: 33217961225268022}
   - component: {fileID: 23761541718629926}
+  - component: {fileID: 1134717197}
   m_Layer: 0
   m_Name: TABLE_Folding
   m_TagString: Untagged
@@ -83,3 +84,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1134717197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243259935979854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 830b3436b7044727a7009ff43d092461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxBoxesCapacity: 2
+  carrierType: 7
+  boxesPlaces:
+  - {fileID: 0}
+  - {fileID: 0}
+  boxes: []
