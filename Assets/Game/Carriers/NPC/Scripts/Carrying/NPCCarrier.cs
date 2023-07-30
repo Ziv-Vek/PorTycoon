@@ -5,15 +5,14 @@ using UnityEngine;
 public class NPCCarrier : Carrier
 {
     public Carrier targetCarrier;
-    public bool enabled = true;
+    public new bool enabled = true;
     public MoneyPile moneyPile;
     [SerializeField] Animator myAnimator;
     public int waitTime = 2; // Might be taken from global state
     public Item CurrentItem { get; set; }
 
-    public override void Awake()
+    public void Start()
     {
-        base.Awake();
         if (targetCarrier)
             StartCoroutine(ProcessBoxesRoutine());
     }

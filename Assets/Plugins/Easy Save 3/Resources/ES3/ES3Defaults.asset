@@ -49,6 +49,9 @@ MonoBehaviour:
     - MoreMountains.Feedbacks.TextMeshPro
     - MoreMountains.Feedbacks.URP
     - MoreMountains.Tools
+    - NavMeshComponents
+    - NavMeshComponentsExamples
+    - NavMeshComponentsTestsPlaymode
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

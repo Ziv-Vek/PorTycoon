@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1000,6 +1000,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128329804}
   m_CullTransparentMesh: 1
+--- !u!114 &171836795 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4665027294511702252, guid: bb857febde0814b89b943e7672e36b29,
+    type: 3}
+  m_PrefabInstance: {fileID: 1292319357}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 830b3436b7044727a7009ff43d092461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &180917368
 GameObject:
   m_ObjectHideFlags: 0
@@ -3616,7 +3628,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.2645874, y: -242}
+  m_AnchoredPosition: {x: 2.2646484, y: -242}
   m_SizeDelta: {x: -720, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &840706962
@@ -4070,7 +4082,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 939972192}
   m_LocalRotation: {x: 0.23081398, y: 0, z: 0, w: 0.9729979}
-  m_LocalPosition: {x: 17.272259, y: 58.260937, z: 390.46848}
+  m_LocalPosition: {x: 17.088932, y: 58.260925, z: 390.46844}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4897,18 +4909,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1090283958}
   m_CullTransparentMesh: 1
---- !u!114 &1134717197 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1134717197, guid: bb857febde0814b89b943e7672e36b29,
-    type: 3}
-  m_PrefabInstance: {fileID: 1292319357}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 830b3436b7044727a7009ff43d092461, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1138000338
 GameObject:
   m_ObjectHideFlags: 0
@@ -5580,6 +5580,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1292319360, guid: bb857febde0814b89b943e7672e36b29, type: 3}
+      propertyPath: moneyPile
+      value: 
+      objectReference: {fileID: 2024103773}
     - target: {fileID: 2328200580903292815, guid: bb857febde0814b89b943e7672e36b29,
         type: 3}
       propertyPath: m_Camera
@@ -5618,7 +5622,7 @@ PrefabInstance:
     - target: {fileID: 7092059817074876491, guid: bb857febde0814b89b943e7672e36b29,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.4236135
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7092059817074876491, guid: bb857febde0814b89b943e7672e36b29,
         type: 3}
@@ -5665,6 +5669,11 @@ PrefabInstance:
       propertyPath: SurfaceMaterial
       value: 
       objectReference: {fileID: 1312153426}
+    - target: {fileID: 7217582868851904119, guid: bb857febde0814b89b943e7672e36b29,
+        type: 3}
+      propertyPath: brushSize
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7217582868851904119, guid: bb857febde0814b89b943e7672e36b29,
         type: 3}
       propertyPath: mainCamera
@@ -5832,7 +5841,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 571dbb2cbefac464195f151b4deca922, type: 3}
+        m_Texture: {fileID: 2800000, guid: 704e57ad60bfd4c3fb5b5ec3498c3654, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -8135,18 +8144,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 439369034, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 900754474, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.1199994
-      objectReference: {fileID: 0}
-    - target: {fileID: 1470475767, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.5600002
-      objectReference: {fileID: 0}
     - target: {fileID: 1845036984, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
       propertyPath: shipSpeed
       value: 11.5
@@ -8159,39 +8156,14 @@ PrefabInstance:
       propertyPath: dockingPoint
       value: 
       objectReference: {fileID: 597026202}
-    - target: {fileID: 1845036984, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
-      propertyPath: waitTimeAtSeaTarget
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2027906368, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 1007539779823360054, guid: b1383fb362b882b4c897c6aa92fc89aa,
-        type: 3}
+    - target: {fileID: 1891325797, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
       propertyPath: pier
       value: 
       objectReference: {fileID: 1161712514}
-    - target: {fileID: 1007539779823360054, guid: b1383fb362b882b4c897c6aa92fc89aa,
-        type: 3}
-      propertyPath: carrierType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1007539779823360054, guid: b1383fb362b882b4c897c6aa92fc89aa,
-        type: 3}
-      propertyPath: maxBoxesCapacity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1007539779823360054, guid: b1383fb362b882b4c897c6aa92fc89aa,
-        type: 3}
-      propertyPath: boxesPlaces.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1007539779823360054, guid: b1383fb362b882b4c897c6aa92fc89aa,
-        type: 3}
-      propertyPath: boxesPlaces.Array.data[0]
+    - target: {fileID: 1891325797, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
+      propertyPath: moneyPile
       value: 
-      objectReference: {fileID: 944933091}
+      objectReference: {fileID: 1445281373}
     - target: {fileID: 4783631021325034022, guid: b1383fb362b882b4c897c6aa92fc89aa,
         type: 3}
       propertyPath: m_RootOrder
@@ -8252,58 +8224,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship
       objectReference: {fileID: 0}
-    - target: {fileID: 6488617430443045410, guid: b1383fb362b882b4c897c6aa92fc89aa,
-        type: 3}
-      propertyPath: cargoReceivingPlatform
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6498324534540412045, guid: b1383fb362b882b4c897c6aa92fc89aa,
-        type: 3}
-      propertyPath: uniqueID
-      value: ca246055-a72c-4df6-aad3-120627b48983
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6488617430443045410, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
-    - {fileID: 1007539779823360054, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
---- !u!1 &1891325792 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4783631021325034023, guid: b1383fb362b882b4c897c6aa92fc89aa,
-    type: 3}
-  m_PrefabInstance: {fileID: 1891325791}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1891325796 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2027906367, guid: b1383fb362b882b4c897c6aa92fc89aa,
-    type: 3}
-  m_PrefabInstance: {fileID: 1891325791}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1891325797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1891325792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d1126921e1e4b55bf16b0f7df94c3f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxBoxesCapacity: 1
-  carrierType: 1
-  boxesPlaces:
-  - {fileID: 1891325801}
-  boxes:
-  - {fileID: 1891325796}
-  pier: {fileID: 1161712514}
-  moneyPile: {fileID: 1445281373}
---- !u!4 &1891325801 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2027906368, guid: b1383fb362b882b4c897c6aa92fc89aa,
-    type: 3}
-  m_PrefabInstance: {fileID: 1891325791}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1897038583
 GameObject:
   m_ObjectHideFlags: 0
@@ -8822,7 +8744,7 @@ MonoBehaviour:
   scanner: {fileID: 568936967}
   conveyorEnd: {fileID: 1891235469}
   delayBeforeTransferAttemptsToTable: 1
-  tableCarrier: {fileID: 1134717197}
+  tableCarrier: {fileID: 171836795}
 --- !u!1 &1981336722
 GameObject:
   m_ObjectHideFlags: 0
@@ -9070,7 +8992,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1987117066}
   m_LocalRotation: {x: 0.23081398, y: -0, z: -0, w: 0.9729979}
-  m_LocalPosition: {x: 17.272259, y: 58.260937, z: 390.46848}
+  m_LocalPosition: {x: 17.088932, y: 58.260925, z: 390.46844}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

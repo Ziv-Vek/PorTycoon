@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2027906367}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.1899993, y: 5.4, z: -20.7}
+  m_LocalPosition: {x: -3.56, y: 5.4, z: -20.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42,8 +42,8 @@ GameObject:
   - component: {fileID: 4783631021325034022}
   - component: {fileID: 1845036984}
   - component: {fileID: 6498324534540412045}
-  - component: {fileID: 1007539779823360054}
   - component: {fileID: 6390959921783722510}
+  - component: {fileID: 1891325797}
   m_Layer: 0
   m_Name: Cargo ship
   m_TagString: Untagged
@@ -82,8 +82,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPoint: {fileID: 0}
   dockingPoint: {fileID: 0}
-  waitTimeAtSeaTarget: 10
-  shipSpeed: 60
+  waitTimeAtSeaTarget: 0.5
+  shipSpeed: 1111
 --- !u!114 &6498324534540412045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,25 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf3b82946689b4949b91b42a1f9b1050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uniqueID: afb4af6a-aa65-40b1-825c-81fbd4a3fcc3
---- !u!114 &1007539779823360054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4783631021325034023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d1126921e1e4b55bf16b0f7df94c3f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxBoxesCapacity: 0
-  carrierType: 0
-  boxesPlaces: []
-  boxes: []
-  pier: {fileID: 0}
-  moneyPile: {fileID: 0}
+  uniqueID: ca246055-a72c-4df6-aad3-120627b48983
 --- !u!114 &6390959921783722510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +109,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3820fb07f1274117861709c1d676142c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1891325797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4783631021325034023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d1126921e1e4b55bf16b0f7df94c3f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxBoxesCapacity: 1
+  carrierType: 1
+  boxesPlaces:
+  - {fileID: 2027906368}
+  boxes:
+  - {fileID: 2027906367}
+  pier: {fileID: 0}
+  moneyPile: {fileID: 0}
 --- !u!1001 &4783631021256949646
 PrefabInstance:
   m_ObjectHideFlags: 0
