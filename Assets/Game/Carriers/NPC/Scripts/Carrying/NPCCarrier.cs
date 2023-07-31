@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NPCCarrier : Carrier
@@ -8,40 +6,51 @@ public class NPCCarrier : Carrier
     public new bool enabled = true;
     public MoneyPile moneyPile;
     [SerializeField] Animator myAnimator;
-    public int waitTime = 2; // Might be taken from global state
-    public Item CurrentItem { get; set; }
+    public int waitTime = 2;
+    private Item CurrentItem { get; set; }
 
-    public void Start()
+    private float _timer;
+    private bool _isProcessingBox;
+    private GameManager _gameManager;
+    private Bank _bank;
+    private static readonly int ForwardSpeed = Animator.StringToHash("forwardSpeed");
+
+    private void Start()
     {
-        if (targetCarrier)
-            StartCoroutine(ProcessBoxesRoutine());
+        // cache instances
+        _gameManager = GameManager.Instance;
+        _bank = Bank.Instance;
+        
     }
 
-    private IEnumerator ProcessBoxesRoutine()
+    private void Update()
     {
-        while (true)
+        if (targetCarrier && enabled && targetCarrier.CheckCanGiveBoxes() && CheckCanReceiveBoxes() && !_isProcessingBox)
         {
-            if (!targetCarrier.CheckCanGiveBoxes() || !CheckCanReceiveBoxes() || !enabled)
-            {
-                yield return new WaitForSeconds(1);
-                continue;
-            }
-
             // Take the box from the targetCarrier
-            myAnimator.SetFloat("forwardSpeed", 100f);
+            Debug.Log("Taking box from targetCarrier");
+            myAnimator.SetFloat(ForwardSpeed, 100f);
             ReceiveBox(targetCarrier.GiveBox());
-            Debug.Log("Box Received from Target Carrier");
 
-            // Wait for the specified amount of seconds
-            yield return new WaitForSeconds(waitTime);
-            myAnimator.SetFloat("forwardSpeed", 0);
+            _isProcessingBox = true;
+            _timer = waitTime;
+        }
+        else if (_isProcessingBox)
+        {
+            _timer -= Time.deltaTime;
+            if (_timer <= 0)
+            {
+                Debug.Log("Giving box to targetCarrier");
+                myAnimator.SetFloat(ForwardSpeed, 0);
 
-            GiveBox();
-            Debug.Log("Box Removed from NPC");
-            CurrentItem = GameManager.Instance.CurrentLevel.GetRandomItemForLevel();
-            GameManager.Instance.UnlockItem(CurrentItem);
-            Debug.Log("Item Unlocked: " + CurrentItem.name);
-            Bank.Instance.AddMoneyToPile(moneyPile);
+                GiveBox();
+                CurrentItem = _gameManager.CurrentLevel.GetRandomItemForLevel();
+                _gameManager.UnlockItem(CurrentItem);
+                Debug.Log("Got new item: " + CurrentItem.name);
+                _bank.AddMoneyToPile(moneyPile);
+
+                _isProcessingBox = false;
+            }
         }
     }
 }
