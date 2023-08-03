@@ -4082,7 +4082,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 939972192}
   m_LocalRotation: {x: 0.23081398, y: 0, z: 0, w: 0.9729979}
-  m_LocalPosition: {x: 17.077776, y: 58.260937, z: 390.46848}
+  m_LocalPosition: {x: 17.077776, y: 58.500935, z: 390.46848}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6107,7 +6107,7 @@ PrefabInstance:
     - target: {fileID: 6393666875185864598, guid: b5cd7a9ad16a4e7418924928bb100aca,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: 6393666875185864598, guid: b5cd7a9ad16a4e7418924928bb100aca,
         type: 3}
@@ -6791,6 +6791,22 @@ MonoBehaviour:
   boxesPlaces:
   - {fileID: 944933091}
   boxes: []
+--- !u!54 &1519286490
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608935168}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 8
+  m_CollisionDetection: 0
 --- !u!1 &1520211160
 GameObject:
   m_ObjectHideFlags: 0
@@ -8176,7 +8192,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1845036984, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
       propertyPath: shipSpeed
-      value: 11.5
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1845036984, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
       propertyPath: targetPoint
@@ -9022,7 +9038,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1987117066}
   m_LocalRotation: {x: 0.23081398, y: -0, z: -0, w: 0.9729979}
-  m_LocalPosition: {x: 17.077776, y: 58.260937, z: 390.46848}
+  m_LocalPosition: {x: 17.077776, y: 58.500935, z: 390.46848}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9764,6 +9780,7 @@ GameObject:
   - component: {fileID: 9130263639243922208}
   - component: {fileID: 9130263639243922207}
   - component: {fileID: 9130263639243922206}
+  - component: {fileID: 9130263639243922209}
   m_Layer: 0
   m_Name: Assistant
   m_TagString: Player
@@ -9802,6 +9819,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pier: {fileID: 1161712513}
   conveyorBelt: {fileID: 1940779413}
+  target: {fileID: 0}
+  isPickUpBoxesTask: 0
 --- !u!195 &9130263639243922207
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -9812,7 +9831,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1.49
-  m_Speed: 3.5
+  m_Speed: 8
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -9841,3 +9860,19 @@ MonoBehaviour:
   boxesPlaces:
   - {fileID: 2742666070023842634}
   boxes: []
+--- !u!54 &9130263639243922209
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9130263639243922204}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

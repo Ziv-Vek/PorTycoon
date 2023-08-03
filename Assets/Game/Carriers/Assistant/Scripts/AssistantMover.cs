@@ -10,9 +10,11 @@ public class AssistantMover : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private Rigidbody rb;
 
-    [SerializeField] private Transform target;  // serialized for debugging
+    [SerializeField] private Transform target;
 
-    private bool isPickUpBoxesTask;
+    [SerializeField] private bool isPickUpBoxesTask;
+
+    private const float StopDistance = 1.2f;
 
     private void Awake()
     {
@@ -23,8 +25,10 @@ public class AssistantMover : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log($"can receive boxes: {myCarrier.CheckCanReceiveBoxes()}");
         if (myCarrier.CheckCanReceiveBoxes())
         {
+            
             isPickUpBoxesTask = true;
             //target = pier;
         }
@@ -39,7 +43,7 @@ public class AssistantMover : MonoBehaviour
 
     private void Update()
     {
-        if (target != null && Vector3.Distance(transform.position, target.position) < 1f)
+        if (target != null && Vector3.Distance(transform.position, target.position) < StopDistance)
         {
             CancelMovement();
         }
@@ -49,6 +53,9 @@ public class AssistantMover : MonoBehaviour
 
     private void SetCarryingTask()
     {
+        if (target)
+            Debug.Log($"ditance to target: { Vector3.Distance(transform.position, target.position).ToString()}");
+        
         if (target == null && !myCarrier.CheckCanReceiveBoxes())
         {
             isPickUpBoxesTask = false;
