@@ -9782,7 +9782,7 @@ GameObject:
   - component: {fileID: 9130263639243922206}
   - component: {fileID: 9130263639243922209}
   m_Layer: 0
-  m_Name: Assistant
+  m_Name: Forklift
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9819,8 +9819,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pier: {fileID: 1161712513}
   conveyorBelt: {fileID: 1940779413}
-  target: {fileID: 0}
-  isPickUpBoxesTask: 0
 --- !u!195 &9130263639243922207
 NavMeshAgent:
   m_ObjectHideFlags: 0

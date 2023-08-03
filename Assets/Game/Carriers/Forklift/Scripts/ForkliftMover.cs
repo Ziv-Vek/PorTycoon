@@ -1,31 +1,30 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AssistantMover : MonoBehaviour
+public class ForkliftMover : MonoBehaviour
 {
+    //configs:
+    private const float StopDistance = 1.2f;
+    private bool isPickUpBoxesTask;     // true if needed to take boxes from pier, false if needed to put boxes on conveyor 
+    
+    //cached ref:
     [SerializeField] private Transform pier;
     [SerializeField] private Transform conveyorBelt;
-    
-    private AssistantCarrier myCarrier;
+    private ForkliftCarrier myCarrier;
     private NavMeshAgent navMeshAgent;
     private Rigidbody rb;
-
-    [SerializeField] private Transform target;
-
-    [SerializeField] private bool isPickUpBoxesTask;
-
-    private const float StopDistance = 1.2f;
+    
+    private Transform target;
 
     private void Awake()
     {
-        myCarrier = GetComponent<AssistantCarrier>();
+        myCarrier = GetComponent<ForkliftCarrier>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
     }
 
     private void Start()
     {
-        Debug.Log($"can receive boxes: {myCarrier.CheckCanReceiveBoxes()}");
         if (myCarrier.CheckCanReceiveBoxes())
         {
             
@@ -51,11 +50,9 @@ public class AssistantMover : MonoBehaviour
         SetCarryingTask();
     }
 
+    // checks if finished loading/unloading boxes and sets the new task accordingly
     private void SetCarryingTask()
     {
-        if (target)
-            Debug.Log($"ditance to target: { Vector3.Distance(transform.position, target.position).ToString()}");
-        
         if (target == null && !myCarrier.CheckCanReceiveBoxes())
         {
             isPickUpBoxesTask = false;
@@ -70,6 +67,7 @@ public class AssistantMover : MonoBehaviour
         }
     }
 
+    // sets movement destination and start movement
     private void Move()
     {
         // if target != null return;
@@ -91,6 +89,7 @@ public class AssistantMover : MonoBehaviour
         navMeshAgent.isStopped = false;
     }
 
+    // stops movement on navmesh and freezes position
     private void CancelMovement()
     {
         Debug.Log("movement canceled");
