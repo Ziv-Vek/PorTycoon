@@ -29,12 +29,10 @@ public class ForkliftMover : MonoBehaviour
         {
             
             isPickUpBoxesTask = true;
-            //target = pier;
         }
         else
         {
             isPickUpBoxesTask = false;
-            //target = conveyorBelt;
         }
 
         Move();
@@ -70,10 +68,6 @@ public class ForkliftMover : MonoBehaviour
     // sets movement destination and start movement
     private void Move()
     {
-        // if target != null return;
-
-        Debug.Log("move", target);
-
         rb.constraints = RigidbodyConstraints.None;
 
         if (isPickUpBoxesTask)
@@ -92,7 +86,6 @@ public class ForkliftMover : MonoBehaviour
     // stops movement on navmesh and freezes position
     private void CancelMovement()
     {
-        Debug.Log("movement canceled");
         target = null;
         navMeshAgent.ResetPath();
         navMeshAgent.isStopped = true;

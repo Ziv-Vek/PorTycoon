@@ -21,7 +21,10 @@
           "image": "lion",
           "rarity": 1
         }
-      ]
+      ],
+      "collection": {
+        "ids" : ["1", "1", "2"]
+      }
     }
   ]
 }
