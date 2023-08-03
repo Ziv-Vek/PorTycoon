@@ -3314,7 +3314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cfa4a0b9f2e2d843956ed00babdd813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBetweenCargoTransfers: 0.8
+  delayBetweenCargoTransfers: 0.1
 --- !u!1001 &827581565
 PrefabInstance:
   m_ObjectHideFlags: 0
