@@ -31,14 +31,14 @@ public class BoxesManager : MonoBehaviour
         return Instantiate(boxesPrefabs[0].box, Vector3.zero, Quaternion.identity);
     }
 
-    public List<GameObject> GetBoxesByName(List<string> boxesNames)
+    public List<PortBox> GetBoxesByName(List<string> boxesNames)
     {
         if (boxesNames == null || boxesNames.Count == 0)
         {
             throw new Exception("Did not receive boxesNames");
         }
-        
-        List<GameObject> boxes = new List<GameObject>();
+
+        List<PortBox> boxes = new List<PortBox>();
 
         for (int i = 0; i < boxesNames.Count; i++)
         {
@@ -48,7 +48,7 @@ public class BoxesManager : MonoBehaviour
                 boxes.Add(InstantiateBox(0));
                 continue;
             }
-            
+
             for (int j = 0; j < boxesPrefabs.Length; j++)
             {
                 if (boxesPrefabs[j].boxName == boxesNames[i])
@@ -73,7 +73,7 @@ public class BoxesManager : MonoBehaviour
         public List<GameObject> boxes;
         public List<string> boxesNames;
     }
-    
+
     /*public BoxesStruct GetBoxesByQuantity(int numBoxesToInstantiate)
     {
         List<GameObject> boxes = new List<GameObject>();
@@ -90,10 +90,10 @@ public class BoxesManager : MonoBehaviour
         BoxesStruct newBoxesData = new BoxesStruct();
         newBoxesData.boxes = boxes;
         newBoxesData.boxesNames = boxesNames;
-        
+
         return newBoxesData;
     }*/
-    
+
     /*public GameObject[] GetBoxesByQuantity(int numBoxesToInstantiate, out List<string> boxesNames)
     {
         GameObject[] boxes = new GameObject[numBoxesToInstantiate];
@@ -111,10 +111,10 @@ public class BoxesManager : MonoBehaviour
 
         return boxes;
     }*/
-    
-    public GameObject[] GetBoxesByQuantity(int numBoxesToInstantiate)
+
+    public PortBox[] GetBoxesByQuantity(int numBoxesToInstantiate)
     {
-        GameObject[] boxes = new GameObject[numBoxesToInstantiate];
+        PortBox[] boxes = new PortBox[numBoxesToInstantiate];
         int randNum;
 
         for (int i = 0; i < numBoxesToInstantiate; i++)
@@ -125,7 +125,7 @@ public class BoxesManager : MonoBehaviour
 
         return boxes;
     }
-    
+
     public void ReceiveCargo(GameObject cargo)
     {
         throw new System.NotImplementedException();
@@ -133,9 +133,10 @@ public class BoxesManager : MonoBehaviour
 
     public bool CanReceiverAcceptCargo { get; }
 
-    private GameObject InstantiateBox(int targetBoxName)
+    private PortBox InstantiateBox(int targetBoxName)
     {
-        GameObject newBox = Instantiate(boxesPrefabs[targetBoxName].box, Vector3.zero, Quaternion.identity);
+        PortBox newBox = Instantiate(boxesPrefabs[targetBoxName].box, Vector3.zero, Quaternion.identity)
+            .GetComponent<PortBox>();
         return newBox;
     }
 }
@@ -146,4 +147,3 @@ class BoxPrefab
     public string boxName;
     public GameObject box;
 }
-

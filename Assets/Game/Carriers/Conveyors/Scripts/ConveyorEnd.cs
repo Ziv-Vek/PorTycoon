@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ConveyorEnd : MonoBehaviour
@@ -9,8 +10,9 @@ public class ConveyorEnd : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Box") || !conveyor.HasBoxInstance(other.gameObject)) return;
+        var box = other.gameObject.GetComponent<PortBox>();
+        if (!other.CompareTag("Box") || !conveyor.HasBoxInstance(box)) return;
 
-        conveyor.ProcessTransferToTable(other.gameObject);
+        conveyor.ProcessTransferToTable(box);
     }
 }

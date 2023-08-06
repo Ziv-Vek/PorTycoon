@@ -3,8 +3,8 @@ using UnityEngine;
 
 public interface ITransferBoxes
 {
-    public GameObject GiveBox();
-    public void ReceiveBox(GameObject box);
+    public PortBox GiveBox();
+    public void ReceiveBox(PortBox box);
     public bool CheckCanReceiveBoxes();
     public bool CheckCanGiveBoxes();
     public CarriersTypes GetCarrierType();

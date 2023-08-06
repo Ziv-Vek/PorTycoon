@@ -70,12 +70,12 @@ public class Conveyor : Carrier
         Move();
     }
 
-    public bool HasBoxInstance(GameObject targetBox)
+    public bool HasBoxInstance(PortBox targetBox)
     {
         return Array.Exists(boxes, box => box == targetBox);
     }
 
-    public void ProcessTransferToTable(GameObject box)
+    public void ProcessTransferToTable(PortBox box)
     {
         isBeltMoving = false;
         
@@ -107,7 +107,7 @@ public class Conveyor : Carrier
         isBeltMoving = false;
     }
     
-    IEnumerator AttemptToTransferToTable(GameObject box)
+    IEnumerator AttemptToTransferToTable(PortBox box)
     {
         isConveyorEndFull = true;
         
@@ -124,7 +124,7 @@ public class Conveyor : Carrier
         
     }
 
-    private void GiveBox(GameObject targetBox)
+    private void GiveBox(PortBox targetBox)
     {
         int index = Array.FindIndex(boxes, box => targetBox == box);
         tableCarrier.ReceiveBox(targetBox);
