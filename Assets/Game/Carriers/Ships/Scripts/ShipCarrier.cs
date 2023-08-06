@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShipCarrier: Carrier
@@ -40,11 +39,11 @@ public class ShipCarrier: Carrier
         }
     }
     
-    public override GameObject GiveBox()
+    public override PortBox GiveBox()
     {
         int index = Array.FindLastIndex(boxes, i => i != null);
 
-        GameObject box = boxes[index];
+        PortBox box = boxes[index];
         boxes[index] = null;
         Bank.Instance.AddMoneyToPile(moneyPile);
         if (!CheckCanGiveBoxes())

@@ -1,7 +1,8 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
-public class Carrier: MonoBehaviour, ITransferBoxes
+public class Carrier : MonoBehaviour, ITransferBoxes
 {
     // config:
     public int maxBoxesCapacity;
@@ -9,14 +10,14 @@ public class Carrier: MonoBehaviour, ITransferBoxes
     public Transform[] boxesPlaces;
 
     // cached ref:
-    [SerializeField] public GameObject[] boxes;
-    
+    [HideInInspector] public PortBox[] boxes;
+
     // stats:
     public bool IsAttemptingToGiveCargo { get; set; }
-    
+
     public virtual void Awake()
     {
-        boxes = new GameObject[maxBoxesCapacity];
+        boxes = new PortBox[maxBoxesCapacity];
     }
 
     private void Start()
@@ -27,23 +28,23 @@ public class Carrier: MonoBehaviour, ITransferBoxes
         }
     }
 
-    public virtual GameObject GiveBox()
+    public virtual PortBox GiveBox()
     {
         int index = Array.FindLastIndex(boxes, i => i != null);
 
-        GameObject box = boxes[index];
+        PortBox box = boxes[index];
         boxes[index] = null;
-        
+
         return box;
     }
 
-    public virtual void ReceiveBox(GameObject cargo)
+    public virtual void ReceiveBox(PortBox box)
     {
         int index = Array.FindIndex(boxes, i => i == null);
-        boxes[index] = cargo;
-        cargo.transform.SetParent(boxesPlaces[index]);
-        cargo.transform.localPosition = Vector3.zero;
-        cargo.transform.localRotation = gameObject.transform.rotation;
+        boxes[index] = box;
+        box.transform.SetParent(boxesPlaces[index]);
+        box.transform.localPosition = Vector3.zero;
+        box.transform.localRotation = gameObject.transform.rotation;
     }
 
     public CarriersTypes GetCarrierType()
@@ -51,12 +52,11 @@ public class Carrier: MonoBehaviour, ITransferBoxes
         return carrierType;
     }
 
-    
 
     public bool CheckCanReceiveBoxes()
     {
         if (boxes == null) return false;
-        
+
         foreach (var box in boxes)
         {
             if (box == null) return true;
@@ -78,14 +78,35 @@ public class Carrier: MonoBehaviour, ITransferBoxes
 
         return true;
     }
-    public void AddBox(GameObject box)
+
+    public void AddBox(PortBox box)
     {
-        GameObject[] ArrayBoxes = new GameObject[boxes.Length + 1];
+        PortBox[] ArrayBoxes = new PortBox[boxes.Length + 1];
         for (int i = 0; i < boxes.Length; i++)
         {
             ArrayBoxes[i] = boxes[i];
         }
+
         //  ArrayBoxes[ArrayBoxes.Length - 1] = box;
         boxes = ArrayBoxes;
+    }
+
+    public void RemoveBox(PortBox box)
+    {
+        // Find the box in the array and set its spot to null
+        for (int i = 0; i < boxes.Length; i++)
+        {
+            if (boxes[i] == box)
+            {
+                Destroy(box.transform.gameObject);
+                boxes[i] = null;
+                break;
+            }
+        }
+    }
+
+    protected PortBox GetAvailableBox()
+    {
+        return Array.Find(boxes, box => box != null && box.CanBeOpened);
     }
 }

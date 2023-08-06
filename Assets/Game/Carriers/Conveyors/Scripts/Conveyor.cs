@@ -16,6 +16,8 @@ public class Conveyor : Carrier
     
     private ITransferBoxes currentTransferPartner = null;
     private bool isBeltMoving = false;
+    private bool isConveyorEndFull = false;
+    private bool isScanning = false;
     float uvOffset = 0.0f;
 
     private void OnEnable()
@@ -29,21 +31,29 @@ public class Conveyor : Carrier
         scanner.OnScannerActivated -= CancelBeltMovement;
         scanner.OnScannerDeactivated -= MoveBelt;
     }
-    
-    IEnumerator OnTriggerEnter(Collider other)
+
+    private void Update()
     {
-        if (currentTransferPartner != null) yield break;
+        if (isScanning || isConveyorEndFull || !CheckCanGiveBoxes()) return;
+        
+        MoveBelt();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (currentTransferPartner != null) return;
         
         if (other.TryGetComponent<ITransferBoxes>(out ITransferBoxes giver))
         {
             IsAttemptingToGiveCargo = true;
         
-            yield return StartCoroutine(BoxesTransferHandler.Instance.CheckTransfer(this, giver));
-
-            if (!isBeltMoving && CheckCanGiveBoxes())
-            {
-                MoveBelt();
-            }
+            StartCoroutine(BoxesTransferHandler.Instance.CheckTransfer(this, giver));
+        }
+        
+        if (!isBeltMoving && CheckCanGiveBoxes())
+        {
+            isBeltMoving = true;
+            Move();
         }
     }
 
@@ -54,30 +64,31 @@ public class Conveyor : Carrier
 
     private void MoveBelt()
     {
+        isScanning = false;
         isBeltMoving = true;
 
-        StartCoroutine(Move());
+        Move();
     }
 
-    public bool HasBoxInstance(GameObject targetBox)
+    public bool HasBoxInstance(PortBox targetBox)
     {
         return Array.Exists(boxes, box => box == targetBox);
     }
 
-    public void ProcessTransferToTable(GameObject box)
+    public void ProcessTransferToTable(PortBox box)
     {
         isBeltMoving = false;
         
         StartCoroutine(AttemptToTransferToTable(box));
     }
 
-    private IEnumerator Move()
+    private void Move()
     {
         Transform box = boxes[0].transform;
         
         Material[] materials = new Material[2];
 
-        while (isBeltMoving)
+        if (isBeltMoving)
         {
             box.transform.Translate((conveyorEnd.transform.position - box.position) * Time.deltaTime * beltSpeed, Space.World);
             
@@ -87,29 +98,33 @@ public class Conveyor : Carrier
             materials[0].SetTextureOffset("_BaseMap", new Vector2(0, uvOffset));
 
             conveyorRenderer.materials = materials;
-
-            yield return null;
         }
     }
 
     private void CancelBeltMovement()
     {
+        isScanning = true;
         isBeltMoving = false;
     }
     
-    IEnumerator AttemptToTransferToTable(GameObject box)
+    IEnumerator AttemptToTransferToTable(PortBox box)
     {
+        isConveyorEndFull = true;
+        
         while (!tableCarrier.CheckCanReceiveBoxes())
         {
             yield return new WaitForSeconds(delayBeforeTransferAttemptsToTable);
         }
 
         GiveBox(box);
+        isConveyorEndFull = false;
         
         yield return null;
+        
+        
     }
 
-    private void GiveBox(GameObject targetBox)
+    private void GiveBox(PortBox targetBox)
     {
         int index = Array.FindIndex(boxes, box => targetBox == box);
         tableCarrier.ReceiveBox(targetBox);

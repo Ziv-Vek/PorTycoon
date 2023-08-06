@@ -28,7 +28,7 @@ public class Pier: Carrier
         currentTransferPartner = null;
     }
     
-    public override void ReceiveBox(GameObject cargo)
+    public override void ReceiveBox(PortBox cargo)
     {
         int index = Array.FindIndex(boxes, i => i == null);
         boxes[index] = cargo;

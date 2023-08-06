@@ -1,25 +1,24 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using ScratchCardAsset;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class ScratchBoard : MonoBehaviour
 {
     public Camera mainCamera;
     public float targetScratchProgress = 0.3f;
-    public Item CurrentItem { get; set; }
+    private Item CurrentItem { get; set; }
+    private PortBox CurrentBox { get; set; }
+
 
     [SerializeField] private ScratchCardManager cardManager;
     [SerializeField] private PlayerMover playerMover;
-    [SerializeField] private TableCarrier carrier;
+    [SerializeField] private TableCarrier tableCarrier;
     [SerializeField] private ScratchItemImage scratchItemImage;
+    [SerializeField] private PlayerCarrier playerCarrier;
 
     [SerializeField] MoneyPile moneyPile;
 
     // internal indicator if the scratch card is done
-    private bool _doneScratchCard = false;
+    private bool _isScratching;
 
     void Start()
     {
@@ -39,64 +38,66 @@ public class ScratchBoard : MonoBehaviour
 
     private void NextItem()
     {
-        carrier.GiveBox();
         CurrentItem = GameManager.Instance.CurrentLevel.GetRandomItemForLevel();
         scratchItemImage.ChangeImage(CurrentItem.image);
         cardManager.ClearScratchCard();
     }
 
-    public void Close()
+    private void Close()
     {
         playerMover.ToggleMovement(true);
         playerMover.ShowJoystick();
         gameObject.SetActive(false);
+
+        // Add player back to carrier
+        tableCarrier.SetPlayer(playerCarrier);
     }
 
-    public void Open()
+    public void Open(PortBox box)
     {
-        if (!carrier.CheckCanGiveBoxes())
-        {
-            return;
-        }
-
+        // Handle Movement
         playerMover.ToggleMovement(false);
         playerMover.HideJoystick();
+
+        // Remove player from carrier
+        tableCarrier.RemovePlayer();
+
+        // Handle box
+        CurrentBox = box;
+        CurrentBox.CanBeOpened = false;
+
         NextItem();
+
         cardManager.Progress.OnProgress += OnScratchProgress;
         gameObject.SetActive(true);
     }
 
     private void OnFinishedScratching()
     {
-        _doneScratchCard = false;
+        _isScratching = false;
+
+        tableCarrier.RemoveBox(CurrentBox);
+
         GameManager.Instance.UnlockItem(CurrentItem);
+
         Debug.Log("unlocked item: " + CurrentItem.name);
         Debug.Log("Probability: " + CurrentItem.Probability);
 
-        if (carrier.CheckCanGiveBoxes())
-        {
-            NextItem();
-        }
-        else
-        {
-            cardManager.Progress.OnProgress -= OnScratchProgress;
-            Close();
-        }
+
+        cardManager.Progress.OnProgress -= OnScratchProgress;
+        Close();
+
 
         Bank.Instance.AddMoneyToPile(moneyPile);
-        // TODO: Here we should invoke money throw
     }
 
     private void OnScratchProgress(float progress)
     {
-        if (progress >= targetScratchProgress && !_doneScratchCard)
+        if (progress >= targetScratchProgress && !_isScratching)
         {
-            _doneScratchCard = true;
-            // apply function after X seconds
+            _isScratching = true;
             cardManager.FillScratchCard();
             Invoke(nameof(OnFinishedScratching), 1f);
-
-            Debug.Log($"User scratched {Math.Round(progress * 100f, 2)}% of surface");
         }
     }
 }
