@@ -9,7 +9,7 @@ public class Carrier: MonoBehaviour, ITransferBoxes
     public Transform[] boxesPlaces;
 
     // cached ref:
-    [HideInInspector] public GameObject[] boxes;
+    [SerializeField] public GameObject[] boxes;
     
     // stats:
     public bool IsAttemptingToGiveCargo { get; set; }
@@ -85,7 +85,7 @@ public class Carrier: MonoBehaviour, ITransferBoxes
         {
             ArrayBoxes[i] = boxes[i];
         }
-      //  ArrayBoxes[ArrayBoxes.Length - 1] = box;
+        //  ArrayBoxes[ArrayBoxes.Length - 1] = box;
         boxes = ArrayBoxes;
     }
 }

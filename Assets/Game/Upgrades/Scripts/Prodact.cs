@@ -17,6 +17,11 @@ public class Prodact : MonoBehaviour
             Level = GameManager.Instance.QuantityLevel;
         if (gameObject.name == "Quality")
             Level = GameManager.Instance.QualityLevel;
+        if (gameObject.name == "SpeedOfConveyor")
+            Level = GameManager.Instance.ConvayorSpeedLevel;
+        if (gameObject.name == "SpeedOfChecking")
+            Level = GameManager.Instance.ScanningSpeedLevel;
+
         transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Level: " + Level;
         if (Level == 5)
         {

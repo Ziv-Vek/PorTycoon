@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Scanner : MonoBehaviour
 {
-    [SerializeField] private float scanningDuration = 1.5f;
+    [SerializeField] public float scanningDuration = 1.5f;
     [SerializeField] private Light scannerLight;
     
     public event Action OnScannerActivated;

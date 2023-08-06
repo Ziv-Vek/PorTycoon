@@ -68,4 +68,43 @@ public class UpgradesMenu : MonoBehaviour
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }
+    public void ConveyorSpeed(GameObject Button)
+    {
+        if ((Button.transform.parent.GetComponent<Prodact>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && GameManager.Instance.ConvayorSpeedLevel < 5)
+        {
+            if (Button.name != "FreeButton")
+                UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Prodact>().Price);
+            FindObjectOfType<Conveyor>().beltSpeed += 0.125f;
+            GameManager.Instance.ConvayorSpeedLevel++;
+            Button.transform.parent.GetComponent<Prodact>().Price *= 2;
+        }
+        else
+        {
+            if (Button.transform.parent.GetComponent<Prodact>().Price > GameManager.Instance.money)
+                Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
+            if (GameManager.Instance.ShipSpeedLevel == 5)
+                Debug.Log("Max Level: " + Button.transform.parent.name);
+        }
+    }
+    public void ScanningSpeed(GameObject Button)
+    {
+        if ((Button.transform.parent.GetComponent<Prodact>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && GameManager.Instance.ScanningSpeedLevel < 5)
+        {
+            if (Button.name != "FreeButton")
+                UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Prodact>().Price);
+            FindObjectOfType<Scanner>().scanningDuration--;
+            GameManager.Instance.ScanningSpeedLevel++;
+            Button.transform.parent.GetComponent<Prodact>().Price += 100;
+        }
+        else
+        {
+            if (Button.transform.parent.GetComponent<Prodact>().Price > GameManager.Instance.money)
+                Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
+            if (GameManager.Instance.ShipSpeedLevel == 5)
+                Debug.Log("Max Level: " + Button.transform.parent.name);
+        }
+    }
+    public void BoxStackTable()
+    {
+    }
 }

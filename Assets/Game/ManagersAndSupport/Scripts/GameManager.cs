@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
     public int ShipSpeedLevel = 1;   
     public int QuantityLevel = 1;
     public int QualityLevel = 1;
+
+    public int ConvayorSpeedLevel = 1;
+    public int ScanningSpeedLevel = 1;
+
     public List<UnlockedItem> UnlockedItems { get; set; }
 
     //public List<BoxData> boxes = new List<BoxData>();
@@ -62,6 +66,8 @@ public class GameManager : MonoBehaviour
     {
         UnlockedItem unlockedItem = new UnlockedItem(item, DateTime.UtcNow);
         UnlockedItems.Add(unlockedItem);
+        stars++;
+        UIManager.Instance.UpdateStarsText(stars);
     }
 
     private void OnApplicationQuit()

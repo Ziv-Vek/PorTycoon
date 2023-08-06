@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1797273308}
   m_Layer: 0
-  m_Name: CargoPlace
+  m_Name: CargoPlace (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7092059817074876491}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2969539420961398516
 GameObject:
@@ -61,9 +61,9 @@ Transform:
   m_Children:
   - {fileID: 4661860139045690331}
   - {fileID: 4665027295746458868}
-  - {fileID: 1797273308}
   - {fileID: 9142061263771434009}
   - {fileID: 3272588335193645318}
+  - {fileID: 1797273308}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -189,7 +189,7 @@ PrefabInstance:
     - target: {fileID: 6393666875185864598, guid: c98c21d7fb53d49a9841f87cc176a748,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6393666875185864598, guid: c98c21d7fb53d49a9841f87cc176a748,
         type: 3}
@@ -462,7 +462,7 @@ PrefabInstance:
     - target: {fileID: 7283735566603294674, guid: 0dc0c96519593414c942af79e7b1683d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7283735566603294674, guid: 0dc0c96519593414c942af79e7b1683d,
         type: 3}

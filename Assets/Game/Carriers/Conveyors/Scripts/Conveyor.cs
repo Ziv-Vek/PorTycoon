@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Conveyor : Carrier
 {
-    [SerializeField] private float beltSpeed = 0.01f;
+    [SerializeField] public float beltSpeed = 0.01f;
     [SerializeField] Renderer conveyorRenderer;
 
     [SerializeField] Scanner scanner;
