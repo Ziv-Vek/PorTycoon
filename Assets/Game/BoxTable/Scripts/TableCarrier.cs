@@ -42,7 +42,7 @@ public class TableCarrier : Carrier
 
     private void GiveBoxToOpener(PortBox box)
     {
-        if (_boxOpeners.Count == 0) return;
+        if (_boxOpeners.Count == 0 && _player == null) return;
 
         // Open the box
         IBoxOpener boxOpener = GetBoxOpener();
