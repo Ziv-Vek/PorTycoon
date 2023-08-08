@@ -20,7 +20,9 @@ public class UpgradesMenu : MonoBehaviour
                 Panels[i].SetActive(false);
         }
         Panels[0].SetActive(true);
-        GameObject.Find("Player").GetComponent<PlayerInput>().enabled = true;
+        PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
+        playerMover.ToggleMovement(true);
+        playerMover.ShowJoystick();
         gameObject.SetActive(false);  
     }
     public void PanelChoose(GameObject Button)
@@ -104,7 +106,22 @@ public class UpgradesMenu : MonoBehaviour
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }
-    public void BoxStackTable()
+    public void BoxStackTable(GameObject Button)
     {
+        if ((Button.transform.parent.GetComponent<Prodact>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && GameManager.Instance.TableStackLevel < 5)
+        {
+            if (Button.name != "FreeButton")
+                UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Prodact>().Price);
+            FindObjectOfType<TableCarrier>().addBoxPlace();
+            GameManager.Instance.TableStackLevel++;
+            Button.transform.parent.GetComponent<Prodact>().Price += 100;
+        }
+        else
+        {
+            if (Button.transform.parent.GetComponent<Prodact>().Price > GameManager.Instance.money)
+                Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
+            if (GameManager.Instance.ShipSpeedLevel == 5)
+                Debug.Log("Max Level: " + Button.transform.parent.name);
+        }
     }
 }

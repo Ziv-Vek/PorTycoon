@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class Carrier : MonoBehaviour, ITransferBoxes
 {
-    // config:
     public int maxBoxesCapacity;
     public CarriersTypes carrierType;
     public Transform[] boxesPlaces;
 
-    // cached ref:
-    [HideInInspector] public PortBox[] boxes;
+    [SerializeField] public PortBox[] boxes;
 
     // stats:
     public bool IsAttemptingToGiveCargo { get; set; }
@@ -79,16 +77,15 @@ public class Carrier : MonoBehaviour, ITransferBoxes
         return true;
     }
 
-    public void AddBox(PortBox box)
+    public void AddBox()
     {
         PortBox[] ArrayBoxes = new PortBox[boxes.Length + 1];
         for (int i = 0; i < boxes.Length; i++)
         {
             ArrayBoxes[i] = boxes[i];
         }
-
-        //  ArrayBoxes[ArrayBoxes.Length - 1] = box;
         boxes = ArrayBoxes;
+        GC.Collect(); 
     }
 
     public void RemoveBox(PortBox box)

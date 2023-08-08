@@ -35,7 +35,9 @@ public class UIManager : MonoBehaviour
     }
     public void OpenUpgradeCanvas()
     {
-        GameObject.Find("Player").GetComponent<PlayerInput>().enabled = false;
+        PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
+        playerMover.ToggleMovement(false);
+        playerMover.HideJoystick();
         UpgradeCanvas.SetActive(true);
     }
 }

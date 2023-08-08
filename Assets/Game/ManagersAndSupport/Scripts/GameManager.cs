@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     public int ConvayorSpeedLevel = 1;
     public int ScanningSpeedLevel = 1;
+    public int TableStackLevel = 1;
+
 
     public List<UnlockedItem> UnlockedItems { get; set; }
 

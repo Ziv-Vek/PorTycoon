@@ -21,6 +21,8 @@ public class Prodact : MonoBehaviour
             Level = GameManager.Instance.ConvayorSpeedLevel;
         if (gameObject.name == "SpeedOfChecking")
             Level = GameManager.Instance.ScanningSpeedLevel;
+        if (gameObject.name == "StackBoxes")
+            Level = GameManager.Instance.TableStackLevel;
 
         transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Level: " + Level;
         if (Level == 5)

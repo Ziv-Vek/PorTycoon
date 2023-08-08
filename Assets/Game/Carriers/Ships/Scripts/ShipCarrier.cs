@@ -83,5 +83,6 @@ public class ShipCarrier: Carrier
         try { Destroy(newPlace.transform.GetChild(0).gameObject); }
         catch{ }
         maxBoxesCapacity++;
+        AddBox();
     }
 }

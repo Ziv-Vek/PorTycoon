@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DigitalOpus.MB.Core;
+using UnityEngine;
+using System.Threading;
+
 
 public class TableCarrier : Carrier
 {
@@ -57,5 +60,33 @@ public class TableCarrier : Carrier
         {
             GiveBoxToOpener(box);
         }
+    }
+    public void addBoxPlace()
+    {
+        Transform[] ArrayPlaces = new Transform[boxesPlaces.Length + 1];
+        for (int i = 0; i < boxesPlaces.Length; i++)
+        {
+            ArrayPlaces[i] = boxesPlaces[i];
+        }
+
+        GameObject ParentObject = transform.parent.transform.GetChild(4).gameObject;
+        Debug.Log(ParentObject.name); 
+        Vector3 place;
+        place = ParentObject.transform.GetChild(ParentObject.transform.childCount - 1).transform.position;
+        place = new Vector3(place.x, place.y, place.z + 3);
+
+        GameObject newPlace = Instantiate(ParentObject.transform.GetChild(ParentObject.transform.childCount - 1).gameObject, place, Quaternion.identity);
+        newPlace.transform.parent = ParentObject.transform;
+
+        newPlace.name = "CargoPlace (" + (ParentObject.transform.childCount - 1) + ")";
+        newPlace.transform.localScale = new Vector3(1, 1, 1f);
+        ArrayPlaces[ArrayPlaces.Length - 1] = newPlace.transform;
+
+        boxesPlaces = ArrayPlaces;
+        try { Destroy(newPlace.transform.GetChild(0).gameObject); }
+        catch { }
+        maxBoxesCapacity++;
+        AddBox();
+        // GC.Collect();
     }
 }

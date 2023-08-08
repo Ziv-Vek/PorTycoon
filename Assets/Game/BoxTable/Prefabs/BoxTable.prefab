@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1797273308}
   m_Layer: 0
-  m_Name: CargoPlace1
+  m_Name: CargoPlace (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,37 +30,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2698377151464327432}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &170414413823116916
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8649206620949668209}
-  m_Layer: 0
-  m_Name: CargoPlace2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8649206620949668209
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170414413823116916}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.75}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2698377151464327432}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2969539420961398516
 GameObject:
@@ -210,68 +179,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tableCarrier: {fileID: 4665027294511702252}
---- !u!1 &4680905136762594452
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3788873727994558506}
-  m_Layer: 0
-  m_Name: CargoPlace4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3788873727994558506
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4680905136762594452}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 4.9499817}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2698377151464327432}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5757069005625144172
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1927369554652048554}
-  m_Layer: 0
-  m_Name: CargoPlace3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1927369554652048554
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5757069005625144172}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.74}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2698377151464327432}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7323782665968683806
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,9 +208,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1797273308}
-  - {fileID: 8649206620949668209}
-  - {fileID: 1927369554652048554}
-  - {fileID: 3788873727994558506}
   m_Father: {fileID: 7092059817074876491}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -440,11 +344,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1134717197, guid: da536aa57b3c6824093ab141245a54ba, type: 3}
       propertyPath: maxBoxesCapacity
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1134717197, guid: da536aa57b3c6824093ab141245a54ba, type: 3}
       propertyPath: boxesPlaces.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1134717197, guid: da536aa57b3c6824093ab141245a54ba, type: 3}
       propertyPath: boxesPlaces.Array.data[0]
@@ -453,15 +357,15 @@ PrefabInstance:
     - target: {fileID: 1134717197, guid: da536aa57b3c6824093ab141245a54ba, type: 3}
       propertyPath: boxesPlaces.Array.data[1]
       value: 
-      objectReference: {fileID: 8649206620949668209}
+      objectReference: {fileID: 0}
     - target: {fileID: 1134717197, guid: da536aa57b3c6824093ab141245a54ba, type: 3}
       propertyPath: boxesPlaces.Array.data[2]
       value: 
-      objectReference: {fileID: 1927369554652048554}
+      objectReference: {fileID: 0}
     - target: {fileID: 1134717197, guid: da536aa57b3c6824093ab141245a54ba, type: 3}
       propertyPath: boxesPlaces.Array.data[3]
       value: 
-      objectReference: {fileID: 3788873727994558506}
+      objectReference: {fileID: 0}
     - target: {fileID: 1243259935979854, guid: da536aa57b3c6824093ab141245a54ba, type: 3}
       propertyPath: m_Name
       value: Table
