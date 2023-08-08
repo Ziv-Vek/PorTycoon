@@ -29,15 +29,20 @@ public class TableNPC : MonoBehaviour, IBoxOpener
         // cache instances
         _gameManager = GameManager.Instance;
         _bank = Bank.Instance;
+        SetIsSleeping(false);
 
-        tableCarrier.AddBoxOpener(this);
+        if (!IsSleeping && enabled)
+            tableCarrier.AddBoxOpener(this);
     }
+
     public void Update()
     {
         Seconds += 1 * Time.deltaTime;
-        if (Vector3.Distance(transform.GetChild(0).transform.position, GameObject.Find("Player").transform.position) < 6 && IsSleeping)
+        if (Vector3.Distance(transform.GetChild(0).transform.position, GameObject.Find("Player").transform.position) <
+            6 && IsSleeping)
             SetIsSleeping(false);
     }
+
     public void OnFinishedOpenBox()
     {
         Debug.Log("Giving box to targetCarrier");
@@ -67,6 +72,7 @@ public class TableNPC : MonoBehaviour, IBoxOpener
         Invoke(nameof(OnFinishedOpenBox), waitTime);
         return true;
     }
+
     public void SetIsSleeping(bool b)
     {
         IsSleeping = b;

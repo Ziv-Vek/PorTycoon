@@ -2671,6 +2671,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &562451897 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4946638567786972204, guid: bb857febde0814b89b943e7672e36b29,
+    type: 3}
+  m_PrefabInstance: {fileID: 1292319357}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &568936964
 GameObject:
   m_ObjectHideFlags: 0
@@ -3346,6 +3352,7 @@ MonoBehaviour:
   QualityLevel: 1
   ConvayorSpeedLevel: 1
   ScanningSpeedLevel: 1
+  TableStackLevel: 1
 --- !u!114 &749655396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5817,6 +5824,10 @@ PrefabInstance:
       propertyPath: moneyPile
       value: 
       objectReference: {fileID: 2024103773}
+    - target: {fileID: 1292319360, guid: bb857febde0814b89b943e7672e36b29, type: 3}
+      propertyPath: SleepPartical
+      value: 
+      objectReference: {fileID: 562451897}
     - target: {fileID: 2328200580903292815, guid: bb857febde0814b89b943e7672e36b29,
         type: 3}
       propertyPath: m_Camera
