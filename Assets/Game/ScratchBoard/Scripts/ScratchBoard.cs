@@ -1,5 +1,6 @@
 using ScratchCardAsset;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScratchBoard : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class ScratchBoard : MonoBehaviour
     [SerializeField] private TableCarrier tableCarrier;
     [SerializeField] private ScratchItemImage scratchItemImage;
     [SerializeField] private PlayerCarrier playerCarrier;
-
+    [SerializeField] private Button throwButton;
     [SerializeField] MoneyPile moneyPile;
 
     // internal indicator if the scratch card is done
@@ -24,6 +25,9 @@ public class ScratchBoard : MonoBehaviour
     {
         // get box table of the parent prefab
         gameObject.SetActive(false);
+
+        // Handle throw button
+        throwButton.onClick.AddListener(OnThrowBox);
     }
 
     void Update()
@@ -99,5 +103,16 @@ public class ScratchBoard : MonoBehaviour
             cardManager.FillScratchCard();
             Invoke(nameof(OnFinishedScratching), 1f);
         }
+    }
+
+    private void OnThrowBox()
+    {
+        _isScratching = false;
+
+        tableCarrier.RemoveBox(CurrentBox);
+        Bank.Instance.AddMoneyToPile(moneyPile);
+
+        cardManager.Progress.OnProgress -= OnScratchProgress;
+        Close();
     }
 }
