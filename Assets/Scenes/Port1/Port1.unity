@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5531,12 +5531,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875402691}
   m_CullTransparentMesh: 1
---- !u!1 &880149608 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4946638567786972204, guid: bb857febde0814b89b943e7672e36b29,
-    type: 3}
-  m_PrefabInstance: {fileID: 1292319357}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &904445548
 GameObject:
   m_ObjectHideFlags: 0
@@ -5741,7 +5735,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 939972192}
   m_LocalRotation: {x: 0.23081398, y: 0, z: 0, w: 0.9729979}
-  m_LocalPosition: {x: 17.272259, y: 58.500935, z: 390.46848}
+  m_LocalPosition: {x: 17.088932, y: 58.50093, z: 390.46848}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7596,7 +7590,7 @@ PrefabInstance:
     - target: {fileID: 1292319360, guid: bb857febde0814b89b943e7672e36b29, type: 3}
       propertyPath: SleepPartical
       value: 
-      objectReference: {fileID: 880149608}
+      objectReference: {fileID: 562451897}
     - target: {fileID: 2328200580903292815, guid: bb857febde0814b89b943e7672e36b29,
         type: 3}
       propertyPath: m_Camera
@@ -12747,7 +12741,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1987117066}
   m_LocalRotation: {x: 0.23081398, y: -0, z: -0, w: 0.9729979}
-  m_LocalPosition: {x: 17.272259, y: 58.500935, z: 390.46848}
+  m_LocalPosition: {x: 17.088932, y: 58.50093, z: 390.46848}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
