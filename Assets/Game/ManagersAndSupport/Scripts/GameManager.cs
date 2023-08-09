@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     public int ScanningSpeedLevel = 1;
     public int TableStackLevel = 1;
 
+    public int OpenBoxTime_NPC = 1;
+    public int AwarenessTime_NPC = 1;
 
     public List<UnlockedItem> UnlockedItems { get; set; }
 

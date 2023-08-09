@@ -124,4 +124,41 @@ public class UpgradesMenu : MonoBehaviour
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }
+    public void NPC_OpenBoxTime(GameObject Button)
+    {
+        if ((Button.transform.parent.GetComponent<Prodact>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && GameManager.Instance.OpenBoxTime_NPC < 5)
+        {
+            if (Button.name != "FreeButton")
+                UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Prodact>().Price);
+            FindObjectOfType<TableNPC>().waitTime -= 10;
+            GameManager.Instance.OpenBoxTime_NPC++;
+            Button.transform.parent.GetComponent<Prodact>().Price += 100;
+        }
+        else
+        {
+            if (Button.transform.parent.GetComponent<Prodact>().Price > GameManager.Instance.money)
+                Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
+            if (GameManager.Instance.ShipSpeedLevel == 5)
+                Debug.Log("Max Level: " + Button.transform.parent.name);
+        }
+  
+    } 
+    public void NPC_AwarenessTime(GameObject Button)
+    {
+        if ((Button.transform.parent.GetComponent<Prodact>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && GameManager.Instance.AwarenessTime_NPC < 5)
+        {
+            if (Button.name != "FreeButton")
+                UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Prodact>().Price);
+            FindObjectOfType<TableNPC>().AwarenessSeconds += 35;
+            GameManager.Instance.AwarenessTime_NPC++;
+            Button.transform.parent.GetComponent<Prodact>().Price += 100;
+        }
+        else
+        {
+            if (Button.transform.parent.GetComponent<Prodact>().Price > GameManager.Instance.money)
+                Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
+            if (GameManager.Instance.ShipSpeedLevel == 5)
+                Debug.Log("Max Level: " + Button.transform.parent.name);
+        }
+    }
 }

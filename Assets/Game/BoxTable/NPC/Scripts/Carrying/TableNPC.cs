@@ -9,7 +9,7 @@ public class TableNPC : MonoBehaviour, IBoxOpener
     public new bool enabled = true;
 
     public bool IsSleeping = false;
-    [SerializeField] int AwarenessSeconds = 70;
+    [SerializeField] public int AwarenessSeconds = 70;
     [SerializeField] float Seconds = 0;
     public GameObject SleepPartical;
 

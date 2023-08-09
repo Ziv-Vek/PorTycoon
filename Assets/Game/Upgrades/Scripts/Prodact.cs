@@ -23,6 +23,8 @@ public class Prodact : MonoBehaviour
             Level = GameManager.Instance.ScanningSpeedLevel;
         if (gameObject.name == "StackBoxes")
             Level = GameManager.Instance.TableStackLevel;
+        if (gameObject.name == "OpeningSpeed")
+            Level = GameManager.Instance.OpenBoxTime_NPC;
 
         transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Level: " + Level;
         if (Level == 5)
