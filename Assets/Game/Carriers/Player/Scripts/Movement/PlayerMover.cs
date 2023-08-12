@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMover : MonoBehaviour
 {
     // Stats Config:
-    [SerializeField] float maxMovementSpeed = 2.0f;
+    [SerializeField] public float maxMovementSpeed = 2.0f;
     [SerializeField] float turnSmoothTime = 0.1f;
 
     // Variables:

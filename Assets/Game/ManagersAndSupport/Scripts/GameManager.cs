@@ -31,6 +31,13 @@ public class GameManager : MonoBehaviour
     public int OpenBoxTime_NPC = 1;
     public int AwarenessTime_NPC = 1;
 
+    public int PlayerSpeedLevel = 1;
+    public int PlayerBoxPlacesLevel;
+
+    public int ForkliftBoxQuantityLevel = 1;
+    public int ForkliftFuelTankLevel = 1;
+
+
     public List<UnlockedItem> UnlockedItems { get; set; }
 
     //public List<BoxData> boxes = new List<BoxData>();

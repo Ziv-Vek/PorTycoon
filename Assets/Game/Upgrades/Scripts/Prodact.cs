@@ -25,6 +25,14 @@ public class Prodact : MonoBehaviour
             Level = GameManager.Instance.TableStackLevel;
         if (gameObject.name == "OpeningSpeed")
             Level = GameManager.Instance.OpenBoxTime_NPC;
+        if (gameObject.name == "PlayerSpeed")
+            Level = GameManager.Instance.PlayerSpeedLevel;
+        if (gameObject.name == "BoxPlaces")
+            Level = GameManager.Instance.PlayerBoxPlacesLevel;
+        if (gameObject.name == "ForkliftBoxQuantity")
+            Level = GameManager.Instance.ForkliftBoxQuantityLevel;
+        if (gameObject.name == "FuelTank")
+            Level = GameManager.Instance.ForkliftFuelTankLevel;
 
         transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Level: " + Level;
         if (Level == 5)

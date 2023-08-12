@@ -38,8 +38,7 @@ public class TableNPC : MonoBehaviour, IBoxOpener
     public void Update()
     {
         Seconds += 1 * Time.deltaTime;
-        if (Vector3.Distance(transform.GetChild(0).transform.position, GameObject.Find("Player").transform.position) <
-            6 && IsSleeping)
+        if (Vector3.Distance(transform.GetChild(0).transform.position, GameObject.Find("Player").transform.position) < 6 && IsSleeping)
             SetIsSleeping(false);
     }
 

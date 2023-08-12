@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class ForkliftMover : MonoBehaviour
 {
@@ -13,8 +14,10 @@ public class ForkliftMover : MonoBehaviour
     private ForkliftCarrier myCarrier;
     private NavMeshAgent navMeshAgent;
     private Rigidbody rb;
-    
+    [SerializeField] public Slider FuelSlider;
+    [SerializeField] GameObject NoFuelText;
     private Transform target;
+    private Transform LastTarget;
 
     private void Awake()
     {
@@ -36,6 +39,8 @@ public class ForkliftMover : MonoBehaviour
         }
 
         Move();
+        NoFuelText.SetActive(false);
+      
     }
 
     private void Update()
@@ -46,19 +51,24 @@ public class ForkliftMover : MonoBehaviour
         }
 
         SetCarryingTask();
+        if (Vector3.Distance(transform.GetChild(0).transform.position, GameObject.Find("Player").transform.position) < 6 && FuelSlider.value <= 0)
+        {
+            FuelSlider.value = FuelSlider.maxValue;
+            NoFuelText.SetActive(false);
+        }
     }
 
     // checks if finished loading/unloading boxes and sets the new task accordingly
     private void SetCarryingTask()
     {
-        if (target == null && !myCarrier.CheckCanReceiveBoxes())
+        if (target == null && !myCarrier.CheckCanReceiveBoxes() && FuelSlider.value != 0)
         {
             isPickUpBoxesTask = false;
             Move();
             return;
         }
 
-        if (target == null && !myCarrier.CheckCanGiveBoxes())
+        if (target == null && !myCarrier.CheckCanGiveBoxes() && FuelSlider.value != 0)
         {
             isPickUpBoxesTask = true;
             Move();
@@ -76,10 +86,16 @@ public class ForkliftMover : MonoBehaviour
         }
         else
         {
-            target = conveyorBelt;
+            target = conveyorBelt; 
         }
-        
         navMeshAgent.SetDestination(target.position);
+        if (LastTarget != target)
+        {
+            FuelSlider.value -= 10;
+            if (FuelSlider.value == 0)
+                NoFuelText.SetActive(true);
+        }
+        LastTarget = target;
         navMeshAgent.isStopped = false;
     }
 
