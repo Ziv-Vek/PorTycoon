@@ -25,6 +25,8 @@ public class Prodact : MonoBehaviour
             Level = GameManager.Instance.TableStackLevel;
         if (gameObject.name == "OpeningSpeed")
             Level = GameManager.Instance.OpenBoxTime_NPC;
+        if (gameObject.name == "Awareness")
+            Level = GameManager.Instance.AwarenessTime_NPC;
         if (gameObject.name == "PlayerSpeed")
             Level = GameManager.Instance.PlayerSpeedLevel;
         if (gameObject.name == "BoxPlaces")

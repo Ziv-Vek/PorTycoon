@@ -10210,7 +10210,7 @@ GameObject:
   - component: {fileID: 1001334276}
   - component: {fileID: 1001334275}
   m_Layer: 5
-  m_Name: Speed Of Checking
+  m_Name: SpeedOfChecking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

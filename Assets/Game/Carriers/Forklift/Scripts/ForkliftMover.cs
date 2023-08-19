@@ -108,4 +108,10 @@ public class ForkliftMover : MonoBehaviour
         
         rb.constraints = RigidbodyConstraints.FreezePosition;
     }
+    public void FuelUpgrade(int amount)
+    {
+        FuelSlider.maxValue += amount;
+        FuelSlider.value = FuelSlider.maxValue;
+        NoFuelText.SetActive(false);
+    }
 }

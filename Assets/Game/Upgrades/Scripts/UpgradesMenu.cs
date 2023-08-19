@@ -221,8 +221,7 @@ public class UpgradesMenu : MonoBehaviour
         {
             if (Button.name != "FreeButton")
                 UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Prodact>().Price);
-            FindObjectOfType<ForkliftMover>().FuelSlider.maxValue += 30;
-            FindObjectOfType<ForkliftMover>().FuelSlider.value = FindObjectOfType<ForkliftMover>().FuelSlider.maxValue;
+            FindObjectOfType<ForkliftMover>().FuelUpgrade(30);
             GameManager.Instance.ForkliftFuelTankLevel++;
             Button.transform.parent.GetComponent<Prodact>().Price += 100;
         }
