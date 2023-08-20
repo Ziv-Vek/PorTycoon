@@ -7580,7 +7580,7 @@ MonoBehaviour:
   OpenBoxTime_NPC: 1
   AwarenessTime_NPC: 1
   PlayerSpeedLevel: 1
-  PlayerBoxPlacesLevel: 0
+  PlayerBoxPlacesLevel: 1
   ForkliftBoxQuantityLevel: 1
   ForkliftFuelTankLevel: 1
 --- !u!114 &749655396
@@ -13011,17 +13011,17 @@ PrefabInstance:
     - target: {fileID: 6393666875185864598, guid: b5cd7a9ad16a4e7418924928bb100aca,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6393666875185864598, guid: b5cd7a9ad16a4e7418924928bb100aca,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6393666875185864598, guid: b5cd7a9ad16a4e7418924928bb100aca,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6393666875185864598, guid: b5cd7a9ad16a4e7418924928bb100aca,
         type: 3}

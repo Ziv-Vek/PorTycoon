@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class MoneyPile : MonoBehaviour
@@ -26,7 +27,7 @@ public class MoneyPile : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             if(moneyAmount != 0)
-            InvokeRepeating("TakingOneByOne", 0, 0.1f);
+            InvokeRepeating("TakingOneByOne", 0, 0.12f);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -55,8 +56,12 @@ public class MoneyPile : MonoBehaviour
         if (moneyAmount == 0)
         {
             CancelInvoke();
+            gameObject.GetComponent<AudioSource>().pitch = 1.1f;
             return;
         }
+        gameObject.GetComponent<AudioSource>().Play();
+        gameObject.GetComponent<AudioSource>().pitch += 0.005f;
+
     }
     public void AddMoney(int amount)
     {
