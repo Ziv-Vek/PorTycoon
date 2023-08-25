@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MoneyPile : MonoBehaviour
 {
-    [SerializeField] private int moneyAmount = 2;
+    [SerializeField] public int moneyAmount = 2;
     [SerializeField] GameObject moneyPrefab;
     [SerializeField] int AmountForNewPile;
     float PlusY;
@@ -14,22 +15,31 @@ public class MoneyPile : MonoBehaviour
     {
         place = gameObject.transform.position;
         PlusY = 0;
-        for (int i = 0; i < moneyAmount; i++)
-        {
-            GameObject Money = Instantiate(moneyPrefab, new Vector3(transform.position.x, transform.position.y + PlusY, transform.position.z), Quaternion.identity);
-            Money.transform.parent = gameObject.transform;
-            PlusY += 1.1f;
-        }
+        //for (int i = 0; i < moneyAmount; i++)
+        //{
+        //    GameObject Money = Instantiate(moneyPrefab, new Vector3(transform.position.x, transform.position.y + PlusY, transform.position.z), Quaternion.identity);
+        //    Money.transform.parent = gameObject.transform;
+        //    PlusY += 1.1f;
+        //}
     }
 
     void OnTriggerEnter(Collider other)
     { 
         if (other.gameObject.tag == "Player")
         {
-            if(moneyAmount != 0)
-            InvokeRepeating("TakingOneByOne", 0, 0.12f);
+            if (moneyAmount != 0)
+               // TakingOneByOne();
+            InvokeRepeating("TakingOneByOne", 0, 0.2f);
         }
     }
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.gameObject.tag == "Player")
+    //    {
+    //        if (moneyAmount != 0)
+    //             TakingOneByOne();
+    //    }
+    //}
     private void OnTriggerExit(Collider other)
     {
         if (moneyAmount != 0 && other.gameObject.tag == "Player")
@@ -37,8 +47,10 @@ public class MoneyPile : MonoBehaviour
     }
     void TakingOneByOne()
     {
-        Destroy(transform.GetChild(moneyAmount-1).gameObject);
+      //  Destroy(transform.GetChild(moneyAmount - 1).gameObject);
+        transform.GetChild(moneyAmount - 1).gameObject.GetComponent<MoneyPrefab>().startMove = true;
         Bank.Instance.DepositMoney(MoneyPerBill);
+        if(PlusY - 1.1 >= 0)
         PlusY -= 1.1f;
         moneyAmount--;
 
@@ -79,5 +91,7 @@ public class MoneyPile : MonoBehaviour
                 GetComponent<BoxCollider>().size = new Vector3(GetComponent<BoxCollider>().size.x + 0.43f, GetComponent<BoxCollider>().size.y, GetComponent<BoxCollider>().size.z);
             }
         }
+      // moneyAmount = transform.childCount;
+      //  Debug.Log(transform.childCount + " = " + moneyAmount);
     }
 }
