@@ -17005,7 +17005,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 99
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -19730,6 +19730,8 @@ MonoBehaviour:
   moneyText: {fileID: 1155105328}
   starsText: {fileID: 1914261596}
   UpgradeCanvas: {fileID: 1381819862}
+  totalItemsText: {fileID: 344397446}
+  unlockedItemsText: {fileID: 1834033080}
 --- !u!1 &2088319156
 GameObject:
   m_ObjectHideFlags: 0

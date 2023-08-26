@@ -17,18 +17,19 @@ public class ConfigManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject); // Ensure the manager persists between scenes
-
-            LoadConfig();
-            if (!IsConfigValid())
-            {
-                Debug.LogError("Config is not valid");
-                // exit the game
-                throw new Exception("Config is not valid");
-            }
         }
         else
         {
             Destroy(gameObject); // Ensure only one instance exists
+        }
+
+
+        LoadConfig();
+        if (!IsConfigValid())
+        {
+            Debug.LogError("Config is not valid");
+            // exit the game
+            throw new Exception("Config is not valid");
         }
     }
 
@@ -66,5 +67,38 @@ public class ConfigManager : MonoBehaviour
         }
 
         return true;
+    }
+
+    public string GetBoxTypeRandomly(int? level)
+    {
+        // If the level is null, use the current level
+        level ??= GameManager.Instance.CurrentLevel;
+        
+        var boxes = Config.levels[(int)level - 1].boxes.Shuffle();
+
+        // Calculate the total probability for normalization
+        float totalProbability = 100;
+
+        // Generate a random value between 0 and the total probability
+        float randomValue = UnityEngine.Random.Range(0, totalProbability);
+
+        // Loop through the boxes to find the corresponding random box type
+        foreach (var boxPair in boxes)
+        {
+            string boxType = boxPair.Key;
+            Box box = boxPair.Value;
+
+            if (randomValue < box.probability)
+            {
+                return boxType;
+            }
+
+            randomValue -= box.probability;
+        }
+
+
+        // This point should never be reached if the probabilities are set up correctly.
+        Debug.LogError($"Error selecting box type in level {level}. Check your box probabilities configuration.");
+        return null;
     }
 }
