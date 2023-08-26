@@ -6522,7 +6522,7 @@ PrefabInstance:
     - target: {fileID: 1687901656534262281, guid: ea69c7af09d8f664ab23b5357c68b225,
         type: 3}
       propertyPath: AmountForNewPile
-      value: 12
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1687901656534262282, guid: ea69c7af09d8f664ab23b5357c68b225,
         type: 3}
@@ -13149,12 +13149,12 @@ PrefabInstance:
     - target: {fileID: 1687901656534262281, guid: ea69c7af09d8f664ab23b5357c68b225,
         type: 3}
       propertyPath: MoneyPerBill
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1687901656534262281, guid: ea69c7af09d8f664ab23b5357c68b225,
         type: 3}
       propertyPath: AmountForNewPile
-      value: 12
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1687901656534262282, guid: ea69c7af09d8f664ab23b5357c68b225,
         type: 3}
@@ -17444,7 +17444,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1845036984, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
       propertyPath: shipSpeed
-      value: 1111.5
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1845036984, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
       propertyPath: targetPoint
