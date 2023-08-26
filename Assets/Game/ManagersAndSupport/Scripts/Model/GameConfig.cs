@@ -1,41 +1,41 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine.Serialization;
-using Random = Unity.Mathematics.Random;
 
-[System.Serializable]
+[Serializable]
 public class GameConfig
 {
-    public List<LevelData> levels;
+    public List<Item> items;
+    public List<Level> levels;
 }
 
-[System.Serializable]
-public class LevelData
+[Serializable]
+public class Item
 {
     public string id;
-    public List<Item> items;
+    public string name;
+    public string description;
+    public string imagePath;
 
-    public Item GetRandomItemForLevel()
-    {
-        // Generate a random value from 0 to 1
-        float randomValue = UnityEngine.Random.value;
+    [NonSerialized] public DateTime DateUnlocked;
+}
 
-        // Find which item this random value corresponds to
-        items = items.OrderBy(a => Guid.NewGuid()).ThenBy(item => item.Probability).ToList();
+[Serializable]
+public class Level
+{
+    public int levelId;
+    public Dictionary<string, Box> boxes;
+}
 
+[Serializable]
+public class Box
+{
+    public int probability;
+    public List<BoxItem> items;
+}
 
-        foreach (var item in items)
-        {
-            if (randomValue <= item.Probability)
-            {
-                return item;
-            }
-
-            randomValue -= item.Probability;
-        }
-
-        // If for some reason no item was found (which should never happen), return null
-        return null;
-    }
+[Serializable]
+public class BoxItem
+{
+    public string id;
+    public float probability;
 }

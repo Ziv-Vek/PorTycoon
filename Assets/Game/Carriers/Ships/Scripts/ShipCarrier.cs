@@ -61,7 +61,7 @@ public class ShipCarrier: Carrier
             ArrayPlaces[i] = boxesPlaces[i];
         }
         Vector3 place;
-        if (GameManager.Instance.QuantityLevel == 1)
+        if (GameManager.Instance.quantityLevel == 1)
         {
             place = transform.GetChild(transform.childCount - 1).transform.position;
             place = new Vector3(place.x + 6.3f, place.y, place.z);

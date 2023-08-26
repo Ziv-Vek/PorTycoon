@@ -1,29 +1,51 @@
 {
+  "items": [
+    {
+      "id": "bear",
+      "name": "Bear",
+      "imagePath": "bear"
+    },
+    {
+      "id": "giraffe",
+      "name": "Giraffe",
+      "imagePath": "giraffe"
+    },
+    {
+      "id": "lion",
+      "name": "Lion",
+      "imagePath": "lion"
+    }
+  ],
   "levels": [
     {
       "id": "1",
-      "items": [
-        {
-          "id": "1",
-          "name": "Bear",
-          "image": "bear",
-          "rarity": 3
+      "boxes": {
+        "wood": {
+          "probability": 70,
+          "items": [
+            {
+              "id": "bear",
+              "probability": 50
+            },
+            {
+              "id": "giraffe",
+              "probability": 50
+            }
+          ]
         },
-        {
-          "id": "2",
-          "name": "Giraffe",
-          "image": "giraffe",
-          "rarity": 2
-        },
-        {
-          "id": "3",
-          "name": "Lion",
-          "image": "lion",
-          "rarity": 1
+        "silver": {
+          "probability": 30,
+          "items": [
+            {
+              "id": "lion",
+              "probability": 50
+            },
+            {
+              "id": "giraffe",
+              "probability": 50
+            }
+          ]
         }
-      ],
-      "collection": {
-        "ids" : ["1", "1", "2"]
       }
     }
   ]

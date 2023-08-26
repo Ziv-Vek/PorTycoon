@@ -1,48 +1,32 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    // Managers
-    private ConfigManager ConfigManager { get; set; }
-    private StateManager StateManager { get; set; }
-
-
-    public GameConfig GameConfig { get; set; }
-    public LevelData CurrentLevel { get; set; }
+    public int CurrentLevel { get; set; } = 1;
 
     // player settings
     public int money;
     public int stars;
     public int experience;
-    public int ShipSpeedLevel = 1;   
-    public int QuantityLevel = 1;
-    public int QualityLevel = 1;
+    public int shipSpeedLevel = 1;
+    public int quantityLevel = 1;
+    public int qualityLevel = 1;
 
-    public int ConvayorSpeedLevel = 1;
-    public int ScanningSpeedLevel = 1;
-    public int TableStackLevel = 1;
+    public int convayorSpeedLevel = 1;
+    public int scanningSpeedLevel = 1;
+    public int tableStackLevel = 1;
 
-    public int OpenBoxTime_NPC = 1;
-    public int AwarenessTime_NPC = 1;
+    public int openBoxTimeNpc = 1;
+    public int awarenessTimeNpc = 1;
 
-    public int PlayerSpeedLevel = 1;
-    public int PlayerBoxPlacesLevel;
+    public int playerSpeedLevel = 1;
+    public int playerBoxPlacesLevel;
 
-    public int ForkliftBoxQuantityLevel = 1;
-    public int ForkliftFuelTankLevel = 1;
-
-
-    public List<UnlockedItem> UnlockedItems { get; set; }
-
-    //public List<BoxData> boxes = new List<BoxData>();
-    //public List<BoxesCarrier> carriers;
-    //[SerializeField] private Item[] items;
+    public int forkliftBoxQuantityLevel = 1;
+    public int forkliftFuelTankLevel = 1;
 
     private void Awake()
     {
@@ -55,34 +39,10 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        StateManager = gameObject.AddComponent<StateManager>();
-
-        UnlockedItems = new List<UnlockedItem>();
-        //carriers = new List<BoxesCarrier>();
-
-        LoadConfig();
-        StateManager.LoadData(); // Load saved data when the GameManager starts
     }
 
-    public void LoadConfig()
+    public bool CheckAllLevelItemsCollected()
     {
-        ConfigManager = new ConfigManager();
-        GameConfig = ConfigManager.Config;
-        CurrentLevel = ConfigManager.GetLevelConfig("1");
-    }
-
-
-    public void UnlockItem(Item item)
-    {
-        UnlockedItem unlockedItem = new UnlockedItem(item, DateTime.UtcNow);
-        UnlockedItems.Add(unlockedItem);
-        stars++;
-        UIManager.Instance.UpdateStarsText(stars);
-    }
-
-    private void OnApplicationQuit()
-    {
-        // StateManager.SaveData(CurrentLevel, money, experience, UnlockedItems);
+        return true;
     }
 }

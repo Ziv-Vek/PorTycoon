@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [ExecuteAlways]
-public class Utils: MonoBehaviour
+public partial class Utils: MonoBehaviour
 {
     #region StaticInstanceGetter
     private static Utils _instance;

@@ -40,4 +40,9 @@ public class UIManager : MonoBehaviour
         playerMover.HideJoystick();
         UpgradeCanvas.SetActive(true);
     }
+
+    public static void ShowWinPanel()
+    {
+        Debug.Log("ShowWinPanel");
+    }
 }

@@ -1,3 +1,4 @@
+using System;
 using ScratchCardAsset;
 using UnityEngine;
 using UnityEngine.UI;
@@ -42,8 +43,8 @@ public class ScratchBoard : MonoBehaviour
 
     private void NextItem()
     {
-        CurrentItem = GameManager.Instance.CurrentLevel.GetRandomItemForLevel();
-        scratchItemImage.ChangeImage(CurrentItem.image);
+        CurrentItem = ItemsManager.Instance.GetRandomItemFromBox(CurrentBox.Type, null);
+        scratchItemImage.ChangeImage(CurrentItem.imagePath);
         cardManager.ClearScratchCard();
     }
 
@@ -82,11 +83,7 @@ public class ScratchBoard : MonoBehaviour
 
         tableCarrier.RemoveBox(CurrentBox);
 
-        GameManager.Instance.UnlockItem(CurrentItem);
-
-        Debug.Log("unlocked item: " + CurrentItem.name);
-        Debug.Log("Probability: " + CurrentItem.Probability);
-
+        ItemsManager.Instance.UnlockItem(CurrentItem);
 
         cardManager.Progress.OnProgress -= OnScratchProgress;
         Close();

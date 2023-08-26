@@ -19,7 +19,7 @@ public class TableNPC : MonoBehaviour, IBoxOpener
     private Item CurrentItem { get; set; }
     private PortBox CurrentBox { get; set; }
 
-    private GameManager _gameManager;
+    private ItemsManager _itemsManager;
     private Bank _bank;
 
     private static readonly int ForwardSpeed = Animator.StringToHash("forwardSpeed");
@@ -27,7 +27,7 @@ public class TableNPC : MonoBehaviour, IBoxOpener
     private void Start()
     {
         // cache instances
-        _gameManager = GameManager.Instance;
+        _itemsManager = ItemsManager.Instance;
         _bank = Bank.Instance;
         SetIsSleeping(false);
 
@@ -38,7 +38,8 @@ public class TableNPC : MonoBehaviour, IBoxOpener
     public void Update()
     {
         Seconds += 1 * Time.deltaTime;
-        if (Vector3.Distance(transform.GetChild(0).transform.position, GameObject.Find("Player").transform.position) < 6 && IsSleeping)
+        if (Vector3.Distance(transform.GetChild(0).transform.position, GameObject.Find("Player").transform.position) <
+            6 && IsSleeping)
             SetIsSleeping(false);
     }
 
@@ -47,10 +48,13 @@ public class TableNPC : MonoBehaviour, IBoxOpener
         Debug.Log("Giving box to targetCarrier");
         myAnimator.SetFloat(ForwardSpeed, 0);
 
-        CurrentItem = _gameManager.CurrentLevel.GetRandomItemForLevel();
-        _gameManager.UnlockItem(CurrentItem);
+        CurrentItem = _itemsManager.GetRandomItemFromBox(CurrentBox.Type, null);
+        _itemsManager.UnlockItem(CurrentItem);
         Debug.Log("Got new item: " + CurrentItem.name);
+
+
         _bank.AddMoneyToPile(moneyPile);
+
         tableCarrier.RemoveBox(CurrentBox);
         tableCarrier.AddBoxOpener(this);
 
@@ -72,7 +76,7 @@ public class TableNPC : MonoBehaviour, IBoxOpener
         return true;
     }
 
-    public void SetIsSleeping(bool b)
+    private void SetIsSleeping(bool b)
     {
         IsSleeping = b;
         SleepPartical.SetActive(b);
