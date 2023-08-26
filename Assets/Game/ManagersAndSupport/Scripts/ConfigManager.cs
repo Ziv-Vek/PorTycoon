@@ -47,8 +47,16 @@ public class ConfigManager : MonoBehaviour
         {
             foreach (var box in level.boxes.Values)
             {
-                float totalProbability = box.items.Sum(item => item.probability);
-                if (totalProbability != 100)
+                // all boxes probabilities equals 100
+                float totalBoxProbability = level.boxes.Values.Sum(b => b.probability);
+                if (totalBoxProbability != 100)
+                {
+                    Debug.LogError($"Level {level.levelId} box probability sum is not 100");
+                    return false;
+                }
+
+                float totalItemProbability = box.items.Sum(item => item.probability);
+                if (totalItemProbability != 100)
                 {
                     Debug.LogError($"Box {box} probability is not 100");
                     return false;
@@ -73,7 +81,7 @@ public class ConfigManager : MonoBehaviour
     {
         // If the level is null, use the current level
         level ??= GameManager.Instance.CurrentLevel;
-        
+
         var boxes = Config.levels[(int)level - 1].boxes.Shuffle();
 
         // Calculate the total probability for normalization
