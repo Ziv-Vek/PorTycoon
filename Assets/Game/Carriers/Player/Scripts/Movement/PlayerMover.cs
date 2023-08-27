@@ -18,6 +18,7 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] Animator myAnimator;
     FloatingJoystick joystick = null;
     CharacterController controller;
+    [SerializeField] ParticleSystem DirtPartical;
 
     private void Awake()
     {
@@ -49,6 +50,7 @@ public class PlayerMover : MonoBehaviour
     public void StartMove(Vector2 screenTouchPos)
     {
         startTouchPos = screenTouchPos;
+        DirtPartical.Play();
     }
 
     public void Move(Vector2 screenTouchPos)
@@ -70,6 +72,7 @@ public class PlayerMover : MonoBehaviour
     public void CancelMovement()
     {
         UpdateAnimator(Vector3.zero);
+        DirtPartical.Stop();
     }
 
     private float GetMovementSpeed(Vector2 screenTouchPos)
@@ -101,7 +104,7 @@ public class PlayerMover : MonoBehaviour
     {
         joystick.gameObject.SetActive(false);
     }
-    
+
     public void ShowJoystick()
     {
         joystick.gameObject.SetActive(true);
