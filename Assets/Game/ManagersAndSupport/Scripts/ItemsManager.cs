@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemsManager : MonoBehaviour
@@ -12,8 +11,9 @@ public class ItemsManager : MonoBehaviour
 
     private GameConfig _gameConfig;
 
-    private List<List<Item>> _cachedAllItemsListByLevel = null;
-    private Dictionary<int, List<Item>> _itemsCache = new Dictionary<int, List<Item>>();
+    private List<List<Item>> _cachedAllItemsListByLevel;
+    private Dictionary<int, List<Item>> _itemsCache = new();
+    public Dictionary<string, Item> UnlockedItems { get; } = new();
 
 
     private void Awake()
@@ -31,8 +31,6 @@ public class ItemsManager : MonoBehaviour
         _gameConfig = ConfigManager.Instance.Config;
     }
 
-
-    private readonly Dictionary<string, Item> UnlockedItems = new();
 
     public Item GetRandomItemFromBox(string boxType, int? levelNum)
     {
@@ -58,11 +56,9 @@ public class ItemsManager : MonoBehaviour
         Box targetBox = targetLevel.boxes[boxType];
 
         // Convert Dictionary to a List and shuffle it
-        List<BoxItem> shuffledItems = targetBox.items;
-        Game.ManagersAndSupport.Scripts.Utils.Shuffle(shuffledItems);
+        IList<BoxItem> shuffledItems = targetBox.items.Shuffle();
 
-        // Calculate the total rarity for normalization
-        float totalRarity = shuffledItems.Sum(item => item.probability);
+        float totalRarity = 100;
 
         // Generate a random value between 0 and the totalRarity
         float randomValue = UnityEngine.Random.Range(0, totalRarity);
@@ -90,6 +86,8 @@ public class ItemsManager : MonoBehaviour
 
         item.DateUnlocked = DateTime.Now;
         UnlockedItems.Add(item.id, item);
+
+        UIManager.Instance.UpdateUnlockedItemsText(UnlockedItems.Count);
 
         if (IsLevelCompleted(GameManager.Instance.CurrentLevel))
             UIManager.ShowWinPanel();
