@@ -17,8 +17,8 @@ public class MoneyPrefab : MonoBehaviour
         float step = speed * Time.deltaTime;
         if (startMove)
         {
-            transform.Translate((targetPosition.position - transform.position).normalized * step);
-            if (Vector3.Distance(transform.position, targetPosition.position) < step)
+            transform.Translate((targetPosition.position - transform.position + new Vector3(0, 4, 0)).normalized * step);
+            if (Vector3.Distance(transform.position, targetPosition.position + new Vector3(0, 4, 0)) < step)
             {
                 transform.position = targetPosition.position;
                 startMove = false; 
