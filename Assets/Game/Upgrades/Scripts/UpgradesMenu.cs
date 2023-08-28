@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using TMPro;
 
@@ -66,7 +67,7 @@ public class UpgradesMenu : MonoBehaviour
         {
             if (Button.transform.parent.GetComponent<Prodact>().Price > GameManager.Instance.money)
                 Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
-            if (GameManager.Instance.shipSpeedLevel == 5)
+            if (GameManager.Instance.qualityLevel == 5)
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }
@@ -84,7 +85,7 @@ public class UpgradesMenu : MonoBehaviour
         {
             if (Button.transform.parent.GetComponent<Prodact>().Price > GameManager.Instance.money)
                 Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
-            if (GameManager.Instance.shipSpeedLevel == 5)
+            if (GameManager.Instance.convayorSpeedLevel == 5)
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }
@@ -102,7 +103,7 @@ public class UpgradesMenu : MonoBehaviour
         {
             if (Button.transform.parent.GetComponent<Prodact>().Price > GameManager.Instance.money)
                 Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
-            if (GameManager.Instance.shipSpeedLevel == 5)
+            if (GameManager.Instance.scanningSpeedLevel == 5)
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }
@@ -120,7 +121,7 @@ public class UpgradesMenu : MonoBehaviour
         {
             if (Button.transform.parent.GetComponent<Prodact>().Price > GameManager.Instance.money)
                 Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
-            if (GameManager.Instance.shipSpeedLevel == 5)
+            if (GameManager.Instance.tableStackLevel == 5)
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }
@@ -138,7 +139,7 @@ public class UpgradesMenu : MonoBehaviour
         {
             if (Button.transform.parent.GetComponent<Prodact>().Price > GameManager.Instance.money)
                 Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
-            if (GameManager.Instance.shipSpeedLevel == 5)
+            if (GameManager.Instance.openBoxTimeNpc == 5)
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
   
@@ -157,7 +158,7 @@ public class UpgradesMenu : MonoBehaviour
         {
             if (Button.transform.parent.GetComponent<Prodact>().Price > GameManager.Instance.money)
                 Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
-            if (GameManager.Instance.shipSpeedLevel == 5)
+            if (GameManager.Instance.awarenessTimeNpc == 5)
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }
@@ -175,7 +176,7 @@ public class UpgradesMenu : MonoBehaviour
         {
             if (Button.transform.parent.GetComponent<Prodact>().Price > GameManager.Instance.money)
                 Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
-            if (GameManager.Instance.shipSpeedLevel == 5)
+            if (GameManager.Instance.playerSpeedLevel == 5)
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }
@@ -193,7 +194,25 @@ public class UpgradesMenu : MonoBehaviour
         {
             if (Button.transform.parent.GetComponent<Prodact>().Price > GameManager.Instance.money)
                 Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
-            if (GameManager.Instance.shipSpeedLevel == 5)
+            if (GameManager.Instance.playerBoxPlacesLevel == 5)
+                Debug.Log("Max Level: " + Button.transform.parent.name);
+        }
+    }
+    public void ForkliftSpeed(GameObject Button)
+    {
+        if ((Button.transform.parent.GetComponent<Prodact>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && GameManager.Instance.forklifSpeedLevel < 5)
+        {
+            if (Button.name != "FreeButton")
+                UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Prodact>().Price);
+            GameObject.Find("Forklift").GetComponent<NavMeshAgent>().speed += 4;
+            GameManager.Instance.forklifSpeedLevel++;
+            Button.transform.parent.GetComponent<Prodact>().Price += 100;
+        }
+        else
+        {
+            if (Button.transform.parent.GetComponent<Prodact>().Price > GameManager.Instance.money)
+                Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
+            if (GameManager.Instance.forklifSpeedLevel == 5)
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }
@@ -211,7 +230,7 @@ public class UpgradesMenu : MonoBehaviour
         {
             if (Button.transform.parent.GetComponent<Prodact>().Price > GameManager.Instance.money)
                 Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
-            if (GameManager.Instance.shipSpeedLevel == 5)
+            if (GameManager.Instance.forkliftBoxQuantityLevel == 5)
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }
@@ -229,7 +248,7 @@ public class UpgradesMenu : MonoBehaviour
         {
             if (Button.transform.parent.GetComponent<Prodact>().Price > GameManager.Instance.money)
                 Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
-            if (GameManager.Instance.shipSpeedLevel == 5)
+            if (GameManager.Instance.forkliftFuelTankLevel == 5)
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }

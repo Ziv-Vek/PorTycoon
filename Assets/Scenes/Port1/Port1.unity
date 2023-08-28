@@ -3409,7 +3409,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1381819867}
         m_TargetAssemblyTypeName: UpgradesMenu, Assembly-CSharp
-        m_MethodName: ConveyorSpeed
+        m_MethodName: ForkliftSpeed
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 329378324}
@@ -4777,7 +4777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd5879252d158134eb99792941dcc303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Price: 55
+  Price: 100
 --- !u!114 &405561370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7631,6 +7631,7 @@ MonoBehaviour:
   awarenessTimeNpc: 1
   playerSpeedLevel: 1
   playerBoxPlacesLevel: 1
+  forklifSpeedLevel: 1
   forkliftBoxQuantityLevel: 1
   forkliftFuelTankLevel: 1
 --- !u!114 &749655396
@@ -8763,7 +8764,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1381819867}
         m_TargetAssemblyTypeName: UpgradesMenu, Assembly-CSharp
-        m_MethodName: ConveyorSpeed
+        m_MethodName: ForkliftSpeed
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 887533223}
@@ -13910,7 +13911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1349230389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14127,7 +14128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1381819863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23178,7 +23179,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 1.49
   m_Speed: 8
-  m_Acceleration: 8
+  m_Acceleration: 40
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0

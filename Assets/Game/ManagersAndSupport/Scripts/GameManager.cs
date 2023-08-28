@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public int playerSpeedLevel = 1;
     public int playerBoxPlacesLevel;
 
+    public int forklifSpeedLevel = 1;
     public int forkliftBoxQuantityLevel = 1;
     public int forkliftFuelTankLevel = 1;
 

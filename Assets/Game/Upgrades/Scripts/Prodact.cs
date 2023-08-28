@@ -5,12 +5,11 @@ using TMPro;
 
 public class Prodact : MonoBehaviour
 {
-    public int Price = 000;
-    // Update is called once per frame
+    public int Price = 000; 
+    int Level = 1;
     void Update()
     {
         transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = Price.ToString();
-        int Level = 1;
         if (gameObject.name == "ShipVelocity")
             Level = GameManager.Instance.shipSpeedLevel;
         if (gameObject.name == "Quantity")
@@ -30,7 +29,9 @@ public class Prodact : MonoBehaviour
         if (gameObject.name == "PlayerSpeed")
             Level = GameManager.Instance.playerSpeedLevel;
         if (gameObject.name == "BoxPlaces")
-            Level = GameManager.Instance.playerBoxPlacesLevel;
+            Level = GameManager.Instance.playerBoxPlacesLevel; 
+        if (gameObject.name == "SpeedOfForklift")
+            Level = GameManager.Instance.forklifSpeedLevel;
         if (gameObject.name == "ForkliftBoxQuantity")
             Level = GameManager.Instance.forkliftBoxQuantityLevel;
         if (gameObject.name == "FuelTank")
