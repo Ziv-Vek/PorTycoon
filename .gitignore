@@ -73,3 +73,20 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 Assets/Scenes/Port1/Port1.unity
+Assets/Asset packs/Feel/*
+Assets/MeshBaker/*
+Assets/Plugins/Easy Save 3/*
+Assets/Asset packs/MeshBaker/*
+Assets/Asset packs/TextMesh Pro/*.*
+Assets/Asset packs/TutorialInfo/*
+Assets/Asset packs/UI Toolkit/*
+Assets/Asset packs/MeshBaker.meta
+Assets/Asset packs/TextMesh Pro.meta
+Assets/Asset packs/TutorialInfo.meta
+Assets/Asset packs/UI Toolkit.meta
+Assets/MeshBaker/*
+Assets/TextMesh Pro/*
+Assets/TutorialInfo/*
+Assets/UI Toolkit/*
+Assets/Asset packs/TextMesh Pro/*
+Assets/MeshBaker/*
