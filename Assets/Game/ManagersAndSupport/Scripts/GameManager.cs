@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     public int forkliftBoxQuantityLevel = 1;
     public int forkliftFuelTankLevel = 1;
 
+    public int scratchSizeScaleLevel = 1;
+
     private void Awake()
     {
         if (Instance == null)

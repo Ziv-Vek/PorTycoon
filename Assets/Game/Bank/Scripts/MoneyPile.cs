@@ -58,7 +58,6 @@ public class MoneyPile : MonoBehaviour
                 GetComponent<BoxCollider>().size = new Vector3(GetComponent<BoxCollider>().size.x - 0.43f, GetComponent<BoxCollider>().size.y, GetComponent<BoxCollider>().size.z);
             }
         }
-                Debug.Log(PlusY);
 
         if (moneyAmount == 0)
         {

@@ -50,7 +50,6 @@ public class PlayerMover : MonoBehaviour
     public void StartMove(Vector2 screenTouchPos)
     {
         startTouchPos = screenTouchPos;
-        DirtPartical.Play();
     }
 
     public void Move(Vector2 screenTouchPos)
@@ -93,6 +92,8 @@ public class PlayerMover : MonoBehaviour
         Vector3 localVelocity = transform.InverseTransformDirection(velocity);
         float speed = localVelocity.z;
         myAnimator.SetFloat("forwardSpeed", speed);
+        if(speed > 0 && !DirtPartical.isPlaying)
+            DirtPartical.Play();
     }
 
     public void ToggleMovement(bool enableMovement)

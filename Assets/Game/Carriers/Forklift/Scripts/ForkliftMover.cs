@@ -110,7 +110,7 @@ public class ForkliftMover : MonoBehaviour
     }
     public void FuelUpgrade(int amount)
     {
-        FuelSlider.maxValue += amount;
+        FuelSlider.maxValue = amount;
         FuelSlider.value = FuelSlider.maxValue;
         NoFuelText.SetActive(false);
     }

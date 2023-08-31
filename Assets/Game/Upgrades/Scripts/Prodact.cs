@@ -38,10 +38,15 @@ public class Prodact : MonoBehaviour
             Level = GameManager.Instance.forkliftFuelTankLevel;
 
         transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Level: " + Level;
-        if (Level == 5)
+        if (Level == 4 && (gameObject.name == "Quantity" || gameObject.name == "ForkliftBoxQuantity"))
         {
            transform.GetChild(1).gameObject.SetActive(false);
            transform.GetChild(2).gameObject.SetActive(false);
         } 
+        else if(Level == 5)
+        {
+            transform.GetChild(1).gameObject.SetActive(false);
+            transform.GetChild(2).gameObject.SetActive(false);
+        }
     }
 }
