@@ -79,14 +79,17 @@ public class ItemsManager : MonoBehaviour
 
     public void UnlockItem(Item item)
     {
-        GameManager.Instance.stars++;
         UIManager.Instance.UpdateStarsText(GameManager.Instance.stars);
 
-        if (UnlockedItems.ContainsKey(item.id)) return;
+        if (UnlockedItems.ContainsKey(item.id))
+        {
+            Debug.Log("Duplication: " + item.name);
+            Bank.Instance.SpawnStar();
+            return;
+        } 
 
         item.DateUnlocked = DateTime.Now;
         UnlockedItems.Add(item.id, item);
-
         UIManager.Instance.UpdateUnlockedItemsText(UnlockedItems.Count);
 
         if (IsLevelCompleted(GameManager.Instance.CurrentLevel))

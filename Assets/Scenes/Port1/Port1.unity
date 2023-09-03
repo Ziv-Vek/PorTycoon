@@ -5650,6 +5650,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 354106987}
   m_CullTransparentMesh: 1
+--- !u!1 &364182789 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8335726123279035025, guid: 99d5a10415545e54fb965879cd4e3eb4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5919266341794344961}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &364717686
 GameObject:
   m_ObjectHideFlags: 0
@@ -7646,7 +7652,7 @@ Transform:
   - {fileID: 1891235468}
   - {fileID: 408833744}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &542692243
 GameObject:
@@ -8315,7 +8321,7 @@ PrefabInstance:
     - target: {fileID: 1687901656534262282, guid: ea69c7af09d8f664ab23b5357c68b225,
         type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1687901656534262282, guid: ea69c7af09d8f664ab23b5357c68b225,
         type: 3}
@@ -11914,7 +11920,7 @@ PrefabInstance:
     - target: {fileID: 881607388068435869, guid: 6c472ca881a61ce4dbca3858794202df,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 881607388068435869, guid: 6c472ca881a61ce4dbca3858794202df,
         type: 3}
@@ -11970,6 +11976,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5647168884752183811, guid: 6c472ca881a61ce4dbca3858794202df,
+        type: 3}
+      propertyPath: shipSpeed
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5647168884752183811, guid: 6c472ca881a61ce4dbca3858794202df,
         type: 3}
@@ -13250,7 +13261,7 @@ Transform:
   - {fileID: 209077308}
   - {fileID: 462079248}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 165.71, z: 0}
 --- !u!114 &1161712514
 MonoBehaviour:
@@ -14645,7 +14656,7 @@ PrefabInstance:
     - target: {fileID: 7092059817074876491, guid: bb857febde0814b89b943e7672e36b29,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7092059817074876491, guid: bb857febde0814b89b943e7672e36b29,
         type: 3}
@@ -15569,7 +15580,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1381819863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15885,7 +15896,7 @@ PrefabInstance:
     - target: {fileID: 1687901656534262282, guid: ea69c7af09d8f664ab23b5357c68b225,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1687901656534262282, guid: ea69c7af09d8f664ab23b5357c68b225,
         type: 3}
@@ -17541,7 +17552,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a6246076d7216874694f695a89f84bab,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a6246076d7216874694f695a89f84bab,
         type: 3}
@@ -18359,6 +18370,8 @@ MonoBehaviour:
   amountOfMoneyToThrow: 100
   CargoMoneyAmount: 25
   ScretchMoneyAmount: 10
+  star: {fileID: 7399725589581612873, guid: a39416bfd0abb9e49a0a29ccf1021669, type: 3}
+  Player: {fileID: 364182789}
 --- !u!4 &1725759190
 Transform:
   m_ObjectHideFlags: 0
@@ -18372,7 +18385,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1742515119
 GameObject:
@@ -21123,7 +21136,7 @@ Transform:
   - {fileID: 1939406016}
   - {fileID: 300759697}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1914261594
 GameObject:
@@ -22855,7 +22868,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 5919266341794344961}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 364182789}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76349c06b15b4ba8b5f19740a2461fa3, type: 3}
@@ -22867,7 +22880,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 5919266341794344961}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 364182789}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff4c4ca09bc34b478e68442a09264164, type: 3}
@@ -23291,7 +23304,7 @@ RectTransform:
   - {fileID: 1781974002}
   - {fileID: 525557634}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -25321,7 +25334,7 @@ Transform:
   - {fileID: 1060544954}
   - {fileID: 2742666070023842634}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9130263639243922206
 MonoBehaviour:
