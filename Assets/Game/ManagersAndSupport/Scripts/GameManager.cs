@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [DefaultExecutionOrder(-1)]
@@ -42,5 +43,47 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void SaveData(UserData userData)
+    {
+        userData.money = money;
+        userData.stars = stars;
+        userData.experience = experience;
+        userData.shipSpeedLevel = shipSpeedLevel;
+        userData.quantityLevel = quantityLevel;
+        userData.qualityLevel = qualityLevel;
+        userData.convayorSpeedLevel = convayorSpeedLevel;
+        userData.scanningSpeedLevel = scanningSpeedLevel;
+        userData.tableStackLevel = tableStackLevel;
+        userData.openBoxTimeNpc = openBoxTimeNpc;
+        userData.awarenessTimeNpc = awarenessTimeNpc;
+        userData.playerSpeedLevel = playerSpeedLevel;
+        userData.playerBoxPlacesLevel = playerBoxPlacesLevel;
+        userData.forklifSpeedLevel = forklifSpeedLevel;
+        userData.forkliftBoxQuantityLevel = forkliftBoxQuantityLevel;
+        userData.forkliftFuelTankLevel = forkliftFuelTankLevel;
+        userData.scratchSizeScaleLevel = scratchSizeScaleLevel;
+    }
+
+    public void LoadData(UserData userData)
+    {
+        money = userData.money;
+        stars = userData.stars;
+        experience = userData.experience;
+        shipSpeedLevel = userData.shipSpeedLevel;
+        quantityLevel = userData.quantityLevel;
+        qualityLevel = userData.qualityLevel;
+        convayorSpeedLevel = userData.convayorSpeedLevel;
+        scanningSpeedLevel = userData.scanningSpeedLevel;
+        tableStackLevel = userData.tableStackLevel;
+        openBoxTimeNpc = userData.openBoxTimeNpc;
+        awarenessTimeNpc = userData.awarenessTimeNpc;
+        playerSpeedLevel = userData.playerSpeedLevel;
+        playerBoxPlacesLevel = userData.playerBoxPlacesLevel;
+        forklifSpeedLevel = userData.forklifSpeedLevel;
+        forkliftBoxQuantityLevel = userData.forkliftBoxQuantityLevel;
+        forkliftFuelTankLevel = userData.forkliftFuelTankLevel;
+        scratchSizeScaleLevel = userData.scratchSizeScaleLevel;
     }
 }

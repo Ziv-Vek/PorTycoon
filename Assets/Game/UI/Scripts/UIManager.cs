@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 
+[DefaultExecutionOrder(1)]
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
