@@ -28,7 +28,6 @@ public class ConfigManager : MonoBehaviour
         if (!IsConfigValid())
         {
             Debug.LogError("Config is not valid");
-            // exit the game
             throw new Exception("Config is not valid");
         }
     }
@@ -70,6 +69,17 @@ public class ConfigManager : MonoBehaviour
                         Debug.LogError($"Item {boxItem.id} not found in items list");
                         return false;
                     }
+                }
+            }
+
+            // Check all upgrades have total prices minus one equals to upgrades levels count
+            foreach (var upgrade in level.upgrades.Values)
+            {
+                if (upgrade.levels.Count - 1 != upgrade.prices.Count)
+                {
+                    Debug.LogError(
+                        $"Level {level.levelId} upgrade {upgrade} prices count is not equal to levels count");
+                    return false;
                 }
             }
         }

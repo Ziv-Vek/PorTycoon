@@ -33,8 +33,9 @@ public class Star : MonoBehaviour
             {
                 transform.position = targetPosition.position;
                 startMove = false;
-                Destroy(gameObject);
                 Bank.Instance.DepositStars(1);
+                UIManager.Instance.UpdateStarsText(GameManager.Instance.stars);     
+                Destroy(gameObject);
             }
         }
         transform.Rotate(new Vector3(0,80,0) * Time.deltaTime);

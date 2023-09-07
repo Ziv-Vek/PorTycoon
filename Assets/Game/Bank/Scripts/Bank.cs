@@ -7,6 +7,7 @@ public class Bank : MonoBehaviour
     [SerializeField] int amountOfMoneyToThrow = 100;
     public int CargoMoneyAmount = 5;
     public int ScretchMoneyAmount = 5;
+    public int WinMoneyAmount = 5;
     [SerializeField] GameObject star;
     [SerializeField] GameObject Player;
 
@@ -47,17 +48,18 @@ public class Bank : MonoBehaviour
         GameManager.Instance.stars = currentStars;
         UIManager.Instance.UpdateStarsText(currentStars);
     }
-    public void AddMoneyToPile(MoneyPile pile)
+    public void AddMoneyToPile(MoneyPile pile , String s)
     {
-        if(pile.gameObject.name == "CargoMoneyPile")
+
+        if(s == "Cargo")
             pile.AddMoney(CargoMoneyAmount);
-        if (pile.gameObject.name == "ScretchMoneyPile")
+        if (s == "Scratch")
+            pile.AddMoney(ScretchMoneyAmount);
+        if (s == "Win")
             pile.AddMoney(ScretchMoneyAmount);
     }
     public void SpawnStar()
     {
-      
         Instantiate(star, new Vector3(Player.transform.position.x, 8.4f, GameObject.Find("Player").transform.position.z),Quaternion.identity);
-        
     }
 }

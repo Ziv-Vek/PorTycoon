@@ -16,7 +16,7 @@ public class Item
     public string description;
     public string imagePath;
 
-    [NonSerialized] public DateTime DateUnlocked;
+    public DateTime DateUnlocked;
 }
 
 [Serializable]
