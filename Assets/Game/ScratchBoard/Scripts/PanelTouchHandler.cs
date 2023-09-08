@@ -16,26 +16,21 @@ public class PanelTouchHandler : MonoBehaviour
 
     private void Update()
     {
-        if (Input.touchCount > 0 || Input.GetMouseButton(0))
+        if (Input.touchCount > 0)
         {
-            if (Input.touchCount > 0)
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved ||
+                touch.phase == TouchPhase.Stationary)
             {
-                Touch touch = Input.GetTouch(0);
-
-                if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved ||
-                    touch.phase == TouchPhase.Stationary)
-                {
-                    PositionCoinAtTouch(touch.position);
-                    coin.SetActive(true);
-                }
-            }
-
-
-            if (Input.GetMouseButton(0))
-            {
-                PositionCoinAtTouch(Input.mousePosition);
+                PositionCoinAtTouch(touch.position);
                 coin.SetActive(true);
             }
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            PositionCoinAtTouch(Input.mousePosition);
+            coin.SetActive(true);
         }
         else
         {
