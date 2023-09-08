@@ -28,6 +28,11 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        UpdateUI();
+    }
+
+    public void UpdateUI()
+    {
         UpdateTotalItemsText(ItemsManager.Instance.GetAllLevelItems(GameManager.Instance.CurrentLevel).Count);
         UpdateUnlockedItemsText(ItemsManager.Instance.UnlockedItems.Count);
         UpdateMoneyText(GameManager.Instance.money);
