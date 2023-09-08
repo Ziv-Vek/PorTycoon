@@ -86,4 +86,25 @@ public class GameManager : MonoBehaviour
         forkliftFuelTankLevel = userData.forkliftFuelTankLevel;
         scratchSizeScaleLevel = userData.scratchSizeScaleLevel;
     }
+
+    public void ResetData()
+    {
+        money = 0;
+        stars = 0;
+        experience = 0;
+        shipSpeedLevel = 1;
+        quantityLevel = 1;
+        qualityLevel = 1;
+        convayorSpeedLevel = 1;
+        scanningSpeedLevel = 1;
+        tableStackLevel = 1;
+        openBoxTimeNpc = 1;
+        awarenessTimeNpc = 1;
+        playerSpeedLevel = 1;
+        playerBoxPlacesLevel = 1;
+        forklifSpeedLevel = 1;
+        forkliftBoxQuantityLevel = 1;
+        forkliftFuelTankLevel = 1;
+        scratchSizeScaleLevel = 1;
+    }
 }

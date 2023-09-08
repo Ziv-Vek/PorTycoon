@@ -60,6 +60,18 @@ public class UserDataManager: MonoBehaviour
         GameManager.Instance.LoadData(UserData);
     }
     
+    public void ResetUserData()
+    {
+        Debug.Log("ResetUserData");
+        ItemsManager.Instance.ResetData();
+        GameManager.Instance.ResetData();
+        
+        UserData = new UserData();
+        
+        SaveUserData();
+        UIManager.Instance.UpdateUI();
+    }
+    
     public void OnApplicationQuit()
     {
         SaveUserData();

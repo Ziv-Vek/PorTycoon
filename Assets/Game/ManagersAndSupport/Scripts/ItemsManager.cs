@@ -148,6 +148,11 @@ public class ItemsManager : MonoBehaviour
     {
         userData.unlockedItems = UnlockedItems;
     }
+    
+    public void ResetData()
+    {
+        UnlockedItems.Clear();
+    }
 
     public void LoadData(UserData userData)
     {
