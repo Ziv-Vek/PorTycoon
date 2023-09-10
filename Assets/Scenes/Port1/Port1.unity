@@ -12226,10 +12226,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1472793154537083190, guid: 6c472ca881a61ce4dbca3858794202df,
+        type: 3}
+      propertyPath: uniqueID
+      value: f743cd5c-07f1-4fb9-a670-374cb6a5e01f
+      objectReference: {fileID: 0}
+    - target: {fileID: 2576951934952589754, guid: 6c472ca881a61ce4dbca3858794202df,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5647168884752183811, guid: 6c472ca881a61ce4dbca3858794202df,
         type: 3}
       propertyPath: shipSpeed
-      value: 200
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5647168884752183811, guid: 6c472ca881a61ce4dbca3858794202df,
         type: 3}
