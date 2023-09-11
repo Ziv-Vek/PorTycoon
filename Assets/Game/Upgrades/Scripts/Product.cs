@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Prodact : MonoBehaviour
+public class Product : MonoBehaviour
 {
     public int Price = 000; 
     int Level = 1;

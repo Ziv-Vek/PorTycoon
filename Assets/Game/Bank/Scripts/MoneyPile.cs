@@ -40,7 +40,7 @@ public class MoneyPile : MonoBehaviour
     }
     void TakingOneByOne()
     {
-      //  Destroy(transform.GetChild(moneyAmount - 1).gameObject);
+        transform.GetChild(transform.childCount - 1).gameObject.GetComponent<MoneyPrefab>().targetPosition = GameObject.Find("Player").transform;
         transform.GetChild(transform.childCount - 1).gameObject.GetComponent<MoneyPrefab>().startMove = true;
         transform.GetChild(transform.childCount - 1).parent = null;
         Bank.Instance.DepositMoney(MoneyPerBill);

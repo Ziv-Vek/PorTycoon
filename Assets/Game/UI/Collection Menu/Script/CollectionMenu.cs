@@ -6,7 +6,7 @@ using TMPro;
 
 public class CollectionMenu : MonoBehaviour
 {
-    [SerializeField] GameObject CollectionCarrier;
+    [SerializeField] GameObject CollectionLine;
     GameObject CollectionUI_Holder;
     [SerializeField] GameObject Collections_Holder;
     public GameObject Item;
@@ -35,7 +35,7 @@ public class CollectionMenu : MonoBehaviour
         {
             if (Collections_Holder.transform.childCount == 0 || i % 3 == 0)
             {
-                CollectionUI_Holder = Instantiate(CollectionCarrier, Collections_Holder.transform.position, Quaternion.identity, Collections_Holder.transform);
+                CollectionUI_Holder = Instantiate(CollectionLine, Collections_Holder.transform.position, Quaternion.identity, Collections_Holder.transform);
             }
             GameObject newItem = Instantiate(Item, CollectionUI_Holder.transform.position, Quaternion.identity, CollectionUI_Holder.transform);
             newItem.AddComponent<Image>();

@@ -13,6 +13,7 @@ public class ShipController : MonoBehaviour
     public float waitTimeAtSeaTarget = 3f;
     public float shipSpeed = 5f;
     private ShipCarrier shipCarrier;
+    public GameObject ShipEffects;
 
     private void Awake()
     {
@@ -33,6 +34,10 @@ public class ShipController : MonoBehaviour
     {
         while (true)
         {
+            // Turning on the ship effects
+            foreach (Transform child in ShipEffects.transform)
+                child.gameObject.GetComponent<ParticleSystem>().Play();
+
             // Move to the target point at sea
             yield return StartCoroutine(MoveToPosition(targetPoint.position));
 
@@ -44,6 +49,10 @@ public class ShipController : MonoBehaviour
 
             // Move back to the docking point at pier
             yield return StartCoroutine(MoveToPosition(dockingPoint.position));
+            
+            // Turning off the ship effects
+            foreach (Transform child in ShipEffects.transform)
+                child.gameObject.GetComponent<ParticleSystem>().Stop();
 
             // Transfer cargo to pier platform
             yield return StartCoroutine(shipCarrier.TransferBoxesToPier());
