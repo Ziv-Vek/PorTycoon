@@ -19856,7 +19856,7 @@ GameObject:
   - component: {fileID: 1823231981}
   - component: {fileID: 1823231987}
   m_Layer: 0
-  m_Name: Buyer
+  m_Name: Forklift Buyer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19883,7 +19883,7 @@ MonoBehaviour:
   Price: 120
   PriceText: {fileID: 351279077}
   SliderFill: {fileID: 1311965040}
-  Product: {fileID: 9130263639243922204}
+  product: {fileID: 9130263639243922204}
 --- !u!82 &1823231982
 AudioSource:
   m_ObjectHideFlags: 0
@@ -25553,7 +25553,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9130263639243922204}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 97.77, y: 0, z: 505.43}
+  m_LocalPosition: {x: 97.77, y: 0, z: 495.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
