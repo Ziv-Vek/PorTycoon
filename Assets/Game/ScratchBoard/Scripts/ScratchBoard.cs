@@ -89,7 +89,7 @@ public class ScratchBoard : MonoBehaviour
         Close();
 
 
-        Bank.Instance.AddMoneyToPile(moneyPile);
+        Bank.Instance.AddMoneyToPile(moneyPile, "Scratch");
     }
 
     private void OnScratchProgress(float progress)
@@ -107,7 +107,7 @@ public class ScratchBoard : MonoBehaviour
         _isScratching = false;
 
         tableCarrier.RemoveBox(CurrentBox);
-        Bank.Instance.AddMoneyToPile(moneyPile);
+        Bank.Instance.AddMoneyToPile(moneyPile, "Scratch");
 
         cardManager.Progress.OnProgress -= OnScratchProgress;
         Close();

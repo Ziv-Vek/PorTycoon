@@ -90,3 +90,7 @@ Assets/TutorialInfo/*
 Assets/UI Toolkit/*
 Assets/Asset packs/TextMesh Pro/*
 Assets/MeshBaker/*
+Assets/TextMesh Pro.meta
+Assets/Game/ManagersAndSupport/Scripts/StateManager.cs.meta
+Assets/Game/ManagersAndSupport/Scripts/StateManager.cs
+Assets/Game/ManagersAndSupport/Scripts/PlayerPrefsKeys.cs.meta

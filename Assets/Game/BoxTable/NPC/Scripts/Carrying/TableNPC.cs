@@ -61,8 +61,7 @@ public class TableNPC : MonoBehaviour, IBoxOpener
         Debug.Log("Got new item: " + CurrentItem.name);
 
 
-        _bank.AddMoneyToPile(moneyPile);
-
+        _bank.AddMoneyToPile(moneyPile, "Scratch");
         tableCarrier.RemoveBox(CurrentBox);
         tableCarrier.AddBoxOpener(this);
 

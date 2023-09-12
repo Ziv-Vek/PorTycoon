@@ -5,13 +5,14 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 
+[DefaultExecutionOrder(1)]
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
     [SerializeField] private TextMeshProUGUI moneyText;
     [SerializeField] private TextMeshProUGUI starsText;
-    [SerializeField] GameObject UpgradeCanvas;
+    [SerializeField] GameObject CollectionCanvas;
     [SerializeField] private TextMeshProUGUI totalItemsText;
     [SerializeField] private TextMeshProUGUI unlockedItemsText;
 
@@ -27,6 +28,11 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        UpdateUI();
+    }
+
+    public void UpdateUI()
+    {
         UpdateTotalItemsText(ItemsManager.Instance.GetAllLevelItems(GameManager.Instance.CurrentLevel).Count);
         UpdateUnlockedItemsText(ItemsManager.Instance.UnlockedItems.Count);
         UpdateMoneyText(GameManager.Instance.money);
@@ -53,12 +59,13 @@ public class UIManager : MonoBehaviour
         unlockedItemsText.text = unlockedItems.ToString();
     }
 
-    public void OpenUpgradeCanvas()
+    public void OpenCollectionCanvas()
     {
-        PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
+        PlayerMover playerMover = GameObject.Find("Player_New").GetComponent<PlayerMover>();
         playerMover.ToggleMovement(false);
         playerMover.HideJoystick();
-        UpgradeCanvas.SetActive(true);
+        CollectionCanvas.SetActive(true);
+        CollectionCanvas.GetComponent<CollectionMenu>().SetInCollectionPanel();
     }
 
     public static void ShowWinPanel()

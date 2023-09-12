@@ -16,16 +16,22 @@ public class Item
     public string description;
     public string imagePath;
 
-    [NonSerialized] public DateTime DateUnlocked;
+    public DateTime DateUnlocked;
 }
 
 [Serializable]
 public class Level
 {
+    public Dictionary<string, Upgrades> upgrades;
     public int levelId;
     public Dictionary<string, Box> boxes;
 }
-
+[Serializable]
+public class Upgrades
+{
+    public List<float> levels;
+    public List<float> prices;
+}
 [Serializable]
 public class Box
 {

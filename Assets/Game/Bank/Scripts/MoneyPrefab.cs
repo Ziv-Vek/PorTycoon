@@ -7,11 +7,6 @@ public class MoneyPrefab : MonoBehaviour
     public Transform targetPosition; // Assign the target position in the Inspector
     public float speed = 50f; // The speed at which the object will move
     public bool startMove = false;
-
-    private void Start()
-    {
-        targetPosition = GameObject.Find("Player").transform;
-    }
     private void Update()
     {
         float step = speed * Time.deltaTime;

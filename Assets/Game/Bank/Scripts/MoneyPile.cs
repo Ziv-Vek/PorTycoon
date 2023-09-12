@@ -40,7 +40,7 @@ public class MoneyPile : MonoBehaviour
     }
     void TakingOneByOne()
     {
-      //  Destroy(transform.GetChild(moneyAmount - 1).gameObject);
+        transform.GetChild(transform.childCount - 1).gameObject.GetComponent<MoneyPrefab>().targetPosition = GameObject.Find("Player").transform;
         transform.GetChild(transform.childCount - 1).gameObject.GetComponent<MoneyPrefab>().startMove = true;
         transform.GetChild(transform.childCount - 1).parent = null;
         Bank.Instance.DepositMoney(MoneyPerBill);
@@ -58,7 +58,6 @@ public class MoneyPile : MonoBehaviour
                 GetComponent<BoxCollider>().size = new Vector3(GetComponent<BoxCollider>().size.x - 0.43f, GetComponent<BoxCollider>().size.y, GetComponent<BoxCollider>().size.z);
             }
         }
-                Debug.Log(PlusY);
 
         if (moneyAmount == 0)
         {

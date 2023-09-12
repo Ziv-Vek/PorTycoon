@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemsManager : MonoBehaviour
 {
@@ -15,7 +16,6 @@ public class ItemsManager : MonoBehaviour
     private Dictionary<int, List<Item>> _itemsCache = new();
     public Dictionary<string, Item> UnlockedItems { get; } = new();
 
-
     private void Awake()
     {
         if (Instance == null)
@@ -27,7 +27,6 @@ public class ItemsManager : MonoBehaviour
         {
             Destroy(gameObject); // Ensure only one instance exists
         }
-
         _gameConfig = ConfigManager.Instance.Config;
     }
 
@@ -79,18 +78,23 @@ public class ItemsManager : MonoBehaviour
 
     public void UnlockItem(Item item)
     {
-        GameManager.Instance.stars++;
-        UIManager.Instance.UpdateStarsText(GameManager.Instance.stars);
 
-        if (UnlockedItems.ContainsKey(item.id)) return;
+        if (UnlockedItems.ContainsKey(item.id))
+        {
+            Debug.Log("Duplication: " + item.name);
+            Bank.Instance.SpawnStar();
+            return;
+        }
 
         item.DateUnlocked = DateTime.Now;
         UnlockedItems.Add(item.id, item);
-
         UIManager.Instance.UpdateUnlockedItemsText(UnlockedItems.Count);
 
         if (IsLevelCompleted(GameManager.Instance.CurrentLevel))
+        { 
             UIManager.ShowWinPanel();
+            Bank.Instance.AddMoneyToPile(GameObject.Find("ScretchMoneyPile").GetComponent<MoneyPile>(),"Win");   
+        }
     }
 
     public List<Item> GetAllLevelItems(int levelNum)
@@ -138,5 +142,23 @@ public class ItemsManager : MonoBehaviour
         List<Item> allLevelItems = GetAllLevelItems(levelNum);
         Debug.Log("all level items:" + allLevelItems.Count + " unlocked items:" + UnlockedItems.Count);
         return allLevelItems.All(item => UnlockedItems.ContainsKey(item.id));
+    }
+
+    public void SaveData(UserData userData)
+    {
+        userData.unlockedItems = UnlockedItems;
+    }
+    
+    public void ResetData()
+    {
+        UnlockedItems.Clear();
+    }
+
+    public void LoadData(UserData userData)
+    {
+        foreach (var item in userData.unlockedItems)
+        {
+            UnlockedItems.Add(item.Key, item.Value);
+        }
     }
 }
