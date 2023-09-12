@@ -140,6 +140,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1845036984, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
+      propertyPath: ShipEffects
+      value: 
+      objectReference: {fileID: 2576951934952589755}
+    - target: {fileID: 1845036984, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
       propertyPath: cargoMeshRenderer
       value: 
       objectReference: {fileID: 5610458207041712708}
@@ -298,3 +302,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1eb0cced8bb56224cafed9d0d0c75e4e, type: 3}
+--- !u!1 &2576951934952589755 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8941277683510748345, guid: 1eb0cced8bb56224cafed9d0d0c75e4e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6905953985783655682}
+  m_PrefabAsset: {fileID: 0}

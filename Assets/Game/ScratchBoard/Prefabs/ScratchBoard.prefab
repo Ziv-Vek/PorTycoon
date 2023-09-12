@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 5908527444046686605}
   - component: {fileID: 4006596949730781179}
   - component: {fileID: 1002881187}
+  - component: {fileID: 5180653081942541020}
   m_Layer: 5
   m_Name: ScratchBoard
   m_TagString: Untagged
@@ -291,6 +292,22 @@ MonoBehaviour:
   playerCarrier: {fileID: 0}
   throwButton: {fileID: 0}
   moneyPile: {fileID: 0}
+--- !u!114 &5180653081942541020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7828701595937231211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8438f3eedd484bfd88654ec01341e6f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coin: {fileID: 1323145440956822473}
+  coinCamera: {fileID: 0}
+  spawnDistance: 10
+  offset: -0.4
 --- !u!1001 &3194624749497678983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -484,6 +501,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e31e8ef78f27d474d8f1f26ee9be1e79, type: 3}
+--- !u!1 &1323145440956822473 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8968353358607306817, guid: e31e8ef78f27d474d8f1f26ee9be1e79,
+    type: 3}
+  m_PrefabInstance: {fileID: 7937941893429650312}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1807932914606336371 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8592355099828292347, guid: e31e8ef78f27d474d8f1f26ee9be1e79,
