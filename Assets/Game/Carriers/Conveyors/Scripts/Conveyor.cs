@@ -1,25 +1,39 @@
 using System;
 using System.Collections;
-using UnityEditor;
+using DG.Tweening;
 using UnityEngine;
 
 public class Conveyor : Carrier
 {
+    // Config: 
     [SerializeField] public float beltSpeed = 0.01f;
-    [SerializeField] Renderer conveyorRenderer;
 
+    [SerializeField] private Animator myAnimator;
     [SerializeField] Scanner scanner;
     [SerializeField] ConveyorEnd conveyorEnd;
     
     [SerializeField] private float delayBeforeTransferAttemptsToTable = 1f;
     [SerializeField] private TableCarrier tableCarrier;
+    [SerializeField] private Renderer beltRenderer;
     
     private ITransferBoxes currentTransferPartner = null;
     private bool isBeltMoving = false;
     private bool isConveyorEndFull = false;
     private bool isScanning = false;
     float uvOffset = 0.0f;
+    
+    public Transform actionRectZone;
+    private float actionZoneScaleMultiplier = 1.1f;
+    private Vector3 actionRectScaleUp;
+    private Vector3 actionRectOriginalScale;
+    private readonly int Belt = Animator.StringToHash("moveBelt");
 
+    private void Start()
+    {
+        actionRectOriginalScale = actionRectZone.localScale;
+        actionRectScaleUp = actionRectOriginalScale * actionZoneScaleMultiplier;
+    }
+    
     private void OnEnable()
     {
         scanner.OnScannerActivated += CancelBeltMovement;
@@ -41,6 +55,8 @@ public class Conveyor : Carrier
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Player")) ScaleUpActionZone();
+        
         if (currentTransferPartner != null) return;
         
         if (other.TryGetComponent<ITransferBoxes>(out ITransferBoxes giver))
@@ -59,6 +75,8 @@ public class Conveyor : Carrier
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.CompareTag("Player")) ScaleDownActionZone();
+        
         IsAttemptingToGiveCargo = false;
     }
 
@@ -90,14 +108,15 @@ public class Conveyor : Carrier
 
         if (isBeltMoving)
         {
+            myAnimator.SetTrigger(Belt);
             box.transform.Translate((conveyorEnd.transform.position - box.position) * Time.deltaTime * beltSpeed, Space.World);
             
             uvOffset += (beltSpeed * Time.deltaTime);
 
-            materials = conveyorRenderer.materials;
-            materials[0].SetTextureOffset("_BaseMap", new Vector2(0, uvOffset));
+            materials = beltRenderer.materials;
+            materials[0].SetTextureOffset("_BaseMap", new Vector2(0, -uvOffset));
 
-            conveyorRenderer.materials = materials;
+            beltRenderer.materials = materials;
         }
     }
 
@@ -120,8 +139,6 @@ public class Conveyor : Carrier
         isConveyorEndFull = false;
         
         yield return null;
-        
-        
     }
 
     private void GiveBox(PortBox targetBox)
@@ -134,5 +151,17 @@ public class Conveyor : Carrier
         {
             MoveBelt();
         }
+    }
+    
+    private void ScaleUpActionZone()
+    {
+        actionRectZone.DOScale(actionRectScaleUp, 0.3f).SetEase(Ease.OutQuart);
+
+    }
+    
+    private void ScaleDownActionZone()
+    {
+        actionRectZone.DOScale(actionRectOriginalScale, 0.3f).SetEase(Ease.OutQuart);
+
     }
 }

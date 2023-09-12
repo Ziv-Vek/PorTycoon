@@ -44,7 +44,7 @@ public class PlayerMover : MonoBehaviour
         joystick = FloatingJoystick.Instance;
         if (!joystick) throw new Exception("FloatingJoystick is missing.");
         
-        playerVelocity.y = 0f;
+        //playerVelocity.y = 0f;
     }
 
     public void StartMove(Vector2 screenTouchPos)
@@ -60,11 +60,11 @@ public class PlayerMover : MonoBehaviour
         float movementSpeed = GetMovementSpeed(screenTouchPos);
 
         Vector2 screenMovementVector = screenTouchPos - startTouchPos;
-        Vector3 direction = new Vector3(screenMovementVector.x, 0f, screenMovementVector.y).normalized;
+        Vector3 direction = new Vector3(screenMovementVector.x, 0, screenMovementVector.y).normalized;
         controller.Move(direction * (movementSpeed * Time.deltaTime));
         float targetAngel = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngel, ref turnSmoothVelocity, turnSmoothTime);
-        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        transform.rotation = Quaternion.Euler(0, angle, 0);
 
         UpdateAnimator(direction * movementSpeed);
     }
@@ -110,7 +110,7 @@ public class PlayerMover : MonoBehaviour
         joystick.gameObject.SetActive(true);
     }
 
-    private void Update()
+    /*private void Update()
     {
         // Move player with wasd keys
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -123,5 +123,5 @@ public class PlayerMover : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, angle, 0f);
         
         UpdateAnimator(direction * maxMovementSpeed);
-    }
+    }*/
 }

@@ -21,8 +21,15 @@ public class TableNPC : MonoBehaviour, IBoxOpener
 
     private ItemsManager _itemsManager;
     private Bank _bank;
+    public float wakingDistance = 10;
 
     private static readonly int ForwardSpeed = Animator.StringToHash("forwardSpeed");
+    private Transform player;
+
+    private void Awake()
+    {
+        player = GameObject.Find("Player").transform;
+    }
 
     private void Start()
     {
@@ -38,8 +45,8 @@ public class TableNPC : MonoBehaviour, IBoxOpener
     public void Update()
     {
         Seconds += 1 * Time.deltaTime;
-        if (Vector3.Distance(transform.GetChild(0).transform.position, GameObject.Find("Player").transform.position) <
-            6 && IsSleeping)
+        if (Vector3.Distance(transform.GetChild(0).transform.position, player.position) <
+            wakingDistance && IsSleeping)
             SetIsSleeping(false);
     }
 
@@ -47,6 +54,7 @@ public class TableNPC : MonoBehaviour, IBoxOpener
     {
         Debug.Log("Giving box to targetCarrier");
         myAnimator.SetFloat(ForwardSpeed, 0);
+        myAnimator.Play("NPC_Idle");
 
         CurrentItem = _itemsManager.GetRandomItemFromBox(CurrentBox.Type, null);
         _itemsManager.UnlockItem(CurrentItem);
@@ -80,7 +88,21 @@ public class TableNPC : MonoBehaviour, IBoxOpener
     {
         IsSleeping = b;
         SleepPartical.SetActive(b);
+        if (IsSleeping)
+        {
+            myAnimator.Play("NPC_Sleep_Idle");
+        }
+        else
+        {
+            myAnimator.Play("NPC_Idle");
+        }
         Seconds = 0;
         Debug.Log("NPC of " + transform.parent.name + "is sleeping = " + b);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, wakingDistance);
     }
 }

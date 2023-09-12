@@ -6,8 +6,7 @@ using UnityEngine.Events;
 public class Scanner : MonoBehaviour
 {
     [SerializeField] public float scanningDuration = 1.5f;
-    [SerializeField] private Light scannerLight;
-    
+    [SerializeField] private GameObject scanArea;
     public event Action OnScannerActivated;
     public event Action OnScannerDeactivated;
 
@@ -33,8 +32,7 @@ public class Scanner : MonoBehaviour
     IEnumerator ScanningAnim()
     {
         float counter = 0f;
-
-        scannerLight.enabled = true;
+        scanArea.SetActive(true);
 
         while (counter < scanningDuration)
         {
@@ -42,7 +40,7 @@ public class Scanner : MonoBehaviour
             yield return null;
         }
 
-        scannerLight.enabled = false;
+        scanArea.SetActive(false);
         
         yield return null;
     }

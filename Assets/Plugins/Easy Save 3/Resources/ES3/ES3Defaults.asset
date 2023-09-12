@@ -35,6 +35,7 @@ MonoBehaviour:
     - Autodesk.Fbx
     - Cinemachine
     - FbxBuildTestAssets
+    - GrabbitAssembly
     - Lofelt.NiceVibrations
     - Lofelt.NiceVibrations.Demo
     - MeshBakerCore
@@ -52,6 +53,7 @@ MonoBehaviour:
     - NavMeshComponents
     - NavMeshComponentsExamples
     - NavMeshComponentsTestsPlaymode
+    - vhacd
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1
