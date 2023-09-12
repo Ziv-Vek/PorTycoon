@@ -8,7 +8,7 @@ public class Conveyor : Carrier
     // Config: 
     [SerializeField] public float beltSpeed = 0.01f;
 
-    [SerializeField] private Animator myAnimator;
+    public Animator myAnimator;
     [SerializeField] Scanner scanner;
     [SerializeField] ConveyorEnd conveyorEnd;
     
@@ -108,8 +108,11 @@ public class Conveyor : Carrier
 
         if (isBeltMoving)
         {
-            myAnimator.SetTrigger(Belt);
-            box.transform.Translate((conveyorEnd.transform.position - box.position) * Time.deltaTime * beltSpeed, Space.World);
+            if (myAnimator)
+            {
+                myAnimator.SetTrigger(Belt);
+            }
+                box.transform.Translate((conveyorEnd.transform.position - box.position) * Time.deltaTime * beltSpeed, Space.World);
             
             uvOffset += (beltSpeed * Time.deltaTime);
 
