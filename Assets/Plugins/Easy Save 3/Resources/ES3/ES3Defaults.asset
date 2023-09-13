@@ -38,8 +38,6 @@ MonoBehaviour:
     - GrabbitAssembly
     - Lofelt.NiceVibrations
     - Lofelt.NiceVibrations.Demo
-    - MeshBakerCore
-    - MeshBakerExamples
     - MoreMountains.Feedbacks
     - MoreMountains.Feedbacks.Authorizations
     - MoreMountains.Feedbacks.Cinemachine

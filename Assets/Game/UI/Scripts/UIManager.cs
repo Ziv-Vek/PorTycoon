@@ -61,7 +61,7 @@ public class UIManager : MonoBehaviour
 
     public void OpenCollectionCanvas()
     {
-        PlayerMover playerMover = GameObject.Find("Player_New").GetComponent<PlayerMover>();
+        PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
         playerMover.ToggleMovement(false);
         playerMover.HideJoystick();
         CollectionCanvas.SetActive(true);

@@ -563,8 +563,8 @@ GameObject:
   - component: {fileID: 7598096029477029990}
   - component: {fileID: 8859970199163404781}
   m_Layer: 0
-  m_Name: Forklift
-  m_TagString: Player
+  m_Name: ForkLift
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -690,7 +690,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e8ac0c5abced9874492deb2e742e3212,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e8ac0c5abced9874492deb2e742e3212,
         type: 3}
