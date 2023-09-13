@@ -53,7 +53,6 @@ public class TableNPC : MonoBehaviour, IBoxOpener
     public void OnFinishedOpenBox()
     {
         Debug.Log("Giving box to targetCarrier");
-        myAnimator.SetFloat(ForwardSpeed, 0);
         myAnimator.Play("NPC_Idle");
 
         CurrentItem = _itemsManager.GetRandomItemFromBox(CurrentBox.Type, null);
@@ -77,7 +76,6 @@ public class TableNPC : MonoBehaviour, IBoxOpener
         if (!enabled || IsSleeping) return false; //TODO: Take enabled from global state
         Debug.Log("Taking box from targetCarrier");
         CurrentBox = box;
-        myAnimator.SetFloat(ForwardSpeed, 100f);
         box.CanBeOpened = false;
         Invoke(nameof(OnFinishedOpenBox), waitTime);
         return true;

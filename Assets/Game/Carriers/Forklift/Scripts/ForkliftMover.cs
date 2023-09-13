@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -5,8 +6,9 @@ using UnityEngine.UI;
 public class ForkliftMover : MonoBehaviour
 {
     //configs:
-    private const float StopDistance = 1.2f;
-    private bool isPickUpBoxesTask;     // true if needed to take boxes from pier, false if needed to put boxes on conveyor 
+    private const float StopDistance = 2f;
+    private bool isPickUpBoxesTask;     // true if needed to take boxes from pier, false if needed to put boxes on conveyor
+    [SerializeField] private float wakingDistance = 6;
     
     //cached ref:
     [SerializeField] private Transform pier;
@@ -18,12 +20,16 @@ public class ForkliftMover : MonoBehaviour
     [SerializeField] GameObject NoFuelText;
     private Transform target;
     private Transform LastTarget;
+    private Transform player;
+    private Transform forkliftArtTrans;
 
     private void Awake()
     {
         myCarrier = GetComponent<ForkliftCarrier>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
+        player = GameObject.Find("Player").transform;
+        forkliftArtTrans = transform.GetChild(1).transform;
     }
 
     private void Start()
@@ -51,7 +57,7 @@ public class ForkliftMover : MonoBehaviour
         }
 
         SetCarryingTask();
-        if (Vector3.Distance(transform.GetChild(0).transform.position, GameObject.Find("Player").transform.position) < 6 && FuelSlider.value <= 0)
+        if (Vector3.Distance(forkliftArtTrans.position, player.position) < wakingDistance && FuelSlider.value <= 0)
         {
             FuelSlider.value = FuelSlider.maxValue;
             NoFuelText.SetActive(false);
@@ -113,5 +119,11 @@ public class ForkliftMover : MonoBehaviour
         FuelSlider.maxValue = amount;
         FuelSlider.value = FuelSlider.maxValue;
         NoFuelText.SetActive(false);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.GetChild(1).position, wakingDistance);
     }
 }
