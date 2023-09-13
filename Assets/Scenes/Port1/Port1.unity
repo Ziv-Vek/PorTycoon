@@ -5613,6 +5613,11 @@ PrefabInstance:
       propertyPath: conveyorBelt
       value: 
       objectReference: {fileID: 1616379152}
+    - target: {fileID: 2858642576524573414, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+        type: 3}
+      propertyPath: wakingDistance
+      value: 13.19
+      objectReference: {fileID: 0}
     - target: {fileID: 2952787460803593346, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
       propertyPath: tableCarrier
@@ -6308,6 +6313,11 @@ PrefabInstance:
       propertyPath: product
       value: 
       objectReference: {fileID: 1014141532}
+    - target: {fileID: 8213636672660859152, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+        type: 3}
+      propertyPath: tableCarrier
+      value: 
+      objectReference: {fileID: 1667925924}
     - target: {fileID: 8965710639971214251, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -25549,6 +25559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f2fa85f614c8f40bd7843096bb87a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wakingDistance: 6
   pier: {fileID: 1161712513}
   conveyorBelt: {fileID: 1940779413}
   FuelSlider: {fileID: 2060950287}
