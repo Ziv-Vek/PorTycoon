@@ -78,6 +78,7 @@ public class ForkliftMover : MonoBehaviour
     // sets movement destination and start movement
     private void Move()
     {
+        Debug.Log("forklift move");
         rb.constraints = RigidbodyConstraints.None;
 
         if (isPickUpBoxesTask)

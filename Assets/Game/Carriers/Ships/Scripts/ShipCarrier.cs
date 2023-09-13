@@ -35,7 +35,7 @@ public class ShipCarrier: Carrier
             if (!boxesPlaces[i]) throw new Exception("no cargoPlace found in range for the number of boxes");
 
             boxes[i].transform.SetParent(boxesPlaces[i], false);
-            boxes[i].GetComponent<MeshRenderer>().enabled = true;
+            boxes[i].transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().enabled = true;
         }
     }
     
