@@ -32,6 +32,10 @@ public class GameManager : MonoBehaviour
 
     public int scratchSizeScaleLevel = 1;
 
+    public bool ForkliftIsEnabled = false;
+    public int HandyManNumber = 0;
+    public int ShipNumber = 1;
+
     private void Awake()
     {
         if (Instance == null)
@@ -64,6 +68,9 @@ public class GameManager : MonoBehaviour
         userData.forkliftBoxQuantityLevel = forkliftBoxQuantityLevel;
         userData.forkliftFuelTankLevel = forkliftFuelTankLevel;
         userData.scratchSizeScaleLevel = scratchSizeScaleLevel;
+        userData.ForkliftIsEnabled = ForkliftIsEnabled;
+        userData.HandyManNumber = HandyManNumber;
+        userData.ShipNumber = ShipNumber;
     }
 
     public void LoadData(UserData userData)
@@ -85,6 +92,9 @@ public class GameManager : MonoBehaviour
         forkliftBoxQuantityLevel = userData.forkliftBoxQuantityLevel;
         forkliftFuelTankLevel = userData.forkliftFuelTankLevel;
         scratchSizeScaleLevel = userData.scratchSizeScaleLevel;
+        ForkliftIsEnabled = userData.ForkliftIsEnabled;
+        HandyManNumber = userData.HandyManNumber;
+        ShipNumber = userData.ShipNumber;
     }
 
     public void ResetData()
@@ -106,5 +116,8 @@ public class GameManager : MonoBehaviour
         forkliftBoxQuantityLevel = 1;
         forkliftFuelTankLevel = 1;
         scratchSizeScaleLevel = 1;
+        ForkliftIsEnabled = false;
+        HandyManNumber = 1;
+        ShipNumber = 1;
     }
 }

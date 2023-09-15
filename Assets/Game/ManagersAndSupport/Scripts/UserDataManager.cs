@@ -30,6 +30,7 @@ public class UserDataManager: MonoBehaviour
     {
         string json = JsonConvert.SerializeObject(UserData);
         File.WriteAllText(Application.persistentDataPath + FILE_NAME, json);
+        Debug.Log(Application.persistentDataPath + FILE_NAME);
     }
 
     public void SaveUserData()

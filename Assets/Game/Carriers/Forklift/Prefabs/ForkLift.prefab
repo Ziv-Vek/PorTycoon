@@ -563,8 +563,8 @@ GameObject:
   - component: {fileID: 7598096029477029990}
   - component: {fileID: 8859970199163404781}
   m_Layer: 0
-  m_Name: Forklift
-  m_TagString: Player
+  m_Name: ForkLift
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -603,6 +603,7 @@ MonoBehaviour:
   boxesPlaces:
   - {fileID: 3587963936094156813}
   boxes: []
+  CargoPlacesHolder: {fileID: 5065861110856745511}
 --- !u!195 &7598096029477029976
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -637,6 +638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f2fa85f614c8f40bd7843096bb87a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wakingDistance: 6
   pier: {fileID: 0}
   conveyorBelt: {fileID: 0}
   FuelSlider: {fileID: 1712751536713746504}

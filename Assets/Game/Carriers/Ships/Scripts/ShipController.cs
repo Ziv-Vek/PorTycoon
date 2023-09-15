@@ -10,11 +10,13 @@ public class ShipController : MonoBehaviour
     public Transform targetPoint;
     public Transform dockingPoint;
     public float waitTimeAtSeaTarget = 3f;
-    public float shipSpeed = 5f;
+    [SerializeField] public static float shipSpeed = 11.5f;
     [CanBeNull] public MeshRenderer cargoMeshRenderer; 
     private ShipCarrier shipCarrier;
     public GameObject ShipEffects;
 
+    public void setSpeed(float s)
+    { shipSpeed = s; }
     private void Awake()
     {
         shipCarrier = GetComponent<ShipCarrier>();

@@ -64,7 +64,6 @@ public class Buyer : MonoBehaviour
     {
             product.SetActive(true);
             product.transform.position = productClone.transform.position;
-            product.transform.rotation = productClone.transform.rotation;
             Destroy(gameObject);
     }
 }

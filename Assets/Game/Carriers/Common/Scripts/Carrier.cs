@@ -9,6 +9,7 @@ public class Carrier : MonoBehaviour, ITransferBoxes
     public Transform[] boxesPlaces;
 
     [SerializeField] public PortBox[] boxes;
+    [SerializeField] public Transform CargoPlacesHolder;
 
     // stats:
     public bool IsAttemptingToGiveCargo { get; set; }
