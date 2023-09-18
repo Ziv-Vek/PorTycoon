@@ -13,6 +13,7 @@ public class Buyer : MonoBehaviour
     public Slider SliderFill;
     public GameObject product; 
     public GameObject productClone;
+    public GameObject NextBuyer;
 
 
     // Start is called before the first frame update
@@ -21,7 +22,10 @@ public class Buyer : MonoBehaviour
         PriceText.text = Price + "$";
         SliderFill.maxValue = Price;
         if (product.active)
+        {   
+            try { NextBuyer.SetActive(true); } catch { }
             Destroy(gameObject);
+        }
     }
     void OnTriggerEnter(Collider other)
     {
@@ -62,8 +66,24 @@ public class Buyer : MonoBehaviour
     }
     public void ActiveProduct()
     {
-            product.SetActive(true);
-            product.transform.position = productClone.transform.position;
-            Destroy(gameObject);
+        product.SetActive(true);
+        product.transform.position = productClone.transform.position;
+        if (gameObject.name == "Forklift Buyer")
+        {
+            GameManager.Instance.ForkliftIsEnabled = true;
+        }
+        else if (gameObject.name == "Ship Buyer" && GameManager.Instance.ShipNumber < 3)
+        {
+            if (GameManager.Instance.ShipNumber < 3)
+            {
+                 try { NextBuyer.SetActive(true);} catch { }
+            }
+            GameManager.Instance.ShipNumber++;
+        }
+        else if (gameObject.name == "HandyMan Buyer" && GameManager.Instance.ShipNumber < 2)
+        {
+            GameManager.Instance.HandyManNumber++;
+        }
+        Destroy(gameObject);
     }
 }

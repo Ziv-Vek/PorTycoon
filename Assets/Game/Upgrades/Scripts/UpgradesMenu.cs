@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using TMPro;
@@ -14,8 +15,6 @@ public class UpgradesMenu : MonoBehaviour
     private void Start()
     {
         gameConfig = ConfigManager.Instance.Config;
-      
-        Debug.Log(gameConfig.levels[0].upgrades["player_speed"].levels[0]);
     } 
     private void Update()
     {
@@ -23,8 +22,14 @@ public class UpgradesMenu : MonoBehaviour
     }
     private void OnEnable()
     {
-    }
+        if (GameManager.Instance.HandyManNumber < 1 && gameObject.name == "HR Upgrades Canvas")
+            transform.FindChild("1 HandyMan Button").gameObject.GetComponent<Button>().interactable = false;   
+        else if (gameObject.name == "HR Upgrades Canvas")
+            transform.FindChild("1 HandyMan Button").gameObject.GetComponent<Button>().interactable = true;
 
+        if (gameObject.name == "logistic Upgrades Canvas")
+            transform.FindChild("2 ForkLift Button").gameObject.GetComponent<Button>().interactable = GameManager.Instance.ForkliftIsEnabled;
+    }
     public void Exit()
     {
         for (int i = 0; i < Panels.Length; i++)
