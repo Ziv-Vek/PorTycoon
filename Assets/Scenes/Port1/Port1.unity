@@ -4848,7 +4848,7 @@ GameObject:
   - component: {fileID: 276166870}
   - component: {fileID: 276166869}
   m_Layer: 5
-  m_Name: SpeedOfChecking
+  m_Name: conveyor_scanning_speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6761,7 +6761,7 @@ GameObject:
   - component: {fileID: 368392530}
   - component: {fileID: 368392529}
   m_Layer: 5
-  m_Name: OpeningSpeed
+  m_Name: handyman_speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8174,7 +8174,7 @@ GameObject:
   - component: {fileID: 453378634}
   - component: {fileID: 453378633}
   m_Layer: 5
-  m_Name: StackBoxes
+  m_Name: table_quantity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8317,7 +8317,7 @@ GameObject:
   - component: {fileID: 495706987}
   - component: {fileID: 495706986}
   m_Layer: 5
-  m_Name: SpeedOfForklift
+  m_Name: forklift_speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8900,7 +8900,7 @@ GameObject:
   - component: {fileID: 551732737}
   - component: {fileID: 551732736}
   m_Layer: 5
-  m_Name: Quantity
+  m_Name: ship_box_quantity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13474,7 +13474,7 @@ GameObject:
   - component: {fileID: 1005580101}
   - component: {fileID: 1005580100}
   m_Layer: 5
-  m_Name: ShipVelocity
+  m_Name: ship_speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14221,7 +14221,7 @@ GameObject:
   - component: {fileID: 1127636441}
   - component: {fileID: 1127636440}
   m_Layer: 5
-  m_Name: PlayerSpeed
+  m_Name: player_speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19060,7 +19060,7 @@ GameObject:
   - component: {fileID: 1534246725}
   - component: {fileID: 1534246724}
   m_Layer: 5
-  m_Name: SpeedOfConveyor
+  m_Name: conveyor_speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20745,7 +20745,7 @@ GameObject:
   - component: {fileID: 1795626072}
   - component: {fileID: 1795626071}
   m_Layer: 5
-  m_Name: BoxPlaces
+  m_Name: player_box_quantity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22171,7 +22171,7 @@ GameObject:
   - component: {fileID: 1881064418}
   - component: {fileID: 1881064417}
   m_Layer: 5
-  m_Name: ForkliftBoxQuantity
+  m_Name: forklift_box_quantity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24385,7 +24385,7 @@ GameObject:
   - component: {fileID: 2064274745}
   - component: {fileID: 2064274744}
   m_Layer: 5
-  m_Name: Awareness
+  m_Name: handyman_awarness
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
