@@ -14,6 +14,31 @@
       "id": "lion",
       "name": "Lion",
       "imagePath": "lion"
+    },
+    {
+      "id": "panda",
+      "name": "Panda",
+      "imagePath": "lion"
+    },
+    {
+      "id": "penguin",
+      "name": "Penguin",
+      "imagePath": "bear"
+    },
+    {
+      "id": "car",
+      "name": "Car",
+      "imagePath": "giraffe"
+    },
+    {
+      "id": "dragon",
+      "name": "Dragon",
+      "imagePath": "lion"
+    },
+    {
+      "id": "tiger",
+      "name": "Tiger",
+      "imagePath": "bear"
     }
   ],
   "levels": [
@@ -21,28 +46,39 @@
       "id": "1",
       "boxes": {
         "wood": {
-          "probability": 70,
+          "probability": 100,
           "items": [
             {
               "id": "bear",
-              "probability": 50
+              "probability": 16
             },
             {
               "id": "giraffe",
-              "probability": 50
-            }
-          ]
-        },
-        "silver": {
-          "probability": 30,
-          "items": [
+              "probability": 16
+            },
             {
               "id": "lion",
-              "probability": 50
+              "probability": 16
             },
             {
-              "id": "giraffe",
-              "probability": 50
+              "id": "panda",
+              "probability": 12
+            },
+            {
+              "id": "penguin",
+              "probability": 12
+            },
+            {
+              "id": "car",
+              "probability": 12
+            },
+            {
+              "id": "dragon",
+              "probability": 8
+            },
+            {
+              "id": "tiger",
+              "probability": 8
             }
           ]
         }
@@ -63,7 +99,6 @@
             940
           ]
         },
-
         "player_box_quantity": {
           "levels": [
             1,
@@ -79,7 +114,6 @@
             720
           ]
         },
-
         "handyman_speed": {
           "levels": [
             45,
@@ -95,7 +129,6 @@
             1000
           ]
         },
-
         "handyman_awarness": {
           "levels": [
             70,
@@ -111,7 +144,6 @@
             800
           ]
         },
-
         "ship_speed": {
           "levels": [
             11.5,
@@ -127,7 +159,6 @@
             500
           ]
         },
-
         "ship_box_quantity": {
           "levels": [
             1,
@@ -141,7 +172,6 @@
             1200
           ]
         },
-
         "conveyor_speed": {
           "levels": [
             0.45,
@@ -157,7 +187,6 @@
             940
           ]
         },
-
         "conveyor_scanning_speed": {
           "levels": [
             5,
@@ -173,7 +202,6 @@
             720
           ]
         },
-
         "table_quantity": {
           "levels": [
             1,
@@ -189,7 +217,6 @@
             400
           ]
         },
-
         "forklift_speed": {
           "levels": [
             5,
@@ -205,7 +232,6 @@
             850
           ]
         },
-
         "forklift_box_quantity": {
           "levels": [
             1,
@@ -219,7 +245,6 @@
             500
           ]
         },
-
         "forklift_fuel_tank": {
           "levels": [
             50,
