@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public int money;
     public int stars;
     public int experience;
+    public int currentLevel = 1;
     public int shipSpeedLevel = 1;
     public int quantityLevel = 1;
     public int qualityLevel = 1;
@@ -52,7 +53,10 @@ public class GameManager : MonoBehaviour
     public void SaveData(UserData userData)
     {
         userData.money = money;
-        userData.stars = stars;
+        userData.stars = stars; 
+        userData.playerSpeedLevel = playerSpeedLevel;
+        userData.playerBoxPlacesLevel = playerBoxPlacesLevel;
+
         userData.experience = experience;
         userData.shipSpeedLevel = shipSpeedLevel;
         userData.quantityLevel = quantityLevel;
@@ -62,8 +66,6 @@ public class GameManager : MonoBehaviour
         userData.tableStackLevel = tableStackLevel;
         userData.openBoxTimeNpc = openBoxTimeNpc;
         userData.awarenessTimeNpc = awarenessTimeNpc;
-        userData.playerSpeedLevel = playerSpeedLevel;
-        userData.playerBoxPlacesLevel = playerBoxPlacesLevel;
         userData.forklifSpeedLevel = forklifSpeedLevel;
         userData.forkliftBoxQuantityLevel = forkliftBoxQuantityLevel;
         userData.forkliftFuelTankLevel = forkliftFuelTankLevel;
@@ -77,6 +79,9 @@ public class GameManager : MonoBehaviour
     {
         money = userData.money;
         stars = userData.stars;
+        playerSpeedLevel = userData.playerSpeedLevel;
+        playerBoxPlacesLevel = userData.playerBoxPlacesLevel;
+
         experience = userData.experience;
         shipSpeedLevel = userData.shipSpeedLevel;
         quantityLevel = userData.quantityLevel;
@@ -86,8 +91,6 @@ public class GameManager : MonoBehaviour
         tableStackLevel = userData.tableStackLevel;
         openBoxTimeNpc = userData.openBoxTimeNpc;
         awarenessTimeNpc = userData.awarenessTimeNpc;
-        playerSpeedLevel = userData.playerSpeedLevel;
-        playerBoxPlacesLevel = userData.playerBoxPlacesLevel;
         forklifSpeedLevel = userData.forklifSpeedLevel;
         forkliftBoxQuantityLevel = userData.forkliftBoxQuantityLevel;
         forkliftFuelTankLevel = userData.forkliftFuelTankLevel;

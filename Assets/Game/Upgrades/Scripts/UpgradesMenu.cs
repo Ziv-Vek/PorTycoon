@@ -78,7 +78,11 @@ public class UpgradesMenu : MonoBehaviour
         {
             if (Button.name != "FreeButton")
                 UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price);
-            FindAnyObjectByType<ShipCarrier>().addBoxPlace();
+            foreach (GameObject ship in GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().Ships)
+            {
+                ship.GetComponent<ShipCarrier>().addBoxPlace();
+            }
+        //    FindAnyObjectByType<ShipCarrier>().addBoxPlace();
             GameManager.Instance.quantityLevel++;
             if (GameManager.Instance.quantityLevel < 4)
                 Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["ship_box_quantity"].prices[GameManager.Instance.quantityLevel - 1];

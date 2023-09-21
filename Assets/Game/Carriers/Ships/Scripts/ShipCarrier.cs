@@ -61,17 +61,34 @@ public class ShipCarrier: Carrier
             ArrayPlaces[i] = boxesPlaces[i];
         }
         Vector3 place;
-        if (GameManager.Instance.quantityLevel == 1)
+        //when the port loading...
+        if (new System.Diagnostics.StackTrace().GetFrame(1).GetMethod().DeclaringType.Name == "PortLoader")
         {
-            place = CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 1).position;
-            place = new Vector3(place.x + 6.3f, place.y, place.z);
+            if(CargoPlacesHolder.childCount == 1)
+            {
+               place = CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 1).position;
+               place = new Vector3(place.x + 6.3f, place.y, place.z);
+            }
+            else
+            {
+                place = CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 2).position;
+                place = new Vector3(place.x, place.y, place.z - 6.5f);
+            }
         }
+        //when buying the upgrade
         else
-        { 
-            place = CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 2).position;
-            place = new Vector3(place.x, place.y, place.z - 6.5f);
+        {
+            if (GameManager.Instance.quantityLevel == 1)
+            {
+                place = CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 1).position;
+                place = new Vector3(place.x + 6.3f, place.y, place.z);
+            }
+            else
+            {
+                place = CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 2).position;
+                place = new Vector3(place.x, place.y, place.z - 6.5f);
+            }
         }
-
         GameObject newPlace = Instantiate(CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 1).gameObject, place, Quaternion.identity);
         newPlace.transform.parent = CargoPlacesHolder;
 
