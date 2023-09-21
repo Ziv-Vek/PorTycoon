@@ -27,6 +27,7 @@ public class ItemsManager : MonoBehaviour
         {
             Destroy(gameObject); // Ensure only one instance exists
         }
+
         _gameConfig = ConfigManager.Instance.Config;
     }
 
@@ -78,7 +79,6 @@ public class ItemsManager : MonoBehaviour
 
     public void UnlockItem(Item item)
     {
-
         if (UnlockedItems.ContainsKey(item.id))
         {
             Debug.Log("Duplication: " + item.name);
@@ -91,9 +91,9 @@ public class ItemsManager : MonoBehaviour
         UIManager.Instance.UpdateUnlockedItemsText(UnlockedItems.Count);
 
         if (IsLevelCompleted(GameManager.Instance.CurrentLevel))
-        { 
+        {
             UIManager.ShowWinPanel();
-            Bank.Instance.AddMoneyToPile(GameObject.Find("ScretchMoneyPile").GetComponent<MoneyPile>(),"Win");   
+            Bank.Instance.AddMoneyToPile(GameObject.Find("ScretchMoneyPile").GetComponent<MoneyPile>(), "Win");
         }
     }
 
@@ -148,14 +148,18 @@ public class ItemsManager : MonoBehaviour
     {
         userData.unlockedItems = UnlockedItems;
     }
-    
+
     public void ResetData()
     {
-        UnlockedItems.Clear();
+        if (UnlockedItems != null)
+            UnlockedItems.Clear();
     }
 
     public void LoadData(UserData userData)
     {
+        if (userData.unlockedItems == null)
+            return;
+
         foreach (var item in userData.unlockedItems)
         {
             UnlockedItems.Add(item.Key, item.Value);

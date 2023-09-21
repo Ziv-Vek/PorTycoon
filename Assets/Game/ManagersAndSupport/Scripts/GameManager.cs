@@ -50,6 +50,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                UserDataManager.Instance.ResetUserData();
+                Debug.Log("Data has been reset");
+            }
+        }
+    }
+
     public void SaveData(UserData userData)
     {
         userData.money = money;
