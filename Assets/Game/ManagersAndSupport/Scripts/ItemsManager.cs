@@ -156,6 +156,9 @@ public class ItemsManager : MonoBehaviour
 
     public void LoadData(UserData userData)
     {
+        if(userData.unlockedItems == null)
+            return;
+        
         foreach (var item in userData.unlockedItems)
         {
             UnlockedItems.Add(item.Key, item.Value);

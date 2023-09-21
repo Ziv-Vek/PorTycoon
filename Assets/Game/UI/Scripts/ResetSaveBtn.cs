@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ResetSaveBtn : MonoBehaviour
 {
-    public Button btn; 
+    private Button btn; 
 
     void Start()
     {
+        btn = GetComponent<Button>();
         btn.onClick.AddListener(OnButtonClick);
     }
 
