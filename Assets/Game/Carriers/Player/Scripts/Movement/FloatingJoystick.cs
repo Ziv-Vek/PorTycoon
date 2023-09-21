@@ -1,4 +1,5 @@
 using System;
+using Lofelt.NiceVibrations;
 using UnityEngine;
 
 [RequireComponent(typeof(RectTransform))]
@@ -21,6 +22,10 @@ public class FloatingJoystick : MonoBehaviour
 
     [SerializeField] RectTransform outerJoystick;
     [SerializeField] RectTransform knob;
+    /*public RectTransform Knob
+    {
+        get { return Knob; }
+    }*/
 
     private void Awake()
     {
