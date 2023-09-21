@@ -63,19 +63,19 @@ public class ShipCarrier: Carrier
         Vector3 place;
         if (GameManager.Instance.quantityLevel == 1)
         {
-            place = transform.GetChild(transform.childCount - 1).transform.position;
+            place = CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 1).position;
             place = new Vector3(place.x + 6.3f, place.y, place.z);
         }
         else
         { 
-            place = transform.GetChild(transform.childCount - 2).transform.position;
-            place = new Vector3(place.x, place.y, place.z + 6.5f);
+            place = CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 2).position;
+            place = new Vector3(place.x, place.y, place.z - 6.5f);
         }
 
-        GameObject newPlace = Instantiate(gameObject.transform.GetChild(1).gameObject, place, Quaternion.identity);
-        newPlace.transform.parent = gameObject.transform;
+        GameObject newPlace = Instantiate(CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 1).gameObject, place, Quaternion.identity);
+        newPlace.transform.parent = CargoPlacesHolder;
 
-        newPlace.name = "CargoPlace (" + (transform.childCount - 2) + ")";
+        newPlace.name = "CargoPlace (" + (CargoPlacesHolder.childCount - 1) + ")";
         newPlace.transform.localScale = new Vector3(1,1,1f);
         ArrayPlaces[ArrayPlaces.Length - 1] = newPlace.transform;
 

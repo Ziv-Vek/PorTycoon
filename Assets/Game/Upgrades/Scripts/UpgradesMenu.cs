@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using TMPro;
@@ -14,12 +15,20 @@ public class UpgradesMenu : MonoBehaviour
     private void Start()
     {
         gameConfig = ConfigManager.Instance.Config;
-      
-        Debug.Log(gameConfig.levels[0].upgrades["player_speed"].levels[0]);
     } 
     private void Update()
     {
         Money.text = GameManager.Instance.money + " $";
+    }
+    private void OnEnable()
+    {
+        if (GameManager.Instance.HandyManNumber < 1 && gameObject.name == "HR Upgrades Canvas")
+            transform.FindChild("1 HandyMan Button").gameObject.GetComponent<Button>().interactable = false;   
+        else if (gameObject.name == "HR Upgrades Canvas")
+            transform.FindChild("1 HandyMan Button").gameObject.GetComponent<Button>().interactable = true;
+
+        if (gameObject.name == "logistic Upgrades Canvas")
+            transform.FindChild("2 ForkLift Button").gameObject.GetComponent<Button>().interactable = GameManager.Instance.ForkliftIsEnabled;
     }
     public void Exit()
     {
@@ -51,7 +60,7 @@ public class UpgradesMenu : MonoBehaviour
             if (Button.name != "FreeButton")
                 UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price); 
             GameManager.Instance.shipSpeedLevel++;
-            FindAnyObjectByType<ShipController>().shipSpeed = gameConfig.levels[0].upgrades["ship_speed"].levels[GameManager.Instance.shipSpeedLevel - 1];
+            FindAnyObjectByType<ShipController>().setSpeed(gameConfig.levels[0].upgrades["ship_speed"].levels[GameManager.Instance.shipSpeedLevel - 1]);
             if (GameManager.Instance.shipSpeedLevel < 5)
                 Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["ship_speed"].prices[GameManager.Instance.shipSpeedLevel - 1];
         }
@@ -188,7 +197,7 @@ public class UpgradesMenu : MonoBehaviour
                 UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price);
 
             GameManager.Instance.playerSpeedLevel++;
-            GameObject.Find("Player_New").GetComponent<PlayerMover>().maxMovementSpeed = gameConfig.levels[0].upgrades["player_speed"].levels[GameManager.Instance.playerSpeedLevel - 1];
+            GameObject.Find("Player").GetComponent<PlayerMover>().maxMovementSpeed = gameConfig.levels[0].upgrades["player_speed"].levels[GameManager.Instance.playerSpeedLevel - 1];
             if (GameManager.Instance.playerSpeedLevel < 5)
                 Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["player_speed"].prices[GameManager.Instance.playerSpeedLevel - 1];
         }
@@ -207,7 +216,7 @@ public class UpgradesMenu : MonoBehaviour
             if (Button.name != "FreeButton")
                 UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price);
             GameManager.Instance.playerBoxPlacesLevel++;
-            GameObject.Find("Player_New").GetComponent<PlayerCarrier>().addBoxPlace();
+            GameObject.Find("Player").GetComponent<PlayerCarrier>().addBoxPlace();
             if (GameManager.Instance.playerBoxPlacesLevel < 5)
                 Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["player_box_quantity"].prices[GameManager.Instance.playerBoxPlacesLevel - 1];
         }

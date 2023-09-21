@@ -140,6 +140,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1845036984, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
+      propertyPath: shipSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1845036984, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
       propertyPath: ShipEffects
       value: 
       objectReference: {fileID: 2576951934952589755}
@@ -148,12 +152,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5610458207041712708}
     - target: {fileID: 2027906368, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 2027906368, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.4
+      value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 2027906368, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.5
+      value: 7.27
       objectReference: {fileID: 0}
     - target: {fileID: 4783631021325034022, guid: b1383fb362b882b4c897c6aa92fc89aa,
         type: 3}
@@ -219,6 +227,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cargo ship Var1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468649562944502733, guid: b1383fb362b882b4c897c6aa92fc89aa,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.13
       objectReference: {fileID: 0}
     - target: {fileID: 6498324534540412045, guid: b1383fb362b882b4c897c6aa92fc89aa,
         type: 3}

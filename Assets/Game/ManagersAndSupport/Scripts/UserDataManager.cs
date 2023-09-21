@@ -3,14 +3,12 @@ using Newtonsoft.Json;
 using UnityEngine;
 
 [DefaultExecutionOrder(1)]
-public class UserDataManager: MonoBehaviour
+public class UserDataManager : MonoBehaviour
 {
     private const string FILE_NAME = "userData.json";
 
     public static UserDataManager Instance;
 
-    private UserData UserData { get; set; } = new();
-    
     private void Awake()
     {
         if (Instance == null)
@@ -22,22 +20,25 @@ public class UserDataManager: MonoBehaviour
         {
             Destroy(gameObject); // Ensure only one instance exists
         }
-        
+
         LoadUserData();
     }
 
-    private void SaveToFile()
+    private void SaveToFile(UserData userData)
     {
-        string json = JsonConvert.SerializeObject(UserData);
+        string json = JsonConvert.SerializeObject(userData);
         File.WriteAllText(Application.persistentDataPath + FILE_NAME, json);
+        Debug.Log(Application.persistentDataPath + FILE_NAME);
     }
 
     public void SaveUserData()
     {
-        ItemsManager.Instance.SaveData(UserData);
-        GameManager.Instance.SaveData(UserData);
+        var userData = new UserData();
 
-        SaveToFile();
+        ItemsManager.Instance.SaveData(userData);
+        GameManager.Instance.SaveData(userData);
+
+        SaveToFile(userData);
     }
 
     public bool HasLoadData()
@@ -53,25 +54,23 @@ public class UserDataManager: MonoBehaviour
         }
 
         string json = File.ReadAllText(Application.persistentDataPath + FILE_NAME);
-        UserData = JsonConvert.DeserializeObject<UserData>(json);
+        var userData = JsonConvert.DeserializeObject<UserData>(json);
 
 
-        ItemsManager.Instance.LoadData(UserData);
-        GameManager.Instance.LoadData(UserData);
+        ItemsManager.Instance.LoadData(userData);
+        GameManager.Instance.LoadData(userData);
     }
-    
+
     public void ResetUserData()
     {
         Debug.Log("ResetUserData");
         ItemsManager.Instance.ResetData();
         GameManager.Instance.ResetData();
-        
-        UserData = new UserData();
-        
+
         SaveUserData();
         UIManager.Instance.UpdateUI();
     }
-    
+
     public void OnApplicationQuit()
     {
         SaveUserData();

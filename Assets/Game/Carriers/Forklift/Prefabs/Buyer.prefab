@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3513971044500742352}
   - component: {fileID: 3513971044500742350}
   m_Layer: 0
-  m_Name: Forklift Buyer
+  m_Name: Buyer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,12 +29,13 @@ Transform:
   m_GameObject: {fileID: 3513971044500742353}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -41.7, y: 1.5300293, z: 116.2}
-  m_LocalScale: {x: 18.97485, y: 9.470379, z: 16.098698}
+  m_LocalScale: {x: 16.0987, y: 1, z: 16.098698}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3513971045951174141}
   - {fileID: 3513971045971654873}
   - {fileID: 3513971044699848988}
+  - {fileID: 6557006113672778350}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -157,13 +158,11 @@ MonoBehaviour:
   moneyAmount: 0
   moneyPrefab: {fileID: 57113261458408752, guid: 6201394a4fc31374e918cf8e1537f9d8,
     type: 3}
-  AmountForNewPile: 15
-  PlusY: 0
-  place: {x: 0, y: 0, z: 0}
   Price: 120
   PriceText: {fileID: 3513971045971654872}
   SliderFill: {fileID: 3513971045011230797}
   product: {fileID: 0}
+  productClone: {fileID: 0}
 --- !u!136 &3513971044500742350
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -215,7 +214,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.002, y: 0.01}
+  m_AnchoredPosition: {x: -0.002, y: -1.557}
   m_SizeDelta: {x: 1440, y: 2960}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3513971044699848985
@@ -601,7 +600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0073704, y: -0.043}
+  m_AnchoredPosition: {x: -0.0073704, y: -1.61}
   m_SizeDelta: {x: 13.78143, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &3513971045971654875
@@ -738,3 +737,34 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 3513971045971654875}
   m_maskType: 0
+--- !u!1 &8112418110462777210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6557006113672778350}
+  m_Layer: 0
+  m_Name: Clone Product
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6557006113672778350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8112418110462777210}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.155}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3513971044500742351}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -22,4 +22,7 @@ public class UserData
     public int forkliftBoxQuantityLevel;
     public int forkliftFuelTankLevel;
     public int scratchSizeScaleLevel;
+    public bool ForkliftIsEnabled;
+    public int HandyManNumber;
+    public int ShipNumber;
 }

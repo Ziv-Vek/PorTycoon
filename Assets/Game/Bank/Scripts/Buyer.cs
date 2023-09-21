@@ -8,25 +8,24 @@ public class Buyer : MonoBehaviour
 {
     [SerializeField] public int moneyAmount = 0;
     [SerializeField] GameObject moneyPrefab;
-    [SerializeField] int AmountForNewPile;
-    [SerializeField] float PlusY;
-    public Vector3 place;
     [SerializeField] public int Price;
     public TextMeshPro PriceText;
     public Slider SliderFill;
     public GameObject product; 
+    public GameObject productClone;
+    public GameObject NextBuyer;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        place = gameObject.transform.position;
-        PlusY = 0;
-        place += new Vector3(6, 0, 0);
-        AmountForNewPile = Price / 3;
         PriceText.text = Price + "$";
         SliderFill.maxValue = Price;
         if (product.active)
+        {   
+            try { NextBuyer.SetActive(true); } catch { }
             Destroy(gameObject);
+        }
     }
     void OnTriggerEnter(Collider other)
     {
@@ -44,7 +43,7 @@ public class Buyer : MonoBehaviour
     }
     void GivingOneByOne()
     { 
-        if (GameManager.Instance.money < 0)
+        if (GameManager.Instance.money < 1)
         {
             CancelInvoke();
             gameObject.GetComponent<AudioSource>().pitch = 1.1f;
@@ -60,10 +59,31 @@ public class Buyer : MonoBehaviour
         SliderFill.value++;
         if (Price == moneyAmount)
         {
-            product.SetActive(true);
-            Destroy(gameObject);
+            ActiveProduct();
         }   
         gameObject.GetComponent<AudioSource>().Play();
         gameObject.GetComponent<AudioSource>().pitch += 0.005f;
+    }
+    public void ActiveProduct()
+    {
+        product.SetActive(true);
+        product.transform.position = productClone.transform.position;
+        if (gameObject.name == "Forklift Buyer")
+        {
+            GameManager.Instance.ForkliftIsEnabled = true;
+        }
+        else if (gameObject.name == "Ship Buyer" && GameManager.Instance.ShipNumber < 3)
+        {
+            if (GameManager.Instance.ShipNumber < 3)
+            {
+                 try { NextBuyer.SetActive(true);} catch { }
+            }
+            GameManager.Instance.ShipNumber++;
+        }
+        else if (gameObject.name == "HandyMan Buyer" && GameManager.Instance.ShipNumber < 2)
+        {
+            GameManager.Instance.HandyManNumber++;
+        }
+        Destroy(gameObject);
     }
 }
