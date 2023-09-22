@@ -60,7 +60,10 @@ public class UpgradesMenu : MonoBehaviour
             if (Button.name != "FreeButton")
                 UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price); 
             GameManager.Instance.shipSpeedLevel++;
-            FindAnyObjectByType<ShipController>().setSpeed(gameConfig.levels[0].upgrades["ship_speed"].levels[GameManager.Instance.shipSpeedLevel - 1]);
+            foreach (GameObject ship in GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().Ships)
+            {
+                ship.GetComponent<ShipController>().setSpeed(gameConfig.levels[0].upgrades["ship_speed"].levels[GameManager.Instance.shipSpeedLevel - 1]); ;
+            }
             if (GameManager.Instance.shipSpeedLevel < 5)
                 Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["ship_speed"].prices[GameManager.Instance.shipSpeedLevel - 1];
         }
@@ -82,7 +85,6 @@ public class UpgradesMenu : MonoBehaviour
             {
                 ship.GetComponent<ShipCarrier>().addBoxPlace();
             }
-        //    FindAnyObjectByType<ShipCarrier>().addBoxPlace();
             GameManager.Instance.quantityLevel++;
             if (GameManager.Instance.quantityLevel < 4)
                 Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["ship_box_quantity"].prices[GameManager.Instance.quantityLevel - 1];

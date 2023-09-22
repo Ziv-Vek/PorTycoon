@@ -71,21 +71,23 @@ public class Buyer : MonoBehaviour
     {
         product.SetActive(true);
         product.transform.position = productClone.transform.position;
-        if (gameObject.name == "Forklift Buyer")
+        try { NextBuyer.SetActive(true); } catch { }
+        //check if the function was called from this calss
+        if (nameof(Buyer) == new System.Diagnostics.StackTrace().GetFrame(1).GetMethod().DeclaringType.Name)
         {
-            GameManager.Instance.ForkliftIsEnabled = true;
-        }
-        else if (gameObject.name == "Ship Buyer" && GameManager.Instance.ShipNumber < 3)
-        {
-            try { NextBuyer.SetActive(true); } catch { }
-            //check if the function was called from this calss
-            if (nameof(Buyer) == new System.Diagnostics.StackTrace().GetFrame(1).GetMethod().DeclaringType.Name)
+            if (gameObject.name == "Forklift Buyer")
+            {
+                GameManager.Instance.ForkliftIsEnabled = true;
+            }
+            else if (gameObject.name == "Ship Buyer" && GameManager.Instance.ShipNumber < 3)
+            {
                 GameManager.Instance.ShipNumber++;
-        }
-        else if (gameObject.name == "HandyMan Buyer" && GameManager.Instance.ShipNumber < 2)
-        {
-            GameManager.Instance.HandyManNumber++;
-        }
+            }
+            else if (gameObject.name == "HandyMan Buyer" && GameManager.Instance.ShipNumber < 2)
+            {
+                GameManager.Instance.HandyManNumber++;
+            }
+        }    
         if(productPlugin != null)
             productPlugin.SetActive(true);
         Destroy(gameObject);
