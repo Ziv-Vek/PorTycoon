@@ -35,7 +35,7 @@ public class Buyer : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             if (moneyAmount != Price)
-                InvokeRepeating("GivingOneByOne", 0, 0.15f);
+                InvokeRepeating("GivingOneByOne", 0, 0.1f);
         }
     }
     private void OnTriggerExit(Collider other)

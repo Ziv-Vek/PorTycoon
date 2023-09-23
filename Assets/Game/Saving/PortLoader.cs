@@ -50,9 +50,9 @@ public class PortLoader : MonoBehaviour
         FindObjectOfType<ForkliftMover>().FuelUpgrade((int)gameConfig.levels[0].upgrades["forklift_fuel_tank"].levels[GameManager.Instance.forkliftFuelTankLevel - 1]);
         //conveyorTable values
         ConveyorTable.GetComponent<Conveyor>().beltSpeed = gameConfig.levels[0].upgrades["conveyor_speed"].levels[GameManager.Instance.convayorSpeedLevel - 1];
-        ConveyorTable.transform.FindChild("Scanner").GetComponent<Scanner>().scanningDuration = gameConfig.levels[0].upgrades["conveyor_scanning_speed"].levels[GameManager.Instance.scanningSpeedLevel - 1];
+        ConveyorTable.transform.Find("Scanner").GetComponent<Scanner>().scanningDuration = gameConfig.levels[0].upgrades["conveyor_scanning_speed"].levels[GameManager.Instance.scanningSpeedLevel - 1];
         for (int i = 0; i < GameManager.Instance.tableStackLevel - 1; i++)
-            BoxTable.transform.FindChild("Table").GetComponent<TableCarrier>().addBoxPlace();
+            BoxTable.transform.Find("Table").GetComponent<TableCarrier>().addBoxPlace();
 
     }
 }
