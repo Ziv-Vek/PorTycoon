@@ -13,6 +13,8 @@ public class PortLoader : MonoBehaviour
     public GameObject[] HandyManBuyers;
     public GameObject ForkLift;
     public GameObject ForkLiftBuyer;
+    public GameObject ConveyorTable;
+    public GameObject BoxTable;
     private void Start()
     {
         gameConfig = ConfigManager.Instance.Config;
@@ -41,5 +43,16 @@ public class PortLoader : MonoBehaviour
             ForkLiftBuyer.GetComponent<Buyer>().ActiveProduct();
         }
         GameObject.Find("Forklift").GetComponent<NavMeshAgent>().speed = gameConfig.levels[0].upgrades["forklift_speed"].levels[GameManager.Instance.forklifSpeedLevel - 1];
+        for (int i = 0; i < GameManager.Instance.forkliftBoxQuantityLevel - 1; i++)
+        {
+           ForkLift.GetComponent<ForkliftCarrier>().addBoxPlace();
+        }
+        FindObjectOfType<ForkliftMover>().FuelUpgrade((int)gameConfig.levels[0].upgrades["forklift_fuel_tank"].levels[GameManager.Instance.forkliftFuelTankLevel - 1]);
+        //conveyorTable values
+        ConveyorTable.GetComponent<Conveyor>().beltSpeed = gameConfig.levels[0].upgrades["conveyor_speed"].levels[GameManager.Instance.convayorSpeedLevel - 1];
+        ConveyorTable.transform.FindChild("Scanner").GetComponent<Scanner>().scanningDuration = gameConfig.levels[0].upgrades["conveyor_scanning_speed"].levels[GameManager.Instance.scanningSpeedLevel - 1];
+        for (int i = 0; i < GameManager.Instance.tableStackLevel - 1; i++)
+            BoxTable.transform.FindChild("Table").GetComponent<TableCarrier>().addBoxPlace();
+
     }
 }

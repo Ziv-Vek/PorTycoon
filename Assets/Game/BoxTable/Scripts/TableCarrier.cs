@@ -68,17 +68,14 @@ public class TableCarrier : Carrier
         {
             ArrayPlaces[i] = boxesPlaces[i];
         }
-
-        GameObject ParentObject = transform.parent.transform.GetChild(4).gameObject;
-        Debug.Log(ParentObject.name); 
         Vector3 place;
-        place = ParentObject.transform.GetChild(ParentObject.transform.childCount - 1).transform.position;
-        place = new Vector3(place.x, place.y, place.z + 3);
+        place = CargoPlacesHolder.transform.GetChild(CargoPlacesHolder.transform.childCount - 1).transform.position;
+        place = new Vector3(place.x, place.y, place.z + 5);
 
-        GameObject newPlace = Instantiate(ParentObject.transform.GetChild(ParentObject.transform.childCount - 1).gameObject, place, Quaternion.identity);
-        newPlace.transform.parent = ParentObject.transform;
+        GameObject newPlace = Instantiate(CargoPlacesHolder.transform.GetChild(CargoPlacesHolder.transform.childCount - 1).gameObject, place, Quaternion.identity);
+        newPlace.transform.parent = CargoPlacesHolder.transform;
 
-        newPlace.name = "CargoPlace (" + (ParentObject.transform.childCount - 1) + ")";
+        newPlace.name = "CargoPlace (" + (CargoPlacesHolder.transform.childCount - 1) + ")";
         newPlace.transform.localScale = new Vector3(1, 1, 1f);
         ArrayPlaces[ArrayPlaces.Length - 1] = newPlace.transform;
 
