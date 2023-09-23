@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 [ExecuteAlways]
 public class SaveableEntity : MonoBehaviour
 {
-    [SerializeField] private string uniqueID = "";
+    /*[SerializeField] private string uniqueID = "";
     static Dictionary<string, SaveableEntity> globalLookup = new Dictionary<string, SaveableEntity>();
 
     private void OnEnable()
@@ -71,5 +71,6 @@ public class SaveableEntity : MonoBehaviour
 
         return false;
     }
+    */
 
 }

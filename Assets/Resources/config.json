@@ -16,29 +16,29 @@
       "imagePath": "lion"
     },
     {
-      "id": "panda",
-      "name": "Panda",
-      "imagePath": "lion"
+      "id": "dog",
+      "name": "Dog",
+      "imagePath": "dog"
     },
     {
       "id": "penguin",
       "name": "Penguin",
-      "imagePath": "bear"
+      "imagePath": "penguin"
     },
     {
       "id": "car",
       "name": "Car",
-      "imagePath": "giraffe"
+      "imagePath": "car"
     },
     {
       "id": "dragon",
       "name": "Dragon",
-      "imagePath": "lion"
+      "imagePath": "dragon"
     },
     {
-      "id": "tiger",
-      "name": "Tiger",
-      "imagePath": "bear"
+      "id": "cow",
+      "name": "Cow",
+      "imagePath": "cow"
     }
   ],
   "levels": [
@@ -61,7 +61,7 @@
               "probability": 16
             },
             {
-              "id": "panda",
+              "id": "dog",
               "probability": 12
             },
             {
@@ -77,7 +77,7 @@
               "probability": 8
             },
             {
-              "id": "tiger",
+              "id": "cow",
               "probability": 8
             }
           ]

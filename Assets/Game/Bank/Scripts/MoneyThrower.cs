@@ -54,7 +54,7 @@ public class MoneyThrower : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
+    /*private void OnDrawGizmosSelected()
     {
         // Set gizmo color
         Gizmos.color = Color.yellow;
@@ -72,7 +72,7 @@ public class MoneyThrower : MonoBehaviour
         Gizmos.DrawLine(transform.position, endPosition);
         Gizmos.DrawWireSphere(transform.position, radius);
         Handles.DrawWireArc(transform.position, Vector3.up, startPosition - transform.position, angle, radius);
-    }
+    }*/
 
     // FOR DEBUG ONLY
     public void ThrowForDebug()

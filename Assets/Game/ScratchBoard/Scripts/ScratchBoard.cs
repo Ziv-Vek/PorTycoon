@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ScratchBoard : MonoBehaviour
 {
-    public Camera mainCamera;
+    private Camera mainCamera;
     public float targetScratchProgress = 0.3f;
     private Item CurrentItem { get; set; }
     private PortBox CurrentBox { get; set; }
@@ -21,6 +21,11 @@ public class ScratchBoard : MonoBehaviour
 
     // internal indicator if the scratch card is done
     private bool _isScratching;
+
+    private void Awake()
+    {
+        mainCamera = Camera.main;
+    }
 
     void Start()
     {

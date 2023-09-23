@@ -9,7 +9,7 @@ public class Bank : MonoBehaviour
     public int ScretchMoneyAmount = 5;
     public int WinMoneyAmount = 5;
     [SerializeField] GameObject star;
-    [SerializeField] GameObject Player;
+    [SerializeField] Transform player;
 
     private void Awake()
     {
@@ -60,6 +60,6 @@ public class Bank : MonoBehaviour
     }
     public void SpawnStar()
     {
-        Instantiate(star, new Vector3(Player.transform.position.x, 8.4f, GameObject.Find("Player").transform.position.z),Quaternion.identity);
+        Instantiate(star, new Vector3(player.position.x, 8.4f, player.position.z),Quaternion.identity);
     }
 }

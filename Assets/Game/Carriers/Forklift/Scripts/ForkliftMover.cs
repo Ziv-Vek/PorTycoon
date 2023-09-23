@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -22,6 +24,8 @@ public class ForkliftMover : MonoBehaviour
     private Transform LastTarget;
     private Transform player;
     private Transform forkliftArtTrans;
+    [SerializeField] float backwardMovementSpeed = 5f;
+    [SerializeField] private float backwardMovementDistance = 20f;
 
     private void Awake()
     {
@@ -34,6 +38,8 @@ public class ForkliftMover : MonoBehaviour
 
     private void Start()
     {
+        target = pier;
+        
         if (myCarrier.CheckCanReceiveBoxes())
         {
             
@@ -44,7 +50,7 @@ public class ForkliftMover : MonoBehaviour
             isPickUpBoxesTask = false;
         }
 
-        Move();
+        MoveToTarget();
         NoFuelText.SetActive(false);
       
     }
@@ -70,21 +76,21 @@ public class ForkliftMover : MonoBehaviour
         if (target == null && !myCarrier.CheckCanReceiveBoxes() && FuelSlider.value != 0)
         {
             isPickUpBoxesTask = false;
-            Move();
+            StartCoroutine(Move());
             return;
         }
 
         if (target == null && !myCarrier.CheckCanGiveBoxes() && FuelSlider.value != 0)
         {
             isPickUpBoxesTask = true;
-            Move();
+            StartCoroutine(Move());
         }
     }
 
     // sets movement destination and start movement
-    private void Move()
+    IEnumerator Move()
     {
-        rb.constraints = RigidbodyConstraints.None;
+        //rb.constraints = RigidbodyConstraints.None;
 
         if (isPickUpBoxesTask)
         {
@@ -94,6 +100,40 @@ public class ForkliftMover : MonoBehaviour
         {
             target = conveyorBelt; 
         }
+
+        yield return StartCoroutine(MoveBackwards());
+    }
+
+    IEnumerator MoveBackwards()
+    {
+        navMeshAgent.enabled = false;
+        Vector3 backwardTargetPos = transform.position - (transform.forward * backwardMovementDistance);
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        rb.constraints = RigidbodyConstraints.FreezePositionY;
+        rb.AddForce(-transform.forward * backwardMovementSpeed, ForceMode.VelocityChange);
+
+        while (Vector3.Distance(transform.position, backwardTargetPos) > 0.1f)
+        {
+            //rb.AddForce(-transform.forward * backwardMovementSpeed, ForceMode.Force);
+            yield return new WaitForFixedUpdate();
+        }
+
+        rb.velocity = Vector3.zero;
+        rb.constraints = RigidbodyConstraints.None;
+        rb.constraints = RigidbodyConstraints.FreezePositionY;
+
+        navMeshAgent.enabled = true;
+        MoveToTarget();
+    }
+
+    private void MoveToTarget()
+    {
+        if (!target)
+        {
+            Debug.Log("no target destination set for forklift");
+            target = pier;
+        }
+        
         navMeshAgent.SetDestination(target.position);
         if (LastTarget != target)
         {
@@ -120,7 +160,7 @@ public class ForkliftMover : MonoBehaviour
         FuelSlider.value = FuelSlider.maxValue;
         NoFuelText.SetActive(false);
     }
-
+    
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

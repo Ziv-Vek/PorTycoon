@@ -23,12 +23,12 @@ public class UpgradesMenu : MonoBehaviour
     private void OnEnable()
     {
         if (GameManager.Instance.HandyManNumber < 1 && gameObject.name == "HR Upgrades Canvas")
-            transform.FindChild("1 HandyMan Button").gameObject.GetComponent<Button>().interactable = false;   
+            transform.Find("1 HandyMan Button").gameObject.GetComponent<Button>().interactable = false;   
         else if (gameObject.name == "HR Upgrades Canvas")
-            transform.FindChild("1 HandyMan Button").gameObject.GetComponent<Button>().interactable = true;
+            transform.Find("1 HandyMan Button").gameObject.GetComponent<Button>().interactable = true;
 
         if (gameObject.name == "logistic Upgrades Canvas")
-            transform.FindChild("2 ForkLift Button").gameObject.GetComponent<Button>().interactable = GameManager.Instance.ForkliftIsEnabled;
+            transform.Find("2 ForkLift Button").gameObject.GetComponent<Button>().interactable = GameManager.Instance.ForkliftIsEnabled;
     }
     public void Exit()
     {
