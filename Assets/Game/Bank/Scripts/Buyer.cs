@@ -83,7 +83,7 @@ public class Buyer : MonoBehaviour
             {
                 GameManager.Instance.ShipNumber++;
             }
-            else if (gameObject.name == "HandyMan Buyer" && GameManager.Instance.ShipNumber < 2)
+            else if (gameObject.name == "HandyMan Buyer" && GameManager.Instance.HandyManNumber < 2)
             {
                 GameManager.Instance.HandyManNumber++;
             }

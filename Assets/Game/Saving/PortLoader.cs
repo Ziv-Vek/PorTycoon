@@ -42,17 +42,26 @@ public class PortLoader : MonoBehaviour
         {
             ForkLiftBuyer.GetComponent<Buyer>().ActiveProduct();
         }
-        GameObject.Find("Forklift").GetComponent<NavMeshAgent>().speed = gameConfig.levels[0].upgrades["forklift_speed"].levels[GameManager.Instance.forklifSpeedLevel - 1];
+        ForkLift.GetComponent<NavMeshAgent>().speed = gameConfig.levels[0].upgrades["forklift_speed"].levels[GameManager.Instance.forklifSpeedLevel - 1];
         for (int i = 0; i < GameManager.Instance.forkliftBoxQuantityLevel - 1; i++)
         {
            ForkLift.GetComponent<ForkliftCarrier>().addBoxPlace();
         }
-        FindObjectOfType<ForkliftMover>().FuelUpgrade((int)gameConfig.levels[0].upgrades["forklift_fuel_tank"].levels[GameManager.Instance.forkliftFuelTankLevel - 1]);
+        ForkLift.GetComponent<ForkliftMover>().FuelUpgrade((int)gameConfig.levels[0].upgrades["forklift_fuel_tank"].levels[GameManager.Instance.forkliftFuelTankLevel - 1]);
         //conveyorTable values
         ConveyorTable.GetComponent<Conveyor>().beltSpeed = gameConfig.levels[0].upgrades["conveyor_speed"].levels[GameManager.Instance.convayorSpeedLevel - 1];
         ConveyorTable.transform.Find("Scanner").GetComponent<Scanner>().scanningDuration = gameConfig.levels[0].upgrades["conveyor_scanning_speed"].levels[GameManager.Instance.scanningSpeedLevel - 1];
         for (int i = 0; i < GameManager.Instance.tableStackLevel - 1; i++)
             BoxTable.transform.Find("Table").GetComponent<TableCarrier>().addBoxPlace();
-
+        //handyman values
+        for (int i = 0; i < GameManager.Instance.HandyManNumber; i++)
+        {
+            HandyManBuyers[i].GetComponent<Buyer>().ActiveProduct();
+        }
+        foreach (GameObject npc in HandyMan)
+        {
+            npc.GetComponent<TableNPC>().waitTime = (int)gameConfig.levels[0].upgrades["handyman_speed"].levels[GameManager.Instance.openBoxTimeNpc - 1];
+            npc.GetComponent<TableNPC>().AwarenessSeconds = (int)gameConfig.levels[0].upgrades["handyman_awarness"].levels[GameManager.Instance.awarenessTimeNpc - 1];
+        }
     }
 }

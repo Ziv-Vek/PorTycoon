@@ -29,7 +29,7 @@ public class MoneyPile : MonoBehaviour
         {
             if (moneyAmount != 0)
                // TakingOneByOne();
-            InvokeRepeating("TakingOneByOne", 0, 0.12f);
+            InvokeRepeating("TakingOneByOne", 0, 0.1f);
         }
     }
     private void OnTriggerExit(Collider other)

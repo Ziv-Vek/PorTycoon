@@ -541,7 +541,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3587963936094156812}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.30001462, y: -4.8879695, z: 0.0328843}
+  m_LocalPosition: {x: -0.30001462, y: -6.61, z: 0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -643,6 +643,8 @@ MonoBehaviour:
   conveyorBelt: {fileID: 0}
   FuelSlider: {fileID: 1712751536713746504}
   NoFuelText: {fileID: 1712751537121720062}
+  backwardMovementSpeed: 5
+  backwardMovementDistance: 20
 --- !u!54 &7598096029477029990
 Rigidbody:
   m_ObjectHideFlags: 0

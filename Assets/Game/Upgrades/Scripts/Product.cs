@@ -57,7 +57,10 @@ public class Product : MonoBehaviour
     {
         Update();
         gameConfig = ConfigManager.Instance.Config;
-        if ((Level < 4 && (gameObject.name == "ship_box_quantity" || gameObject.name == "forklift_box_quantity")) || Level < 5)
-            GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades[gameObject.name].prices[Level - 1];
+        try
+        {
+            if ((Level < 4 && (gameObject.name == "ship_box_quantity" || gameObject.name == "forklift_box_quantity")) || Level < 5)
+                GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades[gameObject.name].prices[Level - 1];
+        }catch { }       
     }
 }
