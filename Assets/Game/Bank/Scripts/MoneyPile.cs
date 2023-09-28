@@ -11,6 +11,7 @@ public class MoneyPile : MonoBehaviour
     [SerializeField] float PlusY;
     public Vector3 place;
     [SerializeField] int MoneyPerBill;
+    public int moneyLimit;
     void Start()
     {
         place = gameObject.transform.position;
@@ -73,6 +74,8 @@ public class MoneyPile : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
+            if (moneyAmount >= moneyLimit)
+                break;
             GameObject Money = Instantiate(moneyPrefab, new Vector3(place.x, place.y + PlusY, place.z), Quaternion.identity);
             Money.transform.parent = gameObject.transform;
             PlusY += 1.1f;
