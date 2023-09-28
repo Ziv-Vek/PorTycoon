@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject CollectionCanvas;
     [SerializeField] private TextMeshProUGUI totalItemsText;
     [SerializeField] private TextMeshProUGUI unlockedItemsText;
+    [SerializeField] private TextMeshProUGUI CollectionStateText;
 
 
     private void Awake()
@@ -33,8 +34,9 @@ public class UIManager : MonoBehaviour
 
     public void UpdateUI()
     {
-        UpdateTotalItemsText(ItemsManager.Instance.GetAllLevelItems(GameManager.Instance.CurrentLevel).Count);
-        UpdateUnlockedItemsText(ItemsManager.Instance.UnlockedItems.Count);
+        //UpdateTotalItemsText(ItemsManager.Instance.GetAllLevelItems(GameManager.Instance.CurrentLevel).Count);
+        //UpdateUnlockedItemsText(ItemsManager.Instance.UnlockedItems.Count);
+        UpdateCollectionState(ItemsManager.Instance.GetAllLevelItems(GameManager.Instance.CurrentLevel).Count, ItemsManager.Instance.UnlockedItems.Count);
         UpdateMoneyText(GameManager.Instance.money);
         UpdateStarsText(GameManager.Instance.stars);
     }
@@ -48,7 +50,10 @@ public class UIManager : MonoBehaviour
     {
         starsText.text = stars.ToString();
     }
-
+    public void UpdateCollectionState(int totalItems, int unlockedItems)
+    {
+        CollectionStateText.text = unlockedItems + " / " + totalItems;
+    }
     public void UpdateTotalItemsText(int totalItems)
     {
         totalItemsText.text = totalItems.ToString();

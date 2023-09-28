@@ -10,11 +10,14 @@ public class CollectionMenu : MonoBehaviour
     GameObject CollectionUI_Holder;
     [SerializeField] GameObject Collections_Holder;
     public GameObject Item;
-    [SerializeField] private TextMeshProUGUI stars;
+    [SerializeField] private TextMeshProUGUI stars;  
+    GameConfig gameConfig;
+    [SerializeField] ScratchBoard scratch;
+
 
     private void Update()
     {
-        stars.text = "Stars: " + GameManager.Instance.stars;
+        stars.text = GameManager.Instance.stars.ToString();
     }
     public void Exit()
     {
@@ -44,5 +47,21 @@ public class CollectionMenu : MonoBehaviour
             newItem.AddComponent<ScratchItemImage>().ChangeImage(ItemsManager.Instance.GetAllLevelItems(1)[i].imagePath);
             newItem.name = string.Format("Item {0} ({1})", i, ItemsManager.Instance.GetAllLevelItems(1)[i].id);
         } 
+    }
+    public void BuyingBox1(GameObject Button)
+    {
+        if ((Button.transform.parent.GetComponent<BoxProduct>().Price <= GameManager.Instance.stars || Button.name == "FreeButton"))
+        {
+            if (Button.name != "FreeButton")
+                UIManager.Instance.UpdateStarsText(GameManager.Instance.stars -= Button.transform.parent.GetComponent<BoxProduct>().Price);
+            scratch = GameObject.Find(GameManager.Instance.currentLevel + "Port").transform.Find("BoxTable").transform.Find("ScratchBoard").GetComponent<ScratchBoard>();
+            PortBox box = new PortBox();
+            scratch.Open(box);
+        }
+        else
+        {
+            if (Button.transform.parent.GetComponent<BoxProduct>().Price > GameManager.Instance.stars)
+                Debug.Log("dont have enough money to buy: " + Button.transform.parent.name);
+        }
     }
 }

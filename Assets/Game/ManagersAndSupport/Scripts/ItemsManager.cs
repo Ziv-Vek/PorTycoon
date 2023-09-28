@@ -88,7 +88,7 @@ public class ItemsManager : MonoBehaviour
 
         item.DateUnlocked = DateTime.Now;
         UnlockedItems.Add(item.id, item);
-        UIManager.Instance.UpdateUnlockedItemsText(UnlockedItems.Count);
+        UIManager.Instance.UpdateUI();
 
         if (IsLevelCompleted(GameManager.Instance.CurrentLevel))
         {
