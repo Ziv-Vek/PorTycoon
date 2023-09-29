@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1712751536529537271}
   - component: {fileID: 1712751536529537269}
   - component: {fileID: 1712751536529537270}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1712751536713746505}
   - component: {fileID: 1712751536713746504}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 1712751537121720059}
   - component: {fileID: 1712751537121720060}
   - component: {fileID: 1712751537121720061}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: No Fuel (Text)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 1712751537260837191}
   - component: {fileID: 1712751537260837189}
   - component: {fileID: 1712751537260837190}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 1712751537743393530}
   - component: {fileID: 1712751537743393531}
   - component: {fileID: 1712751537743393532}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fuel Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -489,7 +489,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1712751537925697003}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -526,7 +526,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3587963936094156813}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CargoPlace (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -562,7 +562,7 @@ GameObject:
   - component: {fileID: 7598096029477029977}
   - component: {fileID: 7598096029477029990}
   - component: {fileID: 8859970199163404781}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ForkLift
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,7 +623,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 15.12
-  m_BaseOffset: -0.01
+  m_BaseOffset: -1.56
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 3
 --- !u!114 &7598096029477029977
@@ -694,7 +694,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e8ac0c5abced9874492deb2e742e3212,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.28
+      value: -0.22
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e8ac0c5abced9874492deb2e742e3212,
         type: 3}
@@ -736,10 +736,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2629480396839750891, guid: e8ac0c5abced9874492deb2e742e3212,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e8ac0c5abced9874492deb2e742e3212,
         type: 3}
       propertyPath: m_Name
       value: Forklift_v1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e8ac0c5abced9874492deb2e742e3212,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2709677277141362352, guid: e8ac0c5abced9874492deb2e742e3212,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4349314389550368021, guid: e8ac0c5abced9874492deb2e742e3212,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8ac0c5abced9874492deb2e742e3212, type: 3}

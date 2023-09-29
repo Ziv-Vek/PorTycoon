@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3513971044500742355}
   - component: {fileID: 3513971044500742352}
   - component: {fileID: 3513971044500742350}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Buyer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,9 @@ MonoBehaviour:
   PriceText: {fileID: 3513971045971654872}
   SliderFill: {fileID: 3513971045011230797}
   product: {fileID: 0}
+  productPlugin: {fileID: 0}
   productClone: {fileID: 0}
+  NextBuyer: {fileID: 0}
 --- !u!136 &3513971044500742350
 CapsuleCollider:
   m_ObjectHideFlags: 0
