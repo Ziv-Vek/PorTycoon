@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class ScratchBoard : MonoBehaviour
 {
-    private Camera mainCamera;
     public float targetScratchProgress = 0.3f;
     private Item CurrentItem { get; set; }
     private PortBox CurrentBox { get; set; }
 
 
+    [SerializeField] private Camera scratchCamera;
     [SerializeField] private ScratchCardManager cardManager;
     [SerializeField] private PlayerMover playerMover;
     [SerializeField] private TableCarrier tableCarrier;
@@ -21,11 +21,6 @@ public class ScratchBoard : MonoBehaviour
 
     // internal indicator if the scratch card is done
     private bool _isScratching;
-
-    private void Awake()
-    {
-        mainCamera = Camera.main;
-    }
 
     void Start()
     {
@@ -39,11 +34,11 @@ public class ScratchBoard : MonoBehaviour
     void Update()
     {
         // Rotate the UI to face the camera
-        var rotation = mainCamera.transform.rotation;
+        var rotation = scratchCamera.transform.rotation;
         transform.LookAt(transform.position + rotation * Vector3.forward,
             rotation * Vector3.up);
 
-        transform.position = mainCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, mainCamera.nearClipPlane + 20));
+        transform.position = scratchCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, scratchCamera.nearClipPlane + 20));
     }
 
     private void NextItem()
@@ -59,8 +54,9 @@ public class ScratchBoard : MonoBehaviour
         playerMover.ShowJoystick();
         gameObject.SetActive(false);
 
-        // Add player back to carrier
-        tableCarrier.SetPlayer(playerCarrier);
+        if (!CurrentBox.isPurchasedBox)
+            // Add player back to carrier
+            tableCarrier.SetPlayer(playerCarrier);
     }
 
     public void Open(PortBox box)
@@ -69,12 +65,13 @@ public class ScratchBoard : MonoBehaviour
         playerMover.ToggleMovement(false);
         playerMover.HideJoystick();
 
-        // Remove player from carrier
-        tableCarrier.RemovePlayer();
-
         // Handle box
         CurrentBox = box;
         CurrentBox.CanBeOpened = false;
+
+        if (!CurrentBox.isPurchasedBox)
+            // Remove player from carrier
+            tableCarrier.RemovePlayer();
 
         NextItem();
 
@@ -86,7 +83,9 @@ public class ScratchBoard : MonoBehaviour
     {
         _isScratching = false;
 
-        tableCarrier.RemoveBox(CurrentBox);
+
+        if (!CurrentBox.isPurchasedBox)
+            tableCarrier.RemoveBox(CurrentBox);
 
         ItemsManager.Instance.UnlockItem(CurrentItem);
 
@@ -111,7 +110,8 @@ public class ScratchBoard : MonoBehaviour
     {
         _isScratching = false;
 
-        tableCarrier.RemoveBox(CurrentBox);
+        if (!CurrentBox.isPurchasedBox)
+            tableCarrier.RemoveBox(CurrentBox);
         Bank.Instance.AddMoneyToPile(moneyPile, "Scratch");
 
         cardManager.Progress.OnProgress -= OnScratchProgress;

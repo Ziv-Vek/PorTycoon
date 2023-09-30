@@ -22,7 +22,7 @@ TagManager:
   - Stars
   - Forklift
   - PurchaseZone
-  - 
+  - ScratchBoard
   - 
   - 
   - 
@@ -43,6 +43,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: ScratchBoard
+    uniqueID: 1211540475
+    locked: 0
+  - name: UI
+    uniqueID: 1297500451
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

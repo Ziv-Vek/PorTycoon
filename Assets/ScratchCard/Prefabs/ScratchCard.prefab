@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 462224}
   - component: {fileID: 2357512}
   - component: {fileID: 3374946}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Scratch Surface Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 437498}
   - component: {fileID: 11474202}
   - component: {fileID: 114877032501962244}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Scratch Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,8 +130,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SurfaceTransform: {fileID: 462224}
   SurfaceMaterial: {fileID: 0}
-  BrushMaterial: {fileID: 0}
-  BrushSize: 0.5
+  BrushMaterial: {fileID: 7933299137048178034, guid: a9f670f4eae962b4683c35ae3d1db878,
+    type: 3}
+  BrushSize: 1
   RenderTextureQuality: 1
   mode: 0
 --- !u!114 &114877032501962244
@@ -147,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 11474202}
-  progressMaterial: {fileID: 0}
+  progressMaterial: {fileID: 2100000, guid: d7712e77130450640a0ce6cea45b2cb4, type: 2}
   sampleSourceTexture: 0
   progressAccuracy: 0
 --- !u!1 &137284
@@ -160,7 +161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 437468}
   - component: {fileID: 11486244}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ScratchCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +177,7 @@ Transform:
   m_GameObject: {fileID: 137284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.95172787, y: 0.95172834, z: 0.95172787}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 437498}
@@ -206,14 +207,14 @@ MonoBehaviour:
   meshRendererCard: {fileID: 2357512}
   spriteRendererCard: {fileID: 21281386}
   canvasRendererCard: {fileID: 0}
-  scratchSurfaceSpriteHasAlpha: 0
+  scratchSurfaceSpriteHasAlpha: 1
   mode: 0
   mainCamera: {fileID: 0}
-  scratchSurfaceSprite: {fileID: 21300000, guid: 704e57ad60bfd4c3fb5b5ec3498c3654,
+  scratchSurfaceSprite: {fileID: 21300000, guid: 8985467d379b54e8ab8bbe453a1c6650,
     type: 3}
   progressAccuracy: 0
   brushTexture: {fileID: 2800000, guid: 6407cb4b2bd9f4a82b1e98830cae7837, type: 3}
-  brushSize: 0.8
+  brushSize: 1
   brushOpacity: 1
   inputEnabled: 1
   usePressure: 0
@@ -232,7 +233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 469998}
   - component: {fileID: 21281386}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Scratch Surface Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +249,7 @@ Transform:
   m_GameObject: {fileID: 178426}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 437468}
@@ -274,7 +275,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 763d7f081ce304820a6ecdec4881cebc, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -295,12 +296,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 8c29c2faedf864389bace349e304028e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8985467d379b54e8ab8bbe453a1c6650, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 8.71, y: 3.72}
+  m_Size: {x: 3.5, y: 2.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
