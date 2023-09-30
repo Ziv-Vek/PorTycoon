@@ -30,7 +30,12 @@ public class BoxesManager : MonoBehaviour
     {
         return Instantiate(boxesPrefabs[0].box, Vector3.zero, Quaternion.identity);
     }
-
+    public PortBox GetBoxByIndex(int index)
+    {
+        if (boxesPrefabs[index].box.GetComponent<PortBox>() != null)
+            return boxesPrefabs[index].box.GetComponent<PortBox>();
+        else return null;
+    }
     public List<PortBox> GetBoxesByName(List<string> boxesNames)
     {
         if (boxesNames == null || boxesNames.Count == 0)

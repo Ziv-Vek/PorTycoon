@@ -2,12 +2,15 @@ using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class TableNPC : MonoBehaviour, IBoxOpener
 {
     public TableCarrier tableCarrier;
     public new bool enabled = true;
 
+    public bool IsOpening;
+    public Slider ProgressSlider;
     public bool IsSleeping = false;
     [SerializeField] public int AwarenessSeconds = 70;
     [SerializeField] float Seconds = 0;
@@ -45,6 +48,8 @@ public class TableNPC : MonoBehaviour, IBoxOpener
     public void Update()
     {
         Seconds += 1 * Time.deltaTime;
+        if(IsOpening)
+           ProgressSlider.value += 1 * Time.deltaTime;
         if (Vector3.Distance(transform.GetChild(0).transform.position, player.position) <
             wakingDistance && IsSleeping)
             SetIsSleeping(false);
@@ -59,6 +64,8 @@ public class TableNPC : MonoBehaviour, IBoxOpener
         _itemsManager.UnlockItem(CurrentItem);
         Debug.Log("Got new item: " + CurrentItem.name);
 
+        ProgressSlider.value = ProgressSlider.minValue;
+        IsOpening = false;
 
         _bank.AddMoneyToPile(moneyPile, "Scratch");
         tableCarrier.RemoveBox(CurrentBox);
@@ -78,6 +85,9 @@ public class TableNPC : MonoBehaviour, IBoxOpener
         CurrentBox = box;
         box.CanBeOpened = false;
         Invoke(nameof(OnFinishedOpenBox), waitTime);
+        ProgressSlider.maxValue = waitTime;
+        ProgressSlider.value = ProgressSlider.minValue;
+        IsOpening = true;
         return true;
     }
 

@@ -54,9 +54,7 @@ public class CollectionMenu : MonoBehaviour
         {
             if (Button.name != "FreeButton")
                 UIManager.Instance.UpdateStarsText(GameManager.Instance.stars -= Button.transform.parent.GetComponent<BoxProduct>().Price);
-            scratch = GameObject.Find(GameManager.Instance.currentLevel + "Port").transform.Find("BoxTable").transform.Find("ScratchBoard").GetComponent<ScratchBoard>();
-            PortBox box = new PortBox();
-            scratch.Open(box);
+
         }
         else
         {
