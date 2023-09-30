@@ -57,7 +57,7 @@ public class ForkliftMover : MonoBehaviour
 
     private void Update()
     {
-        if (target != null && Vector3.Distance(transform.position, target.position) < StopDistance)
+        if (target != null && Vector3.Distance(transform.position, target.position) < StopDistance && navMeshAgent.enabled)
         {
             CancelMovement();
         }
@@ -100,10 +100,11 @@ public class ForkliftMover : MonoBehaviour
         {
             target = conveyorBelt; 
         }
-
+    
+        
         yield return StartCoroutine(MoveBackwards());
     }
-
+    
     IEnumerator MoveBackwards()
     {
         navMeshAgent.enabled = false;
@@ -111,7 +112,7 @@ public class ForkliftMover : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         rb.constraints = RigidbodyConstraints.FreezePositionY;
         rb.AddForce(-transform.forward * backwardMovementSpeed, ForceMode.VelocityChange);
-
+    
         while (Vector3.Distance(transform.position, backwardTargetPos) > 0.1f)
         {
             //rb.AddForce(-transform.forward * backwardMovementSpeed, ForceMode.Force);
