@@ -10,8 +10,6 @@ Shader "ScratchCard/Mask"
     SubShader
     {
         Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" "PreviewType"="Plane"}
-        ZWrite Off
-        ZTest Off
         Blend SrcAlpha OneMinusSrcAlpha
         Pass
         {

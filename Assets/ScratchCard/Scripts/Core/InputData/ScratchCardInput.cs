@@ -287,5 +287,15 @@ namespace ScratchCardAsset.Core.InputData
 		{
 			SetInputData(MaxTouchCount, screenPosition);
 		}
+
+		public void ResetData()
+		{
+			for (var i = 0; i < isScratching.Length; i++)
+			{
+				isScratching[i] = false;
+				isStartPosition[i] = true;
+				previousScratchPosition[i] = null;
+			}
+		}
 	}
 }

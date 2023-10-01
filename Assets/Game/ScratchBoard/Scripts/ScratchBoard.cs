@@ -34,11 +34,11 @@ public class ScratchBoard : MonoBehaviour
     void Update()
     {
         // Rotate the UI to face the camera
-        var rotation = scratchCamera.transform.rotation;
-        transform.LookAt(transform.position + rotation * Vector3.forward,
-            rotation * Vector3.up);
-
-        transform.position = scratchCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, scratchCamera.nearClipPlane + 20));
+        // var rotation = scratchCamera.transform.rotation;
+        // transform.LookAt(transform.position + rotation * Vector3.forward,
+        //     rotation * Vector3.up);
+        //
+        // transform.position = scratchCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, scratchCamera.nearClipPlane + 20));
     }
 
     private void NextItem()
