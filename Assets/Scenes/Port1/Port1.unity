@@ -12295,9 +12295,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1000624228, guid: 0dc0c96519593414c942af79e7b1683d, type: 3}
-      propertyPath: m_Layer
-      value: 12
+    - target: {fileID: 1000624229, guid: 0dc0c96519593414c942af79e7b1683d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 338.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000624229, guid: 0dc0c96519593414c942af79e7b1683d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 118.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000624229, guid: 0dc0c96519593414c942af79e7b1683d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -271
       objectReference: {fileID: 0}
     - target: {fileID: 1002881187, guid: 0dc0c96519593414c942af79e7b1683d, type: 3}
       propertyPath: moneyPile
@@ -12315,14 +12323,6 @@ PrefabInstance:
       propertyPath: playerCarrier
       value: 
       objectReference: {fileID: 2062891692}
-    - target: {fileID: 1002881187, guid: 0dc0c96519593414c942af79e7b1683d, type: 3}
-      propertyPath: scratchCamera
-      value: 
-      objectReference: {fileID: 1609982586}
-    - target: {fileID: 1648183306, guid: 0dc0c96519593414c942af79e7b1683d, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 1855160783258573157, guid: 0dc0c96519593414c942af79e7b1683d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -12338,10 +12338,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1609982586}
-    - target: {fileID: 4006596949730781179, guid: 0dc0c96519593414c942af79e7b1683d,
+    - target: {fileID: 3927234776310198517, guid: 0dc0c96519593414c942af79e7b1683d,
         type: 3}
-      propertyPath: m_BlockingMask.m_Bits
-      value: 4294967295
+      propertyPath: m_AnchoredPosition.y
+      value: 237.3
       objectReference: {fileID: 0}
     - target: {fileID: 5180653081942541020, guid: 0dc0c96519593414c942af79e7b1683d,
         type: 3}
