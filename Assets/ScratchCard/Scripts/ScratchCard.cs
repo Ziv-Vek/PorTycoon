@@ -79,6 +79,14 @@ namespace ScratchCardAsset
 			Init();
 		}
 
+		private void OnDisable()
+		{
+			if (!initialized)
+				return;
+			
+			Input.ResetData();
+		}
+
 		private void OnDestroy()
 		{
 			UnsubscribeFromEvents();

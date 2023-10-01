@@ -34,9 +34,9 @@
             <a class="section" href="#recordanimation">Record scratch animation</a>
             <div class="divider left"></div>
             <a class="title" href="#apihelp">API Help</a>
-            <a class="section" href="#paintcontroller">ScratchCardManager</a>
-            <a class="section" href="#inputcontroller">ScratchCard</a>
-            <a class="section" href="#raycastcontroller">EraseProgress</a>
+            <a class="section" href="#scratchcardmanager_api">ScratchCardManager</a>
+            <a class="section" href="#scratchcard">ScratchCard</a>
+            <a class="section" href="#eraseprogress">EraseProgress</a>
             <a class="section" href="#scratchanimator">ScratchAnimator</a>
             <a class="section" href="#scratchanimation">ScratchAnimation</a>
             <a class="section" href="#scratchanimationrecorder">ScratchAnimationRecorder</a>
@@ -172,7 +172,7 @@
             <div class="divider" style="width:24%; margin:30px 0;"></div>
 
             <h1 id="apihelp">API Help</h1>
-            <h2 id="paintcontroller">ScratchCardManager</h2>
+            <h2 id="scratchcardmanager_api">ScratchCardManager</h2>
             <p>&emsp;ScratchCardManager component creates and configures <mark>ScratchCard</mark> and <mark>EraseProgress</mark>.<br>
                 <u>Main public fields, properties, and methods:</u><br>
                 <code>public ScratchCard Card</code> - a reference to <mark>ScratchCard</mark> component;<br>
@@ -201,7 +201,7 @@
                 <code>public void SetNativeSize()</code> - to set scratch card native size.<br>
             </p>
 
-            <h2 id="inputcontroller">ScratchCard</h2>
+            <h2 id="scratchcard">ScratchCard</h2>
             <p>&emsp;ScratchCard component creates and configures <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a>, gets data from the InputController, then renders the quads into RenderTexture.<br>
                 <u>Main public fields, properties, and methods:</u><br>
                 <code>public event Action&lt;ScratchCard&gt; OnInitialized</code> - an event for ScratchCard initialization, returns ScratchCard instance;<br>
@@ -231,7 +231,7 @@
                 <br>
             </p>
 
-            <h2 id="raycastcontroller">EraseProgress</h2>
+            <h2 id="eraseprogress">EraseProgress</h2>
             <p>&emsp;EraseProgress component calculates scratching progress in the range from 0 to 1, where 0 - the card is scratched completely, 1 - the scratch surface is whole.<br>
                 It creates and configures <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a>, and then shader calculates the average red-channel value of
                 <mark>ScratchCard</mark> <a href="https://docs.unity3d.com/ScriptReference/RenderTexture.html" target="_blank">RenderTexture</a>.<br>
@@ -371,6 +371,7 @@ cardManager.Card.Input.Scratch(position);
 
             <h1 id="contacts">Contacts</h1>
             Please let me know if you have any questions, ideas, or suggestions.<br>
+            If you require support, please provide your invoice number. The more information you provide, the more effectively I can assist you.<br>
             E-mail: <a href="mailto:unitymedved@gmail.com">unitymedved@gmail.com</a>
         </div>
     </div>

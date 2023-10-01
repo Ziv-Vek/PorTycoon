@@ -337,6 +337,12 @@ namespace ScratchCardAsset
 			{
 				Card.enabled = false;
 			}
+			
+			if (Card.Mode == ScratchMode.Restore)
+			{
+				Card.Fill(false);
+			}
+			
 			initialized = true;
 		}
 		
@@ -395,8 +401,14 @@ namespace ScratchCardAsset
 				{
 					if (sprite.texture.isReadable)
 					{
-						spritePixels = sprite.texture.GetPixels((int)sprite.rect.x, (int)sprite.rect.y,
-							(int)sprite.rect.width, (int)sprite.rect.height);
+						if (sprite.packed)
+						{
+							spritePixels = sprite.texture.GetPixels((int)sprite.textureRect.x, (int)sprite.textureRect.y, (int)sprite.rect.width, (int)sprite.rect.height);
+						}
+						else
+						{
+							spritePixels = sprite.texture.GetPixels((int)sprite.rect.x, (int)sprite.rect.y, (int)sprite.rect.width, (int)sprite.rect.height);
+						}
 					}
 					else
 					{
@@ -406,10 +418,10 @@ namespace ScratchCardAsset
 
 				if (isPartOfAtlas)
 				{
-					//create a Sprite from cropped texture
 					scratchTexture = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height);
 					scratchTexture.SetPixels(spritePixels);
 					scratchTexture.Apply();
+					
 					if (scratchSurfaceMaterial != null)
 					{
 						scratchSurfaceMaterial.mainTexture = scratchTexture;
@@ -419,8 +431,7 @@ namespace ScratchCardAsset
 					{
 						var croppedRect = new Rect(0, 0, scratchTexture.width, scratchTexture.height);
 						var pivot = scratchSurfaceSprite.pivot / croppedRect.size;
-						scratchSprite = Sprite.Create(scratchTexture, croppedRect, pivot,
-							Constants.General.PixelsPerUnit);
+						scratchSprite = Sprite.Create(scratchTexture, croppedRect, pivot, Constants.General.PixelsPerUnit);
 						sprite = scratchSprite;
 					}
 				}
