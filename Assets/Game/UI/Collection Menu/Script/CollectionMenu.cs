@@ -77,6 +77,7 @@ public class CollectionMenu : MonoBehaviour
             if (Button.name != "FreeButton")
                 UIManager.Instance.UpdateStarsText(GameManager.Instance.stars -= boxProduct.Price);
             var newBox = Button.AddComponent<PortBox>();
+            newBox.isPurchasedBox = true;
             gameObject.transform.SetAsLastSibling();
             scratch.Open(newBox);
         }
