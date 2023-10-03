@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Carrier : MonoBehaviour, ITransferBoxes
@@ -29,7 +30,7 @@ public class Carrier : MonoBehaviour, ITransferBoxes
 
     public virtual PortBox GiveBox()
     {
-        int index = Array.FindLastIndex(boxes, i => i != null);
+        int index = Array.FindLastIndex(boxes, box => box != null);
 
         PortBox box = boxes[index];
         boxes[index] = null;

@@ -95,3 +95,6 @@ Assets/Game/ManagersAndSupport/Scripts/StateManager.cs.meta
 Assets/Game/ManagersAndSupport/Scripts/StateManager.cs
 Assets/Game/ManagersAndSupport/Scripts/PlayerPrefsKeys.cs.meta
 Assets/Game/Environment/Shaders/Water/WaterShader_MAT.mat
+Packages/manifest.json
+Packages/packages-lock.json
+ProjectSettings/ProjectSettings.asset

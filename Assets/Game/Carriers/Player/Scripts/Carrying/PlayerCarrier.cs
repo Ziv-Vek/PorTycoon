@@ -10,6 +10,7 @@ public class PlayerCarrier : Carrier, IBoxOpener
         scratchBoard.Open(box);
         return true;
     }
+    
     public void addBoxPlace()
     {
         Transform[] ArrayPlaces = new Transform[boxesPlaces.Length + 1];
