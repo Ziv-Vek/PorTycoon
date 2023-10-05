@@ -13,6 +13,6 @@ public class ConveyorEnd : MonoBehaviour
         var box = other.gameObject.GetComponent<PortBox>();
         if (!other.CompareTag("Box") || !conveyor.HasBoxInstance(box)) return;
 
-        conveyor.ProcessTransferToTable(box);
+        StartCoroutine(conveyor.TransferBoxToTableHandler());
     }
 }

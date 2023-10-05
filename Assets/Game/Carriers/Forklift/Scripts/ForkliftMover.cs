@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Unity.Mathematics;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -57,6 +58,7 @@ public class ForkliftMover : MonoBehaviour
 
     private void Update()
     {
+        // check if forklift has reached destination
         if (target != null && Vector3.Distance(transform.position, target.position) < StopDistance && navMeshAgent.enabled)
         {
             CancelMovement();
@@ -73,6 +75,13 @@ public class ForkliftMover : MonoBehaviour
     // checks if finished loading/unloading boxes and sets the new task accordingly
     private void SetCarryingTask()
     {
+        /* states:
+         needs to pickup, and can still pickup
+         needs to pickup, and cannot pickup
+         needs to unload and can still unload
+         needs to unload and cannnot unload*/
+        if (isPickUpBoxesTask && !myCarrier.CheckCanReceiveBoxes() && FuelSlider.value != 0)
+        
         if (target == null && !myCarrier.CheckCanReceiveBoxes() && FuelSlider.value != 0)
         {
             isPickUpBoxesTask = false;
@@ -155,6 +164,7 @@ public class ForkliftMover : MonoBehaviour
         
         rb.constraints = RigidbodyConstraints.FreezePosition;
     }
+    
     public void FuelUpgrade(int amount)
     {
         FuelSlider.maxValue = amount;
