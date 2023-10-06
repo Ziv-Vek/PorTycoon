@@ -70,7 +70,7 @@ public class UIManager : MonoBehaviour
         playerMover.ToggleMovement(false);
         playerMover.HideJoystick();
         CollectionCanvas.SetActive(true);
-        CollectionCanvas.GetComponent<CollectionMenu>().SetInCollectionPanel();
+        CollectionCanvas.GetComponent<CollectionMenu>().SetInCollectionList(CollectionCanvas.GetComponent<CollectionMenu>().MainCollection_List , GameManager.Instance.currentLevel);
     }
 
     public static void ShowWinPanel()

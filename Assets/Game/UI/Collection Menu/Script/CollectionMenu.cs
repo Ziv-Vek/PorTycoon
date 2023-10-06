@@ -7,12 +7,20 @@ using TMPro;
 public class CollectionMenu : MonoBehaviour
 {
     [SerializeField] GameObject CollectionLine;
-    GameObject CollectionUI_Holder;
-    [SerializeField] GameObject Collections_Holder;
+    //the collection in the main page
+    [SerializeField] public GameObject MainCollection_List;
+    //the collections list in the collections page
+    [SerializeField] public GameObject CollectionS_List;
+    //collection list prefab
+    [SerializeField] GameObject Collection_List;
+    [SerializeField] GameObject NameCollectionText;
     public GameObject Item;
     [SerializeField] private TextMeshProUGUI stars;
-    GameConfig gameConfig;
     [SerializeField] ScratchBoard scratch;
+
+    public GameObject MainPanel;
+    public GameObject AllCollectionsPanel;
+    GameObject CollectionUI_Holder;
 
 
     private void Update()
@@ -33,38 +41,52 @@ public class CollectionMenu : MonoBehaviour
 
         playerMover.ToggleMovement(true);
         playerMover.ShowJoystick();
-        foreach (Transform child in Collections_Holder.transform)
-        {
-            Destroy(child.gameObject);
-        }
+
+        MainPanel.SetActive(true);
+        AllCollectionsPanel.SetActive(false);
+
+        transform.Find("All Collections Button").GetComponent<Button>().interactable = true;
+        transform.Find("Current Collection Button").GetComponent<Button>().interactable = false;
 
         gameObject.SetActive(false);
     }
 
-    public void SetInCollectionPanel()
+    public void SetInCollectionList(GameObject CollectionList , int level)
     {
-        foreach (Transform child in Collections_Holder.transform)
+        foreach (Transform child in CollectionList.transform)
         {
             Destroy(child.gameObject);
         }
 
         //Adding all of the collection Items to UI "list" in the Collection canvas
-        for (int i = 0; i < ItemsManager.Instance.GetAllLevelItems(1).Count; i++)
+        for (int i = 0; i < ItemsManager.Instance.GetAllLevelItems(level).Count; i++)
         {
-            if (Collections_Holder.transform.childCount == 0 || i % 3 == 0)
+            if (CollectionList.transform.childCount == 0 || i % 3 == 0)
             {
-                CollectionUI_Holder = Instantiate(CollectionLine, Collections_Holder.transform.position,
-                    Quaternion.identity, Collections_Holder.transform);
+                CollectionUI_Holder = Instantiate(CollectionLine, CollectionList.transform.position,
+                    CollectionList.transform.rotation, CollectionList.transform);
             }
 
-            GameObject newItem = Instantiate(Item, CollectionUI_Holder.transform.position, Quaternion.identity,
+            GameObject newItem = Instantiate(Item, CollectionUI_Holder.transform.position, CollectionUI_Holder.transform.rotation,
                 CollectionUI_Holder.transform);
             newItem.AddComponent<Image>();
-            if (!ItemsManager.Instance.UnlockedItems.ContainsKey(ItemsManager.Instance.GetAllLevelItems(1)[i].id))
+            if (!ItemsManager.Instance.UnlockedItems.ContainsKey(ItemsManager.Instance.GetAllLevelItems(level)[i].id))
                 newItem.GetComponent<Image>().color = new Color(0, 0, 0);
             newItem.AddComponent<ScratchItemImage>()
-                .ChangeImage(ItemsManager.Instance.GetAllLevelItems(1)[i].imagePath);
-            newItem.name = string.Format("Item {0} ({1})", i, ItemsManager.Instance.GetAllLevelItems(1)[i].id);
+                .ChangeImage(ItemsManager.Instance.GetAllLevelItems(level)[i].imagePath);
+            newItem.name = string.Format("Item {0} ({1})", i, ItemsManager.Instance.GetAllLevelItems(level)[i].id);
+        }
+    }
+    public void SetAllCollectionsList()
+    {
+        foreach (Transform child in CollectionS_List.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            Instantiate(NameCollectionText, CollectionS_List.transform.position, CollectionS_List.transform.rotation, CollectionS_List.transform).GetComponent<TextMeshProUGUI>().text = "Collection:  " + i;
+            SetInCollectionList(Instantiate(Collection_List, CollectionS_List.transform.position, CollectionS_List.transform.rotation, CollectionS_List.transform),1);
         }
     }
 
@@ -86,5 +108,21 @@ public class CollectionMenu : MonoBehaviour
             if (boxProduct.Price > GameManager.Instance.stars)
                 Debug.Log("dont have enough money to buy: " + Button.transform.parent.name);
         }
+    }
+    public void OpenAllCollectionsPanel(Button button)
+    {
+        MainPanel.SetActive(false);
+        button.interactable = false;
+        transform.Find("Current Collection Button").GetComponent<Button>().interactable = true;
+        AllCollectionsPanel.SetActive(true);
+        SetAllCollectionsList();
+    } 
+    public void OpenMainPanel(Button button)
+    {
+        MainPanel.SetActive(true);
+        button.interactable = false;
+        transform.Find("All Collections Button").GetComponent<Button>().interactable = true;
+        AllCollectionsPanel.SetActive(false);
+        SetInCollectionList(MainCollection_List,GameManager.Instance.currentLevel);
     }
 }
