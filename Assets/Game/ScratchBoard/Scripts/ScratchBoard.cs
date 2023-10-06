@@ -36,14 +36,15 @@ public class ScratchBoard : MonoBehaviour
 
     private void Close()
     {
-        playerMover.ToggleMovement(true);
-        playerMover.ShowJoystick();
         gameObject.SetActive(false);
-
-        if (!CurrentBox.isPurchasedBox)
+        if (CurrentBox.isPurchasedBox)
         {
-            tableCarrier.SetPlayer(playerCarrier);
+            UIManager.Instance.OpenCollectionCanvas();
+            return;
         }
+
+        playerMover.ShowJoystick();
+        tableCarrier.SetPlayer(playerCarrier);
     }
 
     public void Open(PortBox box)
@@ -71,6 +72,7 @@ public class ScratchBoard : MonoBehaviour
         {
             tableCarrier.RemoveBox(CurrentBox);
         }
+
 
         ItemsManager.Instance.UnlockItem(CurrentItem);
 
