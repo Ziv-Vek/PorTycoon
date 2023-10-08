@@ -102,6 +102,7 @@ public class CollectionMenu : MonoBehaviour
             newBox.isPurchasedBox = true;
             gameObject.transform.SetAsLastSibling();
             scratch.Open(newBox);
+            gameObject.SetActive(false);
         }
         else
         {
