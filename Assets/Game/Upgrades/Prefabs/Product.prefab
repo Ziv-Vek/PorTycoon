@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 129.9, y: 118.1}
+  m_AnchoredPosition: {x: 140.59999, y: 118.1}
   m_SizeDelta: {x: 219.8939, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5668865233096545306
@@ -167,11 +167,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5668865234785727442}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 171.3, y: -101}
+  m_AnchoredPosition: {x: 182, y: -101}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5668865233486317746
@@ -306,8 +306,8 @@ RectTransform:
   - {fileID: 5668865233096545304}
   - {fileID: 606586865850922637}
   - {fileID: 7387354179791822808}
-  - {fileID: 5668865233486317744}
   - {fileID: 1055654589558559080}
+  - {fileID: 5668865233486317744}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -398,7 +398,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5668865234785727442}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -538,7 +538,7 @@ PrefabInstance:
     - target: {fileID: 1713491972524816935, guid: 064a231a63e78a1419989fe67593a086,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 19.299992
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 1713491972524816935, guid: 064a231a63e78a1419989fe67593a086,
         type: 3}
@@ -683,7 +683,7 @@ PrefabInstance:
     - target: {fileID: 8606513036887435238, guid: 6f0316ffedaf42d4db2c4086f693be82,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 245
+      value: 255.69998
       objectReference: {fileID: 0}
     - target: {fileID: 8606513036887435238, guid: 6f0316ffedaf42d4db2c4086f693be82,
         type: 3}
