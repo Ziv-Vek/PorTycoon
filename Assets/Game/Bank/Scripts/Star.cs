@@ -27,7 +27,8 @@ public class Star : MonoBehaviour
             float z = targetPosition.position.z + Mathf.Sin(angle) * radius;
             transform.position = new Vector3(x, transform.position.y, z);
             radius -= 4f * Time.deltaTime;
-            transform.localScale -= new Vector3(0.5f, 0.5f, 0.5f) * Time.deltaTime;
+            if(transform.localScale.x > 0)
+            transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f) * Time.deltaTime;
 
             if (radius <= 1f)
             {

@@ -28,8 +28,11 @@ public class ForkliftMover : MonoBehaviour
     [SerializeField] float backwardMovementSpeed = 5f;
     [SerializeField] private float backwardMovementDistance = 20f;
 
+    GameConfig gameConfig;
+
     private void Awake()
-    {
+    {      
+        gameConfig = ConfigManager.Instance.Config;
         myCarrier = GetComponent<ForkliftCarrier>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
@@ -53,7 +56,7 @@ public class ForkliftMover : MonoBehaviour
 
         MoveToTarget();
         NoFuelText.SetActive(false);
-      
+
     }
 
     private void Update()
@@ -68,6 +71,7 @@ public class ForkliftMover : MonoBehaviour
         if (Vector3.Distance(forkliftArtTrans.position, player.position) < wakingDistance && FuelSlider.value <= 0)
         {
             FuelSlider.value = FuelSlider.maxValue;
+            GetComponent<NavMeshAgent>().speed = gameConfig.levels[0].upgrades["forklift_speed"].levels[GameManager.Instance.forklifSpeedLevel - 1];
             NoFuelText.SetActive(false);
         }
     }
@@ -149,7 +153,10 @@ public class ForkliftMover : MonoBehaviour
         {
             FuelSlider.value -= 10;
             if (FuelSlider.value == 0)
+            {
+                GetComponent<NavMeshAgent>().speed = 0;
                 NoFuelText.SetActive(true);
+            }
         }
         LastTarget = target;
         navMeshAgent.isStopped = false;
@@ -169,6 +176,7 @@ public class ForkliftMover : MonoBehaviour
     {
         FuelSlider.maxValue = amount;
         FuelSlider.value = FuelSlider.maxValue;
+        GetComponent<NavMeshAgent>().speed = gameConfig.levels[0].upgrades["forklift_speed"].levels[GameManager.Instance.forklifSpeedLevel - 1];
         NoFuelText.SetActive(false);
     }
     

@@ -41,7 +41,7 @@ public class Product : MonoBehaviour
         if (gameObject.name == "forklift_fuel_tank")
             Level = GameManager.Instance.forkliftFuelTankLevel;
 
-        transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Level: " + Level;
+        transform.Find("Level (Text)").GetComponent<TextMeshProUGUI>().text = "Level: " + Level;
         if ((Level == 4 && (gameObject.name == "ship_box_quantity" || gameObject.name == "forklift_box_quantity")) || Level == 5)
         {
            transform.GetChild(1).gameObject.SetActive(false);
