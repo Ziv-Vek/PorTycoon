@@ -21,8 +21,8 @@ public class ForkliftMover : MonoBehaviour
     private Rigidbody rb;
     [SerializeField] public Slider FuelSlider;
     [SerializeField] GameObject NoFuelText;
-    private Transform target;
-    private Transform LastTarget;
+    [SerializeField] private Transform target;
+    [SerializeField] private Transform LastTarget;
     private Transform player;
     private Transform forkliftArtTrans;
     [SerializeField] float backwardMovementSpeed = 5f;
@@ -114,7 +114,7 @@ public class ForkliftMover : MonoBehaviour
             target = conveyorBelt; 
         }
     
-        
+        if(LastTarget != target)
         yield return StartCoroutine(MoveBackwards());
     }
     

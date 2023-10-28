@@ -3,6 +3,7 @@ using UnityEngine.Serialization;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using TMPro;
 
 public class BoxesPile : MonoBehaviour
 {
@@ -15,11 +16,14 @@ public class BoxesPile : MonoBehaviour
     [SerializeField] private Vector3 horizontalStep;
     [SerializeField] private Vector3 verticalStep;
     [SerializeField] private Vector3 boxesPositionOrigin;
+
+    [SerializeField] int LimitBoxesThatShown;
     [SerializeField] private Transform pile;
+    [SerializeField] TextMeshPro PlusText;
 
     void Start()
     {
-        place = gameObject.transform.position;
+        place = pile.transform.localPosition;
         plusY = 0;
     }
 
@@ -27,16 +31,22 @@ public class BoxesPile : MonoBehaviour
     {
         boxes.Add(box);
         box.transform.SetParent(pile);
+        var lastBoxPos = boxes[boxes.Count - 1].transform.position;
+        // box.transform.localPosition = lastBoxPos + (boxes.Count % amountForNewPile == 0 ? verticalStep : horizontalStep);
+        box.transform.localPosition = new Vector3(0, plusY, 0);
+        box.transform.rotation = box.transform.parent.rotation;
+        plusY += 5;
 
-        if (boxes.Count > 0)
+        if (boxes.Count > LimitBoxesThatShown)
         {
-            var lastBoxPos = boxes[boxes.Count - 1].transform.position;
-            box.transform.localPosition = lastBoxPos + (boxes.Count % amountForNewPile == 0 ? verticalStep : horizontalStep);
+            if (!PlusText.IsActive())
+            {
+                PlusText.gameObject.SetActive(true);
+            }
+            PlusText.text = "+" + (boxes.Count - LimitBoxesThatShown);
+            box.transform.GetChild(0).gameObject.SetActive(false);
         }
-        else
-        {
-            box.transform.localPosition = boxesPositionOrigin;
-        }
+  
     }
 
     public PortBox TakeBoxFromPile()
@@ -47,6 +57,13 @@ public class BoxesPile : MonoBehaviour
         {
             var box = boxes[boxesCount - 1];
             boxes.RemoveAt(boxesCount - 1);
+            plusY -= 5;
+            if (boxes.Count <= LimitBoxesThatShown)
+            {
+                if (PlusText.IsActive())
+                    PlusText.gameObject.SetActive(false);
+                box.transform.GetChild(0).gameObject.SetActive(true);
+            }
 
             return box;
         }
