@@ -106,7 +106,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &9004362404989836592
 Transform:
@@ -240,6 +240,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ActionRect
+      objectReference: {fileID: 0}
+    - target: {fileID: 7092861069618060707, guid: 16bc85b820cacad4d9fdddef1c800238,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -35.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 7092861069618060707, guid: 16bc85b820cacad4d9fdddef1c800238,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 7092861069618060707, guid: 16bc85b820cacad4d9fdddef1c800238,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.81404674
+      objectReference: {fileID: 0}
+    - target: {fileID: 7092861069618060707, guid: 16bc85b820cacad4d9fdddef1c800238,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.0000000372529
+      objectReference: {fileID: 0}
+    - target: {fileID: 7092861069618060707, guid: 16bc85b820cacad4d9fdddef1c800238,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.000000029802319
+      objectReference: {fileID: 0}
+    - target: {fileID: 7092861069618060707, guid: 16bc85b820cacad4d9fdddef1c800238,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.58079946
+      objectReference: {fileID: 0}
+    - target: {fileID: 7092861069618060707, guid: 16bc85b820cacad4d9fdddef1c800238,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7092861069618060707, guid: 16bc85b820cacad4d9fdddef1c800238,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -71.014
       objectReference: {fileID: 0}
     - target: {fileID: 7347799827980905388, guid: 16bc85b820cacad4d9fdddef1c800238,
         type: 3}
