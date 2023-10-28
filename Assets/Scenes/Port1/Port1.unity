@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 879158804}
-  m_IndirectSpecularColor: {r: 0.18158862, g: 0.22723603, b: 0.30741152, a: 1}
+  m_IndirectSpecularColor: {r: 0.18158868, g: 0.2272364, b: 0.30741176, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2681,7 +2681,7 @@ PrefabInstance:
     - target: {fileID: 816777099767172918, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
       propertyPath: m_Center.x
-      value: 21.76
+      value: 36.06
       objectReference: {fileID: 0}
     - target: {fileID: 816777099767172918, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
@@ -2691,7 +2691,7 @@ PrefabInstance:
     - target: {fileID: 816777099767172918, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
       propertyPath: m_Center.z
-      value: -5.81
+      value: -9.3
       objectReference: {fileID: 0}
     - target: {fileID: 919132148457480930, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
@@ -6924,7 +6924,9 @@ MonoBehaviour:
   horizontalStep: {x: 0, y: 1, z: 0}
   verticalStep: {x: -1, y: 0, z: 0}
   boxesPositionOrigin: {x: 0, y: 0, z: 0}
+  LimitBoxesThatShown: 0
   pile: {fileID: 2025944882}
+  PlusText: {fileID: 0}
 --- !u!1 &705160725 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3547756286926874100, guid: a3f7b9dfde1d4324bbd0b677507bc787,
