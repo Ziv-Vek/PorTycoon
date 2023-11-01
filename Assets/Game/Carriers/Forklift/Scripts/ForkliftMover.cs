@@ -77,7 +77,7 @@ public class ForkliftMover : MonoBehaviour
     }
 
     // checks if finished loading/unloading boxes and sets the new task accordingly
-    private void SetCarryingTask()
+    public void SetCarryingTask()
     {
         /* states:
          needs to pickup, and can still pickup

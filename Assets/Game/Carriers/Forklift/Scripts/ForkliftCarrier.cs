@@ -23,5 +23,6 @@ public class ForkliftCarrier : Carrier
         boxesPlaces = ArrayPlaces;
         maxBoxesCapacity++;
         AddBox();
+        gameObject.GetComponent<ForkliftMover>().SetCarryingTask();
     }
 }
