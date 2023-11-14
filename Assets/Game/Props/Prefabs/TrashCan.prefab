@@ -90,6 +90,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9acdc635fb506f645a6fe41979653e17,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4a9e8247dfa73fa4cbde2394f03ac947, type: 2}
     - target: {fileID: 719111807260713372, guid: 9acdc635fb506f645a6fe41979653e17,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -115,6 +120,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrashCan_v1
       objectReference: {fileID: 0}
+    - target: {fileID: 6687549751146477662, guid: 9acdc635fb506f645a6fe41979653e17,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6090675fddfdf8a428a740e17f1c2ecb, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
