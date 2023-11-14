@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
         forkliftFuelTankLevel = 1;
         scratchSizeScaleLevel = 1;
         ForkliftIsEnabled = false;
-        HandyManNumber = 1;
+        HandyManNumber = 0;
         ShipNumber = 1;
     }
 }
