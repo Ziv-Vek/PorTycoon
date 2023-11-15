@@ -3,7 +3,7 @@ using Image = UnityEngine.UI.Image;
 
 public class ScratchItemImage : MonoBehaviour
 {
-    private const string IMAGE_PATH = "items/";
+    private const string IMAGE_PATH = "items/New Sprites/";
     
     public void ChangeImage(string filename)
     {

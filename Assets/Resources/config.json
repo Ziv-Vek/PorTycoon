@@ -1,44 +1,44 @@
 {
   "items": [
     {
-      "id": "bear",
-      "name": "Bear",
-      "imagePath": "bear"
+      "id": "Bunny",
+      "name": "Bunny",
+      "imagePath": "Bunny"
     },
     {
-      "id": "giraffe",
-      "name": "Giraffe",
-      "imagePath": "giraffe"
+      "id": "TeddyBearToy",
+      "name": "TeddyBearToy",
+      "imagePath": "TeddyBearToy_Render_NoBG"
     },
     {
-      "id": "lion",
-      "name": "Lion",
-      "imagePath": "lion"
+      "id": "Rocket",
+      "name": "Rocket",
+      "imagePath": "Rocket"
     },
     {
-      "id": "dog",
-      "name": "Dog",
-      "imagePath": "dog"
+      "id": "LegoMan",
+      "name": "LegoMan",
+      "imagePath": "LegoMan"
     },
     {
-      "id": "penguin",
-      "name": "Penguin",
-      "imagePath": "penguin"
-    },
-    {
-      "id": "car",
+      "id": "Car",
       "name": "Car",
-      "imagePath": "car"
+      "imagePath": "Car_Toy_Render"
     },
     {
-      "id": "dragon",
-      "name": "Dragon",
-      "imagePath": "dragon"
+      "id": "suprtheroToy",
+      "name": "suprtheroToy",
+      "imagePath": "suprtheroToy_Render"
     },
     {
-      "id": "cow",
-      "name": "Cow",
-      "imagePath": "cow"
+      "id": "DragonToy",
+      "name": "DragonToy",
+      "imagePath": "DragonToy_Render"
+    },
+    {
+      "id": "Robot",
+      "name": "Robot",
+      "imagePath": "Robot"
     }
   ],
   "levels": [
@@ -49,35 +49,35 @@
           "probability": 100,
           "items": [
             {
-              "id": "bear",
+              "id": "Bunny",
               "probability": 16
             },
             {
-              "id": "giraffe",
+              "id": "TeddyBearToy",
               "probability": 16
             },
             {
-              "id": "lion",
+              "id": "Rocket",
               "probability": 16
             },
             {
-              "id": "dog",
+              "id": "LegoMan",
               "probability": 12
             },
             {
-              "id": "penguin",
+              "id": "Car",
               "probability": 12
             },
             {
-              "id": "car",
+              "id": "suprtheroToy",
               "probability": 12
             },
             {
-              "id": "dragon",
+              "id": "DragonToy",
               "probability": 8
             },
             {
-              "id": "cow",
+              "id": "Robot",
               "probability": 8
             }
           ]
