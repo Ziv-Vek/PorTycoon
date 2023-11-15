@@ -12,6 +12,7 @@ public class MoneyPile : MonoBehaviour
     public Vector3 place;
     [SerializeField] int MoneyPerBill;
     public int moneyLimit;
+    public float TimePerStash = 0.15f;
     void Start()
     {
         place = gameObject.transform.position;
@@ -29,8 +30,7 @@ public class MoneyPile : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             if (moneyAmount != 0)
-               // TakingOneByOne();
-            InvokeRepeating("TakingOneByOne", 0, 0.1f);
+               InvokeRepeating("TakingOneByOne", 0, TimePerStash);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -38,6 +38,7 @@ public class MoneyPile : MonoBehaviour
         if (moneyAmount != 0 && other.gameObject.tag == "Player")
             CancelInvoke();
         gameObject.GetComponent<AudioSource>().pitch = 1.1f;
+        TimePerStash = 0.16f;
     }
     void TakingOneByOne()
     {
@@ -68,7 +69,12 @@ public class MoneyPile : MonoBehaviour
         }
         gameObject.GetComponent<AudioSource>().Play();
         gameObject.GetComponent<AudioSource>().pitch += 0.005f;
-
+        if (TimePerStash - (0.2f * Time.deltaTime) > 0.06f)
+        {
+            CancelInvoke("TakingOneByOne");
+            TimePerStash -= 0.185f * Time.deltaTime;
+        }
+        Invoke("TakingOneByOne", TimePerStash);
     }
     public void AddMoney(int amount)
     {

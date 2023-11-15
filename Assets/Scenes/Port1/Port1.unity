@@ -3679,6 +3679,11 @@ PrefabInstance:
       propertyPath: moneyLimit
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 5652694545996247128, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+        type: 3}
+      propertyPath: TimePerStash
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5652694547842156516, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3688,6 +3693,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -2.7300568
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652694547842156519, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+        type: 3}
+      propertyPath: TimePerStash
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5751025948442203936, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
