@@ -119,6 +119,7 @@ MonoBehaviour:
   place: {x: 0, y: 0, z: 0}
   MoneyPerBill: 0
   moneyLimit: 50
+  TimePerStash: 0.14
 --- !u!82 &4352970831777635203
 AudioSource:
   m_ObjectHideFlags: 0

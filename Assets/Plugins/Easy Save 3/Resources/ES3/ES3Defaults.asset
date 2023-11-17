@@ -33,9 +33,12 @@ MonoBehaviour:
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
     - Autodesk.Fbx
+    - CFXRDemo
+    - CFXRRuntime
     - Cinemachine
     - FbxBuildTestAssets
     - GrabbitAssembly
+    - KinoBloom.Runtime
     - Lofelt.NiceVibrations
     - Lofelt.NiceVibrations.Demo
     - MoreMountains.Feedbacks

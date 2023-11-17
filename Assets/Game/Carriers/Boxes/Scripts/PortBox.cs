@@ -7,7 +7,7 @@ public class PortBox : MonoBehaviour, IItemContainer
     public string Type { get; private set; }
     public bool isPurchasedBox = false;
 
-    private void Awake()
+    public void Awake()
     {
         Type = ConfigManager.Instance.GetBoxTypeRandomly(null);
     }
