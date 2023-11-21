@@ -26,8 +26,13 @@ public class CollectionMenu : MonoBehaviour
     private void Update()
     {
         stars.text = GameManager.Instance.stars.ToString();
+        if (stars.text.Length > 7)
+            stars.text = stars.text.Substring(0, 6) + "..$";
     }
-
+    public void RunCloseAnimation()
+    {
+        transform.Find("UI Holder").GetComponent<Animator>().Play("Close UI", 0);
+    }
     public void Exit()
     {
         PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
@@ -45,8 +50,8 @@ public class CollectionMenu : MonoBehaviour
         MainPanel.SetActive(true);
         AllCollectionsPanel.SetActive(false);
 
-        transform.Find("All Collections Button").GetComponent<Button>().interactable = true;
-        transform.Find("Current Collection Button").GetComponent<Button>().interactable = false;
+        transform.Find("UI Holder").Find("All Collections Button").GetComponent<Button>().interactable = true;
+        transform.Find("UI Holder").Find("Current Collection Button").GetComponent<Button>().interactable = false;
 
         gameObject.SetActive(false);
     }
@@ -114,7 +119,7 @@ public class CollectionMenu : MonoBehaviour
     {
         MainPanel.SetActive(false);
         button.interactable = false;
-        transform.Find("Current Collection Button").GetComponent<Button>().interactable = true;
+        transform.Find("UI Holder").Find("Current Collection Button").GetComponent<Button>().interactable = true;
         AllCollectionsPanel.SetActive(true);
         SetAllCollectionsList();
     } 
@@ -122,7 +127,7 @@ public class CollectionMenu : MonoBehaviour
     {
         MainPanel.SetActive(true);
         button.interactable = false;
-        transform.Find("All Collections Button").GetComponent<Button>().interactable = true;
+        transform.Find("UI Holder").Find("All Collections Button").GetComponent<Button>().interactable = true;
         AllCollectionsPanel.SetActive(false);
         SetInCollectionList(MainCollection_List,GameManager.Instance.currentLevel);
     }

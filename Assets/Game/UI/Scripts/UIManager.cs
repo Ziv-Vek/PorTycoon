@@ -44,11 +44,15 @@ public class UIManager : MonoBehaviour
     public void UpdateMoneyText(int money)
     {
         moneyText.text = money.ToString();
+        if (moneyText.text.Length > 8)
+            moneyText.text = moneyText.text.Substring(0, 7) + "..";
     }
 
     public void UpdateStarsText(int stars)
     {
         starsText.text = stars.ToString();
+        if (starsText.text.Length > 7)
+            starsText.text = moneyText.text.Substring(0, 6) + "..";
     }
     public void UpdateCollectionState(int totalItems, int unlockedItems)
     {
@@ -71,6 +75,7 @@ public class UIManager : MonoBehaviour
         playerMover.HideJoystick();
         CollectionCanvas.SetActive(true);
         CollectionCanvas.GetComponent<CollectionMenu>().SetInCollectionList(CollectionCanvas.GetComponent<CollectionMenu>().MainCollection_List , GameManager.Instance.currentLevel);
+        CollectionCanvas.transform.Find("UI Holder").GetComponent<Animator>().Play("Open UI", 0);
     }
 
     public static void ShowWinPanel()

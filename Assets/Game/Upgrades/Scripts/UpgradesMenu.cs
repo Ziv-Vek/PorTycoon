@@ -18,17 +18,23 @@ public class UpgradesMenu : MonoBehaviour
     } 
     private void Update()
     {
-        Money.text = GameManager.Instance.money + " $";
+        Money.text = GameManager.Instance.money + "$";
+        if (Money.text.Length > 8)
+        Money.text = Money.text.Substring(0, 7) + "..$";
     }
     private void OnEnable()
     {
         if (GameManager.Instance.HandyManNumber < 1 && gameObject.name == "HR Upgrades Canvas")
-            transform.Find("1 HandyMan Button").gameObject.GetComponent<Button>().interactable = false;   
+            transform.Find("UI Holder").Find("1 HandyMan Button").gameObject.GetComponent<Button>().interactable = false;   
         else if (gameObject.name == "HR Upgrades Canvas")
-            transform.Find("1 HandyMan Button").gameObject.GetComponent<Button>().interactable = true;
+            transform.Find("UI Holder").Find("1 HandyMan Button").gameObject.GetComponent<Button>().interactable = true;
 
         if (gameObject.name == "logistic Upgrades Canvas")
-            transform.Find("2 ForkLift Button").gameObject.GetComponent<Button>().interactable = GameManager.Instance.ForkliftIsEnabled;
+            transform.Find("UI Holder").Find("2 ForkLift Button").gameObject.GetComponent<Button>().interactable = GameManager.Instance.ForkliftIsEnabled;
+    }
+    public void RunCloseAnimation()
+    {
+        transform.Find("UI Holder").GetComponent<Animator>().Play("Close UI", 0);
     }
     public void Exit()
     {

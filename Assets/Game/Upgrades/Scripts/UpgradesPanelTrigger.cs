@@ -12,5 +12,6 @@ public class UpgradesPanelTrigger : MonoBehaviour
         try { playerMover = GameObject.Find("Player_New").GetComponent<PlayerMover>(); } catch { }  
         playerMover.HideJoystick();
         playerMover.ToggleMovement(false);
+        UpgradesPanel.transform.Find("UI Holder").GetComponent<Animator>().Play("Open UI", 0);
     }
 }

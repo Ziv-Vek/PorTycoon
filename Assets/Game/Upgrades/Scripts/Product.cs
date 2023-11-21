@@ -46,6 +46,8 @@ public class Product : MonoBehaviour
         {
            transform.GetChild(1).gameObject.SetActive(false);
            transform.GetChild(2).gameObject.SetActive(false);
+            transform.Find("Level (Text)").GetComponent<TextMeshProUGUI>().text = "MAX";
+            transform.Find("Level (Text)").GetComponent<TextMeshProUGUI>().color = Color.red;
         } 
         //else if(Level == 5)
         //{

@@ -72,7 +72,7 @@ public class MoneyPile : MonoBehaviour
         if (TimePerStash - (0.2f * Time.deltaTime) > 0.06f)
         {
             CancelInvoke("TakingOneByOne");
-            TimePerStash -= 0.185f * Time.deltaTime;
+            TimePerStash -= 0.2f * Time.deltaTime;
         }
         Invoke("TakingOneByOne", TimePerStash);
     }

@@ -153,7 +153,7 @@ PrefabInstance:
       objectReference: {fileID: 5610458207041712708}
     - target: {fileID: 2027906368, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.17
+      value: -4.2
       objectReference: {fileID: 0}
     - target: {fileID: 2027906368, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -161,7 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2027906368, guid: b1383fb362b882b4c897c6aa92fc89aa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.27
+      value: 5.02
       objectReference: {fileID: 0}
     - target: {fileID: 4783631021325034022, guid: b1383fb362b882b4c897c6aa92fc89aa,
         type: 3}
@@ -227,6 +227,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cargo ship Var1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468649562944502733, guid: b1383fb362b882b4c897c6aa92fc89aa,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5468649562944502733, guid: b1383fb362b882b4c897c6aa92fc89aa,
         type: 3}
