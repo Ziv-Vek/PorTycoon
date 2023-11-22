@@ -62,6 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Interacteble: 0
   SplashParticals: {fileID: 5497267197741656167}
+  opportunity: 1
 --- !u!82 &966309578081047664
 AudioSource:
   m_ObjectHideFlags: 0

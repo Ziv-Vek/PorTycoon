@@ -74,10 +74,10 @@ public class CollectionMenu : MonoBehaviour
 
             GameObject newItem = Instantiate(Item, CollectionUI_Holder.transform.position, CollectionUI_Holder.transform.rotation,
                 CollectionUI_Holder.transform);
-            newItem.AddComponent<Image>();
+            newItem.transform.GetChild(0).gameObject.AddComponent<Image>();
             if (!ItemsManager.Instance.UnlockedItems.ContainsKey(ItemsManager.Instance.GetAllLevelItems(level)[i].id))
-                newItem.GetComponent<Image>().color = new Color(0, 0, 0);
-            newItem.AddComponent<ScratchItemImage>()
+                newItem.transform.GetChild(0).gameObject.GetComponent<Image>().color = new Color(0, 0, 0);
+            newItem.transform.GetChild(0).gameObject.AddComponent<ScratchItemImage>()
                 .ChangeImage(ItemsManager.Instance.GetAllLevelItems(level)[i].imagePath);
             newItem.name = string.Format("Item {0} ({1})", i, ItemsManager.Instance.GetAllLevelItems(level)[i].id);
         }

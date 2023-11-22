@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3040624584349249185}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Toy_Phase_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23,25 +23,24 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8178368996763535666}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4387619997220000749}
+  - {fileID: 4213755733467362858}
   - {fileID: 4439822154420842251}
   - {fileID: 1332972572991104394}
-  - {fileID: 4213755733467362858}
   - {fileID: 5703052943674620719}
+  - {fileID: 4387619997220000749}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4129232950924044898
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 3
     m_TransformParent: {fileID: 3040624584349249185}
     m_Modifications:
     - target: {fileID: 231865005039688776, guid: 59e5167b8b7289047873c85ea7d58448,
@@ -100,9 +99,6 @@ PrefabInstance:
       value: Rocket_Toy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59e5167b8b7289047873c85ea7d58448, type: 3}
 --- !u!4 &4213755733467362858 stripped
 Transform:
@@ -115,9 +111,13 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 3
     m_TransformParent: {fileID: 3040624584349249185}
     m_Modifications:
+    - target: {fileID: 8015647326626416055, guid: 86f2102a3ad896449a82347c9c185bac,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8015647326626416055, guid: 86f2102a3ad896449a82347c9c185bac,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -174,9 +174,6 @@ PrefabInstance:
       value: LegoMan_Toy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86f2102a3ad896449a82347c9c185bac, type: 3}
 --- !u!4 &4439822154420842251 stripped
 Transform:
@@ -189,13 +186,17 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 3
     m_TransformParent: {fileID: 3040624584349249185}
     m_Modifications:
     - target: {fileID: 5649831627524282160, guid: 09df26111c18e754fbaab8119e06332b,
         type: 3}
       propertyPath: m_Name
       value: Robot_Toy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841848656600796695, guid: 09df26111c18e754fbaab8119e06332b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8841848656600796695, guid: 09df26111c18e754fbaab8119e06332b,
         type: 3}
@@ -248,9 +249,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09df26111c18e754fbaab8119e06332b, type: 3}
 --- !u!4 &1332972572991104394 stripped
 Transform:
@@ -263,13 +261,17 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 3
     m_TransformParent: {fileID: 3040624584349249185}
     m_Modifications:
     - target: {fileID: 2637688961304855172, guid: 85bec5cadfc49e548b6ae5efd1579ba6,
         type: 3}
       propertyPath: m_Name
       value: Superhero_Toy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384847399589375131, guid: 85bec5cadfc49e548b6ae5efd1579ba6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4384847399589375131, guid: 85bec5cadfc49e548b6ae5efd1579ba6,
         type: 3}
@@ -322,9 +324,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85bec5cadfc49e548b6ae5efd1579ba6, type: 3}
 --- !u!4 &5703052943674620719 stripped
 Transform:
@@ -337,9 +336,13 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 3
     m_TransformParent: {fileID: 3040624584349249185}
     m_Modifications:
+    - target: {fileID: 4784862320571442369, guid: 3e55c5fa35f42d849ac753f90360377a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4784862320571442369, guid: 3e55c5fa35f42d849ac753f90360377a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -396,9 +399,6 @@ PrefabInstance:
       value: Bunny_Toy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e55c5fa35f42d849ac753f90360377a, type: 3}
 --- !u!4 &4387619997220000749 stripped
 Transform:

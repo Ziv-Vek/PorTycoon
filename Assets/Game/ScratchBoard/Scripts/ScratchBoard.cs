@@ -10,7 +10,7 @@ public class ScratchBoard : MonoBehaviour
 
     [SerializeField] private PlayerMover playerMover;
     [SerializeField] private TableCarrier tableCarrier;
-    [SerializeField] private ScratchItemImage scratchItemImage;
+    [SerializeField] private ScratchItemModel scratchItemModel;
     [SerializeField] private PlayerCarrier playerCarrier;
     [SerializeField] private Button throwButton;
     [SerializeField] private MoneyPile moneyPile;
@@ -30,13 +30,14 @@ public class ScratchBoard : MonoBehaviour
     private void NextItem()
     {
         CurrentItem = ItemsManager.Instance.GetRandomItemFromBox(CurrentBox.Type, null);
-        scratchItemImage.ChangeImage(CurrentItem.imagePath);
+        scratchItemModel.ChangeModel(CurrentItem.imagePath);
         cardManager.ClearScratchCard();
     }
 
     private void Close()
     {
         gameObject.SetActive(false);
+        Destroy(scratchItemModel.transform.GetChild(0).gameObject);
         if (CurrentBox.isPurchasedBox)
         {
             UIManager.Instance.OpenCollectionCanvas();
