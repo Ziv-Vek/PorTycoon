@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public int awarenessTimeNpc = 1;
 
     public int playerSpeedLevel = 1;
-    public int playerBoxPlacesLevel;
+    public int playerBoxPlacesLevel = 1;
 
     public int forklifSpeedLevel = 1;
     public int forkliftBoxQuantityLevel = 1;

@@ -74,6 +74,9 @@ public class ScratchBoard : MonoBehaviour
             tableCarrier.RemoveBox(CurrentBox);
         }
 
+        PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
+        playerMover.ToggleMovement(true);
+        playerMover.ShowJoystick();
 
         ItemsManager.Instance.UnlockItem(CurrentItem);
 

@@ -16,7 +16,11 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 9add121d225682f478236f24ba791313
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: dfe3bdb1f74f2b24cbd1867c8829b21c
+    m_Address: Assets/Asset packs/DavePixel/PirateCoin/Materials/DarkGold.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 087e45da59c70d542a2fdb5792d27998, type: 2}
   m_SchemaSet:

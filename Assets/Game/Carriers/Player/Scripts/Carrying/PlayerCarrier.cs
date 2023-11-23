@@ -20,8 +20,8 @@ public class PlayerCarrier : Carrier, IBoxOpener
         }
         Vector3 place;
         place = transform.GetChild(transform.childCount - 1).transform.position;
-        place = new Vector3(place.x, place.y + 3, place.z);
-        GameObject newPlace = Instantiate(gameObject.transform.GetChild(1).gameObject, place, gameObject.transform.GetChild(1).rotation);
+        place = new Vector3(place.x, place.y + 5, place.z);
+        GameObject newPlace = Instantiate(gameObject.transform.GetChild(1).gameObject, place, Quaternion.Euler(0, gameObject.transform.rotation.y, 0));
         newPlace.transform.parent = gameObject.transform;
 
         newPlace.name = "CargoPlace (" + (transform.childCount - 2) + ")";

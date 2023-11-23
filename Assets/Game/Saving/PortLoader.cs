@@ -15,6 +15,7 @@ public class PortLoader : MonoBehaviour
     public GameObject ForkLiftBuyer;
     public GameObject ConveyorTable;
     public GameObject BoxTable;
+    public GameObject Player;
     private void Start()
     {
         gameConfig = ConfigManager.Instance.Config;
@@ -63,5 +64,14 @@ public class PortLoader : MonoBehaviour
             npc.GetComponent<TableNPC>().waitTime = (int)gameConfig.levels[0].upgrades["handyman_speed"].levels[GameManager.Instance.openBoxTimeNpc - 1];
             npc.GetComponent<TableNPC>().AwarenessSeconds = (int)gameConfig.levels[0].upgrades["handyman_awarness"].levels[GameManager.Instance.awarenessTimeNpc - 1];
         }
+        if (gameObject.name == "1Port")
+        {
+            Player.GetComponent<PlayerMover>().maxMovementSpeed = gameConfig.levels[0].upgrades["player_speed"].levels[GameManager.Instance.playerSpeedLevel - 1];
+            for (int i = 0; i < GameManager.Instance.playerBoxPlacesLevel - 1; i++)
+            {
+                Player.GetComponent<PlayerCarrier>().addBoxPlace();
+            }
+        }
+
     }
 }
