@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4361030391992245864}
+  - component: {fileID: 7273190402317561403}
   m_Layer: 8
   m_Name: Car_Toy_Render
   m_TagString: Untagged
@@ -16,7 +16,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4361030391992245864
+--- !u!4 &7273190402317561403
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,7 +37,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 4361030391992245864}
+    m_TransformParent: {fileID: 7273190402317561403}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 10fed3d6f7972f9449c64d865a938208,
         type: 3}
@@ -62,7 +62,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 10fed3d6f7972f9449c64d865a938208,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.17
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 10fed3d6f7972f9449c64d865a938208,
         type: 3}

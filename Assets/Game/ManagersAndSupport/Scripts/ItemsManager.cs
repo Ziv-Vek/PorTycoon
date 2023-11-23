@@ -8,6 +8,7 @@ public class ItemsManager : MonoBehaviour
 {
     private static ItemsManager _instance;
 
+    public GameObject NewItemCanvas;
     public static ItemsManager Instance { get; private set; }
 
     private GameConfig _gameConfig;
@@ -89,6 +90,13 @@ public class ItemsManager : MonoBehaviour
         item.DateUnlocked = DateTime.Now;
         UnlockedItems.Add(item.id, item);
         UIManager.Instance.UpdateUI();
+
+        // Showing the item if its new 
+        if (GameObject.Find("Fishing") == null) //Checking if the player is not fishing in this time
+        {
+            NewItemCanvas.SetActive(true);
+            NewItemCanvas.GetComponent<NewItemScreen>().AddItemToList(item);
+        }
 
         if (IsLevelCompleted(GameManager.Instance.CurrentLevel))
         {

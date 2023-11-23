@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2082283013923962318}
+  - component: {fileID: 5318943456234647672}
   m_Layer: 8
   m_Name: DragonToy_Render
   m_TagString: Untagged
@@ -16,7 +16,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2082283013923962318
+--- !u!4 &5318943456234647672
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,7 +37,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 2082283013923962318}
+    m_TransformParent: {fileID: 5318943456234647672}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b7ef04f4b192b3945be4ad01c630eab6,
         type: 3}

@@ -10,6 +10,7 @@ public class UpgradesMenu : MonoBehaviour
 {
     [SerializeField] GameObject[] Panels;
     [SerializeField] TextMeshProUGUI Money;
+    [SerializeField] GameObject NewItemCanvas;
     GameConfig gameConfig;
    
     private void Start()
@@ -44,10 +45,13 @@ public class UpgradesMenu : MonoBehaviour
                 Panels[i].SetActive(false);
         }
         Panels[0].SetActive(true);
-        PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
-        try { playerMover = GameObject.Find("Player_New").GetComponent<PlayerMover>(); } catch { }
-        playerMover.ToggleMovement(true);
-        playerMover.ShowJoystick();
+        if (!NewItemCanvas.active)
+        {
+            PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
+            try { playerMover = GameObject.Find("Player_New").GetComponent<PlayerMover>(); } catch { }
+            playerMover.ToggleMovement(true);
+            playerMover.ShowJoystick();
+        }
         gameObject.SetActive(false);  
     }
     public void PanelChoose(GameObject Button)

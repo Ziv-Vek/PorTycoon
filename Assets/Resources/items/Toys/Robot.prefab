@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8841848656600796695}
+  - component: {fileID: 7449269607827114519}
   m_Layer: 8
   m_Name: Robot
   m_TagString: Untagged
@@ -16,7 +16,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8841848656600796695
+--- !u!4 &7449269607827114519
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,7 +37,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 8841848656600796695}
+    m_TransformParent: {fileID: 7449269607827114519}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 9d88724e2d841e546800a7aa6287ab58,
         type: 3}

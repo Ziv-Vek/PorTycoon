@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4784862320571442369}
+  - component: {fileID: 1100982933456416717}
   m_Layer: 8
   m_Name: Bunny
   m_TagString: Untagged
@@ -16,7 +16,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4784862320571442369
+--- !u!4 &1100982933456416717
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,7 +37,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 4784862320571442369}
+    m_TransformParent: {fileID: 1100982933456416717}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0ffc2183a4d736e42ab2306d64cbde1a,
         type: 3}
@@ -47,7 +47,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 0ffc2183a4d736e42ab2306d64cbde1a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0ffc2183a4d736e42ab2306d64cbde1a,
         type: 3}

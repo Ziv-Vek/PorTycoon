@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5301421417901404924}
+  - component: {fileID: 7794253662019510774}
   m_Layer: 8
   m_Name: TeddyBearToy_Render_NoBG
   m_TagString: Untagged
@@ -16,7 +16,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5301421417901404924
+--- !u!4 &7794253662019510774
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,7 +37,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 5301421417901404924}
+    m_TransformParent: {fileID: 7794253662019510774}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 56fea271a491a4448b68467d833fe91e,
         type: 3}

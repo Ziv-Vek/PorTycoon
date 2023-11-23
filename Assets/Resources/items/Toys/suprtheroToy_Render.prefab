@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4384847399589375131}
+  - component: {fileID: 8159939305965602782}
   m_Layer: 8
   m_Name: suprtheroToy_Render
   m_TagString: Untagged
@@ -16,7 +16,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4384847399589375131
+--- !u!4 &8159939305965602782
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,7 +37,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 4384847399589375131}
+    m_TransformParent: {fileID: 8159939305965602782}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 792377778f2d2724885e64f492bf286b,
         type: 3}
