@@ -1,7 +1,18 @@
+using System;
 using UnityEngine;
+using System.Linq;
+
 public class PlayerCarrier : Carrier, IBoxOpener
 {
     public ScratchBoard scratchBoard; // Drag the Canvas GameObject with the script attached here in the inspector
+
+    private PlayerMover playerMover;
+
+    public override void Awake()
+    {
+        playerMover = GetComponent<PlayerMover>();
+        boxes = new PortBox[maxBoxesCapacity];
+    }
 
     public bool OpenBox(PortBox box)
     {
@@ -33,4 +44,27 @@ public class PlayerCarrier : Carrier, IBoxOpener
         maxBoxesCapacity++;
         AddBox();
     }
+    
+    public override PortBox GiveBox()
+    {
+        int index = Array.FindLastIndex(boxes, box => box != null);
+        PortBox box = boxes[index];
+        boxes[index] = null;
+        
+        if (boxes.Any()) playerMover.ToggleAnimatorHoldingBox(false);
+        
+        return box;
+    }
+    
+    public override void ReceiveBox(PortBox box)
+    {
+        int index = Array.FindIndex(boxes, i => i == null);
+        boxes[index] = box;
+        box.transform.SetParent(boxesPlaces[index]);
+        box.transform.localPosition = Vector3.zero;
+        box.transform.localRotation = gameObject.transform.rotation;
+
+        playerMover.ToggleAnimatorHoldingBox(true);
+    }
+
 }

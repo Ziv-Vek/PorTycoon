@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetData()
     {
-        money = 0;
+        money = 30;
         stars = 0;
         experience = 0;
         shipSpeedLevel = 1;

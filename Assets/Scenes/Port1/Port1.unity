@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 879158804}
-  m_IndirectSpecularColor: {r: 0.18158868, g: 0.2272364, b: 0.30741176, a: 1}
+  m_IndirectSpecularColor: {r: 0.18158898, g: 0.22723675, b: 0.3074124, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -629,7 +629,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-6732
+  m_Name: pb_Mesh-6878
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9072,7 +9072,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-6578
+  m_Name: pb_Mesh-6724
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10949,6 +10949,16 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.9923369
       objectReference: {fileID: 0}
+    - target: {fileID: 3028758277962400503, guid: 4ead8a977f0bf2a4881d34863a481089,
+        type: 3}
+      propertyPath: m_Height
+      value: 9.447446
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028758277962400503, guid: 4ead8a977f0bf2a4881d34863a481089,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 4.902928
+      objectReference: {fileID: 0}
     - target: {fileID: 4212543310846538285, guid: 4ead8a977f0bf2a4881d34863a481089,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -11093,6 +11103,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.000009256194
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942792279272011197, guid: 4ead8a977f0bf2a4881d34863a481089,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942792279272011197, guid: 4ead8a977f0bf2a4881d34863a481089,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.22
       objectReference: {fileID: 0}
     - target: {fileID: 5253157705564253108, guid: 4ead8a977f0bf2a4881d34863a481089,
         type: 3}
