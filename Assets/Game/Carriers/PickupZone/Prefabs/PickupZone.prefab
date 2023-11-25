@@ -205,6 +205,7 @@ MonoBehaviour:
   - {fileID: 3300448931283470934}
   - {fileID: 4694699992203256694}
   boxes: []
+  CargoPlacesHolder: {fileID: 0}
   actionRectZone: {fileID: 2400628047827812578}
 --- !u!65 &842401362973782816
 BoxCollider:

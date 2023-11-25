@@ -165,6 +165,7 @@ MonoBehaviour:
   productPlugin: {fileID: 0}
   productClone: {fileID: 0}
   NextBuyer: {fileID: 0}
+  TimePerStash: 0.135
 --- !u!136 &3513971044500742350
 CapsuleCollider:
   m_ObjectHideFlags: 0

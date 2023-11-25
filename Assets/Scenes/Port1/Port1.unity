@@ -476,6 +476,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 24554396}
   m_CullTransparentMesh: 1
+--- !u!4 &32759363 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6134710968508145883, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+    type: 3}
+  m_PrefabInstance: {fileID: 359135445}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &51925173 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 756192268469249181, guid: 7f5de4f2dd9bbfc48bf1b9b95b427ec8,
@@ -629,7 +635,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-6878
+  m_Name: pb_Mesh-6732
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4561,6 +4567,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 1501086962}
+    - target: {fileID: 4527426709744993452, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+        type: 3}
+      propertyPath: targetPosition
+      value: 
+      objectReference: {fileID: 1066054059}
     - target: {fileID: 4606132655459982559, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
       propertyPath: m_RootOrder
@@ -5599,7 +5610,7 @@ PrefabInstance:
     - target: {fileID: 7651072665156766675, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 3356
+      value: 3377
       objectReference: {fileID: 0}
     - target: {fileID: 7651072665293233932, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
@@ -5624,8 +5635,18 @@ PrefabInstance:
     - target: {fileID: 7651072665293233935, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 3356
+      value: 3377
       objectReference: {fileID: 0}
+    - target: {fileID: 7726280090923598935, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+        type: 3}
+      propertyPath: targetPosition
+      value: 
+      objectReference: {fileID: 367245301}
+    - target: {fileID: 7963227283677561864, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+        type: 3}
+      propertyPath: targetPosition
+      value: 
+      objectReference: {fileID: 32759363}
     - target: {fileID: 8088538077399321146, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -5695,6 +5716,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8170874857409048888, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+        type: 3}
+      propertyPath: m_Value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8170874857694778512, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
@@ -5903,6 +5929,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3f7b9dfde1d4324bbd0b677507bc787, type: 3}
+--- !u!4 &367245301 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 273750142427147938, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+    type: 3}
+  m_PrefabInstance: {fileID: 359135445}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &422735995 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5668865234785727442, guid: 8f6c2c3809dcce346acf5dd0f7db2f7f,
@@ -9072,7 +9104,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-6724
+  m_Name: pb_Mesh-6578
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10576,7 +10608,7 @@ PrefabInstance:
     - target: {fileID: 7828701595937231211, guid: 0dc0c96519593414c942af79e7b1683d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8395592650411545749, guid: 0dc0c96519593414c942af79e7b1683d,
         type: 3}
@@ -12209,6 +12241,12 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &1066054059 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8088538077399321146, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+    type: 3}
+  m_PrefabInstance: {fileID: 359135445}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1086297225 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5524702830585749881, guid: 3ee1e8a1b93ac3b4a81d1e21a951bf4b,
@@ -15961,7 +15999,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 314.71, y: -168}
+  m_AnchoredPosition: {x: 314.71002, y: -168}
   m_SizeDelta: {x: 134.35, y: 451.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1477723045
@@ -16727,7 +16765,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 275.58, y: -338}
+  m_AnchoredPosition: {x: 275.58002, y: -338}
   m_SizeDelta: {x: 134.35, y: 396.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1580620314
