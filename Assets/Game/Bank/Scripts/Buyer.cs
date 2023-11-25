@@ -17,6 +17,8 @@ public class Buyer : MonoBehaviour
     public GameObject productClone;
     public GameObject NextBuyer;
 
+    public float TimePerStash = 0.15f;
+
 
 
     // Start is called before the first frame update
@@ -66,6 +68,13 @@ public class Buyer : MonoBehaviour
         }   
         gameObject.GetComponent<AudioSource>().Play();
         gameObject.GetComponent<AudioSource>().pitch += 0.005f;
+
+        if (TimePerStash - (0.2f * Time.deltaTime) > 0.06f)
+        {
+            CancelInvoke("GivingOneByOne");
+            TimePerStash -= 0.2f * Time.deltaTime;
+        }
+        Invoke("GivingOneByOne", TimePerStash);
     }
     public void ActiveProduct()
     {
