@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 879158804}
-  m_IndirectSpecularColor: {r: 0.18158868, g: 0.2272364, b: 0.30741176, a: 1}
+  m_IndirectSpecularColor: {r: 0.18158898, g: 0.22723675, b: 0.3074124, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3987,6 +3987,11 @@ PrefabInstance:
       propertyPath: shipSpeed
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 1705213309147509860, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+        type: 3}
+      propertyPath: Price
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 1705213309147509883, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4141,6 +4146,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 21.799944
+      objectReference: {fileID: 0}
+    - target: {fileID: 2007843571790036661, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+        type: 3}
+      propertyPath: Price
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2007843571790036661, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
@@ -4323,6 +4333,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3547756286926874101, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+        type: 3}
+      propertyPath: Price
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 3547756287673102529, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -4412,6 +4427,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273602039600679057, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+        type: 3}
+      propertyPath: Price
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 4273602039877868965, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
@@ -4648,6 +4668,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5652694545996247128, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
+      propertyPath: MoneyPerBill
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652694545996247128, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+        type: 3}
       propertyPath: TimePerStash
       value: 0.135
       objectReference: {fileID: 0}
@@ -4665,6 +4690,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -2.7300568
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652694547842156519, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+        type: 3}
+      propertyPath: moneyLimit
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652694547842156519, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+        type: 3}
+      propertyPath: MoneyPerBill
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5652694547842156519, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
@@ -5714,7 +5749,7 @@ PrefabInstance:
     - target: {fileID: 8170874857988800933, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
       propertyPath: Price
-      value: 30
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8170874857988800933, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
@@ -17994,8 +18029,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountOfMoneyToThrow: 100
-  CargoMoneyAmount: 25
-  ScretchMoneyAmount: 10
+  CargoMoneyAmount: 5
+  ScretchMoneyAmount: 8
   WinMoneyAmount: 5
   star: {fileID: 7399725589581612873, guid: a39416bfd0abb9e49a0a29ccf1021669, type: 3}
   player: {fileID: 2062891691}
@@ -18073,7 +18108,7 @@ MonoBehaviour:
   Delay: 5
   StartOpportunityTime: 1.5
   OpportunityTime: 1.5
-  AmountOfMoney: 50
+  AmountOfMoney: 10
   AmountOfStars: 3
   MinusDelay: 0.41
   MinusOpportunity: 0.15
