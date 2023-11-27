@@ -110,4 +110,10 @@ public class PlayerMover : MonoBehaviour
     {
         joystick.gameObject.SetActive(true);
     }
+
+    public void ToggleAnimatorHoldingBox(bool isHoldingBox)
+    {
+        if (myAnimator.GetBool("isHoldingBox") != isHoldingBox) 
+            myAnimator.SetBool("isHoldingBox", isHoldingBox);  
+    }
 }
