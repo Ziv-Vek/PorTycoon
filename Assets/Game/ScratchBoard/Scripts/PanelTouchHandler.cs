@@ -12,6 +12,8 @@ public class PanelTouchHandler : MonoBehaviour
 
     private MeshRenderer coinMeshRenderer;
 
+    [SerializeField] ParticleSystem ScratchPartical;
+
     private void Start()
     {
         coinMeshRenderer = coin.GetComponent<MeshRenderer>();
@@ -25,6 +27,13 @@ public class PanelTouchHandler : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Moved)
+            {
+                if(!ScratchPartical.isPlaying)
+                   ScratchPartical.Play();
+            }
+            else
+                ScratchPartical.Stop();
 
             if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved ||
                 touch.phase == TouchPhase.Stationary)
@@ -33,6 +42,7 @@ public class PanelTouchHandler : MonoBehaviour
                 coin.SetActive(true);
                 Debug.Log("Draged");
                 time = 0;
+                ScratchPartical.gameObject.transform.position = coin.transform.position + new Vector3(0,0,2);
             }
         }
         else if (Input.GetMouseButton(0))
