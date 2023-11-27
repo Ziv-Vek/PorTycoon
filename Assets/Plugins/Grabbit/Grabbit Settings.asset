@@ -1061,7 +1061,7 @@ MonoBehaviour:
   solverIterations: 10
   useLowQualityConvexCollidersOnSelection: 0
   UseLimitationZone: 0
-  Constraints: 116
+  Constraints: 4
   JungleLogo: {fileID: 2800000, guid: 1e021604d3033604dbbdf0af3615fbe5, type: 3}
   GetStartedArrow: {fileID: 2800000, guid: 6f19a967e55eb7a4db62b3cd08e30764, type: 3}
   Question: {fileID: 0}

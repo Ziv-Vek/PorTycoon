@@ -12,6 +12,8 @@ public class Pier: Carrier
     private Vector3 actionRectScaleUp;
     private Vector3 actionRectOriginalScale;
 
+    [SerializeField] MoneyPile moneyPile;
+
     private void Start()
     {
         actionRectOriginalScale = actionRectZone.localScale;
@@ -62,7 +64,7 @@ public class Pier: Carrier
         cargo.transform.SetParent(boxesPlaces[index]);
         cargo.transform.localPosition = Vector3.zero;
         cargo.transform.localRotation = gameObject.transform.rotation;
-        
+      //  Bank.Instance.AddMoneyToPile(moneyPile, "Cargo");
         onBoxDrop?.Invoke(CarriersTypes.pier);
     }
     

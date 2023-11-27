@@ -46,8 +46,11 @@ public class PanelTouchHandler : MonoBehaviour
         }
 
         time += 1 * Time.deltaTime;
-      //  if (time > 4)
-          //  Hand.gameObject.SetActive(true);
+        if (time > 4)
+            Hand.gameObject.SetActive(true);
+        else
+            Hand.gameObject.SetActive(false);
+
     }
 
     void PositionCoinAtTouch(Vector2 touchPosition)

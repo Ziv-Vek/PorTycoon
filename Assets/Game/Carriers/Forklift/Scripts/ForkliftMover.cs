@@ -9,7 +9,7 @@ public class ForkliftMover : MonoBehaviour
 {
     //configs:
     private const float StopDistance = 2f;
-    private bool isPickUpBoxesTask;     // true if needed to take boxes from pier, false if needed to put boxes on conveyor
+   [SerializeField] private bool isPickUpBoxesTask;     // true if needed to take boxes from pier, false if needed to put boxes on conveyor
     [SerializeField] private float wakingDistance = 6;
     
     //cached ref:
@@ -55,7 +55,6 @@ public class ForkliftMover : MonoBehaviour
 
         MoveToTarget();
         NoFuelText.SetActive(false);
-
     }
 
     private void Update()
@@ -83,9 +82,9 @@ public class ForkliftMover : MonoBehaviour
          needs to pickup, and cannot pickup
          needs to unload and can still unload
          needs to unload and cannnot unload*/
-        if (isPickUpBoxesTask && !myCarrier.CheckCanReceiveBoxes() && FuelSlider.value != 0)
+     //   if (isPickUpBoxesTask && !myCarrier.CheckCanReceiveBoxes() && FuelSlider.value != 0)
         
-        if (target == null && !myCarrier.CheckCanReceiveBoxes() && FuelSlider.value != 0)
+        if ( target == null && !myCarrier.CheckCanReceiveBoxes() && FuelSlider.value != 0)
         {
             isPickUpBoxesTask = false;
             StartCoroutine(Move());
@@ -112,7 +111,6 @@ public class ForkliftMover : MonoBehaviour
         {
             target = conveyorBelt; 
         }
-    
         if(LastTarget != target)
         yield return StartCoroutine(MoveBackwards());
     }
