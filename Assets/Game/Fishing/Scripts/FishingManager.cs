@@ -140,6 +140,8 @@ public class FishingManager : MonoBehaviour
             Destroy(Clone);
         LineRenderer Rope = transform.Find("Rope").GetComponent<LineRenderer>();
         Rope.SetPosition(2, Rope.GetPosition(1));
+
+        CancelInvoke("MakeSplash");
         gameObject.SetActive(false);
     }
     public void BuyingBox1()

@@ -107,6 +107,10 @@ public class ScratchBoard : MonoBehaviour
 
         Bank.Instance.AddMoneyToPile(moneyPile, "Scratch");
 
+        PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
+        playerMover.ToggleMovement(true);
+        playerMover.ShowJoystick();
+
         cardManager.Progress.OnProgress -= OnScratchProgress;
         Close();
     }
