@@ -45,6 +45,7 @@ public class Buyer : MonoBehaviour
         if (moneyAmount != Price && other.gameObject.tag == "Player")
             CancelInvoke();
         gameObject.GetComponent<AudioSource>().pitch = 1.1f;
+        TimePerStash = 0.135f;
     }
     void GivingOneByOne()
     { 
@@ -69,7 +70,7 @@ public class Buyer : MonoBehaviour
         gameObject.GetComponent<AudioSource>().Play();
         gameObject.GetComponent<AudioSource>().pitch += 0.005f;
 
-        if (TimePerStash - (0.2f * Time.deltaTime) > 0.06f)
+        if (TimePerStash - (0.2f * Time.deltaTime) > 0.04f)
         {
             CancelInvoke("GivingOneByOne");
             TimePerStash -= 0.2f * Time.deltaTime;

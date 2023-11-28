@@ -304,7 +304,7 @@ PrefabInstance:
     - target: {fileID: 1687901656534262281, guid: ea69c7af09d8f664ab23b5357c68b225,
         type: 3}
       propertyPath: MoneyPerBill
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1687901656534262281, guid: ea69c7af09d8f664ab23b5357c68b225,
         type: 3}
@@ -324,17 +324,17 @@ PrefabInstance:
     - target: {fileID: 1687901656534262282, guid: ea69c7af09d8f664ab23b5357c68b225,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.4
+      value: -18.1
       objectReference: {fileID: 0}
     - target: {fileID: 1687901656534262282, guid: ea69c7af09d8f664ab23b5357c68b225,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5300293
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1687901656534262282, guid: ea69c7af09d8f664ab23b5357c68b225,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -22.4
+      value: -19.84
       objectReference: {fileID: 0}
     - target: {fileID: 1687901656534262282, guid: ea69c7af09d8f664ab23b5357c68b225,
         type: 3}

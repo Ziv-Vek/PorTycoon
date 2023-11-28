@@ -64,7 +64,7 @@ public class Pier: Carrier
         cargo.transform.SetParent(boxesPlaces[index]);
         cargo.transform.localPosition = Vector3.zero;
         cargo.transform.localRotation = gameObject.transform.rotation;
-      //  Bank.Instance.AddMoneyToPile(moneyPile, "Cargo");
+        Bank.Instance.AddMoneyToPile(moneyPile, "Cargo");
         onBoxDrop?.Invoke(CarriersTypes.pier);
     }
     

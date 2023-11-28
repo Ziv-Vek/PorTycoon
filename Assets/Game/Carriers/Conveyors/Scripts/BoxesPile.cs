@@ -62,8 +62,9 @@ public class BoxesPile : MonoBehaviour
             {
                 if (PlusText.IsActive())
                     PlusText.gameObject.SetActive(false);
-                box.transform.GetChild(0).gameObject.SetActive(true);
             }
+            PlusText.text = "+" + (boxes.Count - LimitBoxesThatShown);
+            box.transform.GetChild(0).gameObject.SetActive(true);
 
             return box;
         }

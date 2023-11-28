@@ -7,12 +7,14 @@ public class PanelTouchHandler : MonoBehaviour
     public float spawnDistance = 50.0f; // How far from the camera you want to show the coin
     public float offset = -0.4f; // How far from the touch position you want to show the coin
 
+    public bool CanScratch;
+
     [SerializeField] private float time;
     [SerializeField] private SpriteRenderer Hand;
 
     private MeshRenderer coinMeshRenderer;
 
-    [SerializeField] ParticleSystem ScratchPartical;
+    [SerializeField] public ParticleSystem ScratchPartical;
 
     private void Start()
     {
@@ -24,7 +26,7 @@ public class PanelTouchHandler : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && CanScratch)
         {
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Moved)
@@ -45,7 +47,7 @@ public class PanelTouchHandler : MonoBehaviour
                 ScratchPartical.gameObject.transform.position = coin.transform.position + new Vector3(0,0,2);
             }
         }
-        else if (Input.GetMouseButton(0))
+        else if (Input.GetMouseButton(0) && CanScratch)
         {
             PositionCoinAtTouch(Input.mousePosition);
             coin.SetActive(true);
@@ -56,7 +58,7 @@ public class PanelTouchHandler : MonoBehaviour
         }
 
         time += 1 * Time.deltaTime;
-        if (time > 4)
+        if (time > 4 && CanScratch)
             Hand.gameObject.SetActive(true);
         else
             Hand.gameObject.SetActive(false);

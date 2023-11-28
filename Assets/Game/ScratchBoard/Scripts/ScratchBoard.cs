@@ -2,6 +2,8 @@ using System;
 using ScratchCardAsset;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class ScratchBoard : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class ScratchBoard : MonoBehaviour
     [SerializeField] private Button throwButton;
     [SerializeField] private MoneyPile moneyPile;
 
+    [SerializeField] private GameObject EndButtons;
+
     [Header("Settings")] public float targetScratchProgress = 0.3f;
 
     private bool _isScratching;
@@ -26,7 +30,11 @@ public class ScratchBoard : MonoBehaviour
         gameObject.SetActive(false);
         throwButton.onClick.AddListener(OnThrowBox);
     }
-
+    private void OnEnable()
+    {
+        throwButton.gameObject.SetActive(true);
+        GetComponent<PanelTouchHandler>().CanScratch = true;
+    }
     private void NextItem()
     {
         CurrentItem = ItemsManager.Instance.GetRandomItemFromBox(CurrentBox.Type, null);
@@ -37,12 +45,16 @@ public class ScratchBoard : MonoBehaviour
     private void Close()
     {
         gameObject.SetActive(false);
+        EndButtons.SetActive(false);
         Destroy(scratchItemModel.transform.GetChild(0).gameObject);
         if (CurrentBox.isPurchasedBox)
         {
             UIManager.Instance.OpenCollectionCanvas();
             return;
         }
+        PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
+        playerMover.ToggleMovement(true);
+        playerMover.ShowJoystick();
 
         playerMover.ShowJoystick();
         tableCarrier.SetPlayer(playerCarrier);
@@ -50,6 +62,10 @@ public class ScratchBoard : MonoBehaviour
 
     public void Open(PortBox box)
     {
+        PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
+        playerMover.ToggleMovement(false);
+        playerMover.HideJoystick();
+
         playerMover.ToggleMovement(false);
         playerMover.HideJoystick();
 
@@ -74,14 +90,24 @@ public class ScratchBoard : MonoBehaviour
             tableCarrier.RemoveBox(CurrentBox);
         }
 
-        PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
-        playerMover.ToggleMovement(true);
-        playerMover.ShowJoystick();
+        //PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
+        //playerMover.ToggleMovement(true);
+        //playerMover.ShowJoystick();
 
         ItemsManager.Instance.UnlockItem(CurrentItem);
 
         cardManager.Progress.OnProgress -= OnScratchProgress;
-        Close();
+        // Close();
+        if (!CurrentBox.isPurchasedBox)
+        {
+            EndButtons.SetActive(true);
+        }
+        else
+            Close();
+
+        throwButton.gameObject.SetActive(false);
+        GetComponent<PanelTouchHandler>().CanScratch = false;
+        GetComponent<PanelTouchHandler>().ScratchPartical.Pause();
 
         Bank.Instance.AddMoneyToPile(moneyPile, "Scratch");
     }
@@ -107,11 +133,19 @@ public class ScratchBoard : MonoBehaviour
 
         Bank.Instance.AddMoneyToPile(moneyPile, "Scratch");
 
-        PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
-        playerMover.ToggleMovement(true);
-        playerMover.ShowJoystick();
-
         cardManager.Progress.OnProgress -= OnScratchProgress;
         Close();
+    }
+    public void NextBoxToOpen()
+    {
+        Close();
+        //PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
+        //playerMover.ToggleMovement(false);
+        //playerMover.HideJoystick();
+    }
+    public void BackToPort()
+    {
+        Close();
+        tableCarrier.RemovePlayer();
     }
 }

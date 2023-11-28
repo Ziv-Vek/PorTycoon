@@ -147,7 +147,7 @@ public class UpgradesMenu : MonoBehaviour
     }
     public void BoxStackTable(GameObject Button)
     {
-        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && GameManager.Instance.tableStackLevel < 5)
+        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && GameManager.Instance.tableStackLevel < 3)
         {
             if (Button.name != "FreeButton")
                 UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price);

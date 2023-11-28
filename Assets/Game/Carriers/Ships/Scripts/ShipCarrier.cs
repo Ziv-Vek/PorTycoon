@@ -45,7 +45,7 @@ public class ShipCarrier: Carrier
 
         PortBox box = boxes[index];
         boxes[index] = null;
-        Bank.Instance.AddMoneyToPile(moneyPile,"Cargo");
+      //  Bank.Instance.AddMoneyToPile(moneyPile,"Cargo");
         if (!CheckCanGiveBoxes())
         {
             IsAttemptingToGiveCargo = false;
