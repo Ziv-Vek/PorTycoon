@@ -72,8 +72,8 @@ public class TableCarrier : Carrier
         place = CargoPlacesHolder.transform.GetChild(CargoPlacesHolder.transform.childCount - 1).transform.position;
         place = new Vector3(place.x, place.y, place.z + 5);
 
-        GameObject newPlace = Instantiate(CargoPlacesHolder.transform.GetChild(CargoPlacesHolder.transform.childCount - 1).gameObject, place, Quaternion.identity);
-        newPlace.transform.parent = CargoPlacesHolder.transform;
+        GameObject newPlace = Instantiate(CargoPlacesHolder.transform.GetChild(CargoPlacesHolder.transform.childCount - 1).gameObject, place, CargoPlacesHolder.transform.rotation, CargoPlacesHolder.transform);
+    //    newPlace.transform.parent = CargoPlacesHolder.transform;
 
         newPlace.name = "CargoPlace (" + (CargoPlacesHolder.transform.childCount - 1) + ")";
         newPlace.transform.localScale = new Vector3(1, 1, 1f);
