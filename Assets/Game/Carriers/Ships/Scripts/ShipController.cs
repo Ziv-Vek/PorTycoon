@@ -24,7 +24,18 @@ public class ShipController : MonoBehaviour
 
     private void Start()
     {
+        PlaceShip();
+        shipCarrier.InstantiateCargo();
         StartCoroutine(GoToTargetAndWaitAndReturn());
+    }
+
+    private void PlaceShip()
+    {
+        var startingPoint = Vector3.MoveTowards(targetPoint.position, dockingPoint.position,
+            Vector3.Distance(targetPoint.position, dockingPoint.position) / 2);
+        
+        transform.SetPositionAndRotation(startingPoint, Quaternion.identity);
+        transform.LookAt(dockingPoint.position, Vector3.up);
     }
 
     private void ProcessBoxesTransferCompletion()
@@ -34,24 +45,11 @@ public class ShipController : MonoBehaviour
 
     private IEnumerator GoToTargetAndWaitAndReturn()
     {
-        Quaternion rot = new Quaternion();
-        var dockingPos = dockingPoint.position;
-        var targetPos = targetPoint.position;
-        
         while (true)
         {
             // Turning on the ship effects
             foreach (Transform child in ShipEffects.transform)
                 child.gameObject.GetComponent<ParticleSystem>().Play();
-
-            // Move to the target point at sea
-            yield return StartCoroutine(MoveToPosition(targetPos));
-
-            // Instantiate new cargo on the ship
-            shipCarrier.InstantiateCargo();
-
-            // Wait for the specified time
-            yield return new WaitForSeconds(waitTimeAtSeaTarget);
 
             // Move back to the docking point at pier
             yield return StartCoroutine(MoveToPosition(dockingPoint.position));
@@ -64,6 +62,15 @@ public class ShipController : MonoBehaviour
             yield return StartCoroutine(shipCarrier.TransferBoxesToPier());
             if (cargoMeshRenderer) cargoMeshRenderer.enabled = false;
             //yield return StartCoroutine(cargoHandler.HandleCargoTransfer());
+            
+            // Move to the target point at sea
+            yield return StartCoroutine(MoveToPosition(targetPoint.position));
+
+            // Instantiate new cargo on the ship
+            shipCarrier.InstantiateCargo();
+
+            // Wait for the specified time
+            yield return new WaitForSeconds(waitTimeAtSeaTarget);
         }
     }
 
