@@ -193,7 +193,7 @@ RectTransform:
   m_GameObject: {fileID: 1712751537121720062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.94559866, y: 0.43255726, z: 0.43255726}
+  m_LocalScale: {x: 0.94559866, y: 0.39970884, z: 0.43255726}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1712751537743393533}
@@ -201,7 +201,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 17, y: 13.7}
+  m_AnchoredPosition: {x: 0.5, y: 15.6}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1712751537121720060
@@ -234,8 +234,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: No Fuel
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4eccd51250cfa3948a3ac1e21d15fe34, type: 2}
-  m_sharedMaterial: {fileID: 7304186015023537574, guid: 4eccd51250cfa3948a3ac1e21d15fe34,
+  m_fontAsset: {fileID: 11400000, guid: 38987ba59a373409cb94ae65d23e4b49, type: 2}
+  m_sharedMaterial: {fileID: -3845100613933225147, guid: 38987ba59a373409cb94ae65d23e4b49,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -260,15 +260,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -405,8 +405,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1712751537743393534}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -8.860001}
-  m_LocalScale: {x: 0.04714689, y: 0.14757021, z: 0.10511312}
+  m_LocalPosition: {x: 0, y: 0, z: -11.74}
+  m_LocalScale: {x: 0.058650352, y: 0.18357615, z: 0.13075988}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1712751536713746505}
@@ -416,7 +416,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.06, y: 16.500067}
+  m_AnchoredPosition: {x: -0.06, y: 16.7}
   m_SizeDelta: {x: 1440, y: 2960}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1712751537743393530
@@ -638,13 +638,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f2fa85f614c8f40bd7843096bb87a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPickUpBoxesTask: 0
   wakingDistance: 6
   pier: {fileID: 0}
   conveyorBelt: {fileID: 0}
   FuelSlider: {fileID: 1712751536713746504}
   NoFuelText: {fileID: 1712751537121720062}
+  target: {fileID: 0}
+  LastTarget: {fileID: 0}
   backwardMovementSpeed: 5
   backwardMovementDistance: 20
+  plus: 5.36
 --- !u!54 &7598096029477029990
 Rigidbody:
   m_ObjectHideFlags: 0

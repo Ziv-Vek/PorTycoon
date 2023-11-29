@@ -26,6 +26,7 @@ public class ForkliftMover : MonoBehaviour
     private Transform forkliftArtTrans;
     [SerializeField] float backwardMovementSpeed = 5f;
     [SerializeField] private float backwardMovementDistance = 20f;
+    [SerializeField] float plus;
 
     GameConfig gameConfig;
 
@@ -72,6 +73,8 @@ public class ForkliftMover : MonoBehaviour
             GetComponent<NavMeshAgent>().speed = gameConfig.levels[0].upgrades["forklift_speed"].levels[GameManager.Instance.forklifSpeedLevel - 1];
             NoFuelText.SetActive(false);
         }
+        NoFuelText.transform.parent.LookAt(GameObject.Find("Main Camera").transform);
+        NoFuelText.transform.parent.rotation = Quaternion.EulerAngles(0, NoFuelText.transform.rotation.y + plus, 0);
     }
 
     // checks if finished loading/unloading boxes and sets the new task accordingly
