@@ -137,9 +137,9 @@ public class ScratchBoard : MonoBehaviour
     public void NextBoxToOpen()
     {
         Close();
-        PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
-        playerMover.ToggleMovement(false);
-        playerMover.HideJoystick();
+        //PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
+        //playerMover.ToggleMovement(false);
+        //playerMover.HideJoystick();
     }
     public void BackToPort()
     {
