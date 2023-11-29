@@ -22,6 +22,8 @@ public class CollectionMenu : MonoBehaviour
     public GameObject AllCollectionsPanel;
     GameObject CollectionUI_Holder;
 
+    public GameObject ItemScreen;
+
 
     private void Update()
     {
@@ -79,7 +81,9 @@ public class CollectionMenu : MonoBehaviour
                 newItem.transform.GetChild(0).gameObject.GetComponent<Image>().color = new Color(0, 0, 0);
             newItem.transform.GetChild(0).gameObject.AddComponent<ScratchItemImage>()
                 .ChangeImage(ItemsManager.Instance.GetAllLevelItems(level)[i].imagePath);
-            newItem.name = string.Format("Item {0} ({1})", i, ItemsManager.Instance.GetAllLevelItems(level)[i].id);
+            newItem.name = string.Format(ItemsManager.Instance.GetAllLevelItems(level)[i].imagePath);
+            if (ItemsManager.Instance.UnlockedItems.ContainsKey(ItemsManager.Instance.GetAllLevelItems(level)[i].id))
+                newItem.GetComponent<Button>().onClick.AddListener(() => ItemPressed(newItem));
         }
     }
     public void SetAllCollectionsList()
@@ -130,5 +134,28 @@ public class CollectionMenu : MonoBehaviour
         transform.Find("UI Holder").Find("All Collections Button").GetComponent<Button>().interactable = true;
         AllCollectionsPanel.SetActive(false);
         SetInCollectionList(MainCollection_List,GameManager.Instance.currentLevel);
+    }
+    public void ItemPressed(GameObject Button)
+    {
+        ItemScreen.SetActive(true);
+        ItemScreen.transform.Find("ItemPlace").GetComponent<ScratchItemModel>().ChangeModel(Button.name);
+        ScratchItemModel ItemModel = ItemScreen.transform.Find("ItemPlace").GetComponent<ScratchItemModel>();
+
+        ItemScreen.transform.Find("Frame").GetComponent<Image>().sprite = Button.GetComponent<Image>().sprite;
+
+        GameObject item = ItemModel.transform.GetChild(0).gameObject;
+        foreach (Transform child in ItemModel.transform)
+        {
+            child.transform.rotation = item.transform.parent.rotation;
+            child.transform.Rotate(new Vector3(0, 160, 0));
+            child.transform.position = item.transform.parent.position;
+        }
+    }
+    public void CloseItemScreen()
+    {
+        Destroy(ItemScreen.transform.Find("ItemPlace").GetChild(0).gameObject);
+        ItemScreen.transform.Find("ItemPlace").rotation = Quaternion.EulerAngles(0, 0, 0);
+        ItemScreen.transform.Find("RotateItemOnY").rotation = Quaternion.EulerAngles(0, 0, 0);
+        ItemScreen.SetActive(false);
     }
 }

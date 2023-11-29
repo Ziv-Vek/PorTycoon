@@ -42,7 +42,6 @@ public class PanelTouchHandler : MonoBehaviour
             {
                 PositionCoinAtTouch(touch.position);
                 coin.SetActive(true);
-                Debug.Log("Draged");
                 time = 0;
                 ScratchPartical.gameObject.transform.position = coin.transform.position + new Vector3(0,0,2);
             }

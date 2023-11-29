@@ -29,6 +29,9 @@ public class TableNPC : MonoBehaviour, IBoxOpener
     private static readonly int ForwardSpeed = Animator.StringToHash("forwardSpeed");
     private Transform player;
 
+    [SerializeField] private ParticleSystem PunchEffect;
+    [SerializeField] private AudioClip PunchSound;
+
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
@@ -52,7 +55,12 @@ public class TableNPC : MonoBehaviour, IBoxOpener
            ProgressSlider.value += 1 * Time.deltaTime;
         if (Vector3.Distance(transform.GetChild(0).transform.position, player.position) <
             wakingDistance && IsSleeping)
+        {
             SetIsSleeping(false);
+            PunchEffect.Play();
+            GetComponent<AudioSource>().clip = PunchSound;
+            GetComponent<AudioSource>().Play();
+        } 
     }
 
     public void OnFinishedOpenBox()

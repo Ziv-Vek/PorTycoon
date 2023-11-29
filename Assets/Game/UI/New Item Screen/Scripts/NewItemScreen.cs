@@ -41,7 +41,7 @@ public class NewItemScreen : MonoBehaviour
             ShowNewItem(ItemsToShow[0]);
             return;
         }
-        if (GameObject.Find("ScratchBoard") == null)// check if the player is not scratching at this time
+        if (GameObject.Find("ScratchBoard") == null && GameObject.Find("Collection Canvas") == null)// check if the player is not scratching at this time
         {
             PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
             playerMover.ToggleMovement(true);
