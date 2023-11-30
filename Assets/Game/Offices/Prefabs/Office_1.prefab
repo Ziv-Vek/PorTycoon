@@ -418,6 +418,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Office_v2
       objectReference: {fileID: 0}
+    - target: {fileID: 1455771617692172737, guid: fd51f7782e733fb4ebf3c768883f6af6,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 790b3048915ba3e4b806c374bed93956, type: 2}
+    - target: {fileID: 1455771617692172737, guid: fd51f7782e733fb4ebf3c768883f6af6,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1b1483ec0aeb0484faca830f2ff17461, type: 2}
     - target: {fileID: 8544221450534931263, guid: fd51f7782e733fb4ebf3c768883f6af6,
         type: 3}
       propertyPath: m_LocalPosition.x
