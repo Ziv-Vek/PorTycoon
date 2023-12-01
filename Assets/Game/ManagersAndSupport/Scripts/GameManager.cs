@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public int HandyManNumber = 0;
     public int ShipNumber = 1;
 
+    public bool Vibration = true;
     private void Awake()
     {
         if (Instance == null)
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        Vibration = true;
     }
 
     private void Update()

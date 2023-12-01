@@ -34,6 +34,7 @@ public class CollectionMenu : MonoBehaviour
     public void RunCloseAnimation()
     {
         transform.Find("UI Holder").GetComponent<Animator>().Play("Close UI", 0);
+        VibrationManager.Instance.LightVibrate();
     }
     public void Exit()
     {
@@ -41,6 +42,7 @@ public class CollectionMenu : MonoBehaviour
         try
         {
             playerMover = GameObject.Find("Player_New").GetComponent<PlayerMover>();
+            VibrationManager.Instance.LightVibrate();
         }
         catch
         {
@@ -54,7 +56,6 @@ public class CollectionMenu : MonoBehaviour
 
         transform.Find("UI Holder").Find("All Collections Button").GetComponent<Button>().interactable = true;
         transform.Find("UI Holder").Find("Current Collection Button").GetComponent<Button>().interactable = false;
-
         gameObject.SetActive(false);
     }
 
@@ -150,6 +151,7 @@ public class CollectionMenu : MonoBehaviour
             child.transform.Rotate(new Vector3(0, 160, 0));
             child.transform.position = item.transform.parent.position;
         }
+        VibrationManager.Instance.LightVibrate();
     }
     public void CloseItemScreen()
     {
@@ -157,5 +159,6 @@ public class CollectionMenu : MonoBehaviour
         ItemScreen.transform.Find("ItemPlace").rotation = Quaternion.EulerAngles(0, 0, 0);
         ItemScreen.transform.Find("RotateItemOnY").rotation = Quaternion.EulerAngles(0, 0, 0);
         ItemScreen.SetActive(false);
+        VibrationManager.Instance.LightVibrate();
     }
 }

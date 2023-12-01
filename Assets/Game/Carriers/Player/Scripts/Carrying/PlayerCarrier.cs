@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using System.Linq;
+using CandyCoded;
+using CandyCoded.HapticFeedback;
 
 public class PlayerCarrier : Carrier, IBoxOpener
 {
@@ -50,7 +52,7 @@ public class PlayerCarrier : Carrier, IBoxOpener
         int index = Array.FindLastIndex(boxes, box => box != null);
         PortBox box = boxes[index];
         boxes[index] = null;
-        
+        VibrationManager.Instance.HeavyVibrate();
         if (boxes.Any()) playerMover.ToggleAnimatorHoldingBox(false);
         
         return box;
@@ -63,7 +65,7 @@ public class PlayerCarrier : Carrier, IBoxOpener
         box.transform.SetParent(boxesPlaces[index]);
         box.transform.localPosition = Vector3.zero;
         box.transform.localRotation = gameObject.transform.rotation;
-
+        VibrationManager.Instance.MediumeVivrate();
         playerMover.ToggleAnimatorHoldingBox(true);
     }
 

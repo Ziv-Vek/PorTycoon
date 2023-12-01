@@ -38,7 +38,8 @@ public class FishingManager : MonoBehaviour
         Instantiate(Splash, new Vector3(randomFloatX, 0, randomFloatZ), Quaternion.identity, transform).GetComponent<Splash>().opportunity = OpportunityTime;
         Step++;
         OpportunityTime -= MinusOpportunity;
-        Delay -= MinusDelay;
+        Delay -= MinusDelay;    
+        VibrationManager.Instance.HeavyVibrate();
     }
     public void ObjectFished(Vector3 position)
     {

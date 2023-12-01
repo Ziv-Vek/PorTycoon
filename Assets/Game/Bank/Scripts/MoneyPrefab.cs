@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CandyCoded.HapticFeedback;
 
 public class MoneyPrefab : MonoBehaviour
 {
@@ -16,7 +17,8 @@ public class MoneyPrefab : MonoBehaviour
             if (Vector3.Distance(transform.position, targetPosition.position + new Vector3(0, 4, 0)) < step)
             {
                 transform.position = targetPosition.position;
-                startMove = false; 
+                startMove = false;
+                VibrationManager.Instance.LightVibrate();
                 Destroy(gameObject);
             }
         }

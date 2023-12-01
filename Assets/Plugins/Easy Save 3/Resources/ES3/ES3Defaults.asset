@@ -33,6 +33,9 @@ MonoBehaviour:
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
     - Autodesk.Fbx
+    - CandyCoded.HapticFeedback
+    - CandyCoded.HapticFeedback.Android
+    - CandyCoded.HapticFeedback.iOS
     - CFXRDemo
     - CFXRRuntime
     - Cinemachine

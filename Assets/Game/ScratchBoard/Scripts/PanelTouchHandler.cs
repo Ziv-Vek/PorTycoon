@@ -33,6 +33,7 @@ public class PanelTouchHandler : MonoBehaviour
             {
                 if(!ScratchPartical.isPlaying)
                    ScratchPartical.Play();
+                VibrationManager.Instance.HeavyVibrate();
             }
             else
                 ScratchPartical.Stop();
