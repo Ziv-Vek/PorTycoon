@@ -5,7 +5,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d51387af0eedf5a42adc46917117eeba,
@@ -58,13 +57,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: d51387af0eedf5a42adc46917117eeba,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 47ab7192cc80dbd44a8290845536f857, type: 2}
+    - target: {fileID: -7511558181221131132, guid: d51387af0eedf5a42adc46917117eeba,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 550e6b3827ecebc48849ffc310cb214c, type: 2}
+    - target: {fileID: -7511558181221131132, guid: d51387af0eedf5a42adc46917117eeba,
+        type: 3}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2ac42c11636523d449476db076faf6f2, type: 2}
     - target: {fileID: 919132149155446097, guid: d51387af0eedf5a42adc46917117eeba,
         type: 3}
       propertyPath: m_Name
       value: Crane_v1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d51387af0eedf5a42adc46917117eeba, type: 3}
