@@ -56,6 +56,6 @@ public class RotateItemScreen : MonoBehaviour
     static float CalculateDistance(float x1, float x2)
     {
         // Absolute value is used to ensure the distance is positive
-        return (x1 - x2)/2.5f;
+        return (x1 - x2);
     }
 }
