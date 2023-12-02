@@ -24,7 +24,8 @@ public class ShipCarrier: Carrier
     public IEnumerator TransferBoxesToPier()
     {
         IsAttemptingToGiveCargo = true;
-        
+        AudioManager.inctece.play("Ship Horn");
+        VibrationManager.Instance.DefaultVibrate();
         yield return BoxesTransferHandler.Instance.CheckTransfer(boxesReceiver, this);
     }
     

@@ -25620,6 +25620,13 @@ MonoBehaviour:
     loop: 1
     PlayOnAwake: 0
     sorce: {fileID: 0}
+  - name: Ship Horn
+    clip: {fileID: 8300000, guid: d244025793eea4e4f84b0a5c2b70f4d4, type: 3}
+    volium: 1
+    pitch: 1
+    loop: 0
+    PlayOnAwake: 0
+    sorce: {fileID: 0}
 --- !u!4 &2025574044
 Transform:
   m_ObjectHideFlags: 0
