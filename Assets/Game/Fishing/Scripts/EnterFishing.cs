@@ -12,5 +12,6 @@ public class EnterFishing : MonoBehaviour
         PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
         playerMover.ToggleMovement(false);
         playerMover.HideJoystick();
+        AudioManager.inctece.ChangeSounds("General Music", "Fishing Music");
     }
 }

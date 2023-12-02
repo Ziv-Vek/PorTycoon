@@ -76,6 +76,7 @@ public class UIManager : MonoBehaviour
         CollectionCanvas.SetActive(true);
         CollectionCanvas.GetComponent<CollectionMenu>().SetInCollectionList(CollectionCanvas.GetComponent<CollectionMenu>().MainCollection_List , GameManager.Instance.currentLevel);
         CollectionCanvas.transform.Find("UI Holder").GetComponent<Animator>().Play("Open UI", 0);
+        AudioManager.inctece.play("Open UI Window");
     }
 
     public static void ShowWinPanel()

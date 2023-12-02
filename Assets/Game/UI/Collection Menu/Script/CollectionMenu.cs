@@ -21,7 +21,6 @@ public class CollectionMenu : MonoBehaviour
     public GameObject MainPanel;
     public GameObject AllCollectionsPanel;
     GameObject CollectionUI_Holder;
-
     public GameObject ItemScreen;
 
 
@@ -35,6 +34,7 @@ public class CollectionMenu : MonoBehaviour
     {
         transform.Find("UI Holder").GetComponent<Animator>().Play("Close UI", 0);
         VibrationManager.Instance.LightVibrate();
+        AudioManager.inctece.play("Close UI Window");
     }
     public void Exit()
     {
@@ -122,6 +122,7 @@ public class CollectionMenu : MonoBehaviour
     }
     public void OpenAllCollectionsPanel(Button button)
     {
+        AudioManager.inctece.play("Panel Selected");
         MainPanel.SetActive(false);
         button.interactable = false;
         transform.Find("UI Holder").Find("Current Collection Button").GetComponent<Button>().interactable = true;
@@ -130,6 +131,7 @@ public class CollectionMenu : MonoBehaviour
     } 
     public void OpenMainPanel(Button button)
     {
+        AudioManager.inctece.play("Panel Selected");
         MainPanel.SetActive(true);
         button.interactable = false;
         transform.Find("UI Holder").Find("All Collections Button").GetComponent<Button>().interactable = true;
@@ -147,11 +149,13 @@ public class CollectionMenu : MonoBehaviour
         GameObject item = ItemModel.transform.GetChild(0).gameObject;
         foreach (Transform child in ItemModel.transform)
         {
+            
             child.transform.rotation = item.transform.parent.rotation;
             child.transform.Rotate(new Vector3(0, 160, 0));
-            child.transform.position = item.transform.parent.position;
+            child.transform.position = item.transform.parent.position - new Vector3(0, 3, 0);
         }
         VibrationManager.Instance.LightVibrate();
+        AudioManager.inctece.play("Button Click");
     }
     public void CloseItemScreen()
     {
@@ -160,5 +164,6 @@ public class CollectionMenu : MonoBehaviour
         ItemScreen.transform.Find("RotateItemOnY").rotation = Quaternion.EulerAngles(0, 0, 0);
         ItemScreen.SetActive(false);
         VibrationManager.Instance.LightVibrate();
+        AudioManager.inctece.play("Button Click");
     }
 }
