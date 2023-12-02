@@ -117,6 +117,10 @@ public class ScratchBoard : MonoBehaviour
             _isScratching = true;
             cardManager.FillScratchCard();
             Invoke(nameof(OnFinishedScratching), 1f);
+            if(ItemsManager.Instance.UnlockedItems.ContainsKey(CurrentItem.id))
+                AudioManager.inctece.play("Item Scratched");
+            else
+                AudioManager.inctece.play("Item Scratched New Item");
         }
     }
 

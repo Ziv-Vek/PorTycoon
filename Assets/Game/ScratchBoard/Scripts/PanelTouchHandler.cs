@@ -13,12 +13,14 @@ public class PanelTouchHandler : MonoBehaviour
     [SerializeField] private SpriteRenderer Hand;
 
     private MeshRenderer coinMeshRenderer;
+    public AudioSource scratch;
 
     [SerializeField] public ParticleSystem ScratchPartical;
 
     private void Start()
     {
         coinMeshRenderer = coin.GetComponent<MeshRenderer>();
+        scratch = GetComponent<AudioSource>();
     }
     private void OnEnable()
     {
@@ -31,12 +33,14 @@ public class PanelTouchHandler : MonoBehaviour
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Moved)
             {
-                if(!ScratchPartical.isPlaying)
-                   ScratchPartical.Play();
+                if (!ScratchPartical.isPlaying)
+                    ScratchPartical.Play();
                 VibrationManager.Instance.HeavyVibrate();
             }
             else
+            {
                 ScratchPartical.Stop();
+            }
 
             if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved ||
                 touch.phase == TouchPhase.Stationary)

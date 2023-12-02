@@ -143,6 +143,7 @@ public class FishingManager : MonoBehaviour
         Rope.SetPosition(2, Rope.GetPosition(1));
 
         CancelInvoke("MakeSplash");
+        AudioManager.inctece.ChangeSounds("Fishing Music", "General Music");
         gameObject.SetActive(false);
     }
     public void BuyingBox1()

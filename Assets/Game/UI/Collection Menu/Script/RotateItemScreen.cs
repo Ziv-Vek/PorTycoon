@@ -44,8 +44,8 @@ public class RotateItemScreen : MonoBehaviour
         item.transform.SetParent(RotateOnY.transform);
         if (DragPosition != LastPos)
         {
-            item.transform.Rotate(0, -CalculateDistance(PressMouse.x, DragPosition.x), 0);
-            RotateOnY.transform.Rotate(CalculateDistance(PressMouse.y, DragPosition.y), 0, 0);
+            item.transform.Rotate(0, CalculateDistance(PressMouse.x, DragPosition.x), 0);
+            RotateOnY.transform.Rotate(-CalculateDistance(PressMouse.y, DragPosition.y), 0, 0);
         }
         LastPos = DragPosition;
     }
