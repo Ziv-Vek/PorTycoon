@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -73,5 +74,15 @@ public class PortLoader : MonoBehaviour
             }
         }
 
+    }
+
+    public ShipCarrier[] GetShipsInPort()
+    {
+        return Ships.Select(ship => ship.GetComponent<ShipCarrier>()).ToArray();
+    }
+
+    public Conveyor GetConveyorInPort()
+    {
+        return ConveyorTable.GetComponent<Conveyor>();
     }
 }

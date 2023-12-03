@@ -19,8 +19,6 @@ public class Buyer : MonoBehaviour
 
     public float TimePerStash = 0.15f;
 
-
-
     // Start is called before the first frame update
     void Start()
     {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
@@ -27,7 +28,8 @@ public class ForkliftMover : MonoBehaviour
     [SerializeField] float backwardMovementSpeed = 5f;
     [SerializeField] private float backwardMovementDistance = 20f;
     [SerializeField] float plus;
-
+    private List<Pier> piers = new List<Pier>();
+    
     GameConfig gameConfig;
 
     private void Awake()
@@ -42,6 +44,18 @@ public class ForkliftMover : MonoBehaviour
 
     private void Start()
     {
+        var portLoader = GetComponentInParent<PortLoader>();
+        if (!portLoader)
+        {
+            Debug.LogError(
+                "PortLoader not found on parent GameObject. \n Please ensure Forklift is a child of the Port GameObject.");
+        }
+        else
+        {
+            FindPiers(portLoader);
+            FindConveyors(portLoader);
+        }
+
         target = pier;
         
         if (myCarrier.CheckCanReceiveBoxes())
@@ -57,6 +71,32 @@ public class ForkliftMover : MonoBehaviour
         MoveToTarget();
         NoFuelText.SetActive(false);
     }
+
+    private void FindConveyors(PortLoader portLoader)
+    {
+        conveyorBelt = portLoader.GetConveyorInPort().transform;
+    }
+
+    private void FindPiers(PortLoader portLoader)
+    {
+        foreach (var ship in portLoader.GetShipsInPort())
+        {
+            piers.Add(ship.GetPier());
+        }
+    }
+    
+    /* SetTransferTask() >>
+     * check if I can receive boxes:
+     *   yes >>
+     *      check in each pier if it can give boxes.
+     *      for first pier which can - use this pier, exit early
+     *      Move(the pier)
+     *   no >>
+     *      Move(the conveyor belt)
+     *
+     * 
+     *  
+     */
 
     private void Update()
     {
@@ -80,13 +120,6 @@ public class ForkliftMover : MonoBehaviour
     // checks if finished loading/unloading boxes and sets the new task accordingly
     public void SetCarryingTask()
     {
-        /* states:
-         needs to pickup, and can still pickup
-         needs to pickup, and cannot pickup
-         needs to unload and can still unload
-         needs to unload and cannnot unload*/
-     //   if (isPickUpBoxesTask && !myCarrier.CheckCanReceiveBoxes() && FuelSlider.value != 0)
-        
         if ( target == null && !myCarrier.CheckCanReceiveBoxes() && FuelSlider.value != 0)
         {
             isPickUpBoxesTask = false;
@@ -178,11 +211,5 @@ public class ForkliftMover : MonoBehaviour
         FuelSlider.value = FuelSlider.maxValue;
         GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[0].upgrades["forklift_speed"].levels[GameManager.Instance.forklifSpeedLevel - 1];
         NoFuelText.SetActive(false);
-    }
-    
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.GetChild(1).position, wakingDistance);
     }
 }
