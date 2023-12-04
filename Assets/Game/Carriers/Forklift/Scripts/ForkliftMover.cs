@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -56,7 +57,7 @@ public class ForkliftMover : MonoBehaviour
             FindConveyors(portLoader);
         }
 
-        target = pier;
+        target = SelectTargetPier();
         
         if (myCarrier.CheckCanReceiveBoxes())
         {
@@ -70,6 +71,19 @@ public class ForkliftMover : MonoBehaviour
 
         MoveToTarget();
         NoFuelText.SetActive(false);
+    }
+
+    private Transform SelectTargetPier()
+    {
+        foreach (var pier in piers)
+        {
+            if (pier.CheckCanGiveBoxes())
+            {
+                return pier.transform;
+            }
+        }
+
+        return null;
     }
 
     private void FindConveyors(PortLoader portLoader)
@@ -95,6 +109,11 @@ public class ForkliftMover : MonoBehaviour
      *      Move(the conveyor belt)
      *
      * 
+     * state 1 - is full and needs to unload
+     * state 2 - is not completely full - needs to go upload
+     * state 2.1 - is not completely full - has boxes in piers
+     * state 2.2 - is not completely full - no boxes in piers
+     * state 3 - no fuel
      *  
      */
 
@@ -107,7 +126,7 @@ public class ForkliftMover : MonoBehaviour
         }
 
         SetCarryingTask();
-        if (Vector3.Distance(forkliftArtTrans.position, player.position) < wakingDistance && FuelSlider.value <= 0)
+        if (FuelSlider.value <= 0 && Vector3.Distance(forkliftArtTrans.position, player.position) < wakingDistance)
         {
             FuelSlider.value = FuelSlider.maxValue;
             GetComponent<NavMeshAgent>().speed = gameConfig.levels[0].upgrades["forklift_speed"].levels[GameManager.Instance.forklifSpeedLevel - 1];
@@ -141,7 +160,9 @@ public class ForkliftMover : MonoBehaviour
 
         if (isPickUpBoxesTask)
         {
-            target = pier;
+            target = SelectTargetPier();
+            if (target == null) 
+                target = conveyorBelt;
         }
         else
         {
@@ -178,7 +199,7 @@ public class ForkliftMover : MonoBehaviour
         if (!target)
         {
             Debug.Log("no target destination set for forklift");
-            target = pier;
+            target = SelectTargetPier();
         }
         
         navMeshAgent.SetDestination(target.position);
