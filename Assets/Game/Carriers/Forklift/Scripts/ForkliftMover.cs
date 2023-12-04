@@ -46,6 +46,7 @@ public class ForkliftMover : MonoBehaviour
     private void Start()
     {
         var portLoader = GetComponentInParent<PortLoader>();
+
         if (!portLoader)
         {
             Debug.LogError(
@@ -57,7 +58,7 @@ public class ForkliftMover : MonoBehaviour
             FindConveyors(portLoader);
         }
 
-        target = SelectTargetPier();
+        target = SelectTargetPier().GetComponent<Pier>().actionRectZone;
         
         if (myCarrier.CheckCanReceiveBoxes())
         {
@@ -77,18 +78,21 @@ public class ForkliftMover : MonoBehaviour
     {
         foreach (var pier in piers)
         {
-            if (pier.CheckCanGiveBoxes())
+            Debug.Log(pier.gameObject.name);
+            Debug.Log("can give boxes: " + pier.CheckCanGiveBoxes().ToString());
+            Debug.Log("is active: " + pier.gameObject.activeSelf);
+            if (pier.gameObject.activeSelf && pier.CheckCanGiveBoxes())
             {
                 return pier.transform;
             }
         }
-
         return null;
     }
 
     private void FindConveyors(PortLoader portLoader)
     {
         conveyorBelt = portLoader.GetConveyorInPort().transform;
+        // if (conveyorBelt) conveyorBelt.gameObject.name;
     }
 
     private void FindPiers(PortLoader portLoader)
@@ -139,18 +143,43 @@ public class ForkliftMover : MonoBehaviour
     // checks if finished loading/unloading boxes and sets the new task accordingly
     public void SetCarryingTask()
     {
-        if ( target == null && !myCarrier.CheckCanReceiveBoxes() && FuelSlider.value != 0)
+        if (target != null || FuelSlider.value == 0) return;
+
+        if (myCarrier.CheckCanReceiveBoxes())
         {
-            isPickUpBoxesTask = false;
+            // target = SelectTargetPier().GetComponent<Pier>().actionRectZone;
+            
+            if (target == null)
+            {
+                isPickUpBoxesTask = false;
+                target = conveyorBelt;
+                StartCoroutine(Move());
+                return;
+            }
+
+            isPickUpBoxesTask = true;
             StartCoroutine(Move());
             return;
         }
-
-        if (target == null && !myCarrier.CheckCanGiveBoxes() && FuelSlider.value != 0)
+        else
         {
-            isPickUpBoxesTask = true;
+            isPickUpBoxesTask = false;
+            target = conveyorBelt;
             StartCoroutine(Move());
         }
+        
+        // if (target == null && !myCarrier.CheckCanReceiveBoxes() && FuelSlider.value != 0)
+        // {
+        //     isPickUpBoxesTask = false;
+        //     StartCoroutine(Move());
+        //     return;
+        // }
+        //
+        // if (target == null && !myCarrier.CheckCanGiveBoxes() && FuelSlider.value != 0)
+        // {
+        //     isPickUpBoxesTask = true;
+        //     StartCoroutine(Move());
+        // }
     }
 
     // sets movement destination and start movement
@@ -160,7 +189,7 @@ public class ForkliftMover : MonoBehaviour
 
         if (isPickUpBoxesTask)
         {
-            target = SelectTargetPier();
+            target = SelectTargetPier().GetComponent<Pier>().transform;
             if (target == null) 
                 target = conveyorBelt;
         }
@@ -199,7 +228,7 @@ public class ForkliftMover : MonoBehaviour
         if (!target)
         {
             Debug.Log("no target destination set for forklift");
-            target = SelectTargetPier();
+            target = SelectTargetPier().GetComponent<Pier>().actionRectZone;
         }
         
         navMeshAgent.SetDestination(target.position);
