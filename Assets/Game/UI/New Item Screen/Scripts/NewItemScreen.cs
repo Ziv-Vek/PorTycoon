@@ -14,7 +14,7 @@ public class NewItemScreen : MonoBehaviour
     { 
         CurrentItem = newItem;
 
-        TextMeshProUGUI NameText = transform.Find("ItemName").GetChild(0).GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI NameText = transform.Find("UI Holder").Find("ItemName").GetChild(0).GetComponent<TextMeshProUGUI>();
         NameText.text = newItem.name;
         scratchItemModel.ChangeModel(newItem.imagePath);
         GameObject item = scratchItemModel.transform.GetChild(0).gameObject;

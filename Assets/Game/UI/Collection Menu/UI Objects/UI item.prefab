@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 7556602215870009790}
   - component: {fileID: 5542809770379993866}
   - component: {fileID: 77347688914737054}
+  - component: {fileID: 4068185063646596669}
   m_Layer: 0
   m_Name: UI item
   m_TagString: Untagged
@@ -113,7 +114,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7f90258af0dd6436fa299ec52d42a291, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 349353f64dda24aa5b153c752484bd04, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -122,7 +123,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 5
+  m_PixelsPerUnitMultiplier: 3.5
 --- !u!114 &77347688914737054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,3 +168,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4068185063646596669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006872521165021104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1

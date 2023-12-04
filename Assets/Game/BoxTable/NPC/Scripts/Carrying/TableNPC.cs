@@ -96,6 +96,8 @@ public class TableNPC : MonoBehaviour, IBoxOpener
         ProgressSlider.maxValue = waitTime;
         ProgressSlider.value = ProgressSlider.minValue;
         IsOpening = true;
+        box.gameObject.transform.position = transform.Find("BoxPlace").position;
+        box.gameObject.transform.rotation = transform.Find("BoxPlace").rotation;
         return true;
     }
 

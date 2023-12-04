@@ -67,8 +67,11 @@ public class Buyer : MonoBehaviour
         {
             ActiveProduct();
         }   
-        gameObject.GetComponent<AudioSource>().Play();
-        gameObject.GetComponent<AudioSource>().pitch += 0.005f;
+        if (!gameObject.GetComponent<AudioSource>().isPlaying)
+        {
+            gameObject.GetComponent<AudioSource>().pitch += 0.004f;
+            gameObject.GetComponent<AudioSource>().Play();
+        }
 
         if (TimePerStash - (0.2f * Time.deltaTime) > 0.04f)
         {
