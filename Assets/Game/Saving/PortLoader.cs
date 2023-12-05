@@ -85,4 +85,9 @@ public class PortLoader : MonoBehaviour
     {
         return ConveyorTable.GetComponent<Conveyor>();
     }
+
+    public GameObject GetPlayer()
+    {
+        return Player;
+    }
 }

@@ -1,62 +1,300 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
-using Unity.VisualScripting;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
+public enum ForkliftTask
+{
+    PickupBoxes,
+    UnloadBoxes
+}
+
+public interface IForkliftState
+{
+    public void Enter(ForkliftTask task, object destinationType);
+    public void Update();
+    public void Exit();
+
+}
+
+[Serializable]
+public class Driving : IForkliftState
+{
+    private ForkliftMover forkliftMover;
+    private ForkliftCarrier carrier;
+    private Vector3 destinationPos;
+    IForkliftState transfering;
+    IForkliftState idling;
+    ForkliftTask task;
+    Pier pier;
+    Conveyor conveyor;
+
+    public Driving(ForkliftMover forkliftMover, ForkliftCarrier forkliftCarrier) {
+        this.forkliftMover = forkliftMover;
+        this.carrier = forkliftCarrier;
+  
+    }
+
+    public void Initialize(IForkliftState transfering, IForkliftState idling)
+    {
+        this.transfering = transfering;
+        this.idling = idling;
+    }
+
+    public void Enter(ForkliftTask task, object destinationType)
+    {
+        this.task = task;
+
+        if (task == ForkliftTask.PickupBoxes)
+        {
+            destinationPos = ((Pier)destinationType).actionRectZone.position;
+            pier = (Pier)destinationType;
+        }
+        else
+        {
+            destinationPos = ((Conveyor)destinationType).actionRectZone.position;
+            conveyor = (Conveyor)destinationType;
+        }
+
+        forkliftMover.MoveToDestination(destinationPos);
+    }
+
+    public void Update()
+    {
+        forkliftMover.DecreaseFuel();
+
+       /* if (forkliftMover.FuelSlider.value <= 0)
+        {
+            TransitionToIdling();
+            return;
+        }*/
+
+        if (Vector3.Distance(forkliftMover.transform.position, destinationPos) < forkliftMover.GetStoppingDistance())
+        {
+            Exit();
+        }
+    }
+
+    // will exit to Transfering state
+    public void Exit()
+    {
+        var isDestinationPier = task == ForkliftTask.PickupBoxes ? true : false;
+
+        forkliftMover.TransitionState(isDestinationPier, task, isDestinationPier ? pier : conveyor, transfering);
+    }
+
+    private void TransitionToIdling()
+    {
+        var isDestinationPier = task == ForkliftTask.PickupBoxes ? true : false;
+        forkliftMover.TransitionState(isDestinationPier, task, isDestinationPier ? pier : conveyor, idling);
+    }
+}
+
+[Serializable]
+public class Transfering : IForkliftState
+{
+    private ForkliftMover forkliftMover;
+    private ForkliftCarrier carrier;
+    IForkliftState driving;
+    IForkliftState idling;
+    ForkliftTask task;
+    Pier pier;
+    Conveyor conveyor;
+
+    public Transfering(ForkliftMover forkliftMover, ForkliftCarrier forkliftCarrier) {
+        this.forkliftMover = forkliftMover;
+        this.carrier = forkliftCarrier;
+        this.driving = driving;
+        this.idling = idling;
+    }
+
+    public void Initialize(IForkliftState driving, IForkliftState idling)
+    {
+        this.driving = driving;
+        this.idling = idling;
+    }
+
+    public void Enter(ForkliftTask task, object destinationType)
+    {
+        this.task = task;
+        if (task == ForkliftTask.PickupBoxes)
+        {
+            pier = (Pier)destinationType;
+        }
+    }
+
+    public void Update()
+    {
+        if (task == ForkliftTask.UnloadBoxes)
+        {
+            if (carrier.CheckCanGiveBoxes())
+            {
+                //forklift gives to conveyor, not empty
+                return;
+            }
+            else     //forklift gives to conveyor, forklift is now empty
+            {
+                task = ForkliftTask.PickupBoxes;
+                Exit();
+                return;
+            }
+        }
+
+        //forklift receives from pier, forklift full
+        if (carrier.CheckCanReceiveBoxes())
+        {
+            task = ForkliftTask.UnloadBoxes;
+            Exit();
+            return;
+        }
+
+        //forklift receives from current pier, forklift not full
+        if (pier.CheckCanGiveBoxes()) return;
+
+        //forklift can receive, current pier cannot give
+        if (!pier.CheckCanGiveBoxes())
+        {
+            Exit();
+            return;
+        }
+    }
+
+    public void Exit()
+    {
+        var isDestinationPier = task == ForkliftTask.PickupBoxes ? true : false;
+        if (isDestinationPier)
+        {
+            forkliftMover.TransitionState(isDestinationPier, task, pier, idling);
+        }
+        else
+        {
+            forkliftMover.TransitionState(isDestinationPier, task, conveyor, driving);
+        }
+    }
+}
+
+[Serializable] 
+public class Idling: IForkliftState
+{
+    private ForkliftMover forkliftMover;
+    ForkliftCarrier forkliftCarrier;
+    Pier destinationPier = null;
+    IForkliftState drivingState;
+
+    public Idling(ForkliftCarrier forkliftCarrier, ForkliftMover forkliftMover) {
+        this.forkliftCarrier = forkliftCarrier;
+        this.forkliftMover = forkliftMover;
+        this.drivingState = drivingState;
+    }
+
+    public void Initialize(IForkliftState drivingState)
+    {
+        this.drivingState = drivingState;
+    }
+
+    public void Enter(ForkliftTask task, object obj) {
+        this.forkliftCarrier = forkliftCarrier;
+        forkliftMover.FreezeMovement();
+    }
+
+    public void Update() {
+        destinationPier = forkliftMover.SetDestinationPier();
+        if (destinationPier != null)
+        {
+            Exit();
+        }
+     }
+        
+    public void Exit()
+    {
+        forkliftMover.TransitionState(true, ForkliftTask.PickupBoxes, destinationPier, drivingState);
+    }
+}
+
 public class ForkliftMover : MonoBehaviour
 {
+    #region Class Properties
     //configs:
-    private const float StopDistance = 2f;
-   [SerializeField] private bool isPickUpBoxesTask;     // true if needed to take boxes from pier, false if needed to put boxes on conveyor
+    private const float StoppingDistance = 2f;
+    [SerializeField] private bool isPickUpBoxesTask;     // true if needed to take boxes from pier, false if needed to put boxes on conveyor
     [SerializeField] private float wakingDistance = 6;
     
     //cached ref:
     [SerializeField] private Transform pier;
-    [SerializeField] private Transform conveyorBelt;
+    private Conveyor conveyor;
     private ForkliftCarrier myCarrier;
     private NavMeshAgent navMeshAgent;
     private Rigidbody rb;
     [SerializeField] public Slider FuelSlider;
     [SerializeField] GameObject NoFuelText;
-    [SerializeField] private Transform target;
-    [SerializeField] private Transform LastTarget;
+    //[SerializeField] private Transform target;
+    //[SerializeField] private Transform LastTarget;
     private Transform player;
     private Transform forkliftArtTrans;
     [SerializeField] float backwardMovementSpeed = 5f;
     [SerializeField] private float backwardMovementDistance = 20f;
     [SerializeField] float plus;
+    [SerializeField] private float fuelDecreaseRate = 10f;
     private List<Pier> piers = new List<Pier>();
-    
+    ForkliftTask task;
+    Vector3 destinationPos;
+
     GameConfig gameConfig;
 
+    public IForkliftState CurrentState { get; private set; }
+    private Driving driving;
+    private Idling idling;
+    private Transfering transfering;
+
+    #endregion
+
     private void Awake()
-    {      
+    {   
         gameConfig = ConfigManager.Instance.Config;
         myCarrier = GetComponent<ForkliftCarrier>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
-        player = GameObject.Find("Player").transform;
         forkliftArtTrans = transform.GetChild(1).transform;
     }
 
     private void Start()
     {
+        driving = new Driving(this, myCarrier);
+        idling = new Idling(myCarrier, this); 
+        transfering = new Transfering(this, myCarrier);
+
+        driving.Initialize(transfering, idling);
+        idling.Initialize(driving);
+        transfering.Initialize(driving, idling);
+
         var portLoader = GetComponentInParent<PortLoader>();
 
         if (!portLoader)
         {
-            Debug.LogError(
+            UnityEngine.Debug.Log(
                 "PortLoader not found on parent GameObject. \n Please ensure Forklift is a child of the Port GameObject.");
         }
         else
         {
+            player = portLoader.GetPlayer().transform;
             FindPiers(portLoader);
             FindConveyors(portLoader);
         }
+
+        //destinationPos = this.transform.position;
+
+        NoFuelText.SetActive(false);
+
+        task = ForkliftTask.PickupBoxes;
+
+        CurrentState = idling;
+        CurrentState.Enter(task, null);
+
+
+/*
+        SetCarryTask();
 
         target = SelectTargetPier().GetComponent<Pier>().actionRectZone;
         
@@ -71,27 +309,54 @@ public class ForkliftMover : MonoBehaviour
         }
 
         MoveToTarget();
-        NoFuelText.SetActive(false);
+        */
+    }
+/*
+    public (bool IsDestinationPier, object DestinationType, Task Task) SetCarryTask()
+    {
+        if (myCarrier.CheckCanReceiveBoxes() && SelectTargetPier() != null)
+        {
+
+        }
+    }*/
+
+    public float GetStoppingDistance()
+    {
+        return StoppingDistance;
     }
 
-    private Transform SelectTargetPier()
+    public Pier SetDestinationPier()
     {
         foreach (var pier in piers)
         {
-            Debug.Log(pier.gameObject.name);
-            Debug.Log("can give boxes: " + pier.CheckCanGiveBoxes().ToString());
-            Debug.Log("is active: " + pier.gameObject.activeSelf);
             if (pier.gameObject.activeSelf && pier.CheckCanGiveBoxes())
             {
-                return pier.transform;
+                return pier;
             }
         }
         return null;
     }
+    
+    public void TransitionState(bool isDestinationPier, ForkliftTask task, object destinationType, IForkliftState nextState)
+    {
+        CurrentState = nextState;
+        CurrentState.Enter(task, destinationType);
+        //CurrentState.Enter(task, isDestinationPier ? (Pier)destinationType : (Conveyor)destinationType);
+    }
+
+    public void DecreaseFuel()
+    {
+        FuelSlider.value -= fuelDecreaseRate;
+    }
+
+    public void FreezeMovement()
+    {
+        navMeshAgent.isStopped = true;
+    }
 
     private void FindConveyors(PortLoader portLoader)
     {
-        conveyorBelt = portLoader.GetConveyorInPort().transform;
+        conveyor = portLoader.GetConveyorInPort();
         // if (conveyorBelt) conveyorBelt.gameObject.name;
     }
 
@@ -102,46 +367,34 @@ public class ForkliftMover : MonoBehaviour
             piers.Add(ship.GetPier());
         }
     }
-    
-    /* SetTransferTask() >>
-     * check if I can receive boxes:
-     *   yes >>
-     *      check in each pier if it can give boxes.
-     *      for first pier which can - use this pier, exit early
-     *      Move(the pier)
-     *   no >>
-     *      Move(the conveyor belt)
-     *
-     * 
-     * state 1 - is full and needs to unload
-     * state 2 - is not completely full - needs to go upload
-     * state 2.1 - is not completely full - has boxes in piers
-     * state 2.2 - is not completely full - no boxes in piers
-     * state 3 - no fuel
-     *  
-     */
 
     private void Update()
     {
+        CurrentState.Update();
+
+
+
         // check if forklift has reached destination
-        if (target != null && Vector3.Distance(transform.position, target.position) < StopDistance && navMeshAgent.enabled)
+       /* if (target != null && Vector3.Distance(transform.position, target.position) < StopDistance && navMeshAgent.enabled)
         {
             CancelMovement();
-        }
+        }*/
 
-        SetCarryingTask();
-        if (FuelSlider.value <= 0 && Vector3.Distance(forkliftArtTrans.position, player.position) < wakingDistance)
+        //SetCarryingTask();
+        
+        
+      /*  if (FuelSlider.value <= 0 && Vector3.Distance(forkliftArtTrans.position, player.position) < wakingDistance)
         {
             FuelSlider.value = FuelSlider.maxValue;
             GetComponent<NavMeshAgent>().speed = gameConfig.levels[0].upgrades["forklift_speed"].levels[GameManager.Instance.forklifSpeedLevel - 1];
             NoFuelText.SetActive(false);
         }
         NoFuelText.transform.parent.LookAt(GameObject.Find("Main Camera").transform);
-        NoFuelText.transform.parent.rotation = Quaternion.EulerAngles(0, NoFuelText.transform.rotation.y + plus, 0);
+        NoFuelText.transform.parent.rotation = Quaternion.EulerAngles(0, NoFuelText.transform.rotation.y + plus, 0);*/
     }
 
     // checks if finished loading/unloading boxes and sets the new task accordingly
-    public void SetCarryingTask()
+    /*public void SetCarryingTask()
     {
         if (target != null || FuelSlider.value == 0) return;
 
@@ -152,7 +405,7 @@ public class ForkliftMover : MonoBehaviour
             if (target == null)
             {
                 isPickUpBoxesTask = false;
-                target = conveyorBelt;
+                target = conveyor;
                 StartCoroutine(Move());
                 return;
             }
@@ -164,7 +417,7 @@ public class ForkliftMover : MonoBehaviour
         else
         {
             isPickUpBoxesTask = false;
-            target = conveyorBelt;
+            target = conveyor;
             StartCoroutine(Move());
         }
         
@@ -180,10 +433,16 @@ public class ForkliftMover : MonoBehaviour
         //     isPickUpBoxesTask = true;
         //     StartCoroutine(Move());
         // }
+    }*/
+
+    public void MoveToDestination(Vector3 destinationPos)
+    {
+        navMeshAgent.SetDestination(destinationPos);
+        navMeshAgent.isStopped = false;
     }
 
     // sets movement destination and start movement
-    IEnumerator Move()
+    /*IEnumerator Move()
     {
         //rb.constraints = RigidbodyConstraints.None;
 
@@ -191,11 +450,11 @@ public class ForkliftMover : MonoBehaviour
         {
             target = SelectTargetPier().GetComponent<Pier>().transform;
             if (target == null) 
-                target = conveyorBelt;
+                target = conveyor;
         }
         else
         {
-            target = conveyorBelt; 
+            target = conveyor; 
         }
         if(LastTarget != target)
         yield return StartCoroutine(MoveBackwards());
@@ -243,17 +502,17 @@ public class ForkliftMover : MonoBehaviour
         }
         LastTarget = target;
         navMeshAgent.isStopped = false;
-    }
+    }*/
 
     // stops movement on navmesh and freezes position
-    private void CancelMovement()
+/*    private void CancelMovement()
     {
         target = null;
         navMeshAgent.ResetPath();
         navMeshAgent.isStopped = true;
         
         rb.constraints = RigidbodyConstraints.FreezePosition;
-    }
+    }*/
     
     public void FuelUpgrade(int amount)
     {
@@ -263,3 +522,5 @@ public class ForkliftMover : MonoBehaviour
         NoFuelText.SetActive(false);
     }
 }
+
+
