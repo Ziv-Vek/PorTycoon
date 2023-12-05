@@ -56,8 +56,8 @@ public class AudioManager : MonoBehaviour
         Second.sorce.Play();
         while (First.sorce.volume != 0 && Second.sorce.volume != Second.volium)
         {
-            First.sorce.volume -= 0.7f * Time.deltaTime;
-            Second.sorce.volume += 0.7f * Time.deltaTime;
+            First.sorce.volume -= 0.2f * Time.deltaTime;
+            Second.sorce.volume += 0.2f * Time.deltaTime;
             yield return null;
         }
         First.sorce.volume = First.volium;

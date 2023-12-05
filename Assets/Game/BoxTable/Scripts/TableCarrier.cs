@@ -84,6 +84,6 @@ public class TableCarrier : Carrier
         catch { }
         maxBoxesCapacity++;
         AddBox();
-        // GC.Collect();
+        GC.Collect();
     }
 }

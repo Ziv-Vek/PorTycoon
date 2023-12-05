@@ -33,6 +33,8 @@ public class PanelTouchHandler : MonoBehaviour
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Moved)
             {
+                if (!scratch.isPlaying)
+                    scratch.Play();
                 if (!ScratchPartical.isPlaying)
                     ScratchPartical.Play();
                 VibrationManager.Instance.HeavyVibrate();
@@ -40,6 +42,8 @@ public class PanelTouchHandler : MonoBehaviour
             else
             {
                 ScratchPartical.Stop();
+                if (scratch.isPlaying)
+                    scratch.Pause();
             }
 
             if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved ||

@@ -54,7 +54,7 @@ public class ShipCarrier: Carrier
         
         return box;
     }
-    public void addBoxPlace() 
+    public void addBoxPlace(bool PurchasedUpgrade) 
     {
         Transform[] ArrayPlaces = new Transform[boxesPlaces.Length + 1];
         for (int i = 0; i < boxesPlaces.Length; i++)
@@ -63,7 +63,7 @@ public class ShipCarrier: Carrier
         }
         Vector3 place;
         //when the port loading...
-        if (new System.Diagnostics.StackTrace().GetFrame(1).GetMethod().DeclaringType.Name == "PortLoader")
+        if (!PurchasedUpgrade)
         {
             if(CargoPlacesHolder.childCount == 1)
             {
@@ -76,8 +76,7 @@ public class ShipCarrier: Carrier
                 place = new Vector3(place.x, place.y, place.z - 6.5f);
             }
         }
-        //when buying the upgrade
-        else
+        else  //when buying the upgrade
         {
             if (GameManager.Instance.quantityLevel == 1)
             {
@@ -101,6 +100,6 @@ public class ShipCarrier: Carrier
         try { Destroy(newPlace.transform.GetChild(0).gameObject); }
         catch{ }
         maxBoxesCapacity++;
-        AddBox();
+       AddBox();
     }
 }

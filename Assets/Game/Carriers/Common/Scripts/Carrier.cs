@@ -87,7 +87,7 @@ public class Carrier : MonoBehaviour, ITransferBoxes
             ArrayBoxes[i] = boxes[i];
         }
         boxes = ArrayBoxes;
-        GC.Collect(); 
+        GC.Collect();
     }
 
     public void RemoveBox(PortBox box)
