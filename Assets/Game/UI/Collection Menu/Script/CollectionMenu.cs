@@ -28,7 +28,7 @@ public class CollectionMenu : MonoBehaviour
     {
         stars.text = GameManager.Instance.stars.ToString();
         if (stars.text.Length > 7)
-            stars.text = stars.text.Substring(0, 6) + "..$";
+            stars.text = stars.text.Substring(0, 6) + "..";
     }
     public void RunCloseAnimation()
     {

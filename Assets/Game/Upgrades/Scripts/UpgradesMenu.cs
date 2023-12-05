@@ -19,9 +19,9 @@ public class UpgradesMenu : MonoBehaviour
     } 
     private void Update()
     {
-        Money.text = GameManager.Instance.money + "$";
+        Money.text = "$" + GameManager.Instance.money;
         if (Money.text.Length > 8)
-        Money.text = Money.text.Substring(0, 7) + "..$";
+        Money.text = "$" + Money.text.Substring(0, 7) + "..";
     }
     private void OnEnable()
     {

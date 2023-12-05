@@ -10,6 +10,9 @@ public class PlayerCarrier : Carrier, IBoxOpener
 
     private PlayerMover playerMover;
 
+    [SerializeField] AudioClip ReceiveBoxSound;
+    [SerializeField] AudioClip GivingBoxSound;
+
     public override void Awake()
     {
         playerMover = GetComponent<PlayerMover>();
@@ -54,7 +57,10 @@ public class PlayerCarrier : Carrier, IBoxOpener
         boxes[index] = null;
         VibrationManager.Instance.HeavyVibrate();
         if (boxes.Any()) playerMover.ToggleAnimatorHoldingBox(false);
-        
+
+        GetComponent<AudioSource>().clip = GivingBoxSound;
+        GetComponent<AudioSource>().Play();
+
         return box;
     }
     
@@ -67,6 +73,8 @@ public class PlayerCarrier : Carrier, IBoxOpener
         box.transform.localRotation = gameObject.transform.rotation;
         VibrationManager.Instance.MediumeVivrate();
         playerMover.ToggleAnimatorHoldingBox(true);
+        GetComponent<AudioSource>().clip = ReceiveBoxSound;
+        GetComponent<AudioSource>().Play();
     }
 
 }
