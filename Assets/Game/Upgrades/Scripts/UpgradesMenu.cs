@@ -100,7 +100,7 @@ public class UpgradesMenu : MonoBehaviour
                 UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price);
             foreach (GameObject ship in GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().Ships)
             {
-                ship.GetComponent<ShipCarrier>().addBoxPlace(true);
+                ship.GetComponent<ShipCarrier>().addBoxPlace();
             }
             GameManager.Instance.quantityLevel++;
             VibrationManager.Instance.MediumeVivrate();

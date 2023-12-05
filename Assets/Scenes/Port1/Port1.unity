@@ -6841,7 +6841,7 @@ PrefabInstance:
     - target: {fileID: 7651072665156766675, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 4124
+      value: 4127
       objectReference: {fileID: 0}
     - target: {fileID: 7651072665156766676, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
@@ -6886,7 +6886,7 @@ PrefabInstance:
     - target: {fileID: 7651072665293233935, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 4124
+      value: 4127
       objectReference: {fileID: 0}
     - target: {fileID: 7700229913167194374, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
@@ -25131,7 +25131,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -286.3, y: 571}
+  m_AnchoredPosition: {x: 283, y: 523.1}
   m_SizeDelta: {x: 126.00806, y: 129.91101}
   m_Pivot: {x: 0.5, y: 0.05}
 --- !u!114 &1963181728
@@ -25180,7 +25180,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 654634358}
         m_TargetAssemblyTypeName: ScratchBoard, Assembly-CSharp
-        m_MethodName: BackToPort
+        m_MethodName: ExitDuringScratch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -28,7 +28,7 @@ public class PortLoader : MonoBehaviour
         {
             foreach (GameObject ship in Ships)
             {
-                ship.GetComponent<ShipCarrier>().addBoxPlace(false);
+                ship.GetComponent<ShipCarrier>().addBoxPlace();
             }
         }
         for (int i = 0; i < GameManager.Instance.shipSpeedLevel; i++)

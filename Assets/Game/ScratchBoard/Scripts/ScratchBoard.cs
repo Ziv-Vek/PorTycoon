@@ -28,8 +28,8 @@ public class ScratchBoard : MonoBehaviour
 
     private void Start()
     {
-        gameObject.SetActive(false);
         throwButton.onClick.AddListener(OnThrowBox);
+        gameObject.SetActive(false);
     }
     private void OnEnable()
     {
@@ -80,8 +80,10 @@ public class ScratchBoard : MonoBehaviour
         gameObject.SetActive(true);
         if (!CurrentBox.isPurchasedBox)
         {
-            ExitButton.gameObject.SetActive(true);
+            throwButton.gameObject.SetActive(true);
         }
+        else
+            throwButton.gameObject.SetActive(false);
     }
 
     private void OnFinishedScratching()
@@ -145,6 +147,11 @@ public class ScratchBoard : MonoBehaviour
         //PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
         //playerMover.ToggleMovement(false);
         //playerMover.HideJoystick();
+    }
+    public void ExitDuringScratch()
+    {
+        Close();
+        tableCarrier.RemovePlayer();
     }
     public void BackToPort()
     {

@@ -54,7 +54,7 @@ public class ShipCarrier: Carrier
         
         return box;
     }
-    public void addBoxPlace(bool PurchasedUpgrade) 
+    public void addBoxPlace() 
     {
         Transform[] ArrayPlaces = new Transform[boxesPlaces.Length + 1];
         for (int i = 0; i < boxesPlaces.Length; i++)
@@ -62,33 +62,18 @@ public class ShipCarrier: Carrier
             ArrayPlaces[i] = boxesPlaces[i];
         }
         Vector3 place;
-        //when the port loading...
-        if (!PurchasedUpgrade)
+
+        if (CargoPlacesHolder.childCount == 1)
         {
-            if(CargoPlacesHolder.childCount == 1)
-            {
-               place = CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 1).position;
-               place = new Vector3(place.x + 6.3f, place.y, place.z);
-            }
-            else
-            {
-                place = CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 2).position;
-                place = new Vector3(place.x, place.y, place.z - 6.5f);
-            }
+            place = CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 1).position;
+            place = new Vector3(place.x + 6.3f, place.y, place.z);
         }
-        else  //when buying the upgrade
+        else
         {
-            if (GameManager.Instance.quantityLevel == 1)
-            {
-                place = CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 1).position;
-                place = new Vector3(place.x + 6.3f, place.y, place.z);
-            }
-            else
-            {
-                place = CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 2).position;
-                place = new Vector3(place.x, place.y, place.z - 6.5f);
-            }
+            place = CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 2).position;
+            place = new Vector3(place.x, place.y, place.z - 6.5f);
         }
+
         GameObject newPlace = Instantiate(CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 1).gameObject, place, Quaternion.identity);
         newPlace.transform.parent = CargoPlacesHolder;
 
@@ -100,6 +85,12 @@ public class ShipCarrier: Carrier
         try { Destroy(newPlace.transform.GetChild(0).gameObject); }
         catch{ }
         maxBoxesCapacity++;
-       AddBox();
+        // AddBox();
+        //PortBox[] ArrayBoxes = new PortBox[boxes.Length + 1];
+        //for (int i = 0; i < boxes.Length; i++)
+        //{
+        //    ArrayBoxes[i] = boxes[i];
+        //}
+        //boxes = ArrayBoxes;
     }
 }

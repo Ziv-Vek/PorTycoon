@@ -141,6 +141,8 @@ public class CollectionMenu : MonoBehaviour
     public void ItemPressed(GameObject Button)
     {
         ItemScreen.SetActive(true);
+        ItemScreen.transform.Find("ItemPlace").rotation = Quaternion.EulerAngles(0, 0, 0);
+        ItemScreen.transform.Find("RotateItemOnY").rotation = Quaternion.EulerAngles(0, 0, 0);
         ItemScreen.transform.Find("ItemPlace").GetComponent<ScratchItemModel>().ChangeModel(Button.name);
         ScratchItemModel ItemModel = ItemScreen.transform.Find("ItemPlace").GetComponent<ScratchItemModel>();
 
