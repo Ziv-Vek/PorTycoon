@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class ForkliftMover : MonoBehaviour
 {
+    public int PortNumber = 1;
+
     //configs:
     private const float StopDistance = 2f;
    [SerializeField] private bool isPickUpBoxesTask;     // true if needed to take boxes from pier, false if needed to put boxes on conveyor
@@ -29,6 +31,8 @@ public class ForkliftMover : MonoBehaviour
     [SerializeField] float plus;
 
     GameConfig gameConfig;
+    public AudioSource HornSorce;
+    public AudioSource GasRefillSorce;
 
     private void Awake()
     {      
@@ -72,6 +76,7 @@ public class ForkliftMover : MonoBehaviour
             FuelSlider.value = FuelSlider.maxValue;
             GetComponent<NavMeshAgent>().speed = gameConfig.levels[0].upgrades["forklift_speed"].levels[GameManager.Instance.forklifSpeedLevel - 1];
             NoFuelText.SetActive(false);
+            GasRefillSorce.Play();
         }
         NoFuelText.transform.parent.LookAt(GameObject.Find("Main Camera").transform);
         NoFuelText.transform.parent.rotation = Quaternion.EulerAngles(0, NoFuelText.transform.rotation.y + plus, 0);
@@ -156,6 +161,7 @@ public class ForkliftMover : MonoBehaviour
             {
                 GetComponent<NavMeshAgent>().speed = 0;
                 NoFuelText.SetActive(true);
+                HornSorce.Play();
             }
         }
         LastTarget = target;

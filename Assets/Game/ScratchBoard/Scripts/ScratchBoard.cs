@@ -53,6 +53,7 @@ public class ScratchBoard : MonoBehaviour
         if (CurrentBox.isPurchasedBox)
         {
             UIManager.Instance.OpenCollectionCanvas();
+            tableCarrier.RemovePlayer();
             return;
         }
         else
