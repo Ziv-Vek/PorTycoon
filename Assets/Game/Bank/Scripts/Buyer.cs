@@ -103,6 +103,9 @@ public class Buyer : MonoBehaviour
         }    
         if(productPlugin != null)
             productPlugin.SetActive(true);
+
+        StartCoroutine(UserDataManager.Instance.SaveUserDataWithDelay());
+        
         Destroy(gameObject);
     }
 }

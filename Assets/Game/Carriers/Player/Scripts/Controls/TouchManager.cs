@@ -22,20 +22,35 @@ public class TouchManager : MonoBehaviour
   private PlayerInput playerInput;
   private InputAction touchPositionAction;
   private InputAction touchPressAction;
+  private InputAction phoneBackNavigationAction;
+
+  public static TouchManager Instance;
   
   #region EVENTS
   public static event Action<Vector2> onTouchStarted;
   public static event Action<Vector2> onTouchPerformed; 
   public static event Action onTouchEnded;
+  public static event Action onTouchPhoneBackNavBtn;
   #endregion
 
   private void Awake() 
   {
+    if (Instance == null)
+    {
+      Instance = this;
+      DontDestroyOnLoad(gameObject);
+    }
+    else
+    {
+      Destroy(gameObject);
+    }
+    
     playerInput = GetComponent<PlayerInput>();
     touchPressAction = playerInput.actions.FindAction("TouchPress");
     touchPositionAction = playerInput.actions["TouchPosition"];
+    phoneBackNavigationAction = playerInput.actions["PhoneNavigationBackBtn"];
   }
-
+  
   private void Start()
   {
     if (!Utils.Instance)
@@ -49,12 +64,19 @@ public class TouchManager : MonoBehaviour
   private void OnEnable() {
     touchPressAction.performed += TouchPressed;
     touchPressAction.canceled += TouchCanceled;
+    phoneBackNavigationAction.performed += PhoneBackNavPressedHandler;
+  }
+
+  private void PhoneBackNavPressedHandler(InputAction.CallbackContext obj)
+  {
+    onTouchPhoneBackNavBtn?.Invoke();
   }
 
   private void OnDisable()
   {
     touchPressAction.performed += TouchPressed;
     touchPressAction.canceled -= TouchCanceled;
+    phoneBackNavigationAction.performed -= PhoneBackNavPressedHandler;
   }
 
   void TouchPressed(InputAction.CallbackContext context)

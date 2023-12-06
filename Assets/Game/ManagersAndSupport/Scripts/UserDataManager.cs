@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -33,6 +35,7 @@ public class UserDataManager : MonoBehaviour
 
     public void SaveUserData()
     {
+        Debug.Log("save called");
         var userData = new UserData();
 
         ItemsManager.Instance.SaveData(userData);
@@ -61,6 +64,12 @@ public class UserDataManager : MonoBehaviour
         GameManager.Instance.LoadData(userData);
     }
 
+    public IEnumerator SaveUserDataWithDelay()
+    {
+        yield return null;
+        SaveUserData();
+    }
+
     public void ResetUserData()
     {
         Debug.Log("ResetUserData");
@@ -70,7 +79,7 @@ public class UserDataManager : MonoBehaviour
         SaveUserData();
         UIManager.Instance.UpdateUI();
     }
-
+    
     public void OnApplicationQuit()
     {
         SaveUserData();

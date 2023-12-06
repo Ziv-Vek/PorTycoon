@@ -47,7 +47,10 @@ public class Bank : MonoBehaviour
         currentStars += StarsAmount;
         GameManager.Instance.stars = currentStars;
         UIManager.Instance.UpdateStarsText(currentStars);
+        UserDataManager.Instance.SaveUserData();
+
     }
+    
     public void AddMoneyToPile(MoneyPile pile , String s)
     {
 
