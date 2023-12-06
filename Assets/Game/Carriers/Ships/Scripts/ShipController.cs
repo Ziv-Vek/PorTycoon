@@ -32,7 +32,7 @@ public class ShipController : MonoBehaviour
     private void PlaceShip()
     {
         var startingPoint = Vector3.MoveTowards(targetPoint.position, dockingPoint.position,
-            Vector3.Distance(targetPoint.position, dockingPoint.position) / 2);
+            Vector3.Distance(targetPoint.position, dockingPoint.position) / 1.2f);
         
         transform.SetPositionAndRotation(startingPoint, Quaternion.identity);
         transform.LookAt(dockingPoint.position, Vector3.up);
