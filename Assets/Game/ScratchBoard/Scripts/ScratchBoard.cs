@@ -10,6 +10,7 @@ public class ScratchBoard : MonoBehaviour
     [Header("References")] [SerializeField]
     private ScratchCardManager cardManager;
 
+    [SerializeField] private Conveyor conveyorBelt;
     [SerializeField] private PlayerMover playerMover;
     [SerializeField] private TableCarrier tableCarrier;
     [SerializeField] private ScratchItemModel scratchItemModel;
@@ -47,6 +48,7 @@ public class ScratchBoard : MonoBehaviour
     {
         gameObject.SetActive(false);
         EndButtons.SetActive(false);
+        EndButtons.transform.Find("NextBoxButton").gameObject.SetActive(false);
         Destroy(scratchItemModel.transform.GetChild(0).gameObject);
       
         tableCarrier.SetPlayer(playerCarrier);
@@ -61,7 +63,10 @@ public class ScratchBoard : MonoBehaviour
             PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
             playerMover.ToggleMovement(true);
             playerMover.ShowJoystick();
+            playerMover.joystick.DeactivateJoystick();
         }
+        if (!GameManager.Instance.GoneThroughTutorial)
+            FindAnyObjectByType<TutorialM>().ClickOn_CollectionPanel();
     }
 
     public void Open(PortBox box)
@@ -101,6 +106,8 @@ public class ScratchBoard : MonoBehaviour
         if (!CurrentBox.isPurchasedBox)
         {
             EndButtons.SetActive(true);
+            if (!tableCarrier.CheckIfBoxesEmpty() || !conveyorBelt.CheckIfBoxesEmpty())
+                EndButtons.transform.Find("NextBoxButton").gameObject.SetActive(true);
             ExitButton.gameObject.SetActive(false);
         }
         else

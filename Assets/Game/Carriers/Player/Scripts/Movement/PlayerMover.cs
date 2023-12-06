@@ -16,7 +16,7 @@ public class PlayerMover : MonoBehaviour
 
     // Cached ref:
     [SerializeField] Animator myAnimator;
-    FloatingJoystick joystick = null;
+    public FloatingJoystick joystick = null;
     CharacterController controller;
     [SerializeField] ParticleSystem DirtPartical;
 

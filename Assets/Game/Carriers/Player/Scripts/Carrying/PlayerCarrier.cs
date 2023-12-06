@@ -61,6 +61,9 @@ public class PlayerCarrier : Carrier, IBoxOpener
         GetComponent<AudioSource>().clip = GivingBoxSound;
         GetComponent<AudioSource>().Play();
 
+        if (!GameManager.Instance.GoneThroughTutorial)
+            FindAnyObjectByType<TutorialM>().SetBoxTable_Target();
+
         return box;
     }
     
@@ -75,6 +78,8 @@ public class PlayerCarrier : Carrier, IBoxOpener
         playerMover.ToggleAnimatorHoldingBox(true);
         GetComponent<AudioSource>().clip = ReceiveBoxSound;
         GetComponent<AudioSource>().Play();
+        if (!GameManager.Instance.GoneThroughTutorial)
+            FindAnyObjectByType<TutorialM>().SetConveyor_Target();
     }
 
 }

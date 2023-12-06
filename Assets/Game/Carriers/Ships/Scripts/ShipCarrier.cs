@@ -7,6 +7,7 @@ public class ShipCarrier: Carrier
     [SerializeField] Pier pier;
     private ITransferBoxes boxesReceiver;
     [SerializeField] MoneyPile moneyPile;
+    [SerializeField] Transform[] places;
     
     
     public override void Awake()
@@ -14,7 +15,11 @@ public class ShipCarrier: Carrier
         boxesReceiver = pier.GetComponent<ITransferBoxes>();
         if (boxesPlaces == null) throw new Exception("No IReceiveCargo component found.");
     }
-    
+    private void Start()
+    {
+        boxesPlaces[0].position = places[0].position;
+    }
+
     public void InstantiateCargo()
     {
         boxes = BoxesManager.Instance.GetBoxesByQuantity(maxBoxesCapacity);
@@ -74,7 +79,7 @@ public class ShipCarrier: Carrier
             place = new Vector3(place.x, place.y, place.z - 6.5f);
         }
 
-        GameObject newPlace = Instantiate(CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 1).gameObject, place, Quaternion.identity);
+        GameObject newPlace = Instantiate(CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 1).gameObject, places[CargoPlacesHolder.childCount].position, Quaternion.identity);
         newPlace.transform.parent = CargoPlacesHolder;
 
         newPlace.name = "CargoPlace (" + (CargoPlacesHolder.childCount - 1) + ")";

@@ -112,6 +112,7 @@ public class Conveyor : Carrier
         if (isScanning || isBeltMoving || isConveyorEndFull) return;
         
         boxOnBelt = boxesPile.TakeBoxFromPile();
+        boxes[0] = boxOnBelt;
 
         if (boxOnBelt)
         {
@@ -171,6 +172,7 @@ public class Conveyor : Carrier
 
         tableCarrier.ReceiveBox(boxOnBelt);
         boxOnBelt = null;
+        boxes[0] = null;
         isConveyorEndFull = false;
 
         yield return null;

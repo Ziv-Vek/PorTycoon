@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class UserData
 {
     public Dictionary<string, Item> unlockedItems;
+    public bool GoneThroughTutorial;
     public int money;
     public int stars;
     public int experience;

@@ -11,7 +11,7 @@ public class TableCarrier : Carrier
     // Priority queue of Box Openers Available
     private readonly Queue<IBoxOpener> _boxOpeners = new();
     private IBoxOpener _player;
-
+    [SerializeField] GameObject[] LockedPlaces;
     public void SetPlayer(IBoxOpener playerOpener)
     {
         this._player = playerOpener;
@@ -42,7 +42,29 @@ public class TableCarrier : Carrier
         return null;
     }
 
-
+    public override void ReceiveBox(PortBox box)
+    {
+        int index = Array.FindIndex(boxes, i => i == null);
+        boxesPlaces[index].Find("Place Visual").gameObject.SetActive(false);
+        boxes[index] = box;
+        box.transform.SetParent(boxesPlaces[index]);
+        box.transform.localPosition = Vector3.zero;
+       // box.transform.localRotation = boxesPlaces[index].transform.rotation;
+    }
+    public override void RemoveBox(PortBox box)
+    {
+        // Find the box in the array and set its spot to null
+        for (int i = 0; i < boxes.Length; i++)
+        {
+            if (boxes[i] == box)
+            {
+                Destroy(box.transform.gameObject);
+                boxes[i] = null;
+                boxesPlaces[i].Find("Place Visual").gameObject.SetActive(true);
+                break;
+            }
+        }
+    }
     private void GiveBoxToOpener(PortBox box)
     {
         if (_boxOpeners.Count == 0 && _player == null) return;
@@ -70,9 +92,9 @@ public class TableCarrier : Carrier
         }
         Vector3 place;
         place = CargoPlacesHolder.transform.GetChild(CargoPlacesHolder.transform.childCount - 1).transform.position;
-        place = new Vector3(place.x, place.y, place.z + 5);
+        place = new Vector3(place.x, place.y, place.z + 5.5f);
 
-        GameObject newPlace = Instantiate(CargoPlacesHolder.transform.GetChild(CargoPlacesHolder.transform.childCount - 1).gameObject, place, CargoPlacesHolder.transform.rotation, CargoPlacesHolder.transform);
+        GameObject newPlace = Instantiate(CargoPlacesHolder.transform.GetChild(CargoPlacesHolder.transform.childCount - 1).gameObject, place, CargoPlacesHolder.transform.GetChild(CargoPlacesHolder.transform.childCount-1).rotation, CargoPlacesHolder.transform);
     //    newPlace.transform.parent = CargoPlacesHolder.transform;
 
         newPlace.name = "CargoPlace (" + (CargoPlacesHolder.transform.childCount - 1) + ")";
@@ -80,8 +102,9 @@ public class TableCarrier : Carrier
         ArrayPlaces[ArrayPlaces.Length - 1] = newPlace.transform;
 
         boxesPlaces = ArrayPlaces;
-        try { Destroy(newPlace.transform.GetChild(0).gameObject); }
-        catch { }
+        Destroy(LockedPlaces[boxesPlaces.Length - 2]);
+        //try { Destroy(newPlace.transform.GetChild(0).gameObject); }
+        //catch { }
         maxBoxesCapacity++;
         AddBox();
     }

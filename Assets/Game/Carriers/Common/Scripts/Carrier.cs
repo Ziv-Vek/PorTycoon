@@ -90,7 +90,7 @@ public class Carrier : MonoBehaviour, ITransferBoxes
         GC.Collect();
     }
 
-    public void RemoveBox(PortBox box)
+    public virtual void RemoveBox(PortBox box)
     {
         // Find the box in the array and set its spot to null
         for (int i = 0; i < boxes.Length; i++)
@@ -107,5 +107,14 @@ public class Carrier : MonoBehaviour, ITransferBoxes
     protected PortBox GetAvailableBox()
     {
         return Array.Find(boxes, box => box != null && box.CanBeOpened);
+    }
+    public bool CheckIfBoxesEmpty()
+    {
+        foreach (PortBox box in boxes)
+        {
+            if (box != null)
+                return false;
+        }
+        return true;
     }
 }

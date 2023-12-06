@@ -71,6 +71,8 @@ public class PortLoader : MonoBehaviour
             {
                 Player.GetComponent<PlayerCarrier>().addBoxPlace();
             }
+            if(GameManager.Instance.GoneThroughTutorial)
+                FindAnyObjectByType<TutorialM>().DestroyItSelf();
         }
 
     }
