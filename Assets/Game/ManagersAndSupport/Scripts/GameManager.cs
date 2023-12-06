@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public int CurrentLevel { get; set; } = 1;
 
     // player settings
+    public bool GoneThroughTutorial;
     public int money;
     public int stars;
     public int experience;
@@ -66,6 +67,7 @@ public class GameManager : MonoBehaviour
 
     public void SaveData(UserData userData)
     {
+        userData.GoneThroughTutorial = GoneThroughTutorial;
         userData.money = money;
         userData.stars = stars; 
         userData.playerSpeedLevel = playerSpeedLevel;
@@ -91,6 +93,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadData(UserData userData)
     {
+        GoneThroughTutorial = userData.GoneThroughTutorial;
         money = userData.money;
         stars = userData.stars;
         playerSpeedLevel = userData.playerSpeedLevel;
@@ -116,6 +119,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetData()
     {
+        GoneThroughTutorial = false;
         money = 30;
         stars = 0;
         experience = 0;

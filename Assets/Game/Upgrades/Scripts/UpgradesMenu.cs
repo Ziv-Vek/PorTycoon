@@ -54,6 +54,7 @@ public class UpgradesMenu : MonoBehaviour
             try { playerMover = GameObject.Find("Player_New").GetComponent<PlayerMover>(); } catch { }
             playerMover.ToggleMovement(true);
             playerMover.ShowJoystick();
+            playerMover.joystick.DeactivateJoystick();
         }
         gameObject.SetActive(false);  
     }

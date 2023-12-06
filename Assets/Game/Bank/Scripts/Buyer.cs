@@ -73,10 +73,10 @@ public class Buyer : MonoBehaviour
             gameObject.GetComponent<AudioSource>().Play();
         }
 
-        if (TimePerStash - (0.2f * Time.deltaTime) > 0.04f)
+        if (TimePerStash - (0.1f * Time.deltaTime) > 0.015f)
         {
             CancelInvoke("GivingOneByOne");
-            TimePerStash -= 0.2f * Time.deltaTime;
+            TimePerStash -= 0.15f * Time.deltaTime;
         }
         Invoke("GivingOneByOne", TimePerStash);
     }
@@ -103,6 +103,11 @@ public class Buyer : MonoBehaviour
         }    
         if(productPlugin != null)
             productPlugin.SetActive(true);
+
+        AudioManager.inctece.play("Buying Upgrade");
+
+        if (!GameManager.Instance.GoneThroughTutorial)
+            FindAnyObjectByType<TutorialM>().SetToShipment_Target();
         Destroy(gameObject);
     }
 }

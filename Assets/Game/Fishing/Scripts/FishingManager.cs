@@ -54,10 +54,10 @@ public class FishingManager : MonoBehaviour
         if (FishedSomething)
             Target += new Vector3(0, 2.3f, 0);
 
-        while (Vector3.Distance(Target, Rope.GetPosition(2)) > 0.15f)
+        while (Vector3.Distance(Target, Rope.GetPosition(2)) > 0.1f)
         {
             // Calculate the new position using Lerp
-            Vector3 newPosition = Vector3.Lerp(Rope.GetPosition(2), Target, 6f * Time.deltaTime);
+            Vector3 newPosition = Vector3.Lerp(Rope.GetPosition(2), Target, 7f * Time.deltaTime);
             Rope.SetPosition(2, newPosition);
             yield return null;
         }   
@@ -136,6 +136,7 @@ public class FishingManager : MonoBehaviour
         {
             playerMover.ToggleMovement(true);
             playerMover.ShowJoystick();
+            playerMover.joystick.DeactivateJoystick();
         }
         if (FindInArrayByName(Clone) != null )
             Destroy(Clone);

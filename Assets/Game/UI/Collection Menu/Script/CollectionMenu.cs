@@ -50,7 +50,8 @@ public class CollectionMenu : MonoBehaviour
 
         playerMover.ToggleMovement(true);
         playerMover.ShowJoystick();
-
+        playerMover.joystick.DeactivateJoystick();
+ 
         MainPanel.SetActive(true);
         AllCollectionsPanel.SetActive(false);
 
