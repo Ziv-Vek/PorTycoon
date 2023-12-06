@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -79,7 +80,12 @@ public class UserDataManager : MonoBehaviour
         SaveUserData();
         UIManager.Instance.UpdateUI();
     }
-    
+
+    public void OnApplicationPause(bool pauseStatus)
+    {
+        SaveUserData();
+    }
+
     public void OnApplicationQuit()
     {
         SaveUserData();

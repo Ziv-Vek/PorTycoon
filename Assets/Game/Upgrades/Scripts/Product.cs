@@ -57,17 +57,6 @@ public class Product : MonoBehaviour
     private void OnEnable()
     {
         Update();
-        // StartCoroutine(Initialize());
-        // if (ConfigManager.Instance.Config == null)
-        // {
-        //     
-        // }
-        // else
-        // {
-        //     
-        // }
-        
-        
     }
 
     void Start()
@@ -79,11 +68,4 @@ public class Product : MonoBehaviour
                 GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades[gameObject.name].prices[Level - 1];
         }catch { }      
     }
-
-    // IEnumerator Initialize()
-    // {
-    //     yield return WaitForEndOfFrame();
-    //     
-    //      
-    // }
 }
