@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class Product : MonoBehaviour
 {
     public int Price = 000; 
     int Level = 1;
     GameConfig gameConfig;
-    private void Start()
-    {
-    }
+   
     void Update()
     {
         transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = Price.ToString();
@@ -58,11 +57,33 @@ public class Product : MonoBehaviour
     private void OnEnable()
     {
         Update();
+        // StartCoroutine(Initialize());
+        // if (ConfigManager.Instance.Config == null)
+        // {
+        //     
+        // }
+        // else
+        // {
+        //     
+        // }
+        
+        
+    }
+
+    void Start()
+    {
         gameConfig = ConfigManager.Instance.Config;
         try
         {
             if ((Level < 4 && (gameObject.name == "ship_box_quantity" || gameObject.name == "forklift_box_quantity")) || Level < 5)
                 GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades[gameObject.name].prices[Level - 1];
-        }catch { }       
+        }catch { }      
     }
+
+    // IEnumerator Initialize()
+    // {
+    //     yield return WaitForEndOfFrame();
+    //     
+    //      
+    // }
 }

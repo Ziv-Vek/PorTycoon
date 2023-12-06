@@ -5,7 +5,7 @@ using UnityEngine;
 public class TutorialM : MonoBehaviour
 {
     public static TutorialM Instance;
-    GameObject Arrow;
+    [SerializeField] GameObject Arrow;
     [SerializeField] Transform playePosition;
     [SerializeField] Transform Target;
     [SerializeField] Transform BuyingShipPlace;
@@ -23,7 +23,7 @@ public class TutorialM : MonoBehaviour
     {
         Arrow.transform.position = playePosition.position;
         Arrow.transform.LookAt(Target);
-        if (Vector3.Distance(playePosition.position, Target.position) < 20)
+        if (Target && Vector3.Distance(playePosition.position, Target.position) < 20)
         {
             Arrow.transform.localScale = new Vector3(Vector3.Distance(Arrow.transform.position, Target.position)/20, Vector3.Distance(Arrow.transform.position, Target.position) / 20, Vector3.Distance(Arrow.transform.position, Target.position) / 20);
         }

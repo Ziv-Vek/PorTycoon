@@ -12966,7 +12966,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &823037935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17792,7 +17792,7 @@ Transform:
   m_Children:
   - {fileID: 1253638693}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1277205789
 MonoBehaviour:
@@ -17806,6 +17806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1607fabf7e3445344ae868368d6c5da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Arrow: {fileID: 1253638692}
   playePosition: {fileID: 2062891691}
   Target: {fileID: 0}
   BuyingShipPlace: {fileID: 1583210830}
@@ -18935,7 +18936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1381819863
 MonoBehaviour:
   m_ObjectHideFlags: 0
