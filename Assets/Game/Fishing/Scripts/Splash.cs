@@ -13,8 +13,10 @@ public class Splash : MonoBehaviour
 
     void Start()
     {
+        fishingManager = GameObject.Find("Fishing").GetComponent<FishingManager>();
         Interacteble = true;
         Catched = false;
+        opportunity = fishingManager.OpportunityTime;
         Invoke("SetInteractToFalse", opportunity);
         fishingManager = transform.parent.GetComponent<FishingManager>();
     }
@@ -24,7 +26,7 @@ public class Splash : MonoBehaviour
     }
     private void Update()
     {
-        if (!SplashParticals.IsAlive())
+        if (!Interacteble)
         {
             if (fishingManager.Step < 7)
                 fishingManager.Invoke(nameof(fishingManager.MakeSplash), fishingManager.Delay);
