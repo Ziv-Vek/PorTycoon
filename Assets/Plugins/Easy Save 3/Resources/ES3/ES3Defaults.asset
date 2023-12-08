@@ -41,6 +41,7 @@ MonoBehaviour:
     - Cinemachine
     - FbxBuildTestAssets
     - GrabbitAssembly
+    - io.sentry.unity.runtime
     - KinoBloom.Runtime
     - Lofelt.NiceVibrations
     - Lofelt.NiceVibrations.Demo
