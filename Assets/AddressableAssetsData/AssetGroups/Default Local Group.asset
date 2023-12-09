@@ -21,6 +21,14 @@ MonoBehaviour:
     m_Address: Assets/Asset packs/DavePixel/PirateCoin/Materials/DarkGold.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: d8c636788177bdc42b4cbbce4a3d4559
+    m_Address: Assets/Game/Bank/Materials/Money Matirial.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4ba3f3d6800b9974aa609ab84e3ac59f
+    m_Address: Assets/Game/Common/Materials/Green_MAT.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 087e45da59c70d542a2fdb5792d27998, type: 2}
   m_SchemaSet:
