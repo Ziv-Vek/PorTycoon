@@ -114,15 +114,15 @@ public class Buyer : MonoBehaviour
         {
             if (gameObject.name == "Forklift Buyer")
             {
-                GameManager.Instance.levelsData["Port" + CurrentLevel].ForkliftIsEnabled = true;
+                GameManager.Instance.LevelsData["Port" + CurrentLevel].ForkliftIsEnabled = true;
             }
-            else if (gameObject.name == "Ship Buyer" && GameManager.Instance.levelsData["Port" + CurrentLevel].ShipNumber < 3)
+            else if (gameObject.name == "Ship Buyer" && GameManager.Instance.LevelsData["Port" + CurrentLevel].ShipNumber < 3)
             {
-                GameManager.Instance.levelsData["Port" + CurrentLevel].ShipNumber++;
+                GameManager.Instance.LevelsData["Port" + CurrentLevel].ShipNumber++;
             }
-            else if (gameObject.name == "HandyMan Buyer" && GameManager.Instance.levelsData["Port" + CurrentLevel].HandyManNumber < 2)
+            else if (gameObject.name == "HandyMan Buyer" && GameManager.Instance.LevelsData["Port" + CurrentLevel].HandyManNumber < 2)
             {
-                GameManager.Instance.levelsData["Port" + CurrentLevel].HandyManNumber++;
+                GameManager.Instance.LevelsData["Port" + CurrentLevel].HandyManNumber++;
             }
         }
 
