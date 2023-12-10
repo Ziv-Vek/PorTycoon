@@ -108,6 +108,7 @@ public class UpgradesMenu : MonoBehaviour
             AudioManager.inctece.play("Buying Upgrade");
             if (GameManager.Instance.quantityLevel < 4)
                 Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["ship_box_quantity"].prices[GameManager.Instance.quantityLevel - 1];
+            
         }
         else
         {
@@ -129,6 +130,7 @@ public class UpgradesMenu : MonoBehaviour
             GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().ConveyorTable.GetComponent<Conveyor>().beltSpeed = gameConfig.levels[0].upgrades["conveyor_speed"].levels[GameManager.Instance.convayorSpeedLevel - 1];
             if(GameManager.Instance.convayorSpeedLevel < 5)
             Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["conveyor_speed"].prices[GameManager.Instance.convayorSpeedLevel - 1];
+            
         }
         else
         {
