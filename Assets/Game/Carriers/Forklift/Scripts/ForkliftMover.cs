@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -35,6 +33,8 @@ public class ForkliftMover : MonoBehaviour
     public AudioSource HornSorce;
     public AudioSource GasRefillSorce;
 
+    public int CurrentLevel;
+
     private void Awake()
     {
         gameConfig = ConfigManager.Instance.Config;
@@ -43,6 +43,7 @@ public class ForkliftMover : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player").transform;
         forkliftArtTrans = transform.GetChild(1).transform;
+        CurrentLevel = transform.parent.GetComponent<PortLoader>().PortLevel;
     }
 
     private void Start()
@@ -75,8 +76,9 @@ public class ForkliftMover : MonoBehaviour
         if (Vector3.Distance(forkliftArtTrans.position, player.position) < wakingDistance && FuelSlider.value <= 0)
         {
             FuelSlider.value = FuelSlider.maxValue;
-            GetComponent<NavMeshAgent>().speed = gameConfig.levels[0].upgrades["forklift_speed"]
-                .levels[GameManager.Instance.forklifSpeedLevel - 1];
+            GetComponent<NavMeshAgent>().speed = gameConfig.levels[GameManager.Instance.currentLevel - 1]
+                .upgrades["forklift_speed"]
+                .levels[GameManager.Instance.LevelsData["Port" + CurrentLevel].forklifSpeedLevel - 1];
             NoFuelText.SetActive(false);
             GasRefillSorce.Play();
         }
@@ -92,7 +94,7 @@ public class ForkliftMover : MonoBehaviour
          needs to pickup, and can still pickup
          needs to pickup, and cannot pickup
          needs to unload and can still unload
-         needs to unload and cannnot unload*/
+         needs to unload and cannot unload*/
         //   if (isPickUpBoxesTask && !myCarrier.CheckCanReceiveBoxes() && FuelSlider.value != 0)
 
         if (target == null && !myCarrier.CheckCanReceiveBoxes() && FuelSlider.value != 0)
@@ -187,8 +189,9 @@ public class ForkliftMover : MonoBehaviour
     {
         FuelSlider.maxValue = amount;
         FuelSlider.value = FuelSlider.maxValue;
-        GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[0].upgrades["forklift_speed"]
-            .levels[GameManager.Instance.forklifSpeedLevel - 1];
+        GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[GameManager.Instance.currentLevel - 1]
+            .upgrades["forklift_speed"]
+            .levels[GameManager.Instance.LevelsData["Port" + CurrentLevel].forklifSpeedLevel - 1];
         NoFuelText.SetActive(false);
     }
 

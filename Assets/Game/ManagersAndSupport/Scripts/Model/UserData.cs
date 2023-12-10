@@ -9,6 +9,12 @@ public class UserData
     public int money;
     public int stars;
     public int experience;
+    public int playerSpeedLevel;
+    public int playerBoxPlacesLevel;
+    public Dictionary<string, LevelData> LevelsData;
+}
+public class LevelData
+{
     public int shipSpeedLevel;
     public int quantityLevel;
     public int qualityLevel;
@@ -17,8 +23,6 @@ public class UserData
     public int tableStackLevel;
     public int openBoxTimeNpc;
     public int awarenessTimeNpc;
-    public int playerSpeedLevel;
-    public int playerBoxPlacesLevel;
     public int forklifSpeedLevel;
     public int forkliftBoxQuantityLevel;
     public int forkliftFuelTankLevel;

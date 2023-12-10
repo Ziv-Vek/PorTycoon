@@ -78,7 +78,7 @@ public class ItemsManager : MonoBehaviour
     }
 
     public void UnlockItem(Item item)
-    {
+    {    
         if (UnlockedItems.ContainsKey(item.id))
         {
             Debug.Log("Duplication: " + item.name);
@@ -101,7 +101,8 @@ public class ItemsManager : MonoBehaviour
         {
             UIManager.ShowWinPanel();
             Bank.Instance.AddMoneyToPile(GameObject.Find("ScretchMoneyPile").GetComponent<MoneyPile>(), "Win");
-        }
+            GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().OpenGatesWithCelebrating();
+        } 
     }
 
     public List<Item> GetAllLevelItems(int levelNum)

@@ -1,8 +1,11 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class PortLoader : MonoBehaviour
 {
+    public int PortLevel;
+
     GameConfig gameConfig;
 
     public GameObject[] Ships;
@@ -14,17 +17,20 @@ public class PortLoader : MonoBehaviour
     public GameObject ConveyorTable;
     public GameObject BoxTable;
     public GameObject Player;
+    LevelData CurrentLevelData;
+    public GameObject Gates;
 
     private void Start()
     {
+        CurrentLevelData = GameManager.Instance.LevelsData["Port" + PortLevel];
         gameConfig = ConfigManager.Instance.Config;
         //ships values
-        for (int i = 0; i < GameManager.Instance.ShipNumber; i++)
+        for (int i = 0; i < CurrentLevelData.ShipNumber; i++)
         {
             ShipsBuyers[i].GetComponent<Buyer>().ActiveProduct();
         }
 
-        for (int i = 0; i < GameManager.Instance.quantityLevel - 1; i++)
+        for (int i = 0; i < CurrentLevelData.quantityLevel - 1; i++)
         {
             foreach (GameObject ship in Ships)
             {
@@ -32,55 +38,55 @@ public class PortLoader : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < GameManager.Instance.shipSpeedLevel; i++)
+        for (int i = 0; i < CurrentLevelData.shipSpeedLevel; i++)
         {
             foreach (GameObject ship in Ships)
             {
-                ship.GetComponent<ShipController>().setSpeed(gameConfig.levels[0].upgrades["ship_speed"]
-                    .levels[GameManager.Instance.shipSpeedLevel - 1]);
+                ship.GetComponent<ShipController>().setSpeed(gameConfig.levels[PortLevel - 1].upgrades["ship_speed"]
+                    .levels[CurrentLevelData.shipSpeedLevel - 1]);
             }
         }
 
         //forklift values
-        if (GameManager.Instance.ForkliftIsEnabled)
+        if (CurrentLevelData.ForkliftIsEnabled)
         {
             ForkLiftBuyer.GetComponent<Buyer>().ActiveProduct();
         }
 
-        ForkLift.GetComponent<NavMeshAgent>().speed = gameConfig.levels[0].upgrades["forklift_speed"]
-            .levels[GameManager.Instance.forklifSpeedLevel - 1];
-        for (int i = 0; i < GameManager.Instance.forkliftBoxQuantityLevel - 1; i++)
+        ForkLift.GetComponent<NavMeshAgent>().speed = gameConfig.levels[PortLevel - 1].upgrades["forklift_speed"]
+            .levels[CurrentLevelData.forklifSpeedLevel - 1];
+        for (int i = 0; i < CurrentLevelData.forkliftBoxQuantityLevel - 1; i++)
         {
             ForkLift.GetComponent<ForkliftCarrier>().addBoxPlace();
         }
 
-        ForkLift.GetComponent<ForkliftMover>().FuelUpgrade((int)gameConfig.levels[0].upgrades["forklift_fuel_tank"]
-            .levels[GameManager.Instance.forkliftFuelTankLevel - 1]);
+        ForkLift.GetComponent<ForkliftMover>().FuelUpgrade((int)gameConfig.levels[PortLevel - 1]
+            .upgrades["forklift_fuel_tank"].levels[CurrentLevelData.forkliftFuelTankLevel - 1]);
         //conveyorTable values
-        ConveyorTable.GetComponent<Conveyor>().beltSpeed = gameConfig.levels[0].upgrades["conveyor_speed"]
-            .levels[GameManager.Instance.convayorSpeedLevel - 1];
-        ConveyorTable.transform.Find("Scanner").GetComponent<Scanner>().scanningDuration = gameConfig.levels[0]
-            .upgrades["conveyor_scanning_speed"].levels[GameManager.Instance.scanningSpeedLevel - 1];
-        for (int i = 0; i < GameManager.Instance.tableStackLevel - 1; i++)
+        ConveyorTable.GetComponent<Conveyor>().beltSpeed = gameConfig.levels[PortLevel - 1].upgrades["conveyor_speed"]
+            .levels[CurrentLevelData.convayorSpeedLevel - 1];
+        ConveyorTable.transform.Find("Scanner").GetComponent<Scanner>().scanningDuration = gameConfig
+            .levels[PortLevel - 1].upgrades["conveyor_scanning_speed"].levels[CurrentLevelData.scanningSpeedLevel - 1];
+        for (int i = 0; i < CurrentLevelData.tableStackLevel - 1; i++)
             BoxTable.transform.Find("Table").GetComponent<TableCarrier>().AddBoxPlace();
         //handyman values
-        for (int i = 0; i < GameManager.Instance.HandyManNumber; i++)
+        for (int i = 0; i < CurrentLevelData.HandyManNumber; i++)
         {
             HandyManBuyers[i].GetComponent<Buyer>().ActiveProduct();
         }
 
         foreach (GameObject npc in HandyMan)
         {
-            npc.GetComponent<TableNPC>().waitTime = (int)gameConfig.levels[0].upgrades["handyman_speed"]
-                .levels[GameManager.Instance.openBoxTimeNpc - 1];
-            npc.GetComponent<TableNPC>().AwarenessSeconds = (int)gameConfig.levels[0].upgrades["handyman_awarness"]
-                .levels[GameManager.Instance.awarenessTimeNpc - 1];
+            npc.GetComponent<TableNPC>().waitTime = (int)gameConfig.levels[PortLevel - 1].upgrades["handyman_speed"]
+                .levels[CurrentLevelData.openBoxTimeNpc - 1];
+            npc.GetComponent<TableNPC>().AwarenessSeconds = (int)gameConfig.levels[PortLevel - 1]
+                .upgrades["handyman_awarness"].levels[CurrentLevelData.awarenessTimeNpc - 1];
         }
 
         if (gameObject.name == "1Port")
         {
-            Player.GetComponent<PlayerMover>().maxMovementSpeed = gameConfig.levels[0].upgrades["player_speed"]
-                .levels[GameManager.Instance.playerSpeedLevel - 1];
+            Player.GetComponent<PlayerMover>().maxMovementSpeed = gameConfig.levels[PortLevel - 1]
+                .upgrades["player_speed"].levels[GameManager.Instance.playerSpeedLevel - 1];
             for (int i = 0; i < GameManager.Instance.playerBoxPlacesLevel - 1; i++)
             {
                 Player.GetComponent<PlayerCarrier>().addBoxPlace();
@@ -88,6 +94,53 @@ public class PortLoader : MonoBehaviour
 
             if (GameManager.Instance.GoneThroughTutorial)
                 FindAnyObjectByType<TutorialM>().DestroyItSelf();
+        }
+    }
+
+    public void OpenGatesWithCelebrating()
+    {
+        Gates.transform.Find("Gate 1").GetComponent<Animator>().Play("OpenGate Animation", 0);
+        Gates.transform.Find("Gate 2").GetComponent<Animator>().Play("OpenGate Animation", 0);
+        Gates.transform.Find("Effects").gameObject.SetActive(true);
+
+        Gates.transform.Find("Gate Camera").gameObject.SetActive(true);
+        StartCoroutine(WaitForXSeconds(5f));
+        GameObject NextPort = GameObject.Find((PortLevel + 1) + "Port");
+        StartCoroutine(ShowNextPort(NextPort));
+    }
+
+    public void OpenGates()
+    {
+        Gates.transform.Find("Gate 1").GetComponent<Animator>().Play("OpenGate Animation", 0);
+        Gates.transform.Find("Gate 2").GetComponent<Animator>().Play("OpenGate Animation", 0);
+    }
+
+    IEnumerator WaitForXSeconds(float time)
+    {
+        // Wait for 4 seconds
+        yield return new WaitForSeconds(time);
+        Gates.transform.Find("Gate Camera").gameObject.SetActive(false);
+    }
+
+    private IEnumerator ShowNextPort(GameObject Port)
+    {
+        Port.transform.position = new Vector3(Port.transform.position.x, -50, Port.transform.position.z);
+        Vector3 Target = new Vector3(Port.transform.position.x, 5, Port.transform.position.z);
+        while (Vector3.Distance(Target, Port.transform.position) > 1f)
+        {
+            // Calculate the new position using Lerp
+            Vector3 newPosition = Vector3.Lerp(Port.transform.position, Target, 4f * Time.deltaTime);
+            Port.transform.position = newPosition;
+            yield return null;
+        }
+
+        Target = new Vector3(Port.transform.position.x, 0, Port.transform.position.z);
+        while (Vector3.Distance(Target, Port.transform.position) > 0.001f)
+        {
+            // Calculate the new position using Lerp
+            Vector3 newPosition = Vector3.Lerp(Port.transform.position, Target, 5f * Time.deltaTime);
+            Port.transform.position = newPosition;
+            yield return null;
         }
     }
 }

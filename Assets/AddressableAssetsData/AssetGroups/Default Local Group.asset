@@ -29,6 +29,10 @@ MonoBehaviour:
     m_Address: Assets/Game/Common/Materials/Green_MAT.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: b4b0615006977c344ae161e456716610
+    m_Address: Assets/Game/Environment/Shaders/Water/WaterShader_MAT.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 087e45da59c70d542a2fdb5792d27998, type: 2}
   m_SchemaSet:
