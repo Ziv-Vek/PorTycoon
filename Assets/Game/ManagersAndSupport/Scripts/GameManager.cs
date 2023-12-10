@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
@@ -12,31 +13,33 @@ public class GameManager : MonoBehaviour
     public bool GoneThroughTutorial;
     public int money;
     public int stars;
-    public int experience;
-    public int currentLevel = 1;
-    public int shipSpeedLevel = 1;
-    public int quantityLevel = 1;
-    public int qualityLevel = 1;
-
-    public int convayorSpeedLevel = 1;
-    public int scanningSpeedLevel = 1;
-    public int tableStackLevel = 1;
-
-    public int openBoxTimeNpc = 1;
-    public int awarenessTimeNpc = 1;
-
+    public int experience;  
     public int playerSpeedLevel = 1;
     public int playerBoxPlacesLevel = 1;
+    public int currentLevel = 1;
+    public Dictionary<string, LevelData> levelsData { get; set; } = new();
+    //public int shipSpeedLevel = 1;
+    //public int quantityLevel = 1;
+    //public int qualityLevel = 1;
 
-    public int forklifSpeedLevel = 1;
-    public int forkliftBoxQuantityLevel = 1;
-    public int forkliftFuelTankLevel = 1;
+    //public int convayorSpeedLevel = 1;
+    //public int scanningSpeedLevel = 1;
+    //public int tableStackLevel = 1;
 
-    public int scratchSizeScaleLevel = 1;
+    //public int openBoxTimeNpc = 1;
+    //public int awarenessTimeNpc = 1;
 
-    public bool ForkliftIsEnabled = false;
-    public int HandyManNumber = 0;
-    public int ShipNumber = 1;
+
+
+    //public int forklifSpeedLevel = 1;
+    //public int forkliftBoxQuantityLevel = 1;
+    //public int forkliftFuelTankLevel = 1;
+
+    //public int scratchSizeScaleLevel = 1;
+
+    //public bool ForkliftIsEnabled = false;
+    //public int HandyManNumber = 0;
+    //public int ShipNumber = 1;
 
     public bool Vibration = true;
     private void Awake()
@@ -70,25 +73,28 @@ public class GameManager : MonoBehaviour
         userData.GoneThroughTutorial = GoneThroughTutorial;
         userData.money = money;
         userData.stars = stars; 
+        userData.LevelsData = levelsData;
         userData.playerSpeedLevel = playerSpeedLevel;
         userData.playerBoxPlacesLevel = playerBoxPlacesLevel;
+        //userData.playerSpeedLevel = playerSpeedLevel;
+        //userData.playerBoxPlacesLevel = playerBoxPlacesLevel;
 
-        userData.experience = experience;
-        userData.shipSpeedLevel = shipSpeedLevel;
-        userData.quantityLevel = quantityLevel;
-        userData.qualityLevel = qualityLevel;
-        userData.convayorSpeedLevel = convayorSpeedLevel;
-        userData.scanningSpeedLevel = scanningSpeedLevel;
-        userData.tableStackLevel = tableStackLevel;
-        userData.openBoxTimeNpc = openBoxTimeNpc;
-        userData.awarenessTimeNpc = awarenessTimeNpc;
-        userData.forklifSpeedLevel = forklifSpeedLevel;
-        userData.forkliftBoxQuantityLevel = forkliftBoxQuantityLevel;
-        userData.forkliftFuelTankLevel = forkliftFuelTankLevel;
-        userData.scratchSizeScaleLevel = scratchSizeScaleLevel;
-        userData.ForkliftIsEnabled = ForkliftIsEnabled;
-        userData.HandyManNumber = HandyManNumber;
-        userData.ShipNumber = ShipNumber;
+        //userData.experience = experience;
+        //userData.shipSpeedLevel = shipSpeedLevel;
+        //userData.quantityLevel = quantityLevel;
+        //userData.qualityLevel = qualityLevel;
+        //userData.convayorSpeedLevel = convayorSpeedLevel;
+        //userData.scanningSpeedLevel = scanningSpeedLevel;
+        //userData.tableStackLevel = tableStackLevel;
+        //userData.openBoxTimeNpc = openBoxTimeNpc;
+        //userData.awarenessTimeNpc = awarenessTimeNpc;
+        //userData.forklifSpeedLevel = forklifSpeedLevel;
+        //userData.forkliftBoxQuantityLevel = forkliftBoxQuantityLevel;
+        //userData.forkliftFuelTankLevel = forkliftFuelTankLevel;
+        //userData.scratchSizeScaleLevel = scratchSizeScaleLevel;
+        //userData.ForkliftIsEnabled = ForkliftIsEnabled;
+        //userData.HandyManNumber = HandyManNumber;
+        //userData.ShipNumber = ShipNumber;
     }
 
     public void LoadData(UserData userData)
@@ -96,25 +102,29 @@ public class GameManager : MonoBehaviour
         GoneThroughTutorial = userData.GoneThroughTutorial;
         money = userData.money;
         stars = userData.stars;
+        levelsData = userData.LevelsData;
         playerSpeedLevel = userData.playerSpeedLevel;
         playerBoxPlacesLevel = userData.playerBoxPlacesLevel;
 
-        experience = userData.experience;
-        shipSpeedLevel = userData.shipSpeedLevel;
-        quantityLevel = userData.quantityLevel;
-        qualityLevel = userData.qualityLevel;
-        convayorSpeedLevel = userData.convayorSpeedLevel;
-        scanningSpeedLevel = userData.scanningSpeedLevel;
-        tableStackLevel = userData.tableStackLevel;
-        openBoxTimeNpc = userData.openBoxTimeNpc;
-        awarenessTimeNpc = userData.awarenessTimeNpc;
-        forklifSpeedLevel = userData.forklifSpeedLevel;
-        forkliftBoxQuantityLevel = userData.forkliftBoxQuantityLevel;
-        forkliftFuelTankLevel = userData.forkliftFuelTankLevel;
-        scratchSizeScaleLevel = userData.scratchSizeScaleLevel;
-        ForkliftIsEnabled = userData.ForkliftIsEnabled;
-        HandyManNumber = userData.HandyManNumber;
-        ShipNumber = userData.ShipNumber;
+        //playerSpeedLevel = userData.playerSpeedLevel;
+        //playerBoxPlacesLevel = userData.playerBoxPlacesLevel;
+
+        //experience = userData.experience;
+        //shipSpeedLevel = userData.shipSpeedLevel;
+        //quantityLevel = userData.quantityLevel;
+        //qualityLevel = userData.qualityLevel;
+        //convayorSpeedLevel = userData.convayorSpeedLevel;
+        //scanningSpeedLevel = userData.scanningSpeedLevel;
+        //tableStackLevel = userData.tableStackLevel;
+        //openBoxTimeNpc = userData.openBoxTimeNpc;
+        //awarenessTimeNpc = userData.awarenessTimeNpc;
+        //forklifSpeedLevel = userData.forklifSpeedLevel;
+        //forkliftBoxQuantityLevel = userData.forkliftBoxQuantityLevel;
+        //forkliftFuelTankLevel = userData.forkliftFuelTankLevel;
+        //scratchSizeScaleLevel = userData.scratchSizeScaleLevel;
+        //ForkliftIsEnabled = userData.ForkliftIsEnabled;
+        //HandyManNumber = userData.HandyManNumber;
+        //ShipNumber = userData.ShipNumber;
     }
 
     public void ResetData()
@@ -123,22 +133,26 @@ public class GameManager : MonoBehaviour
         money = 30;
         stars = 0;
         experience = 0;
-        shipSpeedLevel = 1;
-        quantityLevel = 1;
-        qualityLevel = 1;
-        convayorSpeedLevel = 1;
-        scanningSpeedLevel = 1;
-        tableStackLevel = 1;
-        openBoxTimeNpc = 1;
-        awarenessTimeNpc = 1;
         playerSpeedLevel = 1;
         playerBoxPlacesLevel = 1;
-        forklifSpeedLevel = 1;
-        forkliftBoxQuantityLevel = 1;
-        forkliftFuelTankLevel = 1;
-        scratchSizeScaleLevel = 1;
-        ForkliftIsEnabled = false;
-        HandyManNumber = 0;
-        ShipNumber = 0;
+        for (int i = 0; i < levelsData.Count; i++)
+        {
+            levelsData["Port" + (i+1)].shipSpeedLevel = 1;
+            levelsData["Port" + (i + 1)].quantityLevel = 1;
+            levelsData["Port" + (i + 1)].qualityLevel = 1;
+            levelsData["Port" + (i + 1)].convayorSpeedLevel = 1;
+            levelsData["Port" + (i + 1)].scanningSpeedLevel = 1;
+            levelsData["Port" + (i + 1)].tableStackLevel = 1;
+            levelsData["Port" + (i + 1)].openBoxTimeNpc = 1;
+            levelsData["Port" + (i + 1)].awarenessTimeNpc = 1;
+            levelsData["Port" + (i + 1)].forklifSpeedLevel = 1;
+            levelsData["Port" + (i + 1)].forkliftBoxQuantityLevel = 1;
+            levelsData["Port" + (i + 1)].forkliftFuelTankLevel = 1;
+            levelsData["Port" + (i + 1)].scratchSizeScaleLevel = 1;
+            levelsData["Port" + (i + 1)].ForkliftIsEnabled = false;
+            levelsData["Port" + (i + 1)].HandyManNumber = 0;
+            levelsData["Port" + (i + 1)].ShipNumber = 0;
+        }
+
     }
 }

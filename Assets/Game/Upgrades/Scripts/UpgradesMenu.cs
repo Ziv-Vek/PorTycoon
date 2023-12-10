@@ -12,6 +12,7 @@ public class UpgradesMenu : MonoBehaviour
     [SerializeField] TextMeshProUGUI Money;
     [SerializeField] GameObject NewItemCanvas;
     GameConfig gameConfig;
+    LevelData CurrentlevelData;
    
     private void Start()
     {
@@ -25,13 +26,16 @@ public class UpgradesMenu : MonoBehaviour
     }
     private void OnEnable()
     {
-        if (GameManager.Instance.HandyManNumber < 1 && gameObject.name == "HR Upgrades Canvas")
+        CurrentlevelData = GameManager.Instance.levelsData["Port" + GameManager.Instance.currentLevel];
+
+        if (CurrentlevelData.HandyManNumber < 1 && gameObject.name == "HR Upgrades Canvas")
             transform.Find("UI Holder").Find("1 HandyMan Button").gameObject.GetComponent<Button>().interactable = false;   
+
         else if (gameObject.name == "HR Upgrades Canvas")
             transform.Find("UI Holder").Find("1 HandyMan Button").gameObject.GetComponent<Button>().interactable = true;
 
         if (gameObject.name == "logistic Upgrades Canvas")
-            transform.Find("UI Holder").Find("2 ForkLift Button").gameObject.GetComponent<Button>().interactable = GameManager.Instance.ForkliftIsEnabled;
+            transform.Find("UI Holder").Find("2 ForkLift Button").gameObject.GetComponent<Button>().interactable = CurrentlevelData.ForkliftIsEnabled;
     }
     public void RunCloseAnimation()
     {
@@ -71,17 +75,17 @@ public class UpgradesMenu : MonoBehaviour
     }
     public void ShipSpeed(GameObject Button)
     {
-        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && GameManager.Instance.shipSpeedLevel < 5)
+        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && CurrentlevelData.shipSpeedLevel < 5)
         {
             if (Button.name != "FreeButton")
-                UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price); 
-            GameManager.Instance.shipSpeedLevel++;
+                UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price);
+            CurrentlevelData.shipSpeedLevel++;
             foreach (GameObject ship in GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().Ships)
             {
-                ship.GetComponent<ShipController>().setSpeed(gameConfig.levels[0].upgrades["ship_speed"].levels[GameManager.Instance.shipSpeedLevel - 1]); ;
+                ship.GetComponent<ShipController>().setSpeed(gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["ship_speed"].levels[CurrentlevelData.shipSpeedLevel - 1]); ;
             }
-            if (GameManager.Instance.shipSpeedLevel < 5)
-                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["ship_speed"].prices[GameManager.Instance.shipSpeedLevel - 1];
+            if (CurrentlevelData.shipSpeedLevel < 5)
+                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["ship_speed"].prices[CurrentlevelData.shipSpeedLevel - 1];
             VibrationManager.Instance.MediumeVivrate();
             AudioManager.inctece.play("Buying Upgrade");
         }
@@ -89,13 +93,13 @@ public class UpgradesMenu : MonoBehaviour
         {
             if (Button.transform.parent.GetComponent<Product>().Price > GameManager.Instance.money)
                 Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
-            if (GameManager.Instance.shipSpeedLevel == 5)
+            if (CurrentlevelData.shipSpeedLevel == 5)
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }
     public void ShipQuantity(GameObject Button)
     {
-        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && GameManager.Instance.quantityLevel < 4)
+        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && CurrentlevelData.quantityLevel < 4)
         {
             if (Button.name != "FreeButton")
                 UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price);
@@ -103,129 +107,129 @@ public class UpgradesMenu : MonoBehaviour
             {
                 ship.GetComponent<ShipCarrier>().addBoxPlace();
             }
-            GameManager.Instance.quantityLevel++;
+            CurrentlevelData.quantityLevel++;
             VibrationManager.Instance.MediumeVivrate();
             AudioManager.inctece.play("Buying Upgrade");
-            if (GameManager.Instance.quantityLevel < 4)
-                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["ship_box_quantity"].prices[GameManager.Instance.quantityLevel - 1];
+            if (CurrentlevelData.quantityLevel < 4)
+                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["ship_box_quantity"].prices[CurrentlevelData.quantityLevel - 1];
         }
         else
         {
             if (Button.transform.parent.GetComponent<Product>().Price > GameManager.Instance.money)
                 Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
-            if (GameManager.Instance.qualityLevel == 4)
+            if (CurrentlevelData.qualityLevel == 4)
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }
     public void ConveyorSpeed(GameObject Button)
     {
-        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && GameManager.Instance.convayorSpeedLevel < 5)
+        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && CurrentlevelData.convayorSpeedLevel < 5)
         {
             if (Button.name != "FreeButton")
                 UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price);
-            GameManager.Instance.convayorSpeedLevel++;
+            CurrentlevelData.convayorSpeedLevel++;
             VibrationManager.Instance.MediumeVivrate();
             AudioManager.inctece.play("Buying Upgrade");
-            GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().ConveyorTable.GetComponent<Conveyor>().beltSpeed = gameConfig.levels[0].upgrades["conveyor_speed"].levels[GameManager.Instance.convayorSpeedLevel - 1];
-            if(GameManager.Instance.convayorSpeedLevel < 5)
-            Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["conveyor_speed"].prices[GameManager.Instance.convayorSpeedLevel - 1];
+            GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().ConveyorTable.GetComponent<Conveyor>().beltSpeed = gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["conveyor_speed"].levels[CurrentlevelData.convayorSpeedLevel - 1];
+            if(CurrentlevelData.convayorSpeedLevel < 5)
+            Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["conveyor_speed"].prices[CurrentlevelData.convayorSpeedLevel - 1];
         }
         else
         {
             if (Button.transform.parent.GetComponent<Product>().Price > GameManager.Instance.money)
                 Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
-            if (GameManager.Instance.convayorSpeedLevel == 5)
+            if (CurrentlevelData.convayorSpeedLevel == 5)
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }
     public void ScanningSpeed(GameObject Button)
     {
-        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && GameManager.Instance.scanningSpeedLevel < 5)
+        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && CurrentlevelData.scanningSpeedLevel < 5)
         {
             if (Button.name != "FreeButton")
                 UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price);
-            GameManager.Instance.scanningSpeedLevel++;
+            CurrentlevelData.scanningSpeedLevel++;
             VibrationManager.Instance.MediumeVivrate();
             AudioManager.inctece.play("Buying Upgrade");
-            GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().ConveyorTable.transform.Find("Scanner").GetComponent<Scanner>().scanningDuration = gameConfig.levels[0].upgrades["conveyor_scanning_speed"].levels[GameManager.Instance.scanningSpeedLevel - 1];
-            if (GameManager.Instance.scanningSpeedLevel < 5)
-                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["conveyor_scanning_speed"].prices[GameManager.Instance.scanningSpeedLevel - 1];
+            GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().ConveyorTable.transform.Find("Scanner").GetComponent<Scanner>().scanningDuration = gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["conveyor_scanning_speed"].levels[CurrentlevelData.scanningSpeedLevel - 1];
+            if (CurrentlevelData.scanningSpeedLevel < 5)
+                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["conveyor_scanning_speed"].prices[CurrentlevelData.scanningSpeedLevel - 1];
         }
         else
         {
             if (Button.transform.parent.GetComponent<Product>().Price > GameManager.Instance.money)
                 Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
-            if (GameManager.Instance.scanningSpeedLevel == 5)
+            if (CurrentlevelData.scanningSpeedLevel == 5)
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }
     public void BoxStackTable(GameObject Button)
     {
-        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && GameManager.Instance.tableStackLevel < 3)
+        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && CurrentlevelData.tableStackLevel < 3)
         {
             if (Button.name != "FreeButton")
                 UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price);
             GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().BoxTable.transform.Find("Table").GetComponent<TableCarrier>().addBoxPlace();
-            GameManager.Instance.tableStackLevel++;
+            CurrentlevelData.tableStackLevel++;
             VibrationManager.Instance.MediumeVivrate();
             AudioManager.inctece.play("Buying Upgrade");
-            if (GameManager.Instance.tableStackLevel < 5)
-                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["table_quantity"].prices[GameManager.Instance.tableStackLevel - 1];
+            if (CurrentlevelData.tableStackLevel < 5)
+                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["table_quantity"].prices[CurrentlevelData.tableStackLevel - 1];
         }
         else
         {
             if (Button.transform.parent.GetComponent<Product>().Price > GameManager.Instance.money)
                 Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
-            if (GameManager.Instance.tableStackLevel == 5)
+            if (CurrentlevelData.tableStackLevel == 5)
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }
     public void NPC_OpenBoxTime(GameObject Button)
     {
-        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && GameManager.Instance.openBoxTimeNpc < 5)
+        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && CurrentlevelData.openBoxTimeNpc < 5)
         {
             if (Button.name != "FreeButton")
-                UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price);   
-            GameManager.Instance.openBoxTimeNpc++;
+                UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price);
+            CurrentlevelData.openBoxTimeNpc++;
             VibrationManager.Instance.MediumeVivrate();
             AudioManager.inctece.play("Buying Upgrade");
             foreach (GameObject npc in GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().HandyMan)
             {
-                npc.GetComponent<TableNPC>().waitTime = (int)gameConfig.levels[0].upgrades["handyman_speed"].levels[GameManager.Instance.openBoxTimeNpc - 1];
+                npc.GetComponent<TableNPC>().waitTime = (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["handyman_speed"].levels[CurrentlevelData.openBoxTimeNpc - 1];
             }
-            if (GameManager.Instance.openBoxTimeNpc < 5)
-                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["handyman_speed"].prices[GameManager.Instance.openBoxTimeNpc - 1];
+            if (CurrentlevelData.openBoxTimeNpc < 5)
+                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["handyman_speed"].prices[CurrentlevelData.openBoxTimeNpc - 1];
         }
         else
         {
             if (Button.transform.parent.GetComponent<Product>().Price > GameManager.Instance.money)
                 Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
-            if (GameManager.Instance.openBoxTimeNpc == 5)
+            if (CurrentlevelData.openBoxTimeNpc == 5)
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
   
     } 
     public void NPC_AwarenessTime(GameObject Button)
     {
-        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && GameManager.Instance.awarenessTimeNpc < 5)
+        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && CurrentlevelData.awarenessTimeNpc < 5)
         {
             if (Button.name != "FreeButton")
-                UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price);          
-            GameManager.Instance.awarenessTimeNpc++;
+                UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price);
+            CurrentlevelData.awarenessTimeNpc++;
             VibrationManager.Instance.MediumeVivrate();
             AudioManager.inctece.play("Buying Upgrade");
             foreach (GameObject npc in GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().HandyMan)
             {
-                npc.GetComponent<TableNPC>().AwarenessSeconds = (int)gameConfig.levels[0].upgrades["handyman_awarness"].levels[GameManager.Instance.awarenessTimeNpc - 1];
+                npc.GetComponent<TableNPC>().AwarenessSeconds = (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["handyman_awarness"].levels[CurrentlevelData.awarenessTimeNpc - 1];
             }
-            if (GameManager.Instance.awarenessTimeNpc < 5)
-                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["handyman_awarness"].prices[GameManager.Instance.awarenessTimeNpc - 1];
+            if (CurrentlevelData.awarenessTimeNpc < 5)
+                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["handyman_awarness"].prices[CurrentlevelData.awarenessTimeNpc - 1];
         }
         else
         {
             if (Button.transform.parent.GetComponent<Product>().Price > GameManager.Instance.money)
                 Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
-            if (GameManager.Instance.awarenessTimeNpc == 5)
+            if (CurrentlevelData.awarenessTimeNpc == 5)
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }
@@ -239,9 +243,9 @@ public class UpgradesMenu : MonoBehaviour
             GameManager.Instance.playerSpeedLevel++;
             VibrationManager.Instance.MediumeVivrate();
             AudioManager.inctece.play("Buying Upgrade");
-            GameObject.Find("Player").GetComponent<PlayerMover>().maxMovementSpeed = gameConfig.levels[0].upgrades["player_speed"].levels[GameManager.Instance.playerSpeedLevel - 1];
+            GameObject.Find("Player").GetComponent<PlayerMover>().maxMovementSpeed = gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["player_speed"].levels[GameManager.Instance.playerSpeedLevel - 1];
             if (GameManager.Instance.playerSpeedLevel < 5)
-                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["player_speed"].prices[GameManager.Instance.playerSpeedLevel - 1];
+                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["player_speed"].prices[GameManager.Instance.playerSpeedLevel - 1];
         }
         else
         {
@@ -262,7 +266,7 @@ public class UpgradesMenu : MonoBehaviour
             AudioManager.inctece.play("Buying Upgrade");
             GameObject.Find("Player").GetComponent<PlayerCarrier>().addBoxPlace();
             if (GameManager.Instance.playerBoxPlacesLevel < 5)
-                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["player_box_quantity"].prices[GameManager.Instance.playerBoxPlacesLevel - 1];
+                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["player_box_quantity"].prices[GameManager.Instance.playerBoxPlacesLevel - 1];
         }
         else
         {
@@ -274,64 +278,64 @@ public class UpgradesMenu : MonoBehaviour
     }
     public void ForkliftSpeed(GameObject Button)
     {
-        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && GameManager.Instance.forklifSpeedLevel < 5)
+        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && CurrentlevelData.forklifSpeedLevel < 5)
         {
             if (Button.name != "FreeButton")
-                UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price);  
-            GameManager.Instance.forklifSpeedLevel++;
+                UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price);
+            CurrentlevelData.forklifSpeedLevel++;
             VibrationManager.Instance.MediumeVivrate();
             AudioManager.inctece.play("Buying Upgrade");
-            GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().ForkLift.GetComponent<NavMeshAgent>().speed = gameConfig.levels[0].upgrades["forklift_speed"].levels[GameManager.Instance.forklifSpeedLevel - 1];
-            if (GameManager.Instance.forklifSpeedLevel < 5)
-                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["forklift_speed"].prices[GameManager.Instance.forklifSpeedLevel - 1];
+            GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().ForkLift.GetComponent<NavMeshAgent>().speed = gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["forklift_speed"].levels[CurrentlevelData.forklifSpeedLevel - 1];
+            if (CurrentlevelData.forklifSpeedLevel < 5)
+                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["forklift_speed"].prices[CurrentlevelData.forklifSpeedLevel - 1];
         }
         else
         {
             if (Button.transform.parent.GetComponent<Product>().Price > GameManager.Instance.money)
                 Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
-            if (GameManager.Instance.forklifSpeedLevel == 5)
+            if (CurrentlevelData.forklifSpeedLevel == 5)
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }
     public void ForkliftBoxPlaces(GameObject Button)
     {
-        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && GameManager.Instance.forkliftBoxQuantityLevel < 5)
+        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && CurrentlevelData.forkliftBoxQuantityLevel < 5)
         {
             if (Button.name != "FreeButton")
                 UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price);
-            GameManager.Instance.forkliftBoxQuantityLevel++;
+            CurrentlevelData.forkliftBoxQuantityLevel++;
             VibrationManager.Instance.MediumeVivrate();
             AudioManager.inctece.play("Buying Upgrade");
             GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().ForkLift.GetComponent<ForkliftCarrier>().addBoxPlace();     
-            if (GameManager.Instance.forkliftBoxQuantityLevel < 4)
-                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["forklift_box_quantity"].prices[GameManager.Instance.forkliftBoxQuantityLevel - 1];
+            if (CurrentlevelData.forkliftBoxQuantityLevel < 4)
+                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["forklift_box_quantity"].prices[CurrentlevelData.forkliftBoxQuantityLevel - 1];
         }
         else
         {
             if (Button.transform.parent.GetComponent<Product>().Price > GameManager.Instance.money)
                 Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
-            if (GameManager.Instance.forkliftBoxQuantityLevel == 4)
+            if (CurrentlevelData.forkliftBoxQuantityLevel == 4)
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }
     public void ForkliftFuelTank(GameObject Button)
     {
-        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && GameManager.Instance.forkliftFuelTankLevel< 5)
+        if ((Button.transform.parent.GetComponent<Product>().Price <= GameManager.Instance.money || Button.name == "FreeButton") && CurrentlevelData.forkliftFuelTankLevel< 5)
         {
             if (Button.name != "FreeButton")
-                UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price);           
-            GameManager.Instance.forkliftFuelTankLevel++;
+                UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price);
+            CurrentlevelData.forkliftFuelTankLevel++;
             VibrationManager.Instance.MediumeVivrate();
             AudioManager.inctece.play("Buying Upgrade");
-            GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().ForkLift.GetComponent<ForkliftMover>().FuelUpgrade((int)gameConfig.levels[0].upgrades["forklift_fuel_tank"].levels[GameManager.Instance.forkliftFuelTankLevel - 1]);
-            if (GameManager.Instance.forklifSpeedLevel < 5)
-                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["forklift_fuel_tank"].prices[GameManager.Instance.forkliftFuelTankLevel - 1];
+            GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().ForkLift.GetComponent<ForkliftMover>().FuelUpgrade((int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["forklift_fuel_tank"].levels[CurrentlevelData.forkliftFuelTankLevel - 1]);
+            if (CurrentlevelData.forklifSpeedLevel < 5)
+                Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["forklift_fuel_tank"].prices[CurrentlevelData.forkliftFuelTankLevel - 1];
         }
         else
         {
             if (Button.transform.parent.GetComponent<Product>().Price > GameManager.Instance.money)
                 Debug.Log("dont have enough money to upgrade: " + Button.transform.parent.name);
-            if (GameManager.Instance.forkliftFuelTankLevel == 5)
+            if (CurrentlevelData.forkliftFuelTankLevel == 5)
                 Debug.Log("Max Level: " + Button.transform.parent.name);
         }
     }
@@ -343,9 +347,9 @@ public class UpgradesMenu : MonoBehaviour
     //            UIManager.Instance.UpdateMoneyText(GameManager.Instance.money -= Button.transform.parent.GetComponent<Product>().Price);
     //        GameManager.Instance.scratchSizeScaleLevel++;
 
-    //        GameObject.Find("ScratchCard").GetComponent<ScratchCardManagerInspector>() = gameConfig.levels[0].upgrades["forklift_fuel_tank"].levels[GameManager.Instance.forkliftFuelTankLevel - 1];
+    //        GameObject.Find("ScratchCard").GetComponent<ScratchCardManagerInspector>() = gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["forklift_fuel_tank"].levels[GameManager.Instance.forkliftFuelTankLevel - 1];
     //        if (GameManager.Instance.forklifSpeedLevel < 5)
-    //            Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[0].upgrades["forklift_fuel_tank"].prices[GameManager.Instance.forkliftFuelTankLevel - 1];
+    //            Button.transform.parent.GetComponent<Product>().Price = (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["forklift_fuel_tank"].prices[GameManager.Instance.forkliftFuelTankLevel - 1];
     //    }
     //    else
     //    {
