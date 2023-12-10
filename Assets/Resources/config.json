@@ -7,7 +7,7 @@
     },
     {
       "id": "TeddyBearToy",
-      "name": "TeddyBearToy",
+      "name": "Teddy Bear Toy",
       "imagePath": "TeddyBearToy_Render_NoBG"
     },
     {
@@ -27,12 +27,12 @@
     },
     {
       "id": "suprtheroToy",
-      "name": "suprtheroToy",
+      "name": "Super-Hero Toy",
       "imagePath": "suprtheroToy_Render"
     },
     {
       "id": "DragonToy",
-      "name": "DragonToy",
+      "name": "Dragon Toy",
       "imagePath": "DragonToy_Render"
     },
     {
@@ -86,14 +86,249 @@
       "upgrades": {
         "player_speed": {
           "levels": [
-            13,
             16,
             19,
             21,
-            24
+            24,
+            27
           ],
           "prices": [
+            50,
+            500,
+            1000,
+            2000
+          ]
+        },
+        "player_box_quantity": {
+          "levels": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "prices": [
+            110,
+            500,
+            1000,
+            2000
+          ]
+        },
+        "handyman_speed": {
+          "levels": [
+            45,
+            35,
+            25,
+            15,
+            10
+          ],
+          "prices": [
+            50,
+            250,
+            500,
+            1000
+          ]
+        },
+        "handyman_awarness": {
+          "levels": [
+            70,
+            110,
+            150,
+            180,
+            210
+          ],
+          "prices": [
+            50,
+            250,
+            500,
+            1000
+          ]
+        },
+        "ship_speed": {
+          "levels": [
+            11.5,
+            13.8,
+            16.56,
+            19.872,
+            23.8464
+          ],
+          "prices": [
+            50,
+            100,
+            250,
+            500
+          ]
+        },
+        "ship_box_quantity": {
+          "levels": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "prices": [
+            100,
+            250,
+            500
+          ]
+        },
+        "conveyor_speed": {
+          "levels": [
+            0.45,
+            0.575,
+            0.7,
+            0.825,
+            1
+          ],
+          "prices": [
+            20,
+            40,
+            100,
+            250
+          ]
+        },
+        "conveyor_scanning_speed": {
+          "levels": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "prices": [
+            15,
+            30,
+            50,
+            200
+          ]
+        },
+        "table_quantity": {
+          "levels": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "prices": [
+            20,
+            50,
+            100,
+            250
+          ]
+        },
+        "forklift_speed": {
+          "levels": [
+            5,
+            8,
+            12,
+            15,
+            18
+          ],
+          "prices": [
+            50,
+            100,
+            250,
+            500
+          ]
+        },
+        "forklift_box_quantity": {
+          "levels": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "prices": [
+            250,
+            500,
+            1000
+          ]
+        },
+        "forklift_fuel_tank": {
+          "levels": [
+            50,
             80,
+            110,
+            150,
+            180
+          ],
+          "prices": [
+            25,
+            50,
+            100,
+            250
+          ]
+        },
+        "scratching_brush_scale": {
+          "levels": [
+            0.7,
+            1,
+            1.3,
+            1.6,
+            1.9
+          ],
+          "prices": [
+            100,
+            200,
+            350,
+            450
+          ]
+        }
+      }
+    },
+    {
+      "id": "2",
+      "boxes": {
+        "wood": {
+          "probability": 100,
+          "items": [
+            {
+              "id": "Bunny",
+              "probability": 16
+            },
+            {
+              "id": "TeddyBearToy",
+              "probability": 16
+            },
+            {
+              "id": "Rocket",
+              "probability": 16
+            },
+            {
+              "id": "LegoMan",
+              "probability": 12
+            },
+            {
+              "id": "Car",
+              "probability": 12
+            },
+            {
+              "id": "suprtheroToy",
+              "probability": 12
+            },
+            {
+              "id": "DragonToy",
+              "probability": 8
+            },
+            {
+              "id": "Robot",
+              "probability": 8
+            }
+          ]
+        }
+      },
+      "upgrades": {
+        "player_speed": {
+          "levels": [
+            16,
+            19,
+            21,
+            24,
+            27
+          ],
+          "prices": [
+            50,
             500,
             1000,
             2000

@@ -18,12 +18,13 @@ public class Buyer : MonoBehaviour
     public GameObject NextBuyer;
 
     public float TimePerStash = 0.15f;
-
+    public int CurrentLevel;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        CurrentLevel = transform.parent.GetComponent<PortLoader>().PortLevel;
         PriceText.text = Price + "$";
         SliderFill.maxValue = Price;
         if (product.active)
@@ -90,15 +91,15 @@ public class Buyer : MonoBehaviour
         {
             if (gameObject.name == "Forklift Buyer")
             {
-                GameManager.Instance.ForkliftIsEnabled = true;
+                GameManager.Instance.levelsData["Port" + CurrentLevel].ForkliftIsEnabled = true;
             }
-            else if (gameObject.name == "Ship Buyer" && GameManager.Instance.ShipNumber < 3)
+            else if (gameObject.name == "Ship Buyer" && GameManager.Instance.levelsData["Port" + CurrentLevel].ShipNumber < 3)
             {
-                GameManager.Instance.ShipNumber++;
+                GameManager.Instance.levelsData["Port" + CurrentLevel].ShipNumber++;
             }
-            else if (gameObject.name == "HandyMan Buyer" && GameManager.Instance.HandyManNumber < 2)
+            else if (gameObject.name == "HandyMan Buyer" && GameManager.Instance.levelsData["Port" + CurrentLevel].HandyManNumber < 2)
             {
-                GameManager.Instance.HandyManNumber++;
+                GameManager.Instance.levelsData["Port" + CurrentLevel].HandyManNumber++;
             }
         }    
         if(productPlugin != null)

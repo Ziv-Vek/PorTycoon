@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2448054079174645384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 648574999197563838}
+  m_Layer: 7
+  m_Name: Box Pile
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &648574999197563838
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2448054079174645384}
+  m_LocalRotation: {x: -0, y: 0.121678114, z: -0, w: 0.9925697}
+  m_LocalPosition: {x: 24.01, y: 2.87, z: -4.94}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9004362404989836592}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 13.978, z: 0}
 --- !u!1 &9004362403657517037
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,6 +132,7 @@ GameObject:
   - component: {fileID: 9004362404989836592}
   - component: {fileID: 6059486438314572174}
   - component: {fileID: 3368388743694180264}
+  - component: {fileID: 415821997893002587}
   m_Layer: 7
   m_Name: ConveyorBelt
   m_TagString: Untagged
@@ -126,6 +158,7 @@ Transform:
   - {fileID: 9004362404313972662}
   - {fileID: 4943395012662188068}
   - {fileID: 7897189800960847991}
+  - {fileID: 648574999197563838}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -169,6 +202,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.2, y: 3.83, z: 14.37}
   m_Center: {x: 25.69, y: 2.5, z: 0.4}
+--- !u!114 &415821997893002587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9004362404989836594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 944bd7b9928443bba322d618b73f304a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxAmountInStack: 1
+  amountForNewPile: 3
+  plusY: 0
+  place: {x: 0, y: 0, z: 0}
+  boxesLimit: 0
+  horizontalStep: {x: 0, y: 1, z: 0}
+  verticalStep: {x: -1, y: 0, z: 0}
+  boxesPositionOrigin: {x: 0, y: 0, z: 0}
+  LimitBoxesThatShown: 5
+  pile: {fileID: 648574999197563838}
+  PlusText: {fileID: 7362285345363769893}
 --- !u!1 &9004362405013306210
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,6 +524,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8784d5e63367e04fbb7af9a61f2378f, type: 3}
+--- !u!114 &7362285345363769893 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3779069560340949183, guid: d8784d5e63367e04fbb7af9a61f2378f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5935150837220610714}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7897189800960847991 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4595237831130899181, guid: d8784d5e63367e04fbb7af9a61f2378f,
