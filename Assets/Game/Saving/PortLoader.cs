@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,6 +14,7 @@ public class PortLoader : MonoBehaviour
     public GameObject ConveyorTable;
     public GameObject BoxTable;
     public GameObject Player;
+
     private void Start()
     {
         gameConfig = ConfigManager.Instance.Config;
@@ -24,56 +23,71 @@ public class PortLoader : MonoBehaviour
         {
             ShipsBuyers[i].GetComponent<Buyer>().ActiveProduct();
         }
+
         for (int i = 0; i < GameManager.Instance.quantityLevel - 1; i++)
         {
             foreach (GameObject ship in Ships)
             {
-                ship.GetComponent<ShipCarrier>().addBoxPlace();
+                ship.GetComponent<ShipCarrier>().AddBoxPlace();
             }
         }
+
         for (int i = 0; i < GameManager.Instance.shipSpeedLevel; i++)
         {
             foreach (GameObject ship in Ships)
             {
-                ship.GetComponent<ShipController>().setSpeed(gameConfig.levels[0].upgrades["ship_speed"].levels[GameManager.Instance.shipSpeedLevel - 1]);
+                ship.GetComponent<ShipController>().setSpeed(gameConfig.levels[0].upgrades["ship_speed"]
+                    .levels[GameManager.Instance.shipSpeedLevel - 1]);
             }
         }
+
         //forklift values
         if (GameManager.Instance.ForkliftIsEnabled)
         {
             ForkLiftBuyer.GetComponent<Buyer>().ActiveProduct();
         }
-        ForkLift.GetComponent<NavMeshAgent>().speed = gameConfig.levels[0].upgrades["forklift_speed"].levels[GameManager.Instance.forklifSpeedLevel - 1];
+
+        ForkLift.GetComponent<NavMeshAgent>().speed = gameConfig.levels[0].upgrades["forklift_speed"]
+            .levels[GameManager.Instance.forklifSpeedLevel - 1];
         for (int i = 0; i < GameManager.Instance.forkliftBoxQuantityLevel - 1; i++)
         {
-           ForkLift.GetComponent<ForkliftCarrier>().addBoxPlace();
+            ForkLift.GetComponent<ForkliftCarrier>().addBoxPlace();
         }
-        ForkLift.GetComponent<ForkliftMover>().FuelUpgrade((int)gameConfig.levels[0].upgrades["forklift_fuel_tank"].levels[GameManager.Instance.forkliftFuelTankLevel - 1]);
+
+        ForkLift.GetComponent<ForkliftMover>().FuelUpgrade((int)gameConfig.levels[0].upgrades["forklift_fuel_tank"]
+            .levels[GameManager.Instance.forkliftFuelTankLevel - 1]);
         //conveyorTable values
-        ConveyorTable.GetComponent<Conveyor>().beltSpeed = gameConfig.levels[0].upgrades["conveyor_speed"].levels[GameManager.Instance.convayorSpeedLevel - 1];
-        ConveyorTable.transform.Find("Scanner").GetComponent<Scanner>().scanningDuration = gameConfig.levels[0].upgrades["conveyor_scanning_speed"].levels[GameManager.Instance.scanningSpeedLevel - 1];
+        ConveyorTable.GetComponent<Conveyor>().beltSpeed = gameConfig.levels[0].upgrades["conveyor_speed"]
+            .levels[GameManager.Instance.convayorSpeedLevel - 1];
+        ConveyorTable.transform.Find("Scanner").GetComponent<Scanner>().scanningDuration = gameConfig.levels[0]
+            .upgrades["conveyor_scanning_speed"].levels[GameManager.Instance.scanningSpeedLevel - 1];
         for (int i = 0; i < GameManager.Instance.tableStackLevel - 1; i++)
-            BoxTable.transform.Find("Table").GetComponent<TableCarrier>().addBoxPlace();
+            BoxTable.transform.Find("Table").GetComponent<TableCarrier>().AddBoxPlace();
         //handyman values
         for (int i = 0; i < GameManager.Instance.HandyManNumber; i++)
         {
             HandyManBuyers[i].GetComponent<Buyer>().ActiveProduct();
         }
+
         foreach (GameObject npc in HandyMan)
         {
-            npc.GetComponent<TableNPC>().waitTime = (int)gameConfig.levels[0].upgrades["handyman_speed"].levels[GameManager.Instance.openBoxTimeNpc - 1];
-            npc.GetComponent<TableNPC>().AwarenessSeconds = (int)gameConfig.levels[0].upgrades["handyman_awarness"].levels[GameManager.Instance.awarenessTimeNpc - 1];
+            npc.GetComponent<TableNPC>().waitTime = (int)gameConfig.levels[0].upgrades["handyman_speed"]
+                .levels[GameManager.Instance.openBoxTimeNpc - 1];
+            npc.GetComponent<TableNPC>().AwarenessSeconds = (int)gameConfig.levels[0].upgrades["handyman_awarness"]
+                .levels[GameManager.Instance.awarenessTimeNpc - 1];
         }
+
         if (gameObject.name == "1Port")
         {
-            Player.GetComponent<PlayerMover>().maxMovementSpeed = gameConfig.levels[0].upgrades["player_speed"].levels[GameManager.Instance.playerSpeedLevel - 1];
+            Player.GetComponent<PlayerMover>().maxMovementSpeed = gameConfig.levels[0].upgrades["player_speed"]
+                .levels[GameManager.Instance.playerSpeedLevel - 1];
             for (int i = 0; i < GameManager.Instance.playerBoxPlacesLevel - 1; i++)
             {
                 Player.GetComponent<PlayerCarrier>().addBoxPlace();
             }
-            if(GameManager.Instance.GoneThroughTutorial)
+
+            if (GameManager.Instance.GoneThroughTutorial)
                 FindAnyObjectByType<TutorialM>().DestroyItSelf();
         }
-
     }
 }

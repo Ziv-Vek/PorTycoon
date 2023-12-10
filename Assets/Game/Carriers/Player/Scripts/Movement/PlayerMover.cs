@@ -11,7 +11,7 @@ public class PlayerMover : MonoBehaviour
     // Variables:
     float turnSmoothVelocity;
     Vector3 playerVelocity;
-    Vector2 startTouchPos = new Vector2();
+    Vector2 startTouchPos;
     bool isMovementAllowed = true;
 
     // Cached ref:
@@ -19,6 +19,8 @@ public class PlayerMover : MonoBehaviour
     public FloatingJoystick joystick = null;
     CharacterController controller;
     [SerializeField] ParticleSystem DirtPartical;
+    private static readonly int IsHoldingBox = Animator.StringToHash("isHoldingBox");
+    private static readonly int ForwardSpeed = Animator.StringToHash("forwardSpeed");
 
     private void Awake()
     {
@@ -43,7 +45,7 @@ public class PlayerMover : MonoBehaviour
     {
         joystick = FloatingJoystick.Instance;
         if (!joystick) throw new Exception("FloatingJoystick is missing.");
-        
+
         playerVelocity.y = 0f;
     }
 
@@ -54,15 +56,19 @@ public class PlayerMover : MonoBehaviour
 
     public void Move(Vector2 screenTouchPos)
     {
-        if (!isMovementAllowed) { return; }
-        
+        if (!isMovementAllowed)
+        {
+            return;
+        }
+
         float movementSpeed = GetMovementSpeed(screenTouchPos);
 
         Vector2 screenMovementVector = screenTouchPos - startTouchPos;
         Vector3 direction = new Vector3(screenMovementVector.x, 0, screenMovementVector.y).normalized;
         controller.Move(direction * (movementSpeed * Time.deltaTime));
         float targetAngel = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngel, ref turnSmoothVelocity, turnSmoothTime);
+        float angle =
+            Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngel, ref turnSmoothVelocity, turnSmoothTime);
         transform.rotation = Quaternion.Euler(0, angle, 0);
 
         UpdateAnimator(direction * movementSpeed);
@@ -83,7 +89,7 @@ public class PlayerMover : MonoBehaviour
         {
             return maxMovementSpeed;
         }
-        
+
         return ((touchesDistance / (joystickSize / 2)) * maxMovementSpeed);
     }
 
@@ -91,8 +97,8 @@ public class PlayerMover : MonoBehaviour
     {
         Vector3 localVelocity = transform.InverseTransformDirection(velocity);
         float speed = localVelocity.z;
-        myAnimator.SetFloat("forwardSpeed", speed);
-        if(speed > 0 && !DirtPartical.isPlaying)
+        myAnimator.SetFloat(ForwardSpeed, speed);
+        if (speed > 0 && !DirtPartical.isPlaying)
             DirtPartical.Play();
     }
 
@@ -100,7 +106,7 @@ public class PlayerMover : MonoBehaviour
     {
         isMovementAllowed = enableMovement;
     }
-    
+
     public void HideJoystick()
     {
         joystick.gameObject.SetActive(false);
@@ -113,7 +119,7 @@ public class PlayerMover : MonoBehaviour
 
     public void ToggleAnimatorHoldingBox(bool isHoldingBox)
     {
-        if (myAnimator.GetBool("isHoldingBox") != isHoldingBox) 
-            myAnimator.SetBool("isHoldingBox", isHoldingBox);  
+        if (myAnimator.GetBool(IsHoldingBox) != isHoldingBox)
+            myAnimator.SetBool(IsHoldingBox, isHoldingBox);
     }
 }

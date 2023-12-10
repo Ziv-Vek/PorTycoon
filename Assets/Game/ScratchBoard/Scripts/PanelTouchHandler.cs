@@ -88,8 +88,4 @@ public class PanelTouchHandler : MonoBehaviour
 
         coin.transform.position = coinPosition;
     }
-    private void OnMouseDrag()
-    {
-   //     Debug.Log("Draged");
-    }
 }

@@ -9,5 +9,5 @@ public interface ITransferBoxes
     public bool CheckCanGiveBoxes();
     public CarriersTypes GetCarrierType();
 
-     public bool IsAttemptingToGiveCargo { get; set; }
+    public bool IsAttemptingToGiveCargo { get; set; }
 }

@@ -1,9 +1,6 @@
-using System;
 using ScratchCardAsset;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
 
 public class ScratchBoard : MonoBehaviour
 {
@@ -32,11 +29,13 @@ public class ScratchBoard : MonoBehaviour
         throwButton.onClick.AddListener(OnThrowBox);
         gameObject.SetActive(false);
     }
+
     private void OnEnable()
     {
         throwButton.gameObject.SetActive(true);
         GetComponent<PanelTouchHandler>().CanScratch = true;
     }
+
     private void NextItem()
     {
         CurrentItem = ItemsManager.Instance.GetRandomItemFromBox(CurrentBox.Type, null);
@@ -50,7 +49,7 @@ public class ScratchBoard : MonoBehaviour
         EndButtons.SetActive(false);
         EndButtons.transform.Find("NextBoxButton").gameObject.SetActive(false);
         Destroy(scratchItemModel.transform.GetChild(0).gameObject);
-      
+
         tableCarrier.SetPlayer(playerCarrier);
         if (CurrentBox.isPurchasedBox)
         {
@@ -65,6 +64,7 @@ public class ScratchBoard : MonoBehaviour
             playerMover.ShowJoystick();
             playerMover.joystick.DeactivateJoystick();
         }
+
         if (!GameManager.Instance.GoneThroughTutorial)
             FindAnyObjectByType<TutorialM>().ClickOn_CollectionPanel();
     }
@@ -122,16 +122,15 @@ public class ScratchBoard : MonoBehaviour
 
     private void OnScratchProgress(float progress)
     {
-        if (progress >= targetScratchProgress && !_isScratching)
-        {
-            _isScratching = true;
-            cardManager.FillScratchCard();
-            Invoke(nameof(OnFinishedScratching), 1f);
-            if(ItemsManager.Instance.UnlockedItems.ContainsKey(CurrentItem.id))
-                AudioManager.inctece.play("Item Scratched");
-            else
-                AudioManager.inctece.play("Item Scratched New Item");
-        }
+        if (!(progress >= targetScratchProgress) || _isScratching) return;
+
+        _isScratching = true;
+        cardManager.FillScratchCard();
+        Invoke(nameof(OnFinishedScratching), 1f);
+        if (ItemsManager.Instance.UnlockedItems.ContainsKey(CurrentItem.id))
+            AudioManager.Instance.Play("Item Scratched");
+        else
+            AudioManager.Instance.Play("Item Scratched New Item");
     }
 
     private void OnThrowBox()
@@ -148,6 +147,7 @@ public class ScratchBoard : MonoBehaviour
         cardManager.Progress.OnProgress -= OnScratchProgress;
         Close();
     }
+
     public void NextBoxToOpen()
     {
         Close();
@@ -155,15 +155,17 @@ public class ScratchBoard : MonoBehaviour
         //playerMover.ToggleMovement(false);
         //playerMover.HideJoystick();
     }
+
     public void ExitDuringScratch()
     {
         Close();
         tableCarrier.RemovePlayer();
     }
+
     public void BackToPort()
     {
         Close();
-        if(!CurrentBox.isPurchasedBox)
-           tableCarrier.RemovePlayer();
+        if (!CurrentBox.isPurchasedBox)
+            tableCarrier.RemovePlayer();
     }
 }

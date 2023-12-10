@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using CandyCoded.HapticFeedback;
 
@@ -19,21 +17,25 @@ public class VibrationManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     public void LightVibrate()
     {
-        if(GameManager.Instance.Vibration)
-             HapticFeedback.MediumFeedback();
+        if (GameManager.Instance.Vibration)
+            HapticFeedback.MediumFeedback();
     }
-    public void MediumeVivrate()
+
+    public void MediumVibrate()
     {
         if (GameManager.Instance.Vibration)
             HapticFeedback.LightFeedback();
     }
+
     public void HeavyVibrate()
     {
         if (GameManager.Instance.Vibration)
             HapticFeedback.HeavyFeedback();
     }
+
     public void DefaultVibrate()
     {
         if (GameManager.Instance.Vibration)

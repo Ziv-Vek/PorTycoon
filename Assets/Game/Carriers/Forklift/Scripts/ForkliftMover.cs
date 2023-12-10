@@ -7,13 +7,14 @@ using UnityEngine.UI;
 
 public class ForkliftMover : MonoBehaviour
 {
-    public int PortNumber = 1;
-
     //configs:
     private const float StopDistance = 2f;
-   [SerializeField] private bool isPickUpBoxesTask;     // true if needed to take boxes from pier, false if needed to put boxes on conveyor
+
+    [SerializeField]
+    private bool isPickUpBoxesTask; // true if needed to take boxes from pier, false if needed to put boxes on conveyor
+
     [SerializeField] private float wakingDistance = 6;
-    
+
     //cached ref:
     [SerializeField] private Transform pier;
     [SerializeField] private Transform conveyorBelt;
@@ -35,7 +36,7 @@ public class ForkliftMover : MonoBehaviour
     public AudioSource GasRefillSorce;
 
     private void Awake()
-    {      
+    {
         gameConfig = ConfigManager.Instance.Config;
         myCarrier = GetComponent<ForkliftCarrier>();
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -47,10 +48,9 @@ public class ForkliftMover : MonoBehaviour
     private void Start()
     {
         target = pier;
-        
+
         if (myCarrier.CheckCanReceiveBoxes())
         {
-            
             isPickUpBoxesTask = true;
         }
         else
@@ -65,7 +65,8 @@ public class ForkliftMover : MonoBehaviour
     private void Update()
     {
         // check if forklift has reached destination
-        if (target != null && Vector3.Distance(transform.position, target.position) < StopDistance && navMeshAgent.enabled)
+        if (target != null && Vector3.Distance(transform.position, target.position) < StopDistance &&
+            navMeshAgent.enabled)
         {
             CancelMovement();
         }
@@ -74,10 +75,12 @@ public class ForkliftMover : MonoBehaviour
         if (Vector3.Distance(forkliftArtTrans.position, player.position) < wakingDistance && FuelSlider.value <= 0)
         {
             FuelSlider.value = FuelSlider.maxValue;
-            GetComponent<NavMeshAgent>().speed = gameConfig.levels[0].upgrades["forklift_speed"].levels[GameManager.Instance.forklifSpeedLevel - 1];
+            GetComponent<NavMeshAgent>().speed = gameConfig.levels[0].upgrades["forklift_speed"]
+                .levels[GameManager.Instance.forklifSpeedLevel - 1];
             NoFuelText.SetActive(false);
             GasRefillSorce.Play();
         }
+
         NoFuelText.transform.parent.LookAt(GameObject.Find("Main Camera").transform);
         NoFuelText.transform.parent.rotation = Quaternion.EulerAngles(0, NoFuelText.transform.rotation.y + plus, 0);
     }
@@ -90,9 +93,9 @@ public class ForkliftMover : MonoBehaviour
          needs to pickup, and cannot pickup
          needs to unload and can still unload
          needs to unload and cannnot unload*/
-     //   if (isPickUpBoxesTask && !myCarrier.CheckCanReceiveBoxes() && FuelSlider.value != 0)
-        
-        if ( target == null && !myCarrier.CheckCanReceiveBoxes() && FuelSlider.value != 0)
+        //   if (isPickUpBoxesTask && !myCarrier.CheckCanReceiveBoxes() && FuelSlider.value != 0)
+
+        if (target == null && !myCarrier.CheckCanReceiveBoxes() && FuelSlider.value != 0)
         {
             isPickUpBoxesTask = false;
             StartCoroutine(Move());
@@ -117,12 +120,13 @@ public class ForkliftMover : MonoBehaviour
         }
         else
         {
-            target = conveyorBelt; 
+            target = conveyorBelt;
         }
-        if(LastTarget != target)
-        yield return StartCoroutine(MoveBackwards());
+
+        if (LastTarget != target)
+            yield return StartCoroutine(MoveBackwards());
     }
-    
+
     IEnumerator MoveBackwards()
     {
         navMeshAgent.enabled = false;
@@ -130,7 +134,7 @@ public class ForkliftMover : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         rb.constraints = RigidbodyConstraints.FreezePositionY;
         rb.AddForce(-transform.forward * backwardMovementSpeed, ForceMode.VelocityChange);
-    
+
         while (Vector3.Distance(transform.position, backwardTargetPos) > 0.1f)
         {
             //rb.AddForce(-transform.forward * backwardMovementSpeed, ForceMode.Force);
@@ -152,7 +156,7 @@ public class ForkliftMover : MonoBehaviour
             Debug.Log("no target destination set for forklift");
             target = pier;
         }
-        
+
         navMeshAgent.SetDestination(target.position);
         if (LastTarget != target)
         {
@@ -164,6 +168,7 @@ public class ForkliftMover : MonoBehaviour
                 HornSorce.Play();
             }
         }
+
         LastTarget = target;
         navMeshAgent.isStopped = false;
     }
@@ -174,18 +179,19 @@ public class ForkliftMover : MonoBehaviour
         target = null;
         navMeshAgent.ResetPath();
         navMeshAgent.isStopped = true;
-        
+
         rb.constraints = RigidbodyConstraints.FreezePosition;
     }
-    
+
     public void FuelUpgrade(int amount)
     {
         FuelSlider.maxValue = amount;
         FuelSlider.value = FuelSlider.maxValue;
-        GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[0].upgrades["forklift_speed"].levels[GameManager.Instance.forklifSpeedLevel - 1];
+        GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[0].upgrades["forklift_speed"]
+            .levels[GameManager.Instance.forklifSpeedLevel - 1];
         NoFuelText.SetActive(false);
     }
-    
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

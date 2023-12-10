@@ -7,7 +7,6 @@ public class Bank : MonoBehaviour
     [SerializeField] int amountOfMoneyToThrow = 100;
     public int CargoMoneyAmount = 5;
     public int ScretchMoneyAmount = 5;
-    public int WinMoneyAmount = 5;
     [SerializeField] GameObject star;
     [SerializeField] Transform player;
 
@@ -41,6 +40,7 @@ public class Bank : MonoBehaviour
         GameManager.Instance.money = currentMoney;
         UIManager.Instance.UpdateMoneyText(currentMoney);
     }
+
     public void DepositStars(int StarsAmount)
     {
         int currentStars = GameManager.Instance.stars;
@@ -48,21 +48,20 @@ public class Bank : MonoBehaviour
         GameManager.Instance.stars = currentStars;
         UIManager.Instance.UpdateStarsText(currentStars);
         UserDataManager.Instance.SaveUserData();
-
     }
-    
-    public void AddMoneyToPile(MoneyPile pile , String s)
-    {
 
-        if(s == "Cargo")
+    public void AddMoneyToPile(MoneyPile pile, String s)
+    {
+        if (s == "Cargo")
             pile.AddMoney(CargoMoneyAmount);
         if (s == "Scratch")
             pile.AddMoney(ScretchMoneyAmount);
         if (s == "Win")
             pile.AddMoney(ScretchMoneyAmount);
     }
+
     public void SpawnStar()
     {
-        Instantiate(star, new Vector3(player.position.x, 8.4f, player.position.z),Quaternion.identity);
+        Instantiate(star, new Vector3(player.position.x, 8.4f, player.position.z), Quaternion.identity);
     }
 }

@@ -7,9 +7,15 @@ using TMPro;
 
 public class BoxesPile : MonoBehaviour
 {
-    [FormerlySerializedAs("moneyAmount")] [SerializeField] public int boxAmountInStack = 1;
-    [FormerlySerializedAs("AmountForNewPile")] [SerializeField] int amountForNewPile;
-    [FormerlySerializedAs("PlusY")] [SerializeField] float plusY;
+    [FormerlySerializedAs("moneyAmount")] [SerializeField]
+    public int boxAmountInStack = 1;
+
+    [FormerlySerializedAs("AmountForNewPile")] [SerializeField]
+    int amountForNewPile;
+
+    [FormerlySerializedAs("PlusY")] [SerializeField]
+    float plusY;
+
     public Vector3 place;
     [FormerlySerializedAs("moneyLimit")] public int boxesLimit;
     private List<PortBox> boxes = new List<PortBox>();
@@ -31,8 +37,6 @@ public class BoxesPile : MonoBehaviour
     {
         boxes.Add(box);
         box.transform.SetParent(pile);
-        var lastBoxPos = boxes[boxes.Count - 1].transform.position;
-        // box.transform.localPosition = lastBoxPos + (boxes.Count % amountForNewPile == 0 ? verticalStep : horizontalStep);
         box.transform.localPosition = new Vector3(0, plusY, 0);
         box.transform.rotation = box.transform.parent.rotation;
         plusY += 5;
@@ -43,10 +47,10 @@ public class BoxesPile : MonoBehaviour
             {
                 PlusText.gameObject.SetActive(true);
             }
+
             PlusText.text = "+" + (boxes.Count - LimitBoxesThatShown);
             box.transform.GetChild(0).gameObject.SetActive(false);
         }
-  
     }
 
     public PortBox TakeBoxFromPile()
@@ -63,15 +67,14 @@ public class BoxesPile : MonoBehaviour
                 if (PlusText.IsActive())
                     PlusText.gameObject.SetActive(false);
             }
+
             PlusText.text = "+" + (boxes.Count - LimitBoxesThatShown);
             box.transform.GetChild(0).gameObject.SetActive(true);
 
             return box;
         }
-        else
-        {
-            return null;
-        }
+
+        return null;
     }
 
     public void CancelTakingBoxes()
@@ -81,21 +84,24 @@ public class BoxesPile : MonoBehaviour
 
     void TakingOneByOne()
     {
-        transform.GetChild(transform.childCount - 1).gameObject.GetComponent<MoneyPrefab>().targetPosition = GameObject.Find("Player").transform;
+        transform.GetChild(transform.childCount - 1).gameObject.GetComponent<MoneyPrefab>().targetPosition =
+            GameObject.Find("Player").transform;
         transform.GetChild(transform.childCount - 1).gameObject.GetComponent<MoneyPrefab>().startMove = true;
         transform.GetChild(transform.childCount - 1).parent = null;
-        if(plusY - 1.1 >= 0)
-        plusY -= 1.1f;
+        if (plusY - 1.1 >= 0)
+            plusY -= 1.1f;
         boxAmountInStack--;
 
         if (transform.childCount % amountForNewPile == 0)
         {
             if (boxAmountInStack != 0)
-            {     
+            {
                 plusY = 0;
                 place.x += 4;
-                GetComponent<BoxCollider>().center = new Vector3(GetComponent<BoxCollider>().center.x + 0.22f, GetComponent<BoxCollider>().center.y, GetComponent<BoxCollider>().center.z);
-                GetComponent<BoxCollider>().size = new Vector3(GetComponent<BoxCollider>().size.x - 0.43f, GetComponent<BoxCollider>().size.y, GetComponent<BoxCollider>().size.z);
+                GetComponent<BoxCollider>().center = new Vector3(GetComponent<BoxCollider>().center.x + 0.22f,
+                    GetComponent<BoxCollider>().center.y, GetComponent<BoxCollider>().center.z);
+                GetComponent<BoxCollider>().size = new Vector3(GetComponent<BoxCollider>().size.x - 0.43f,
+                    GetComponent<BoxCollider>().size.y, GetComponent<BoxCollider>().size.z);
             }
         }
 
@@ -105,11 +111,11 @@ public class BoxesPile : MonoBehaviour
             gameObject.GetComponent<AudioSource>().pitch = 1.1f;
             return;
         }
+
         gameObject.GetComponent<AudioSource>().Play();
         gameObject.GetComponent<AudioSource>().pitch += 0.005f;
-
     }
-    
+
     public void AddMoney(int amount)
     {
         for (int i = 0; i < amount; i++)
@@ -119,13 +125,15 @@ public class BoxesPile : MonoBehaviour
             // GameObject Money = Instantiate(moneyPrefab, new Vector3(place.x, place.y + plusY, place.z), Quaternion.identity);
             // Money.transform.parent = gameObject.transform;
             plusY += 1.1f;
-            boxAmountInStack ++;
-            if (transform.childCount % amountForNewPile == 0 )
+            boxAmountInStack++;
+            if (transform.childCount % amountForNewPile == 0)
             {
                 place.x -= 4;
                 plusY = 0;
-                GetComponent<BoxCollider>().center = new Vector3(GetComponent<BoxCollider>().center.x - 0.22f, GetComponent<BoxCollider>().center.y, GetComponent<BoxCollider>().center.z);
-                GetComponent<BoxCollider>().size = new Vector3(GetComponent<BoxCollider>().size.x + 0.43f, GetComponent<BoxCollider>().size.y, GetComponent<BoxCollider>().size.z);
+                GetComponent<BoxCollider>().center = new Vector3(GetComponent<BoxCollider>().center.x - 0.22f,
+                    GetComponent<BoxCollider>().center.y, GetComponent<BoxCollider>().center.z);
+                GetComponent<BoxCollider>().size = new Vector3(GetComponent<BoxCollider>().size.x + 0.43f,
+                    GetComponent<BoxCollider>().size.y, GetComponent<BoxCollider>().size.z);
             }
         }
         // moneyAmount = transform.childCount;

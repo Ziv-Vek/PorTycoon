@@ -95,7 +95,7 @@ public class ConfigManager : MonoBehaviour
         var boxes = Config.levels[(int)level - 1].boxes.Shuffle();
 
         // Calculate the total probability for normalization
-        float totalProbability = 100;
+        const float totalProbability = 100;
 
         // Generate a random value between 0 and the total probability
         float randomValue = UnityEngine.Random.Range(0, totalProbability);

@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ResetSaveBtn : MonoBehaviour
 {
-    private Button btn; 
+    private Button btn;
 
     void Start()
     {

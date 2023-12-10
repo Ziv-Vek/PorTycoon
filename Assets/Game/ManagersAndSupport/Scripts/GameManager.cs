@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [DefaultExecutionOrder(-1)]
@@ -39,6 +38,7 @@ public class GameManager : MonoBehaviour
     public int ShipNumber = 1;
 
     public bool Vibration = true;
+
     private void Awake()
     {
         if (Instance == null)
@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         Vibration = true;
     }
 
@@ -69,7 +70,7 @@ public class GameManager : MonoBehaviour
     {
         userData.GoneThroughTutorial = GoneThroughTutorial;
         userData.money = money;
-        userData.stars = stars; 
+        userData.stars = stars;
         userData.playerSpeedLevel = playerSpeedLevel;
         userData.playerBoxPlacesLevel = playerBoxPlacesLevel;
 

@@ -2,26 +2,24 @@
 using UnityEngine;
 
 [ExecuteAlways]
-public partial class Utils: MonoBehaviour
+public class Utils : MonoBehaviour
 {
     #region StaticInstanceGetter
+
     private static Utils _instance;
-    public static Utils Instance
-    {
-        get { return _instance; }
-    }
+
+    public static Utils Instance => _instance;
+
     #endregion
-    
+
     private Camera mainCamera;
-    public Camera MainCamera
-    {
-        get { return mainCamera; }
-    }
+
+    public Camera MainCamera => mainCamera;
 
     private void Awake()
     {
         _instance = this;
-        
+
         try
         {
             mainCamera = Camera.main;
@@ -32,10 +30,5 @@ public partial class Utils: MonoBehaviour
             Console.WriteLine(e);
             throw;
         }
-    }
-
-    public string GetUniqueID()
-    {
-        return Guid.NewGuid().ToString();
     }
 }

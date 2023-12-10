@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class TableActionZone : MonoBehaviour
@@ -14,7 +13,7 @@ public class TableActionZone : MonoBehaviour
             tableCarrier.SetPlayer(other.gameObject.GetComponent<PlayerCarrier>());
         }
     }
-    
+
     private void OnTriggerExit(Collider other)
     {
         // Check if the object that entered the trigger is tagged as "Player"
