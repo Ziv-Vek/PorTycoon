@@ -42,8 +42,6 @@ public class Driving : IForkliftState
     Conveyor conveyor;
     bool isHaveFuel = true;
     
-    private const float PLUS = 1f;
-
     public Driving(ForkliftMover forkliftMover, ForkliftCarrier forkliftCarrier) {
         this.forkliftMover = forkliftMover;
         this.carrier = forkliftCarrier;
@@ -61,7 +59,7 @@ public class Driving : IForkliftState
 
         if (!isHaveFuel)
         {
-            forkliftMover.NoFuelText.transform.parent.rotation = Quaternion.EulerAngles(0, forkliftMover.NoFuelText.transform.rotation.y + PLUS, 0);
+            forkliftMover.NoFuelText.transform.parent.rotation = Quaternion.EulerAngles(0, forkliftMover.NoFuelText.transform.rotation.y + forkliftMover.plus, 0);
             forkliftMover.NoFuelText.transform.parent.LookAt(GameObject.Find("Main Camera").transform);
             if (forkliftMover.FuelSlider.value <= 0 && Vector3.Distance(forkliftMover.forkliftArtTrans.position, forkliftMover.player.position) < forkliftMover.wakingDistance)
             {
@@ -260,7 +258,7 @@ public class ForkliftMover : MonoBehaviour
     public Transform forkliftArtTrans { get; private set; }
     [SerializeField] float backwardMovementSpeed = 5f;
     [SerializeField] private float backwardMovementDistance = 20f;
-    [SerializeField] float plus;
+    [SerializeField] public float plus;
     [SerializeField] public float fuelDecreaseRate = 10f;
     private List<Pier> piers = new List<Pier>();
     ForkliftTask task;
