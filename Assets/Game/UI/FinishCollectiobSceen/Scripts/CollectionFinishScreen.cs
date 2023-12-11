@@ -7,8 +7,8 @@ public class CollectionFinishScreen : MonoBehaviour
 {
     public ScratchItemModel scratchItemModel;
     public List<Item> AllCollection;
+    public List<GameObject> Places;
     public int index = 0;
-    private Animator animator;
     [SerializeField] Button CloseButton;
 
     [SerializeField] GameObject CollectionLine;
@@ -20,6 +20,7 @@ public class CollectionFinishScreen : MonoBehaviour
 
     [SerializeField] CanvasGroup CollectionCanvas;
 
+    [SerializeField] Transform InstantiatePlace;
 
     public void StartAnimation(List<Item> Collection)
     {
@@ -30,41 +31,58 @@ public class CollectionFinishScreen : MonoBehaviour
         playerMover.HideJoystick();
 
         AllCollection = Collection;
-        animator = GetComponent<Animator>();
-     //  animator.Play("Showing_all_The_Collection", 0);
-         EndLoop();
-    }
-    public void SetModel()
-    {
-        if(scratchItemModel.transform.childCount > 0)
-        {
-            foreach (Transform child in scratchItemModel.transform)
-                Destroy(child.gameObject);
-        }
-        scratchItemModel.ChangeModel(AllCollection[index].imagePath);
-        foreach (Transform child in scratchItemModel.transform)
-        {
-            child.transform.rotation = scratchItemModel.transform.parent.rotation;
-            child.transform.Rotate(new Vector3(0, 160, 0));
-        }
-    }
-    public void EndOfAnimation()
-    {
-        index++;
-        if (index < AllCollection.Count)
-            animator.Play("Showing_all_The_Collection", 0);
-        else
-            EndLoop();
-    }
-    public void EndLoop()
-    {
-        foreach (Transform child in scratchItemModel.transform)
-            Destroy(child.gameObject);
-        CloseButton.gameObject.SetActive(true);  
-        animator.Play("ShowingCollectionUI", 0);
         SetInCollectionList(MainCollection_List, AllCollection);
+
+    }
+    public void SetModels(List<Item> Collection)
+    {
+        StartCoroutine(SpawnAndMoveModels(Collection));
     }
 
+    private IEnumerator SpawnAndMoveModels(List<Item> Collection)
+    {
+        for (int i = 0; i < Collection.Count; i++)
+        {
+            GameObject model = Instantiate(new GameObject(), InstantiatePlace.position, InstantiatePlace.rotation, MainCollection_List.transform);
+            Destroy(GameObject.Find("New Game Object"));
+            model.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+            model.AddComponent<ScratchItemModel>().ChangeModel(Collection[i].imagePath);
+            foreach (Transform child in model.transform)
+            {
+                child.transform.rotation = model.transform.rotation;
+                child.transform.Rotate(new Vector3(0, 160, 0));
+            }
+
+            bool isMoving = true;
+
+            StartCoroutine(MoveItemToPlace(model, Places[i], () => isMoving = false));
+
+            // Wait until the MoveItemToPlace coroutine sets isMoving to false
+            while (isMoving)
+            {
+                yield return null;
+            }
+        }
+        ShowClosing();
+    }
+
+    private IEnumerator MoveItemToPlace(GameObject Model, GameObject Place, System.Action onComplete)
+    {
+        while (Vector3.Distance(Model.transform.position, Place.transform.position) > 0.1f && Vector3.Distance(Model.transform.GetChild(0).rotation.eulerAngles, new Vector3(0,360,0)) > 0.1f)
+        {
+            // Calculate the new position using Lerp
+            Vector3 newPosition = Vector3.Lerp(Model.transform.position, Place.transform.position, 5f * Time.deltaTime);
+            Model.transform.position = newPosition;
+            Model.transform.GetChild(0).Rotate(0, 30 * Time.deltaTime, 0);
+            yield return null;
+        }
+
+        onComplete?.Invoke(); // Invoke the callback when the movement is complete
+    }
+    public void ShowClosing()
+    {
+        CloseButton.gameObject.SetActive(true);
+    }
     public void CloseWindow()
     {
         CloseButton.gameObject.SetActive(false);
@@ -79,11 +97,11 @@ public class CollectionFinishScreen : MonoBehaviour
             playerMover.ShowJoystick();
         }
 
+        Places.Clear();
         CollectionCanvas.blocksRaycasts = true;
 
         gameObject.SetActive(false);
     }
-
     public void SetInCollectionList(GameObject CollectionList, List<Item> collection)
     {
         foreach (Transform child in CollectionList.transform)
@@ -102,13 +120,13 @@ public class CollectionFinishScreen : MonoBehaviour
 
             GameObject newItem = Instantiate(Item, CollectionUI_Holder.transform.position, CollectionUI_Holder.transform.rotation,
                 CollectionUI_Holder.transform);
-            newItem.transform.GetChild(0).gameObject.AddComponent<Image>();
-            if (!ItemsManager.Instance.UnlockedItems.ContainsKey(collection[i].id))
-                newItem.transform.GetChild(0).gameObject.GetComponent<Image>().color = new Color(0, 0, 0);
-            newItem.transform.GetChild(0).gameObject.AddComponent<ScratchItemImage>()
-                .ChangeImage(collection[i].imagePath);
+            newItem.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+            Destroy(newItem.transform.GetChild(0).gameObject);
+            Places.Add(newItem);
             newItem.name = string.Format(collection[i].imagePath);
-        }
+        }    
+        SetModels(AllCollection);
+
     }
 
 }
