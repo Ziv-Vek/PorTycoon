@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 
 public enum ForkliftTask
 {
@@ -26,7 +27,6 @@ public interface IForkliftState
     public void Enter();
     public void Update();
     public void Exit();
-
 }
 
 [Serializable]
@@ -49,6 +49,7 @@ public class Driving : IForkliftState
 
     public void Enter()
     {
+        Debug.Log("enter driving state");
         isHaveFuel = true;
         forkliftMover.MoveToDestination(forkliftMover.destination);
     }
@@ -82,14 +83,15 @@ public class Driving : IForkliftState
             return;
         }
 
-        if (Vector3.Distance(forkliftMover.transform.position, destinationPos) < forkliftMover.GetStoppingDistance())
+        if (Vector3.Distance(forkliftMover.transform.position, forkliftMover.destination) < forkliftMover.GetComponent<NavMeshAgent>().stoppingDistance)
         {
             Exit();
         }
     }
-
+        
     public void Exit()
     {
+        Debug.Log("exit drivin state");
         forkliftMover.TransitionState(true, ForkliftTask.PickupBoxes, forkliftMover.conveyor, ForkliftState.Idling);
     }
 }
@@ -186,6 +188,7 @@ public class Idling: IForkliftState
 
     public void Enter() 
     {
+        Debug.Log("enter idle state");
         destinationPier = null;
         forkliftMover.FreezeMovement();
     }
@@ -225,6 +228,7 @@ public class Idling: IForkliftState
         
     public void Exit()
     {
+        forkliftMover.GetComponent<NavMeshAgent>().isStopped = false;
         if (task == ForkliftTask.PickupBoxes)
         {
             forkliftMover.TransitionState(true, task, destinationPier, ForkliftState.Driving);
