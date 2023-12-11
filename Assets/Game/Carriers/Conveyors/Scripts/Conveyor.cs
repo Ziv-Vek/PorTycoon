@@ -31,6 +31,7 @@ public class Conveyor : Carrier
     [SerializeField] private float delayBeforeTransferFromGiverToPile = 0.1f;
     private Dictionary<ITransferBoxes, Coroutine> transferProcesses = new Dictionary<ITransferBoxes, Coroutine>();
     private PortBox boxOnBelt = null;
+    private static readonly int BaseMap = Shader.PropertyToID("_BaseMap");
 
     private void Start()
     {
@@ -61,42 +62,24 @@ public class Conveyor : Carrier
     {
         if (other.CompareTag("Player")) ScaleUpActionZone();
 
-        if (other.TryGetComponent<ITransferBoxes>(out ITransferBoxes boxesGiver))
+        if (other.TryGetComponent(out ITransferBoxes boxesGiver))
         {
-            transferProcesses.Add(boxesGiver, StartCoroutine(this.TransferBoxesHandler(boxesGiver)));
-            // StartCoroutine(this.TransferBoxesHandler(boxesGiver));
+            transferProcesses.Add(boxesGiver, StartCoroutine(TransferBoxesHandler(boxesGiver)));
         }
-
-        // if (other.TryGetComponent<ITransferBoxes>(out ITransferBoxes giver))
-        // {
-        //     IsAttemptingToGiveCargo = true;
-        //
-        //     StartCoroutine(BoxesTransferHandler.Instance.CheckTransfer(this, giver));
-        // }
-
-        // if (!isBeltMoving && CheckCanGiveBoxes())
-        // {
-        //     isBeltMoving = true;
-        //     MoveBelt();
-        // }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player")) ScaleDownActionZone();
 
-        if (other.TryGetComponent<ITransferBoxes>(out ITransferBoxes boxesGiver))
+        if (other.TryGetComponent(out ITransferBoxes boxesGiver))
         {
             if (transferProcesses.TryGetValue(boxesGiver, out var activeTransferProcess))
             {
                 StopCoroutine(activeTransferProcess);
                 transferProcesses.Remove(boxesGiver);
             }
-
-            // StartCoroutine(this.TransferBoxesHandler(boxesGiver));
         }
-
-        // IsAttemptingToGiveCargo = false;
     }
 
     private void ActivateBeltMovement()
@@ -110,7 +93,7 @@ public class Conveyor : Carrier
     private void LoadBoxToBeltHandler()
     {
         if (isScanning || isBeltMoving || isConveyorEndFull) return;
-        
+
         boxOnBelt = boxesPile.TakeBoxFromPile();
         boxes[0] = boxOnBelt;
 
@@ -148,7 +131,7 @@ public class Conveyor : Carrier
             uvOffset += (beltSpeed * Time.deltaTime);
 
             materials = beltRenderer.materials;
-            materials[0].SetTextureOffset("_BaseMap", new Vector2(0, -uvOffset));
+            materials[0].SetTextureOffset(BaseMap, new Vector2(0, -uvOffset));
 
             beltRenderer.materials = materials;
         }
@@ -190,19 +173,13 @@ public class Conveyor : Carrier
 
     IEnumerator TransferBoxesHandler(ITransferBoxes boxesGiver)
     {
-        PortBox portBox = null;
-
         while (boxesGiver.CheckCanGiveBoxes())
         {
-            portBox = boxesGiver.GiveBox();
+            var portBox = boxesGiver.GiveBox();
             if (portBox)
             {
                 boxesPile.AddBoxToPile(portBox);
             }
-            // var box = boxesGiver.GiveBox();
-            // Debug.Log($"box is: {box.gameObject.name}");
-
-            // boxesPile.AddBoxToPile(boxesGiver.GiveBox());
 
             yield return new WaitForSeconds(delayBeforeTransferFromGiverToPile);
         }

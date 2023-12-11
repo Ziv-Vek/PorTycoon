@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Scanner : MonoBehaviour
 {
@@ -15,19 +14,11 @@ public class Scanner : MonoBehaviour
         if (!other.CompareTag("Box")) yield break;
 
         OnScannerActivated?.Invoke();
-        
+
         yield return StartCoroutine(ScanningAnim());
-        
+
         OnScannerDeactivated?.Invoke();
     }
-
-    /*
-    IEnumerator ProcessScanning()
-    {
-        yield return StartCoroutine(ScanningAnim());
-        
-        yield return OnReaderFull;
-    }*/
 
     IEnumerator ScanningAnim()
     {
@@ -41,7 +32,7 @@ public class Scanner : MonoBehaviour
         }
 
         scanArea.SetActive(false);
-        
+
         yield return null;
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UiHolder : MonoBehaviour
@@ -10,6 +8,5 @@ public class UiHolder : MonoBehaviour
             transform.parent.GetComponent<UpgradesMenu>().Exit();
         else if (transform.parent.name == "Collection Canvas")
             transform.parent.GetComponent<CollectionMenu>().Exit();
-
     }
 }

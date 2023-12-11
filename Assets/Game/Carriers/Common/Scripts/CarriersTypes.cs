@@ -1,11 +1,11 @@
 public enum CarriersTypes
 {
-    undefined,
-    ship,
-    pier,
-    player,
-    npc,
-    dumpster,
-    conveyor,
-    table
+    Undefined,
+    Ship,
+    Pier,
+    Player,
+    Npc,
+    Dumpster,
+    Conveyor,
+    Table
 }

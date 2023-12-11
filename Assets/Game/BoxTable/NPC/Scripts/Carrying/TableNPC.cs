@@ -1,7 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class TableNPC : MonoBehaviour, IBoxOpener
@@ -11,7 +8,7 @@ public class TableNPC : MonoBehaviour, IBoxOpener
 
     public bool IsOpening;
     public Slider ProgressSlider;
-    public bool IsSleeping = false;
+    public bool IsSleeping;
     [SerializeField] public int AwarenessSeconds = 70;
     [SerializeField] float Seconds = 0;
     public GameObject SleepPartical;
@@ -26,7 +23,6 @@ public class TableNPC : MonoBehaviour, IBoxOpener
     private Bank _bank;
     public float wakingDistance = 10;
 
-    private static readonly int ForwardSpeed = Animator.StringToHash("forwardSpeed");
     private Transform player;
 
     [SerializeField] private ParticleSystem PunchEffect;
@@ -51,8 +47,8 @@ public class TableNPC : MonoBehaviour, IBoxOpener
     public void Update()
     {
         Seconds += 1 * Time.deltaTime;
-        if(IsOpening)
-           ProgressSlider.value += 1 * Time.deltaTime;
+        if (IsOpening)
+            ProgressSlider.value += 1 * Time.deltaTime;
         if (Vector3.Distance(transform.GetChild(0).transform.position, player.position) <
             wakingDistance && IsSleeping)
         {
@@ -60,7 +56,7 @@ public class TableNPC : MonoBehaviour, IBoxOpener
             PunchEffect.Play();
             GetComponent<AudioSource>().clip = PunchSound;
             GetComponent<AudioSource>().Play();
-        } 
+        }
     }
 
     public void OnFinishedOpenBox()
@@ -113,6 +109,7 @@ public class TableNPC : MonoBehaviour, IBoxOpener
         {
             myAnimator.Play("NPC_Idle");
         }
+
         Seconds = 0;
         Debug.Log("NPC of " + transform.parent.name + "is sleeping = " + b);
     }

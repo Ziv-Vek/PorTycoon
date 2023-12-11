@@ -20,18 +20,18 @@ public class BoxesTransferHandler : MonoBehaviour
         CarriersTypes mobileCarrierType = mobileCarrier.GetCarrierType();
 
         // Checks for transfer between two mobile characters
-        if ((stationaryCarrierType == CarriersTypes.npc || 
-             stationaryCarrierType == CarriersTypes.player) &&
-            (mobileCarrierType == CarriersTypes.npc || 
-             mobileCarrierType == CarriersTypes.player))
+        if ((stationaryCarrierType == CarriersTypes.Npc ||
+             stationaryCarrierType == CarriersTypes.Player) &&
+            (mobileCarrierType == CarriersTypes.Npc ||
+             mobileCarrierType == CarriersTypes.Player))
         {
             yield return null;
         }
 
-        if (stationaryCarrierType == CarriersTypes.pier)
+        if (stationaryCarrierType == CarriersTypes.Pier)
         {
             // ship tries to give to the pier
-            if (mobileCarrierType == CarriersTypes.ship)
+            if (mobileCarrierType == CarriersTypes.Ship)
             {
                 yield return StartCoroutine(ProcessTransfer(mobileCarrier, stationaryCarrier, mobileCarrier));
             }
@@ -42,12 +42,12 @@ public class BoxesTransferHandler : MonoBehaviour
             }
         }
 
-        if (stationaryCarrierType == CarriersTypes.conveyor)
+        if (stationaryCarrierType == CarriersTypes.Conveyor)
         {
             yield return StartCoroutine(ProcessTransfer(mobileCarrier, stationaryCarrier, stationaryCarrier));
         }
 
-        if (stationaryCarrierType == CarriersTypes.table)
+        if (stationaryCarrierType == CarriersTypes.Table)
         {
             yield return StartCoroutine(ProcessTransfer(mobileCarrier, stationaryCarrier, stationaryCarrier));
         }

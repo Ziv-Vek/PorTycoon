@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ItemsManager : MonoBehaviour
 {
@@ -163,8 +162,7 @@ public class ItemsManager : MonoBehaviour
 
     public void ResetData()
     {
-        if (UnlockedItems != null)
-            UnlockedItems.Clear();
+        UnlockedItems?.Clear();
     }
 
     public void LoadData(UserData userData)

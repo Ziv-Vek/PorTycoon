@@ -11,7 +11,6 @@ public class BoxesManager : MonoBehaviour
     [SerializeField] private BoxPrefab[] boxesPrefabs = null;
     private int shipSize = 4;
 
-    //[SerializeField] private GameObject simpleBox;
 
     private void Awake()
     {
@@ -26,96 +25,6 @@ public class BoxesManager : MonoBehaviour
         }
     }
 
-    public GameObject GiveCargo()
-    {
-        return Instantiate(boxesPrefabs[0].box, Vector3.zero, Quaternion.identity);
-    }
-    public PortBox GetBoxByIndex(int index)
-    {
-        if (boxesPrefabs[index].box.GetComponent<PortBox>() != null)
-            return boxesPrefabs[index].box.GetComponent<PortBox>();
-        else return null;
-    }
-    public List<PortBox> GetBoxesByName(List<string> boxesNames)
-    {
-        if (boxesNames == null || boxesNames.Count == 0)
-        {
-            throw new Exception("Did not receive boxesNames");
-        }
-
-        List<PortBox> boxes = new List<PortBox>();
-
-        for (int i = 0; i < boxesNames.Count; i++)
-        {
-            if (boxesNames[i] == boxesPrefabs[0].boxName)
-            {
-                Debug.LogWarning("boxName received is of default box name");
-                boxes.Add(InstantiateBox(0));
-                continue;
-            }
-
-            for (int j = 0; j < boxesPrefabs.Length; j++)
-            {
-                if (boxesPrefabs[j].boxName == boxesNames[i])
-                {
-                    boxes.Add(InstantiateBox(j));
-                    break;
-                }
-
-                if (j == boxesPrefabs.Length - 1)
-                {
-                    Debug.LogWarning("No identical boxName found. Instantiating default box prefab");
-                    boxes.Add(InstantiateBox(0));
-                }
-            }
-        }
-
-        return boxes;
-    }
-
-    public struct BoxesStruct
-    {
-        public List<GameObject> boxes;
-        public List<string> boxesNames;
-    }
-
-    /*public BoxesStruct GetBoxesByQuantity(int numBoxesToInstantiate)
-    {
-        List<GameObject> boxes = new List<GameObject>();
-        List<string> boxesNames = new List<string>();
-        int randNum;
-
-        for (int i = 0; i < numBoxesToInstantiate; i++)
-        {
-            randNum = Random.Range(1, boxesPrefabs.Length);
-            boxes.Add(InstantiateBox(randNum));
-            boxesNames.Add(boxesPrefabs[randNum].boxName);
-        }
-
-        BoxesStruct newBoxesData = new BoxesStruct();
-        newBoxesData.boxes = boxes;
-        newBoxesData.boxesNames = boxesNames;
-
-        return newBoxesData;
-    }*/
-
-    /*public GameObject[] GetBoxesByQuantity(int numBoxesToInstantiate, out List<string> boxesNames)
-    {
-        GameObject[] boxes = new GameObject[numBoxesToInstantiate];
-        List<string> names = new List<string>();
-        int randNum;
-
-        for (int i = 0; i < numBoxesToInstantiate; i++)
-        {
-            randNum = Random.Range(1, boxesPrefabs.Length);
-            boxes.Add(InstantiateBox(randNum));
-            names.Add(boxesPrefabs[randNum].boxName);
-        }
-
-        boxesNames = names;
-
-        return boxes;
-    }*/
 
     public PortBox[] GetBoxesByQuantity(int numBoxesToInstantiate)
     {
@@ -131,12 +40,6 @@ public class BoxesManager : MonoBehaviour
         return boxes;
     }
 
-    public void ReceiveCargo(GameObject cargo)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public bool CanReceiverAcceptCargo { get; }
 
     private PortBox InstantiateBox(int targetBoxName)
     {

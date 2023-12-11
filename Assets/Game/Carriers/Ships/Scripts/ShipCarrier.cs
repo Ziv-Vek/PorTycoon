@@ -2,19 +2,20 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class ShipCarrier: Carrier
+public class ShipCarrier : Carrier
 {
     [SerializeField] Pier pier;
     private ITransferBoxes boxesReceiver;
     [SerializeField] MoneyPile moneyPile;
     [SerializeField] Transform[] places;
-    
-    
+
+
     public override void Awake()
     {
         boxesReceiver = pier.GetComponent<ITransferBoxes>();
         if (boxesPlaces == null) throw new Exception("No IReceiveCargo component found.");
     }
+
     private void Start()
     {
         boxesPlaces[0].position = places[0].position;
@@ -25,15 +26,15 @@ public class ShipCarrier: Carrier
         boxes = BoxesManager.Instance.GetBoxesByQuantity(maxBoxesCapacity);
         RenderBoxes();
     }
-    
+
     public IEnumerator TransferBoxesToPier()
     {
         IsAttemptingToGiveCargo = true;
-        AudioManager.inctece.play("Ship Horn");
+        AudioManager.Instance.Play("Ship Horn");
         VibrationManager.Instance.DefaultVibrate();
         yield return BoxesTransferHandler.Instance.CheckTransfer(boxesReceiver, this);
     }
-    
+
     private void RenderBoxes()
     {
         for (int i = 0; i < maxBoxesCapacity; i++)
@@ -44,28 +45,30 @@ public class ShipCarrier: Carrier
             boxes[i].transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().enabled = true;
         }
     }
-    
+
     public override PortBox GiveBox()
     {
         int index = Array.FindLastIndex(boxes, i => i != null);
 
         PortBox box = boxes[index];
         boxes[index] = null;
-      //  Bank.Instance.AddMoneyToPile(moneyPile,"Cargo");
+        //  Bank.Instance.AddMoneyToPile(moneyPile,"Cargo");
         if (!CheckCanGiveBoxes())
         {
             IsAttemptingToGiveCargo = false;
         }
-        
+
         return box;
     }
-    public void addBoxPlace() 
+
+    public void AddBoxPlace()
     {
-        Transform[] ArrayPlaces = new Transform[boxesPlaces.Length + 1];
+        Transform[] arrayPlaces = new Transform[boxesPlaces.Length + 1];
         for (int i = 0; i < boxesPlaces.Length; i++)
         {
-            ArrayPlaces[i] = boxesPlaces[i];
+            arrayPlaces[i] = boxesPlaces[i];
         }
+
         Vector3 place;
 
         if (CargoPlacesHolder.childCount == 1)
@@ -79,23 +82,23 @@ public class ShipCarrier: Carrier
             place = new Vector3(place.x, place.y, place.z - 6.5f);
         }
 
-        GameObject newPlace = Instantiate(CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 1).gameObject, places[CargoPlacesHolder.childCount].position, Quaternion.identity);
+        GameObject newPlace = Instantiate(CargoPlacesHolder.GetChild(CargoPlacesHolder.childCount - 1).gameObject,
+            places[CargoPlacesHolder.childCount].position, Quaternion.identity);
         newPlace.transform.parent = CargoPlacesHolder;
 
         newPlace.name = "CargoPlace (" + (CargoPlacesHolder.childCount - 1) + ")";
-        newPlace.transform.localScale = new Vector3(1,1,1f);
-        ArrayPlaces[ArrayPlaces.Length - 1] = newPlace.transform;
+        newPlace.transform.localScale = new Vector3(1, 1, 1f);
+        arrayPlaces[arrayPlaces.Length - 1] = newPlace.transform;
 
-        boxesPlaces = ArrayPlaces;
-        try { Destroy(newPlace.transform.GetChild(0).gameObject); }
-        catch{ }
+        boxesPlaces = arrayPlaces;
+        try
+        {
+            Destroy(newPlace.transform.GetChild(0).gameObject);
+        }
+        catch
+        {
+        }
+
         maxBoxesCapacity++;
-        // AddBox();
-        //PortBox[] ArrayBoxes = new PortBox[boxes.Length + 1];
-        //for (int i = 0; i < boxes.Length; i++)
-        //{
-        //    ArrayBoxes[i] = boxes[i];
-        //}
-        //boxes = ArrayBoxes;
     }
 }

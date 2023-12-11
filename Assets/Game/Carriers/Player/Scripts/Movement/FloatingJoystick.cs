@@ -1,5 +1,3 @@
-using System;
-using Lofelt.NiceVibrations;
 using UnityEngine;
 
 [RequireComponent(typeof(RectTransform))]
@@ -7,25 +5,27 @@ using UnityEngine;
 public class FloatingJoystick : MonoBehaviour
 {
     #region StaticInstanceGetter
+
     private static FloatingJoystick _instance;
+
     public static FloatingJoystick Instance
     {
         get { return _instance; }
     }
+
     #endregion
-    
-    [SerializeField] Vector2 joystickSize = new Vector2(300, 300);
-    [SerializeField] Vector2 joystickSizeMargin = new Vector2(5, 5);
+
+    [SerializeField] Vector2 joystickSize = new(300, 300);
+    [SerializeField] Vector2 joystickSizeMargin = new(5, 5);
     [SerializeField] float knobSpeed = 3f;
     private float maxJoystickMovement;
-    public float JoystickSize { get { return joystickSize.x; } }
+
+    public float JoystickSize => joystickSize.x;
 
     [SerializeField] RectTransform outerJoystick;
+
     [SerializeField] RectTransform knob;
-    /*public RectTransform Knob
-    {
-        get { return Knob; }
-    }*/
+
 
     private void Awake()
     {
@@ -58,7 +58,7 @@ public class FloatingJoystick : MonoBehaviour
         outerJoystick.anchoredPosition = ClampJoystickPos(screenTouchPos);
         knob.anchoredPosition = Vector2.zero;
     }
-    
+
     private void MoveKnob(Vector2 screenTouchPos)
     {
         if (Vector2.Distance(screenTouchPos, outerJoystick.anchoredPosition) > maxJoystickMovement)
@@ -99,5 +99,4 @@ public class FloatingJoystick : MonoBehaviour
 
         return screenTouchPos;
     }
-    
 }
