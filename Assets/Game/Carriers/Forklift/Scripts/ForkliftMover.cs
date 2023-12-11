@@ -33,7 +33,7 @@ public class ForkliftMover : MonoBehaviour
     public AudioSource HornSorce;
     public AudioSource GasRefillSorce;
 
-    public int CurrentLevel;
+    private int CurrentLevel => transform.parent.GetComponent<PortLoader>().PortLevel;
 
     private void Awake()
     {
@@ -43,7 +43,6 @@ public class ForkliftMover : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player").transform;
         forkliftArtTrans = transform.GetChild(1).transform;
-        CurrentLevel = transform.parent.GetComponent<PortLoader>().PortLevel;
     }
 
     private void Start()
