@@ -9,6 +9,7 @@ public class ItemsManager : MonoBehaviour
     private static ItemsManager _instance;
 
     public GameObject NewItemCanvas;
+    public GameObject FinishCollectionCanvas;
     public static ItemsManager Instance { get; private set; }
 
     private GameConfig _gameConfig;
@@ -79,7 +80,7 @@ public class ItemsManager : MonoBehaviour
     }
 
     public void UnlockItem(Item item)
-    {    
+    {
         if (UnlockedItems.ContainsKey(item.id))
         {
             Debug.Log("Duplication: " + item.name);
@@ -91,19 +92,21 @@ public class ItemsManager : MonoBehaviour
         UnlockedItems.Add(item.id, item);
         UIManager.Instance.UpdateUI();
 
+        if (IsLevelCompleted(GameManager.Instance.CurrentLevel) && GameObject.Find("Fishing") == null)
+        {
+            FinishCollectionCanvas.SetActive(true);
+            FinishCollectionCanvas.GetComponent<CollectionFinishScreen>().StartAnimation(GetAllLevelItems(GameManager.Instance.currentLevel));
+            UIManager.ShowWinPanel();
+            Bank.Instance.AddMoneyToPile(GameObject.Find("ScretchMoneyPile").GetComponent<MoneyPile>(), "Win");
+        }
         // Showing the item if its new 
-        if (GameObject.Find("Fishing") == null) //Checking if the player is not fishing in this time
+        else if (GameObject.Find("Fishing") == null) //Checking if the player is not fishing in this time
         {
             NewItemCanvas.SetActive(true);
             NewItemCanvas.GetComponent<NewItemScreen>().AddItemToList(item);
         }
 
-        if (IsLevelCompleted(GameManager.Instance.CurrentLevel))
-        {
-            UIManager.ShowWinPanel();
-            Bank.Instance.AddMoneyToPile(GameObject.Find("ScretchMoneyPile").GetComponent<MoneyPile>(), "Win");
-            GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().OpenGatesWithCelebrating();
-        } 
+
     }
 
     public List<Item> GetAllLevelItems(int levelNum)

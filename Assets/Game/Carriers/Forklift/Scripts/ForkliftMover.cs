@@ -44,11 +44,12 @@ public class ForkliftMover : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player").transform;
         forkliftArtTrans = transform.GetChild(1).transform;
-        CurrentLevel = transform.parent.GetComponent<PortLoader>().PortLevel;
     }
 
     private void Start()
     {
+        CurrentLevel = transform.parent.GetComponent<PortLoader>().PortLevel;
+
         target = pier;
         
         if (myCarrier.CheckCanReceiveBoxes())
@@ -183,6 +184,7 @@ public class ForkliftMover : MonoBehaviour
     
     public void FuelUpgrade(int amount)
     {
+        CurrentLevel = transform.parent.GetComponent<PortLoader>().PortLevel;
         FuelSlider.maxValue = amount;
         FuelSlider.value = FuelSlider.maxValue;
         GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[GameManager.Instance.currentLevel - 1].upgrades["forklift_speed"].levels[GameManager.Instance.levelsData["Port" + CurrentLevel].forklifSpeedLevel - 1];
