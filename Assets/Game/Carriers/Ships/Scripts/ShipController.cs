@@ -11,12 +11,15 @@ public class ShipController : MonoBehaviour
     public Transform dockingPoint;
     public float waitTimeAtSeaTarget = 3f;
     [SerializeField] public float shipSpeed = 11.5f;
-    [CanBeNull] public MeshRenderer cargoMeshRenderer; 
+    [CanBeNull] public MeshRenderer cargoMeshRenderer;
     private ShipCarrier shipCarrier;
     public GameObject ShipEffects;
 
     public void setSpeed(float s)
-    { shipSpeed = s; }
+    {
+        shipSpeed = s;
+    }
+
     private void Awake()
     {
         shipCarrier = GetComponent<ShipCarrier>();
@@ -33,15 +36,11 @@ public class ShipController : MonoBehaviour
     {
         var startingPoint = Vector3.MoveTowards(targetPoint.position, dockingPoint.position,
             Vector3.Distance(targetPoint.position, dockingPoint.position) / 1.2f);
-        
+
         transform.SetPositionAndRotation(startingPoint, Quaternion.identity);
         transform.LookAt(dockingPoint.position, Vector3.up);
     }
 
-    private void ProcessBoxesTransferCompletion()
-    {
-        StartCoroutine(GoToTargetAndWaitAndReturn());
-    }
 
     private IEnumerator GoToTargetAndWaitAndReturn()
     {
@@ -53,7 +52,7 @@ public class ShipController : MonoBehaviour
 
             // Move back to the docking point at pier
             yield return StartCoroutine(MoveToPosition(dockingPoint.position));
-            
+
             // Turning off the ship effects
             foreach (Transform child in ShipEffects.transform)
                 child.gameObject.GetComponent<ParticleSystem>().Stop();
@@ -62,7 +61,7 @@ public class ShipController : MonoBehaviour
             yield return StartCoroutine(shipCarrier.TransferBoxesToPier());
             if (cargoMeshRenderer) cargoMeshRenderer.enabled = false;
             //yield return StartCoroutine(cargoHandler.HandleCargoTransfer());
-            
+
             // Move to the target point at sea
             yield return StartCoroutine(MoveToPosition(targetPoint.position));
 
@@ -81,7 +80,7 @@ public class ShipController : MonoBehaviour
         float elapsedTime = 0f;
 
         Vector3 startPosition = transform.position;
-        
+
         transform.LookAt(targetPosition);
 
         while (elapsedTime < timeToTravel)

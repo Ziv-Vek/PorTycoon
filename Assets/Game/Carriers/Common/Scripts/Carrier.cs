@@ -1,6 +1,4 @@
 using System;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Carrier : MonoBehaviour, ITransferBoxes
@@ -81,12 +79,13 @@ public class Carrier : MonoBehaviour, ITransferBoxes
 
     public void AddBox()
     {
-        PortBox[] ArrayBoxes = new PortBox[boxes.Length + 1];
+        PortBox[] arrayBoxes = new PortBox[boxes.Length + 1];
         for (int i = 0; i < boxes.Length; i++)
         {
-            ArrayBoxes[i] = boxes[i];
+            arrayBoxes[i] = boxes[i];
         }
-        boxes = ArrayBoxes;
+
+        boxes = arrayBoxes;
         GC.Collect();
     }
 
@@ -108,6 +107,7 @@ public class Carrier : MonoBehaviour, ITransferBoxes
     {
         return Array.Find(boxes, box => box != null && box.CanBeOpened);
     }
+
     public bool CheckIfBoxesEmpty()
     {
         foreach (PortBox box in boxes)
@@ -115,6 +115,7 @@ public class Carrier : MonoBehaviour, ITransferBoxes
             if (box != null)
                 return false;
         }
+
         return true;
     }
 }

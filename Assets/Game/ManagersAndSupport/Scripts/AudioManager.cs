@@ -6,18 +6,19 @@ using System;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
-    public static AudioManager inctece;
+    public static AudioManager Instance;
+
     void Awake()
     {
-
         {
-            if (inctece == null)
-                inctece = this;
+            if (Instance == null)
+                Instance = this;
             else
             {
                 Destroy(gameObject);
                 return;
             }
+
             DontDestroyOnLoad(gameObject);
         }
 
@@ -34,51 +35,50 @@ public class AudioManager : MonoBehaviour
                 s.sorce.Play();
         }
     }
-    public void play(string name)
+
+    public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         s.sorce.Play();
     }
-    public void stop(string name)
+
+    public void Stop(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         s.sorce.Stop();
     }
-    public void ChangeSounds(string CurrentSound,string NextSound )
+
+    public void ChangeSounds(string currentSound, string nextSound)
     {
-        Sound first = Array.Find(sounds, sound => sound.name == CurrentSound);
-        Sound second = Array.Find(sounds, sound => sound.name == NextSound);
+        Sound first = Array.Find(sounds, sound => sound.name == currentSound);
+        Sound second = Array.Find(sounds, sound => sound.name == nextSound);
         StartCoroutine(Fade(first, second));
     }
-    private IEnumerator Fade(Sound First, Sound Second)
+
+    private IEnumerator Fade(Sound first, Sound second)
     {
-        Second.sorce.volume = 0;
-        Second.sorce.Play();
-        while (First.sorce.volume != 0 && Second.sorce.volume != Second.volium)
+        second.sorce.volume = 0;
+        second.sorce.Play();
+        while (first.sorce.volume != 0 && second.sorce.volume != second.volium)
         {
-            First.sorce.volume -= 0.2f * Time.deltaTime;
-            Second.sorce.volume += 0.2f * Time.deltaTime;
+            first.sorce.volume -= 0.2f * Time.deltaTime;
+            second.sorce.volume += 0.2f * Time.deltaTime;
             yield return null;
         }
-        First.sorce.volume = First.volium;
-        First.sorce.Pause();
+
+        first.sorce.volume = first.volium;
+        first.sorce.Pause();
     }
 }
 
 [System.Serializable]
 public class Sound
 {
-
     public string name;
     public AudioClip clip;
-    [Range(0f, 1f)]
-
-    public float volium;
-    [Range(.1f, 3f)]
-
-    public float pitch;
+    [Range(0f, 1f)] public float volium;
+    [Range(.1f, 3f)] public float pitch;
     public bool loop;
     public bool PlayOnAwake;
-    [HideInInspector]
-    public AudioSource sorce;
+    [HideInInspector] public AudioSource sorce;
 }
