@@ -47,8 +47,6 @@ public class ForkliftMover : MonoBehaviour
 
     private void Start()
     {
-        CurrentLevel = transform.parent.GetComponent<PortLoader>().PortLevel;
-
         target = pier;
 
         if (myCarrier.CheckCanReceiveBoxes())
@@ -188,7 +186,6 @@ public class ForkliftMover : MonoBehaviour
 
     public void FuelUpgrade(int amount)
     {
-        CurrentLevel = transform.parent.GetComponent<PortLoader>().PortLevel;
         FuelSlider.maxValue = amount;
         FuelSlider.value = FuelSlider.maxValue;
         GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[GameManager.Instance.currentLevel - 1]
