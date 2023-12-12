@@ -106,9 +106,4 @@ public class ShipCarrier : Carrier
     {
         return pier;
     }
-
-    public Pier GetPier()
-    {
-        return pier;
-    }
 }

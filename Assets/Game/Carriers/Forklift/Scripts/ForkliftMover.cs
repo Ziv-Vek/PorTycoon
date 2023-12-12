@@ -30,7 +30,8 @@ public class Driving : IForkliftState
     private ForkliftMover forkliftMover;
     private Vector3 destinationPos;
     bool isHaveFuel = true;
-    
+    private int CurrentLevel => forkliftMover.transform.parent.GetComponent<PortLoader>().PortLevel;
+
     public Driving(ForkliftMover forkliftMover, ForkliftCarrier forkliftCarrier) {
         this.forkliftMover = forkliftMover;
     }
@@ -48,13 +49,10 @@ public class Driving : IForkliftState
         if (!isHaveFuel)
         {
             forkliftMover.NoFuelText.transform.parent.rotation = Quaternion.EulerAngles(0, forkliftMover.NoFuelText.transform.rotation.y + forkliftMover.plus, 0);
-            forkliftMover.NoFuelText.transform.parent.LookAt(GameObject.Find("Main Camera").transform);
-            if (forkliftMover.FuelSlider.value <= 0 && Vector3.Distance(forkliftMover.forkliftArtTrans.position, forkliftMover.player.position) < forkliftMover.wakingDistance)
+            forkliftMover.NoFuelText.transform.parent.LookAt(forkliftMover.mainCamera.transform);
+            if (Vector3.Distance(forkliftMover.forkliftArtTrans.position, forkliftMover.player.position) < forkliftMover.wakingDistance)
             {
-                forkliftMover.FuelSlider.value = forkliftMover.FuelSlider.maxValue;
-                isHaveFuel = true;
-                forkliftMover.GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[0].upgrades["forklift_speed"].levels[GameManager.Instance.forklifSpeedLevel - 1];
-                forkliftMover.NoFuelText.SetActive(false);
+                HandleRefuel();
             }
             else
             {
@@ -65,6 +63,7 @@ public class Driving : IForkliftState
         if (forkliftMover.FuelSlider.value <= 0)
         {
             isHaveFuel = false;
+            forkliftMover.HornSorce.Play();
             forkliftMover.NoFuelText.SetActive(true);
             forkliftMover.GetComponent<NavMeshAgent>().speed = 0;
             return;
@@ -76,7 +75,18 @@ public class Driving : IForkliftState
             Exit();
         }
     }
-        
+
+    public void HandleRefuel()
+    {
+        forkliftMover.FuelSlider.value = forkliftMover.FuelSlider.maxValue;
+        isHaveFuel = true;
+        forkliftMover.GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[GameManager.Instance.currentLevel - 1]
+        .upgrades["forklift_speed"]
+        .levels[GameManager.Instance.LevelsData["Port" + CurrentLevel].forklifSpeedLevel - 1];
+        forkliftMover.NoFuelText.SetActive(false);
+        forkliftMover.GasRefillSorce.Play();
+    }
+
     public void Exit()
     {
         forkliftMover.TransitionState(destinationPos, ForkliftState.Idling);
@@ -164,7 +174,12 @@ public class ForkliftMover : MonoBehaviour
     public IForkliftState CurrentState { get; private set; }
     private Driving driving;
     private Idling idling;
+    public AudioSource HornSorce;
+    public AudioSource GasRefillSorce;
+    public Camera mainCamera { get; private set; }
     #endregion
+
+    private int CurrentLevel => transform.parent.GetComponent<PortLoader>().PortLevel;
 
     private void Awake()
     {   
@@ -175,6 +190,7 @@ public class ForkliftMover : MonoBehaviour
 
     private void Start()
     {
+        mainCamera = Camera.main;
         driving = new Driving(this, myCarrier);
         idling = new Idling(myCarrier, this); 
 
@@ -268,12 +284,18 @@ public class ForkliftMover : MonoBehaviour
 
     public void FuelUpgrade(int amount)
     {
-        FuelSlider.maxValue = amount;
-        FuelSlider.value = FuelSlider.maxValue;
-        GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[GameManager.Instance.currentLevel - 1]
-            .upgrades["forklift_speed"]
-            .levels[GameManager.Instance.LevelsData["Port" + CurrentLevel].forklifSpeedLevel - 1];
-        NoFuelText.SetActive(false);
+        if (driving == null)
+        {
+            GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[GameManager.Instance.currentLevel - 1]
+        .upgrades["forklift_speed"]
+        .levels[GameManager.Instance.LevelsData["Port" + CurrentLevel].forklifSpeedLevel - 1];
+            FuelSlider.maxValue = amount;
+        }
+        else
+        {
+            FuelSlider.maxValue = amount;
+            driving.HandleRefuel();
+        }
     }
 }
 
