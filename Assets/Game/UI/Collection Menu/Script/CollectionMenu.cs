@@ -102,13 +102,13 @@ public class CollectionMenu : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < ConfigManager.Instance.Config.levels.Count; i++)
         {
             Instantiate(NameCollectionText, CollectionS_List.transform.position, CollectionS_List.transform.rotation,
-                CollectionS_List.transform).GetComponent<TextMeshProUGUI>().text = "Collection:  " + i;
+                CollectionS_List.transform).GetComponent<TextMeshProUGUI>().text = "Collection:  " + (i + 1);
             SetInCollectionList(
                 Instantiate(Collection_List, CollectionS_List.transform.position, CollectionS_List.transform.rotation,
-                    CollectionS_List.transform), 1);
+                    CollectionS_List.transform), i+1);
         }
     }
 

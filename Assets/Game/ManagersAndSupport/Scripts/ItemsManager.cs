@@ -91,7 +91,7 @@ public class ItemsManager : MonoBehaviour
         item.DateUnlocked = DateTime.Now;
         UnlockedItems.Add(item.id, item);
         UIManager.Instance.UpdateUI();
-
+        FindAnyObjectByType<CollectionScreen>().UpdateCollectionList();
         if (IsLevelCompleted(GameManager.Instance.CurrentLevel) && GameObject.Find("Fishing") == null)
         {
             FinishCollectionCanvas.SetActive(true);

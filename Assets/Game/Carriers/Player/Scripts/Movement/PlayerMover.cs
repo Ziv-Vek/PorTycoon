@@ -48,7 +48,12 @@ public class PlayerMover : MonoBehaviour
 
         playerVelocity.y = 0f;
     }
-
+    private void Update()
+    {
+        Vector3 currentPosition = transform.position;
+        currentPosition.y = 0.0f; 
+        transform.position = currentPosition;
+    }
     public void StartMove(Vector2 screenTouchPos)
     {
         startTouchPos = screenTouchPos;
