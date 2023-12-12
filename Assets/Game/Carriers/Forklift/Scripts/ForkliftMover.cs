@@ -53,7 +53,6 @@ public class Driving : IForkliftState
             {
                 forkliftMover.FuelSlider.value = forkliftMover.FuelSlider.maxValue;
                 isHaveFuel = true;
-                forkliftMover.GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[0].upgrades["forklift_speed"].levels[GameManager.Instance.forklifSpeedLevel - 1];
                 forkliftMover.NoFuelText.SetActive(false);
             }
             else
@@ -272,7 +271,7 @@ public class ForkliftMover : MonoBehaviour
         FuelSlider.value = FuelSlider.maxValue;
         GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[GameManager.Instance.currentLevel - 1]
             .upgrades["forklift_speed"]
-            .levels[GameManager.Instance.LevelsData["Port" + CurrentLevel].forklifSpeedLevel - 1];
+            .levels[GameManager.Instance.LevelsData["Port" + transform.parent.GetComponent<PortLoader>().PortLevel].forklifSpeedLevel - 1];
         NoFuelText.SetActive(false);
     }
 }
