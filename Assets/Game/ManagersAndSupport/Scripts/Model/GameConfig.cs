@@ -4,6 +4,7 @@ using System.Collections.Generic;
 [Serializable]
 public class GameConfig
 {
+    //public List<string> colors;
     public List<Item> items;
     public List<Level> levels;
 }
@@ -44,4 +45,5 @@ public class BoxItem
 {
     public string id;
     public float probability;
+    public string color;
 }

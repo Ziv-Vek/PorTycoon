@@ -28,7 +28,10 @@ public class UIManager : MonoBehaviour
 
         UpdateUI();
     }
-
+    private void Update()
+    {
+        UpdateCollectionState(ItemsManager.Instance.GetAllLevelItems(GameManager.Instance.currentLevel).Count, ItemsManager.Instance.GetUnlockedItemsNumber(GameManager.Instance.currentLevel));
+    }
     public void UpdateUI()
     {
         UpdateCollectionState(ItemsManager.Instance.GetAllLevelItems(GameManager.Instance.CurrentLevel).Count,

@@ -20,10 +20,13 @@ public class FishingManager : MonoBehaviour
     [SerializeField] public float MinusDelay;
     [SerializeField] public float MinusOpportunity;
 
+    [SerializeField] GameObject startCount;
+
     public int Step;
 
     public void StartInvoke()
     {
+        startCount.GetComponent<Animator>().Play("StartCount", 0);
         // InvokeRepeating("MakeSplash",startDelay, Delay);
         OpportunityTime = StartOpportunityTime;
         Delay = startDelay;

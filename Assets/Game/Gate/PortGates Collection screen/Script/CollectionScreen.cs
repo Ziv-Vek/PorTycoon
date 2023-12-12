@@ -17,7 +17,7 @@ public class CollectionScreen : MonoBehaviour
 
     void Start()
     {
-        SetInCollectionList(MainCollection_List, 1);
+        SetInCollectionList(MainCollection_List, transform.parent.GetComponent<PortLoader>().PortLevel);
         cameraT = GameObject.Find("Follow Camera").transform;
     }
     private void Update()

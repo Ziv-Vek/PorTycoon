@@ -38,7 +38,7 @@ public class ScratchBoard : MonoBehaviour
 
     private void NextItem()
     {
-        CurrentItem = ItemsManager.Instance.GetRandomItemFromBox(CurrentBox.Type, null);
+        CurrentItem = ItemsManager.Instance.GetRandomItemFromBox(CurrentBox.Type, GameManager.Instance.currentLevel);
         scratchItemModel.ChangeModel(CurrentItem.imagePath);
         cardManager.ClearScratchCard();
     }
@@ -83,12 +83,6 @@ public class ScratchBoard : MonoBehaviour
 
         cardManager.Progress.OnProgress += OnScratchProgress;
         gameObject.SetActive(true);
-        if (!CurrentBox.isPurchasedBox)
-        {
-            throwButton.gameObject.SetActive(true);
-        }
-        else
-            throwButton.gameObject.SetActive(false);
     }
 
     private void OnFinishedScratching()

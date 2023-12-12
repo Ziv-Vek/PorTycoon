@@ -25,6 +25,7 @@ public class CollectionMenu : MonoBehaviour
     public GameObject AllCollectionsPanel;
     GameObject CollectionUI_Holder;
     public GameObject ItemScreen;
+    [SerializeField] Color[] probabilityColors;
 
 
     private void Update()
@@ -92,6 +93,7 @@ public class CollectionMenu : MonoBehaviour
             newItem.name = string.Format(ItemsManager.Instance.GetAllLevelItems(level)[i].imagePath);
             if (ItemsManager.Instance.UnlockedItems.ContainsKey(ItemsManager.Instance.GetAllLevelItems(level)[i].id))
                 newItem.GetComponent<Button>().onClick.AddListener(() => ItemPressed(newItem));
+
         }
     }
 
@@ -162,6 +164,7 @@ public class CollectionMenu : MonoBehaviour
         ScratchItemModel ItemModel = ItemScreen.transform.Find("ItemPlace").GetComponent<ScratchItemModel>();
 
         ItemScreen.transform.Find("Frame").GetComponent<Image>().sprite = Button.GetComponent<Image>().sprite;
+        ItemScreen.transform.Find("Frame").GetComponent<Image>().color = Button.GetComponent<Image>().color;
 
         GameObject item = ItemModel.transform.GetChild(0).gameObject;
         foreach (Transform child in ItemModel.transform)

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ScratchItemModel : MonoBehaviour
 {
-    private const string IMAGE_PATH = "items/Toys/";
+    private const string IMAGE_PATH = "items/Collectibles/";
 
     public void ChangeModel(string filename)
     {

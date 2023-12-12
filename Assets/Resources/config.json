@@ -1,4 +1,13 @@
 {
+  //"colors": [
+  //  {
+  //    "gray": "#E0E0E0",
+  //    "green": "#3BFF3E",
+  //    "cyan": "#17C8FF",
+  //    "gold": "#FFF600",
+  //    "purple": "#FF53FD"
+  //  }
+  //],
   "items": [
     {
       "id": "Bunny",
@@ -39,6 +48,46 @@
       "id": "Robot",
       "name": "Robot",
       "imagePath": "Robot"
+    },
+    {
+      "id": "Cake",
+      "name": "Cake",
+      "imagePath": "Cake_Render"
+    },
+    {
+      "id": "Chocolate",
+      "name": "Chocolate",
+      "imagePath": "Chocolate_Render"
+    },
+    {
+      "id": "Muffin",
+      "name": "Muffin",
+      "imagePath": "Muffin_Render"
+    },
+    {
+      "id": "GBM",
+      "name": "GBM",
+      "imagePath": "GBM_Render"
+    },
+    {
+      "id": "IceCream",
+      "name": "IceCream",
+      "imagePath": "IceCream_Render"
+    },
+    {
+      "id": "Papsicle",
+      "name": "Papsicle",
+      "imagePath": "Papsicle_Render"
+    },
+    {
+      "id": "Pancake",
+      "name": "Pancake",
+      "imagePath": "Pancake_Render"
+    },
+    {
+      "id": "Sunday",
+      "name": "Sunday",
+      "imagePath": "Sunday_Render"
     }
   ],
   "levels": [
@@ -50,35 +99,43 @@
           "items": [
             {
               "id": "Bunny",
-              "probability": 16
+              "probability": 16,
+              "color": "gray"
             },
             {
               "id": "TeddyBearToy",
-              "probability": 16
+              "probability": 16,
+              "color": "gray"
             },
             {
               "id": "Rocket",
-              "probability": 16
+              "probability": 16,
+              "color": "gray"
             },
             {
               "id": "LegoMan",
-              "probability": 12
+              "probability": 12,
+              "color": "gray"
             },
             {
               "id": "Car",
-              "probability": 12
+              "probability": 12,
+              "color": "gray"
             },
             {
               "id": "suprtheroToy",
-              "probability": 12
+              "probability": 12,
+              "color": "gray"
             },
             {
               "id": "DragonToy",
-              "probability": 8
+              "probability": 8,
+              "color": "gray"
             },
             {
               "id": "Robot",
-              "probability": 8
+              "probability": 8,
+              "color": "gray"
             }
           ]
         }
@@ -284,36 +341,44 @@
           "probability": 100,
           "items": [
             {
-              "id": "Bunny",
-              "probability": 16
+              "id": "Cake",
+              "probability": 16,
+              "color": "gray"
             },
             {
-              "id": "TeddyBearToy",
-              "probability": 16
+              "id": "Muffin",
+              "probability": 16,
+              "color": "gray"
             },
             {
-              "id": "Rocket",
-              "probability": 16
+              "id": "Chocolate",
+              "probability": 16,
+              "color": "gray"
             },
             {
-              "id": "LegoMan",
-              "probability": 12
+              "id": "IceCream",
+              "probability": 12,
+              "color": "gray"
             },
             {
-              "id": "Car",
-              "probability": 12
+              "id": "Papsicle",
+              "probability": 12,
+              "color": "gray"
             },
             {
-              "id": "suprtheroToy",
-              "probability": 12
+              "id": "GBM",
+              "probability": 12,
+              "color": "gray"
             },
             {
-              "id": "DragonToy",
-              "probability": 8
+              "id": "Pancake",
+              "probability": 8,
+              "color": "gray"
             },
             {
-              "id": "Robot",
-              "probability": 8
+              "id": "Sunday",
+              "probability": 8,
+              "color": "gray"
             }
           ]
         }

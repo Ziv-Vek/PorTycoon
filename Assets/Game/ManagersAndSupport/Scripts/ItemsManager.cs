@@ -92,7 +92,7 @@ public class ItemsManager : MonoBehaviour
         UnlockedItems.Add(item.id, item);
         UIManager.Instance.UpdateUI();
         FindAnyObjectByType<CollectionScreen>().UpdateCollectionList();
-        if (IsLevelCompleted(GameManager.Instance.CurrentLevel) && GameObject.Find("Fishing") == null)
+        if (GetUnlockedItemsNumber(GameManager.Instance.experience) == GetAllLevelItems(GameManager.Instance.experience).Count && GameObject.Find("Fishing") == null)
         {
             FinishCollectionCanvas.SetActive(true);
             FinishCollectionCanvas.GetComponent<CollectionFinishScreen>().StartAnimation(GetAllLevelItems(GameManager.Instance.currentLevel));
@@ -154,6 +154,19 @@ public class ItemsManager : MonoBehaviour
         List<Item> allLevelItems = GetAllLevelItems(levelNum);
         Debug.Log("all level items:" + allLevelItems.Count + " unlocked items:" + UnlockedItems.Count);
         return allLevelItems.All(item => UnlockedItems.ContainsKey(item.id));
+    }
+    public int GetUnlockedItemsNumber(int levelNum)
+    {
+        int i = 0;
+        for (int index = 0; index < GetAllLevelItems(levelNum).Count; index++)
+        {
+            if (UnlockedItems.ContainsKey(GetAllLevelItems(levelNum)[index].id))
+            {
+               i++;
+            }
+        }
+        Debug.Log(i + " items Unlocked in the current collection (Level:" + levelNum + ")");
+        return i;
     }
 
     public void SaveData(UserData userData)
