@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[DefaultExecutionOrder(-1)]
+[DefaultExecutionOrder(-4)]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public int playerBoxPlacesLevel = 1;
     public int currentLevel = 1;
 
-    public Dictionary<string, LevelData> LevelsData { get; private set; } = new();
+    public Dictionary<string, LevelData> LevelsData { get; private set; } = new Dictionary<string, LevelData>();
 
     public bool Vibration = true;
 

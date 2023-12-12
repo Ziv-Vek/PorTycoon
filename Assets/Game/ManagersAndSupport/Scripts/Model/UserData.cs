@@ -13,21 +13,22 @@ public class UserData
     public int playerBoxPlacesLevel;
     public Dictionary<string, LevelData> LevelsData;
 }
+
 public class LevelData
 {
-    public int shipSpeedLevel;
-    public int quantityLevel;
-    public int qualityLevel;
-    public int convayorSpeedLevel;
-    public int scanningSpeedLevel;
-    public int tableStackLevel;
-    public int openBoxTimeNpc;
-    public int awarenessTimeNpc;
-    public int forklifSpeedLevel;
-    public int forkliftBoxQuantityLevel;
-    public int forkliftFuelTankLevel;
-    public int scratchSizeScaleLevel;
-    public bool ForkliftIsEnabled;
-    public int HandyManNumber;
-    public int ShipNumber;
+    public int shipSpeedLevel = 1;
+    public int quantityLevel = 1;
+    public int qualityLevel = 1;
+    public int convayorSpeedLevel = 1;
+    public int scanningSpeedLevel = 1;
+    public int tableStackLevel = 1;
+    public int openBoxTimeNpc = 1;
+    public int awarenessTimeNpc = 1;
+    public int forklifSpeedLevel = 1;
+    public int forkliftBoxQuantityLevel = 1;
+    public int forkliftFuelTankLevel = 1;
+    public int scratchSizeScaleLevel = 1;
+    public bool ForkliftIsEnabled = false;
+    public int HandyManNumber = 0;
+    public int ShipNumber = 0;
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,8 +23,12 @@ public class PortLoader : MonoBehaviour
 
     private void Start()
     {
+        string portKey = "Port" + PortLevel;
+        GameManager.Instance.LevelsData.TryAdd(portKey, new LevelData());
+
         CurrentLevelData = GameManager.Instance.LevelsData["Port" + PortLevel];
         gameConfig = ConfigManager.Instance.Config;
+        
         //ships values
         for (int i = 0; i < CurrentLevelData.ShipNumber; i++)
         {
@@ -144,5 +149,21 @@ public class PortLoader : MonoBehaviour
             Port.transform.position = newPosition;
             yield return null;
         }
+    }
+
+    
+    public ShipCarrier[] GetShipsInPort()
+    {
+        return Ships.Select(ship => ship.GetComponent<ShipCarrier>()).ToArray();
+    }
+
+    public Conveyor GetConveyorInPort()
+    {
+        return ConveyorTable.GetComponent<Conveyor>();
+    }
+
+    public GameObject GetPlayer()
+    {
+        return Player;
     }
 }

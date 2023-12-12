@@ -1,187 +1,269 @@
-using System.Collections;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
+
+public enum ForkliftTask
+{
+    PickupBoxes,
+    UnloadBoxes
+}
+
+public enum ForkliftState
+{
+    Driving,
+    Idling
+}
+
+public interface IForkliftState
+{
+    public void Enter();
+    public void Update();
+    public void Exit();
+}
+
+[Serializable]
+public class Driving : IForkliftState
+{
+    private ForkliftMover forkliftMover;
+    private Vector3 destinationPos;
+    bool isHaveFuel = true;
+    
+    public Driving(ForkliftMover forkliftMover, ForkliftCarrier forkliftCarrier) {
+        this.forkliftMover = forkliftMover;
+    }
+
+    public void Enter()
+    {
+        isHaveFuel = true;
+        forkliftMover.MoveToDestination(forkliftMover.destination);
+    }
+
+    public void Update()
+    {
+        forkliftMover.DecreaseFuel();
+
+        if (!isHaveFuel)
+        {
+            forkliftMover.NoFuelText.transform.parent.rotation = Quaternion.EulerAngles(0, forkliftMover.NoFuelText.transform.rotation.y + forkliftMover.plus, 0);
+            forkliftMover.NoFuelText.transform.parent.LookAt(GameObject.Find("Main Camera").transform);
+            if (forkliftMover.FuelSlider.value <= 0 && Vector3.Distance(forkliftMover.forkliftArtTrans.position, forkliftMover.player.position) < forkliftMover.wakingDistance)
+            {
+                forkliftMover.FuelSlider.value = forkliftMover.FuelSlider.maxValue;
+                isHaveFuel = true;
+                forkliftMover.GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[0].upgrades["forklift_speed"].levels[GameManager.Instance.forklifSpeedLevel - 1];
+                forkliftMover.NoFuelText.SetActive(false);
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        if (forkliftMover.FuelSlider.value <= 0)
+        {
+            isHaveFuel = false;
+            forkliftMover.NoFuelText.SetActive(true);
+            forkliftMover.GetComponent<NavMeshAgent>().speed = 0;
+            return;
+        }
+
+        if (Vector3.Distance(forkliftMover.transform.position, forkliftMover.destination) < 
+            forkliftMover.GetComponent<NavMeshAgent>().stoppingDistance)
+        {
+            Exit();
+        }
+    }
+        
+    public void Exit()
+    {
+        forkliftMover.TransitionState(destinationPos, ForkliftState.Idling);
+    }
+}
+
+[Serializable] 
+public class Idling: IForkliftState
+{
+    private ForkliftMover forkliftMover;
+    ForkliftCarrier forkliftCarrier;
+    Pier destinationPier = null;
+    Vector3 destination;
+
+    public Idling(ForkliftCarrier forkliftCarrier, ForkliftMover forkliftMover) {
+        this.forkliftCarrier = forkliftCarrier;
+        this.forkliftMover = forkliftMover;
+    }
+
+    public void Enter() 
+    {
+        destinationPier = null;
+        forkliftMover.FreezeMovement();
+    }
+
+    public void Update() {
+        if (forkliftCarrier.CheckCanReceiveBoxes())
+        {
+            destinationPier = forkliftMover.SetDestinationPier();
+            if (destinationPier != null)    // drive to a different pier
+            {
+                destination = destinationPier.actionRectZone.position;
+                Exit();
+            }
+            else
+            {
+                if (forkliftCarrier.CheckCanGiveBoxes())    // drive to conveyor
+                {
+                    destination = forkliftMover.conveyor.actionRectZone.position;
+                    Exit();
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
+        else // drive to conveyor
+        {
+            destination = forkliftMover.conveyor.actionRectZone.position;
+
+            Exit();
+        }
+     }
+        
+    public void Exit()
+    {
+        forkliftMover.GetComponent<NavMeshAgent>().isStopped = false;
+        forkliftMover.TransitionState(destination, ForkliftState.Driving);
+    }
+}
 
 public class ForkliftMover : MonoBehaviour
 {
+    #region Class Properties
     //configs:
-    private const float StopDistance = 2f;
-
-    [SerializeField]
-    private bool isPickUpBoxesTask; // true if needed to take boxes from pier, false if needed to put boxes on conveyor
-
-    [SerializeField] private float wakingDistance = 6;
-
+    private const float StoppingDistance = 2f;
+    [SerializeField] private bool isPickUpBoxesTask;     // true if needed to take boxes from pier, false if needed to put boxes on conveyor
+    [SerializeField] public float wakingDistance = 6;
+    
     //cached ref:
-    [SerializeField] private Transform pier;
-    [SerializeField] private Transform conveyorBelt;
+    public Vector3 destination { get; private set; }
+    public Conveyor conveyor;
     private ForkliftCarrier myCarrier;
     private NavMeshAgent navMeshAgent;
-    private Rigidbody rb;
     [SerializeField] public Slider FuelSlider;
-    [SerializeField] GameObject NoFuelText;
-    [SerializeField] private Transform target;
-    [SerializeField] private Transform LastTarget;
-    private Transform player;
-    private Transform forkliftArtTrans;
+    [SerializeField] public GameObject NoFuelText;
+    public Transform player { get; private set; }
+    public Transform forkliftArtTrans { get; private set; }
     [SerializeField] float backwardMovementSpeed = 5f;
     [SerializeField] private float backwardMovementDistance = 20f;
-    [SerializeField] float plus;
-
-    GameConfig gameConfig;
-    public AudioSource HornSorce;
-    public AudioSource GasRefillSorce;
-
-    private int CurrentLevel => transform.parent.GetComponent<PortLoader>().PortLevel;
+    [SerializeField] public float plus;
+    [SerializeField] public float fuelDecreaseRate = 10f;
+    private List<Pier> piers = new List<Pier>();
+    public IForkliftState CurrentState { get; private set; }
+    private Driving driving;
+    private Idling idling;
+    #endregion
 
     private void Awake()
-    {
-        gameConfig = ConfigManager.Instance.Config;
+    {   
         myCarrier = GetComponent<ForkliftCarrier>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        rb = GetComponent<Rigidbody>();
-        player = GameObject.Find("Player").transform;
         forkliftArtTrans = transform.GetChild(1).transform;
     }
 
     private void Start()
     {
-        target = pier;
+        driving = new Driving(this, myCarrier);
+        idling = new Idling(myCarrier, this); 
 
-        if (myCarrier.CheckCanReceiveBoxes())
+        var portLoader = GetComponentInParent<PortLoader>();
+
+        if (!portLoader)
         {
-            isPickUpBoxesTask = true;
+            Debug.Log(
+                "PortLoader not found on parent GameObject. \n Please ensure Forklift is a child of the Port GameObject.");
         }
         else
         {
-            isPickUpBoxesTask = false;
+            player = portLoader.GetPlayer().transform;
+            FindPiers(portLoader);
+            FindConveyors(portLoader);
         }
 
-        MoveToTarget();
         NoFuelText.SetActive(false);
+
+        CurrentState = idling;
+        CurrentState.Enter();
     }
 
     private void Update()
     {
-        // check if forklift has reached destination
-        if (target != null && Vector3.Distance(transform.position, target.position) < StopDistance &&
-            navMeshAgent.enabled)
-        {
-            CancelMovement();
-        }
-
-        SetCarryingTask();
-        if (Vector3.Distance(forkliftArtTrans.position, player.position) < wakingDistance && FuelSlider.value <= 0)
-        {
-            FuelSlider.value = FuelSlider.maxValue;
-            GetComponent<NavMeshAgent>().speed = gameConfig.levels[GameManager.Instance.currentLevel - 1]
-                .upgrades["forklift_speed"]
-                .levels[GameManager.Instance.LevelsData["Port" + CurrentLevel].forklifSpeedLevel - 1];
-            NoFuelText.SetActive(false);
-            GasRefillSorce.Play();
-        }
-
-        NoFuelText.transform.parent.LookAt(GameObject.Find("Main Camera").transform);
-        NoFuelText.transform.parent.rotation = Quaternion.EulerAngles(0, NoFuelText.transform.rotation.y + plus, 0);
+        CurrentState.Update();
     }
 
-    // checks if finished loading/unloading boxes and sets the new task accordingly
-    public void SetCarryingTask()
+    public float GetStoppingDistance()
     {
-        /* states:
-         needs to pickup, and can still pickup
-         needs to pickup, and cannot pickup
-         needs to unload and can still unload
-         needs to unload and cannot unload*/
-        //   if (isPickUpBoxesTask && !myCarrier.CheckCanReceiveBoxes() && FuelSlider.value != 0)
-
-        if (target == null && !myCarrier.CheckCanReceiveBoxes() && FuelSlider.value != 0)
-        {
-            isPickUpBoxesTask = false;
-            StartCoroutine(Move());
-            return;
-        }
-
-        if (target == null && !myCarrier.CheckCanGiveBoxes() && FuelSlider.value != 0)
-        {
-            isPickUpBoxesTask = true;
-            StartCoroutine(Move());
-        }
+        return StoppingDistance;
     }
 
-    // sets movement destination and start movement
-    IEnumerator Move()
+    public Pier SetDestinationPier()
     {
-        //rb.constraints = RigidbodyConstraints.None;
-
-        if (isPickUpBoxesTask)
+        foreach (var pier in piers)
         {
-            target = pier;
-        }
-        else
-        {
-            target = conveyorBelt;
-        }
-
-        if (LastTarget != target)
-            yield return StartCoroutine(MoveBackwards());
-    }
-
-    IEnumerator MoveBackwards()
-    {
-        navMeshAgent.enabled = false;
-        Vector3 backwardTargetPos = transform.position - (transform.forward * backwardMovementDistance);
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
-        rb.constraints = RigidbodyConstraints.FreezePositionY;
-        rb.AddForce(-transform.forward * backwardMovementSpeed, ForceMode.VelocityChange);
-
-        while (Vector3.Distance(transform.position, backwardTargetPos) > 0.1f)
-        {
-            //rb.AddForce(-transform.forward * backwardMovementSpeed, ForceMode.Force);
-            yield return new WaitForFixedUpdate();
-        }
-
-        rb.velocity = Vector3.zero;
-        rb.constraints = RigidbodyConstraints.None;
-        rb.constraints = RigidbodyConstraints.FreezePositionY;
-
-        navMeshAgent.enabled = true;
-        MoveToTarget();
-    }
-
-    private void MoveToTarget()
-    {
-        if (!target)
-        {
-            Debug.Log("no target destination set for forklift");
-            target = pier;
-        }
-
-        navMeshAgent.SetDestination(target.position);
-        if (LastTarget != target)
-        {
-            FuelSlider.value -= 10;
-            if (FuelSlider.value == 0)
+            if (pier.gameObject.activeSelf && pier.CheckCanGiveBoxes())
             {
-                GetComponent<NavMeshAgent>().speed = 0;
-                NoFuelText.SetActive(true);
-                HornSorce.Play();
+                return pier;
             }
         }
-
-        LastTarget = target;
-        navMeshAgent.isStopped = false;
+        return null;
     }
 
-    // stops movement on navmesh and freezes position
-    private void CancelMovement()
+    public void TransitionState(Vector3 newDestination, ForkliftState nextState)
     {
-        target = null;
-        navMeshAgent.ResetPath();
-        navMeshAgent.isStopped = true;
+        destination = newDestination;
 
-        rb.constraints = RigidbodyConstraints.FreezePosition;
+        switch (nextState)
+        {
+            case ForkliftState.Driving:
+                CurrentState = driving;
+                break;
+            case ForkliftState.Idling:
+                CurrentState = idling;
+                break;
+        }
+
+        CurrentState.Enter();
+    }
+
+    public void DecreaseFuel()
+    {
+        FuelSlider.value -= fuelDecreaseRate * Time.deltaTime;
+    }
+
+    public void FreezeMovement()
+    {
+        navMeshAgent.isStopped = true;
+    }
+
+    private void FindConveyors(PortLoader portLoader)
+    {
+        conveyor = portLoader.GetConveyorInPort();
+    }
+
+    private void FindPiers(PortLoader portLoader)
+    {
+        foreach (var ship in portLoader.GetShipsInPort())
+        {
+            piers.Add(ship.GetPier());
+        }
+    }
+
+    public void MoveToDestination(Vector3 destinationPos)
+    {
+        navMeshAgent.SetDestination(destinationPos);
+        navMeshAgent.isStopped = false;
     }
 
     public void FuelUpgrade(int amount)
@@ -193,10 +275,6 @@ public class ForkliftMover : MonoBehaviour
             .levels[GameManager.Instance.LevelsData["Port" + CurrentLevel].forklifSpeedLevel - 1];
         NoFuelText.SetActive(false);
     }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.GetChild(1).position, wakingDistance);
-    }
 }
+
+

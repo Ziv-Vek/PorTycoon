@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 
+[DefaultExecutionOrder(-5)]
 public class ConfigManager : MonoBehaviour
 {
     private static ConfigManager _instance;

@@ -5,7 +5,7 @@ using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
 
-[DefaultExecutionOrder(1)]
+[DefaultExecutionOrder(-1)]
 public class UserDataManager : MonoBehaviour
 {
     private const string FILE_NAME = "userData.json";
