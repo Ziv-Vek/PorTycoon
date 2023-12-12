@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShipCarrier : Carrier
 {
-    [SerializeField] Pier pier;
+    [SerializeField] Pier pier; 
     private ITransferBoxes boxesReceiver;
     [SerializeField] MoneyPile moneyPile;
     [SerializeField] Transform[] places;
@@ -100,5 +100,15 @@ public class ShipCarrier : Carrier
         }
 
         maxBoxesCapacity++;
+    }
+
+    public Pier GetPier()
+    {
+        return pier;
+    }
+
+    public Pier GetPier()
+    {
+        return pier;
     }
 }
