@@ -24,6 +24,12 @@ public class CollectionScreen : MonoBehaviour
     {
         transform.LookAt(cameraT);
     }
+    public void UpdateCollectionList()
+    {
+        foreach (Transform child in MainCollection_List.transform)
+            Destroy(child.gameObject);
+        SetInCollectionList(MainCollection_List, 1);
+    }
     public void SetInCollectionList(GameObject CollectionList, int level)
     {
         foreach (Transform child in CollectionList.transform)

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CollectionFinishScreen : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class CollectionFinishScreen : MonoBehaviour
     [SerializeField] CanvasGroup CollectionCanvas;
 
     [SerializeField] Transform InstantiatePlace;
+
+    [SerializeField] TextMeshProUGUI YouWonXmoney;
+    [SerializeField] int MoneyThatPlayerGet;
 
     public void StartAnimation(List<Item> Collection)
     {
@@ -71,7 +75,7 @@ public class CollectionFinishScreen : MonoBehaviour
         while (Vector3.Distance(Model.transform.position, Place.transform.position) > 0.1f && Vector3.Distance(Model.transform.GetChild(0).rotation.eulerAngles, new Vector3(0,360,0)) > 0.1f)
         {
             // Calculate the new position using Lerp
-            Vector3 newPosition = Vector3.Lerp(Model.transform.position, Place.transform.position, 5f * Time.deltaTime);
+            Vector3 newPosition = Vector3.Lerp(Model.transform.position, Place.transform.position, 7f * Time.deltaTime);
             Model.transform.position = newPosition;
             Model.transform.GetChild(0).Rotate(0, 30 * Time.deltaTime, 0);
             yield return null;
@@ -82,10 +86,13 @@ public class CollectionFinishScreen : MonoBehaviour
     public void ShowClosing()
     {
         CloseButton.gameObject.SetActive(true);
+        YouWonXmoney.gameObject.SetActive(true);
+        YouWonXmoney.text = "You won $" + MoneyThatPlayerGet + "!";
     }
     public void CloseWindow()
     {
         CloseButton.gameObject.SetActive(false);
+        YouWonXmoney.gameObject.SetActive(false);
         foreach (Transform child in MainCollection_List.transform)
             Destroy(child.gameObject);
         GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().OpenGatesWithCelebrating();
@@ -99,7 +106,7 @@ public class CollectionFinishScreen : MonoBehaviour
 
         Places.Clear();
         CollectionCanvas.blocksRaycasts = true;
-
+        Bank.Instance.DepositMoney(MoneyThatPlayerGet);
         gameObject.SetActive(false);
     }
     public void SetInCollectionList(GameObject CollectionList, List<Item> collection)
