@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[DefaultExecutionOrder(-3)]
 public class ItemsManager : MonoBehaviour
 {
     private static ItemsManager _instance;
