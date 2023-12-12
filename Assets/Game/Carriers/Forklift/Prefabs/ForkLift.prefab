@@ -641,18 +641,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f2fa85f614c8f40bd7843096bb87a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PortNumber: 1
   isPickUpBoxesTask: 0
   wakingDistance: 6
-  pier: {fileID: 0}
-  conveyorBelt: {fileID: 0}
+  conveyor: {fileID: 0}
   FuelSlider: {fileID: 1712751536713746504}
   NoFuelText: {fileID: 1712751537121720062}
-  target: {fileID: 0}
-  LastTarget: {fileID: 0}
   backwardMovementSpeed: 5
   backwardMovementDistance: 20
   plus: 5.36
+  fuelDecreaseRate: 1
   HornSorce: {fileID: 2954046528908360906}
   GasRefillSorce: {fileID: 6223270107547152840}
 --- !u!54 &7598096029477029990

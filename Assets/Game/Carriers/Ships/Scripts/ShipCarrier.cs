@@ -106,5 +106,4 @@ public class ShipCarrier : Carrier
     {
         return pier;
     }
-
 }
