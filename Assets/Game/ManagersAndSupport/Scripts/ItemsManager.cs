@@ -165,7 +165,6 @@ public class ItemsManager : MonoBehaviour
                i++;
             }
         }
-        Debug.Log(i + " items Unlocked in the current collection (Level:" + levelNum + ")");
         return i;
     }
 
