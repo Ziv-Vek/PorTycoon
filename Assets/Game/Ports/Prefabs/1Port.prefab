@@ -2027,6 +2027,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5564473663792962628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5912820444927864194}
+  m_Layer: 0
+  m_Name: PlayerSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5912820444927864194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5564473663792962628}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -110.75045, y: 0, z: 112.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6421787961888213941}
+  m_RootOrder: 38
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5618232957993547457
 GameObject:
   m_ObjectHideFlags: 0
@@ -4590,6 +4621,7 @@ Transform:
   - {fileID: 1141761456368876206}
   - {fileID: 788849992854069927}
   - {fileID: 4821466607839141555}
+  - {fileID: 5912820444927864194}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4624,8 +4656,9 @@ MonoBehaviour:
   ForkLiftBuyer: {fileID: 8170874857988800932}
   ConveyorTable: {fileID: 6421787963366444460}
   BoxTable: {fileID: 8082600677884953969}
-  Player: {fileID: 0}
+  Player: {fileID: 5564473663792962628}
   Gates: {fileID: 5136919711076705276}
+  PlayerSpawnPoint: {fileID: 5912820444927864194}
 --- !u!1 &6421787961909197975
 GameObject:
   m_ObjectHideFlags: 0

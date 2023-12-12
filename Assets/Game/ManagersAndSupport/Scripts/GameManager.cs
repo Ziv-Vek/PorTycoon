@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -34,6 +35,11 @@ public class GameManager : MonoBehaviour
         }
 
         Vibration = true;
+    }
+
+    private void Start()
+    {
+        GameObject.FindWithTag("Player").GetComponent<PlayerMover>().SpawnPlayer(currentLevel);
     }
 
     private void Update()
