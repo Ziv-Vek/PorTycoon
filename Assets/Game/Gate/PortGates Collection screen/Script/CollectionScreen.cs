@@ -28,7 +28,7 @@ public class CollectionScreen : MonoBehaviour
     {
         foreach (Transform child in MainCollection_List.transform)
             Destroy(child.gameObject);
-        SetInCollectionList(MainCollection_List, 1);
+        SetInCollectionList(MainCollection_List, transform.parent.GetComponent<PortLoader>().PortLevel);
     }
     public void SetInCollectionList(GameObject CollectionList, int level)
     {
@@ -54,6 +54,11 @@ public class CollectionScreen : MonoBehaviour
             newItem.transform.GetChild(0).gameObject.AddComponent<ScratchItemImage>()
                 .ChangeImage(ItemsManager.Instance.GetAllLevelItems(level)[i].imagePath);
             newItem.name = string.Format(ItemsManager.Instance.GetAllLevelItems(level)[i].imagePath);
+
+            string ColorPath = ConfigManager.Instance.Config.colors[ItemsManager.Instance.GetBoxItemByItem(ItemsManager.Instance.GetAllLevelItems(level)[i], level).color];
+            Color color;
+            ColorUtility.TryParseHtmlString(ColorPath, out color);
+            newItem.GetComponent<Image>().color = color;
         }
     }
 }

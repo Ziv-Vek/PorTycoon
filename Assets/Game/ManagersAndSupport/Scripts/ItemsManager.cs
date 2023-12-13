@@ -106,7 +106,12 @@ public class ItemsManager : MonoBehaviour
             NewItemCanvas.GetComponent<NewItemScreen>().AddItemToList(item);
         }
 
-
+        CollectionScreen[] collectionScreens = FindObjectsOfType<CollectionScreen>();
+        // Iterate through each object and call the UpdateCollectionList function
+        foreach (CollectionScreen collectionScreen in collectionScreens)
+        {
+            collectionScreen.UpdateCollectionList();
+        }
     }
 
     public List<Item> GetAllLevelItems(int levelNum)
@@ -167,7 +172,37 @@ public class ItemsManager : MonoBehaviour
         }
         return i;
     }
+    public BoxItem GetBoxItemByItem(Item item,int? levelNum)
+    {
+        // If the level is null, use the current level
+        levelNum ??= GameManager.Instance.CurrentLevel;
 
+        // Find the desired level by its ID
+        Level targetLevel = _gameConfig.levels[(int)(levelNum - 1)];
+
+        if (targetLevel == null)
+        {
+            Debug.LogError($"No level found with ID: {levelNum}");
+            return null;
+        }
+
+        // Find the desired box within the level by its type
+        if (!targetLevel.boxes.ContainsKey("wood"))
+        {
+            Debug.LogError($"No box of type: {"wood"} found in level with ID: {levelNum}");
+            return null;
+        }
+
+        Box targetBox = targetLevel.boxes["wood"];
+
+        for (int i = 0; i < targetBox.items.Count; i++)
+        {
+            if (targetBox.items[i].id == item.id)
+                return targetBox.items[i];
+        }
+        Debug.LogError("Cant find item box");
+        return null;
+    }
     public void SaveData(UserData userData)
     {
         userData.unlockedItems = UnlockedItems;

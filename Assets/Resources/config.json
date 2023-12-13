@@ -1,13 +1,13 @@
 {
-  //"colors": [
-  //  {
-  //    "gray": "#E0E0E0",
-  //    "green": "#3BFF3E",
-  //    "cyan": "#17C8FF",
-  //    "gold": "#FFF600",
-  //    "purple": "#FF53FD"
-  //  }
-  //],
+  "colors": 
+    {
+      "gray": "#E0E0E0",
+      "green": "#3BFF3E",
+      "cyan": "#17C8FF",
+      "gold": "#FFF600",
+      "purple": "#FF53FD"
+    }
+  ,
   "items": [
     {
       "id": "Bunny",
@@ -130,12 +130,12 @@
             {
               "id": "DragonToy",
               "probability": 8,
-              "color": "gray"
+              "color": "green"
             },
             {
               "id": "Robot",
               "probability": 8,
-              "color": "gray"
+              "color": "green"
             }
           ]
         }
@@ -343,42 +343,42 @@
             {
               "id": "Cake",
               "probability": 16,
-              "color": "gray"
+              "color": "green"
             },
             {
               "id": "Muffin",
               "probability": 16,
-              "color": "gray"
+              "color": "green"
             },
             {
               "id": "Chocolate",
               "probability": 16,
-              "color": "gray"
+              "color": "green"
             },
             {
               "id": "IceCream",
               "probability": 12,
-              "color": "gray"
+              "color": "green"
             },
             {
               "id": "Papsicle",
               "probability": 12,
-              "color": "gray"
+              "color": "green"
             },
             {
               "id": "GBM",
               "probability": 12,
-              "color": "gray"
+              "color": "green"
             },
             {
               "id": "Pancake",
               "probability": 8,
-              "color": "gray"
+              "color": "gold"
             },
             {
               "id": "Sunday",
               "probability": 8,
-              "color": "gray"
+              "color": "gold"
             }
           ]
         }

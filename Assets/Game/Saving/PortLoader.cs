@@ -24,7 +24,7 @@ public class PortLoader : MonoBehaviour
     private void Start()
     {
         string portKey = "Port" + PortLevel;
-      //  GameManager.Instance.LevelsData.TryAdd(portKey, new LevelData());
+        GameManager.Instance.LevelsData.TryAdd(portKey, new LevelData());
 
         CurrentLevelData = GameManager.Instance.LevelsData["Port" + PortLevel];
         gameConfig = ConfigManager.Instance.Config;

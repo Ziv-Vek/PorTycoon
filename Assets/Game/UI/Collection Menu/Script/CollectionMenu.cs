@@ -94,6 +94,11 @@ public class CollectionMenu : MonoBehaviour
             if (ItemsManager.Instance.UnlockedItems.ContainsKey(ItemsManager.Instance.GetAllLevelItems(level)[i].id))
                 newItem.GetComponent<Button>().onClick.AddListener(() => ItemPressed(newItem));
 
+            string ColorPath = ConfigManager.Instance.Config.colors[ItemsManager.Instance.GetBoxItemByItem(ItemsManager.Instance.GetAllLevelItems(level)[i], level).color];
+            Color color; 
+            ColorUtility.TryParseHtmlString(ColorPath, out color);
+            newItem.GetComponent<Image>().color = color;
+
         }
     }
 

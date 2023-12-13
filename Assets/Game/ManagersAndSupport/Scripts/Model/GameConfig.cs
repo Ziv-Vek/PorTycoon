@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [Serializable]
 public class GameConfig
 {
-    //public List<string> colors;
+    public Dictionary<string,string> colors;
     public List<Item> items;
     public List<Level> levels;
 }

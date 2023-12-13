@@ -78,6 +78,9 @@ public class ScratchBoard : MonoBehaviour
         CurrentBox = box;
         CurrentBox.CanBeOpened = false;
 
+        tableCarrier = GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().BoxTable.transform.Find("Table").GetComponent<TableCarrier>();
+        conveyorBelt = GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().ConveyorTable.GetComponent<Conveyor>();
+
         tableCarrier.RemovePlayer();
         NextItem();
 
