@@ -42,6 +42,7 @@ public class ShipCarrier : Carrier
 
             boxes[i].transform.SetParent(boxesPlaces[i], false);
             boxes[i].transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().enabled = true;
+            boxes[i].level = transform.parent.GetComponent<PortLoader>().PortLevel;
         }
     }
 

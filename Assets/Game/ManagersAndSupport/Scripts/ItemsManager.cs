@@ -37,7 +37,7 @@ public class ItemsManager : MonoBehaviour
     public Item GetRandomItemFromBox(string boxType, int? levelNum)
     {
         // If the level is null, use the current level
-        levelNum ??= GameManager.Instance.CurrentLevel;
+        levelNum ??= GameManager.Instance.level;
 
         // Find the desired level by its ID
         Level targetLevel = _gameConfig.levels[(int)(levelNum - 1)];

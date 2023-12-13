@@ -32520,7 +32520,7 @@ MonoBehaviour:
   AmountOfStars: 3
   MinusDelay: 0.3
   MinusOpportunity: 0.1
-  startCount: {fileID: 0}
+  startCount: {fileID: 99760888}
   Step: 0
 --- !u!1 &1735251912
 GameObject:

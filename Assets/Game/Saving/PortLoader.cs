@@ -114,7 +114,6 @@ public class PortLoader : MonoBehaviour
 
         Gates.transform.Find("Gate Camera").gameObject.SetActive(true);
         StartCoroutine(WaitForXSeconds(5f));
-        GameObject NextPort = GameObject.Find((PortLevel + 1) + "Port");
         if(PortLevel + 1 <= GameManager.Instance.AmountOfLevels)
         {
             GameManager.Instance.experience = PortLevel + 1;

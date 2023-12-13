@@ -5,6 +5,7 @@ public class PortBox : MonoBehaviour, IItemContainer
 {
     public bool CanBeOpened { get; set; } = true;
     public string Type { get; private set; }
+    public int level; //port level
     public bool isPurchasedBox = false;
 
     public void Awake()

@@ -36,9 +36,10 @@ public class ScratchBoard : MonoBehaviour
         GetComponent<PanelTouchHandler>().CanScratch = true;
     }
 
-    private void NextItem()
+    private void NextItem(int? portBoxLevel)
     {
-        CurrentItem = ItemsManager.Instance.GetRandomItemFromBox(CurrentBox.Type, GameManager.Instance.level);
+        portBoxLevel ??= GameManager.Instance.level;
+        CurrentItem = ItemsManager.Instance.GetRandomItemFromBox(CurrentBox.Type, portBoxLevel);
         scratchItemModel.ChangeModel(CurrentItem.imagePath);
         cardManager.ClearScratchCard();
     }
@@ -77,12 +78,24 @@ public class ScratchBoard : MonoBehaviour
 
         CurrentBox = box;
         CurrentBox.CanBeOpened = false;
+        if (!box.isPurchasedBox)
+        {
+            tableCarrier = GameObject.Find(box.level + "Port").GetComponent<PortLoader>().BoxTable.transform.Find("Table").GetComponent<TableCarrier>();
+            conveyorBelt = GameObject.Find(box.level + "Port").GetComponent<PortLoader>().ConveyorTable.GetComponent<Conveyor>();
+        }
+        else
+        {
+            tableCarrier = GameObject.Find(GameManager.Instance.level + "Port").GetComponent<PortLoader>().BoxTable.transform.Find("Table").GetComponent<TableCarrier>();
+            conveyorBelt = GameObject.Find(GameManager.Instance.level + "Port").GetComponent<PortLoader>().ConveyorTable.GetComponent<Conveyor>();
+        }
+            
 
-        tableCarrier = GameObject.Find(GameManager.Instance.level + "Port").GetComponent<PortLoader>().BoxTable.transform.Find("Table").GetComponent<TableCarrier>();
-        conveyorBelt = GameObject.Find(GameManager.Instance.level + "Port").GetComponent<PortLoader>().ConveyorTable.GetComponent<Conveyor>();
 
         tableCarrier.RemovePlayer();
-        NextItem();
+        if(!box.isPurchasedBox)
+           NextItem(box.level);
+        else
+            NextItem(null);
 
         cardManager.Progress.OnProgress += OnScratchProgress;
         gameObject.SetActive(true);
