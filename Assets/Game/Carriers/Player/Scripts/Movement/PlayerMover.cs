@@ -127,4 +127,11 @@ public class PlayerMover : MonoBehaviour
         if (myAnimator.GetBool(IsHoldingBox) != isHoldingBox)
             myAnimator.SetBool(IsHoldingBox, isHoldingBox);
     }
+    
+    public void SpawnPlayer(int level)
+    {
+        Debug.Log("level: " + level + "Port");
+        transform.SetPositionAndRotation(GameObject.Find(level + "Port").GetComponent<PortLoader>().PlayerSpawnPoint.position, Quaternion.identity);
+        //transform.position = GameObject.Find(level + "Port").GetComponent<PortLoader>().PlayerSpawnPoint.position;
+    }
 }

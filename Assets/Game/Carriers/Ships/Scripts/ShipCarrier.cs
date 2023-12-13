@@ -9,7 +9,6 @@ public class ShipCarrier : Carrier
     [SerializeField] MoneyPile moneyPile;
     [SerializeField] Transform[] places;
 
-
     public override void Awake()
     {
         boxesReceiver = pier.GetComponent<ITransferBoxes>();

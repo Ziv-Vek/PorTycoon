@@ -38,7 +38,7 @@ public class ScratchBoard : MonoBehaviour
 
     private void NextItem()
     {
-        CurrentItem = ItemsManager.Instance.GetRandomItemFromBox(CurrentBox.Type, GameManager.Instance.currentLevel);
+        CurrentItem = ItemsManager.Instance.GetRandomItemFromBox(CurrentBox.Type, GameManager.Instance.level);
         scratchItemModel.ChangeModel(CurrentItem.imagePath);
         cardManager.ClearScratchCard();
     }

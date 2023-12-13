@@ -20,9 +20,11 @@ public class PortLoader : MonoBehaviour
     public GameObject Player;
     LevelData CurrentLevelData;
     public GameObject Gates;
+    public Transform PlayerSpawnPoint;
 
     private void Start()
     {
+        Player = GameObject.Find("Player");
         string portKey = "Port" + PortLevel;
         GameManager.Instance.LevelsData.TryAdd(portKey, new LevelData());
 
@@ -114,6 +116,8 @@ public class PortLoader : MonoBehaviour
         StartCoroutine(WaitForXSeconds(5f));
         GameObject NextPort = GameObject.Find((PortLevel + 1) + "Port");
         GameManager.Instance.experience = PortLevel + 1;
+        GameManager.Instance.SetCurrentLevel(PortLevel + 1);
+        UserDataManager.Instance.SaveUserData();
     }
 
     public void OpenGates()

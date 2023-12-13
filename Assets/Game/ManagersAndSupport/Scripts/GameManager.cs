@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
     public int experience = 1;
     public int playerSpeedLevel = 1;
     public int playerBoxPlacesLevel = 1;
-    public int currentLevel = 1;
+    [SerializeField] public int level;
 
     public Dictionary<string, LevelData> LevelsData { get; private set; } = new Dictionary<string, LevelData>();
 
@@ -34,6 +35,11 @@ public class GameManager : MonoBehaviour
         }
 
         Vibration = true;
+    }
+
+    private void Start()
+    {
+        GameObject.FindWithTag("Player").GetComponent<PlayerMover>().SpawnPlayer(level);
     }
 
     private void Update()
@@ -57,10 +63,14 @@ public class GameManager : MonoBehaviour
         userData.LevelsData = LevelsData;
         userData.playerSpeedLevel = playerSpeedLevel;
         userData.playerBoxPlacesLevel = playerBoxPlacesLevel;
+        userData.currentLevel = level;
     }
 
     public void LoadData(UserData userData)
     {
+        Debug.Log("userdata loaded from gamenager. current level:" +
+            " " + userData.currentLevel);
+
         experience = userData.experience;
         GoneThroughTutorial = userData.GoneThroughTutorial;
         money = userData.money;
@@ -68,6 +78,7 @@ public class GameManager : MonoBehaviour
         LevelsData = userData.LevelsData;
         playerSpeedLevel = userData.playerSpeedLevel;
         playerBoxPlacesLevel = userData.playerBoxPlacesLevel;
+        level = userData.currentLevel;
     }
 
     public void ResetData()
@@ -96,5 +107,12 @@ public class GameManager : MonoBehaviour
             LevelsData["Port" + (i + 1)].HandyManNumber = 0;
             LevelsData["Port" + (i + 1)].ShipNumber = 0;
         }
+    }
+
+    public void SetCurrentLevel(int level)
+    {
+        Debug.Log("SetCurrentLevel: " + level);
+        this.level = level;
+        CurrentLevel = level;
     }
 }

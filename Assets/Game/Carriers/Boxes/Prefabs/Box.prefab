@@ -95,10 +95,10 @@ BoxCollider:
   m_GameObject: {fileID: 4165853758446169201}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 2.2905164, y: 2.2905164, z: 3.4541051}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 5.02, y: 4.88, z: 4.79}
+  m_Center: {x: 0, y: 2.29, z: 0}
 --- !u!54 &-2931503900528646926
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -127,3 +127,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db30c96c12a84f2cad3dfb5bc64acccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPurchasedBox: 0
