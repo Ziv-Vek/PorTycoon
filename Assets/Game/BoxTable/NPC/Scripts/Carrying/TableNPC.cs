@@ -64,7 +64,7 @@ public class TableNPC : MonoBehaviour, IBoxOpener
         Debug.Log("Giving box to targetCarrier");
         myAnimator.Play("NPC_Idle");
 
-        CurrentItem = _itemsManager.GetRandomItemFromBox(CurrentBox.Type, null);
+        CurrentItem = _itemsManager.GetRandomItemFromBox(CurrentBox.Type, transform.parent.parent.GetComponent<PortLoader>().PortLevel);
         _itemsManager.UnlockItem(CurrentItem);
         Debug.Log("Got new item: " + CurrentItem.name);
 

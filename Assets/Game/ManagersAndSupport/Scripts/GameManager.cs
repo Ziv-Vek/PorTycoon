@@ -16,7 +16,9 @@ public class GameManager : MonoBehaviour
     public int experience = 1;
     public int playerSpeedLevel = 1;
     public int playerBoxPlacesLevel = 1;
-    [SerializeField] public int level;
+    [SerializeField] public int level = 1;
+
+    public int AmountOfLevels;
 
     public Dictionary<string, LevelData> LevelsData { get; private set; } = new Dictionary<string, LevelData>();
 
@@ -34,12 +36,11 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        Vibration = true;
+        Vibration = true;    
     }
 
     private void Start()
     {
-        GameObject.FindWithTag("Player").GetComponent<PlayerMover>().SpawnPlayer(level);
     }
 
     private void Update()
@@ -78,7 +79,9 @@ public class GameManager : MonoBehaviour
         LevelsData = userData.LevelsData;
         playerSpeedLevel = userData.playerSpeedLevel;
         playerBoxPlacesLevel = userData.playerBoxPlacesLevel;
-        level = userData.currentLevel;
+        level = userData.currentLevel;      
+        GameObject.FindWithTag("Player").GetComponent<PlayerMover>().SpawnPlayer(CurrentLevel);
+
     }
 
     public void ResetData()
@@ -89,6 +92,7 @@ public class GameManager : MonoBehaviour
         experience = 1;
         playerSpeedLevel = 1;
         playerBoxPlacesLevel = 1;
+        level = 1;
         for (int i = 0; i < LevelsData.Count; i++)
         {
             LevelsData["Port" + (i + 1)].shipSpeedLevel = 1;

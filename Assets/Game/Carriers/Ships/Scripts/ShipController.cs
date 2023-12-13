@@ -62,6 +62,10 @@ public class ShipController : MonoBehaviour
             if (cargoMeshRenderer) cargoMeshRenderer.enabled = false;
             //yield return StartCoroutine(cargoHandler.HandleCargoTransfer());
 
+            // Turning on the ship effects
+            foreach (Transform child in ShipEffects.transform)
+                child.gameObject.GetComponent<ParticleSystem>().Play();
+
             // Move to the target point at sea
             yield return StartCoroutine(MoveToPosition(targetPoint.position));
 
