@@ -11,4 +11,15 @@ public class PortBox : MonoBehaviour, IItemContainer
     {
         Type = ConfigManager.Instance.GetBoxTypeRandomly(null);
     }
+
+    public void ActivateCollider() { 
+        GetComponent<BoxCollider>().enabled = true;
+       }
+
+    public void DeactivateCollider()
+    {
+        GetComponent<BoxCollider>().enabled = false;
+       }
+
+
 }

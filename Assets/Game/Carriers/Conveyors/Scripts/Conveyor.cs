@@ -101,6 +101,7 @@ public class Conveyor : Carrier
         {
             boxOnBelt.transform.SetParent(CargoPlacesHolder);
             boxOnBelt.transform.localPosition = Vector3.zero;
+            boxOnBelt.ActivateCollider();
             ActivateBeltMovement();
         }
     }
@@ -152,7 +153,7 @@ public class Conveyor : Carrier
         {
             yield return new WaitForSeconds(delayBeforeTransferAttemptsToTable);
         }
-
+        boxOnBelt.DeactivateCollider();
         tableCarrier.ReceiveBox(boxOnBelt);
         boxOnBelt = null;
         boxes[0] = null;

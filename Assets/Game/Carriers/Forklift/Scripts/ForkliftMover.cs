@@ -80,7 +80,7 @@ public class Driving : IForkliftState
     {
         forkliftMover.FuelSlider.value = forkliftMover.FuelSlider.maxValue;
         isHaveFuel = true;
-        forkliftMover.GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[GameManager.Instance.currentLevel - 1]
+        forkliftMover.GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[GameManager.Instance.level - 1]
         .upgrades["forklift_speed"]
         .levels[GameManager.Instance.LevelsData["Port" + CurrentLevel].forklifSpeedLevel - 1];
         forkliftMover.NoFuelText.SetActive(false);
@@ -286,7 +286,7 @@ public class ForkliftMover : MonoBehaviour
     {
         if (driving == null)
         {
-            GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[GameManager.Instance.currentLevel - 1]
+            GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[GameManager.Instance.level - 1]
         .upgrades["forklift_speed"]
         .levels[GameManager.Instance.LevelsData["Port" + CurrentLevel].forklifSpeedLevel - 1];
             FuelSlider.maxValue = amount;

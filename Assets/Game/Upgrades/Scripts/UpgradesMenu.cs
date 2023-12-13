@@ -26,7 +26,7 @@ public class UpgradesMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        CurrentlevelData = GameManager.Instance.LevelsData["Port" + GameManager.Instance.currentLevel];
+        CurrentlevelData = GameManager.Instance.LevelsData["Port" + GameManager.Instance.level];
 
         if (CurrentlevelData.HandyManNumber < 1 && gameObject.name == "HR Upgrades Canvas")
             transform.Find("UI Holder").Find("1 HandyMan Button").gameObject.GetComponent<Button>().interactable =
@@ -93,7 +93,7 @@ public class UpgradesMenu : MonoBehaviour
     {
         var product = button.transform.parent.GetComponent<Product>();
         var currentLevel = getMaxLevel();
-        var maxLevel = gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades[upgradeType].levels.Count;
+        var maxLevel = gameConfig.levels[GameManager.Instance.level - 1].upgrades[upgradeType].levels.Count;
 
         if ((product.Price <= GameManager.Instance.money || button.name == "FreeButton") && currentLevel < maxLevel)
         {
@@ -124,17 +124,17 @@ public class UpgradesMenu : MonoBehaviour
             newLevel =>
             {
                 CurrentlevelData.shipSpeedLevel = newLevel;
-                foreach (GameObject ship in GameObject.Find(GameManager.Instance.currentLevel + "Port")
+                foreach (GameObject ship in GameObject.Find(GameManager.Instance.level + "Port")
                              .GetComponent<PortLoader>().Ships)
                 {
                     ship.GetComponent<ShipController>().setSpeed(gameConfig
-                        .levels[GameManager.Instance.currentLevel - 1]
+                        .levels[GameManager.Instance.level - 1]
                         .upgrades["ship_speed"].levels[CurrentlevelData.shipSpeedLevel - 1]);
                 }
             },
             "ship_speed",
             () => CurrentlevelData.shipSpeedLevel,
-            level => (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["ship_speed"]
+            level => (int)gameConfig.levels[GameManager.Instance.level - 1].upgrades["ship_speed"]
                 .prices[level - 1]
         );
     }
@@ -146,7 +146,7 @@ public class UpgradesMenu : MonoBehaviour
             newLevel =>
             {
                 CurrentlevelData.quantityLevel = newLevel;
-                foreach (GameObject ship in GameObject.Find(GameManager.Instance.currentLevel + "Port")
+                foreach (GameObject ship in GameObject.Find(GameManager.Instance.level + "Port")
                              .GetComponent<PortLoader>().Ships)
                 {
                     ship.GetComponent<ShipCarrier>().AddBoxPlace();
@@ -154,7 +154,7 @@ public class UpgradesMenu : MonoBehaviour
             },
             "ship_box_quantity",
             () => CurrentlevelData.quantityLevel,
-            level => (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["ship_box_quantity"]
+            level => (int)gameConfig.levels[GameManager.Instance.level - 1].upgrades["ship_box_quantity"]
                 .prices[level - 1]
         );
     }
@@ -166,13 +166,13 @@ public class UpgradesMenu : MonoBehaviour
             newLevel =>
             {
                 CurrentlevelData.convayorSpeedLevel = newLevel;
-                GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().ConveyorTable
-                    .GetComponent<Conveyor>().beltSpeed = gameConfig.levels[GameManager.Instance.currentLevel - 1]
+                GameObject.Find(GameManager.Instance.level + "Port").GetComponent<PortLoader>().ConveyorTable
+                    .GetComponent<Conveyor>().beltSpeed = gameConfig.levels[GameManager.Instance.level - 1]
                     .upgrades["conveyor_speed"].levels[CurrentlevelData.convayorSpeedLevel - 1];
             },
             "conveyor_speed",
             () => CurrentlevelData.convayorSpeedLevel,
-            level => (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["conveyor_speed"]
+            level => (int)gameConfig.levels[GameManager.Instance.level - 1].upgrades["conveyor_speed"]
                 .prices[level - 1]
         );
     }
@@ -184,14 +184,14 @@ public class UpgradesMenu : MonoBehaviour
             newLevel =>
             {
                 CurrentlevelData.scanningSpeedLevel = newLevel;
-                GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().ConveyorTable
+                GameObject.Find(GameManager.Instance.level + "Port").GetComponent<PortLoader>().ConveyorTable
                     .transform.Find("Scanner").GetComponent<Scanner>().scanningDuration = gameConfig
-                    .levels[GameManager.Instance.currentLevel - 1].upgrades["conveyor_scanning_speed"]
+                    .levels[GameManager.Instance.level - 1].upgrades["conveyor_scanning_speed"]
                     .levels[CurrentlevelData.scanningSpeedLevel - 1];
             },
             "conveyor_scanning_speed",
             () => CurrentlevelData.scanningSpeedLevel,
-            level => (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["conveyor_scanning_speed"]
+            level => (int)gameConfig.levels[GameManager.Instance.level - 1].upgrades["conveyor_scanning_speed"]
                 .prices[level - 1]
         );
     }
@@ -203,12 +203,12 @@ public class UpgradesMenu : MonoBehaviour
             newLevel =>
             {
                 CurrentlevelData.tableStackLevel = newLevel;
-                GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().BoxTable
+                GameObject.Find(GameManager.Instance.level + "Port").GetComponent<PortLoader>().BoxTable
                     .transform.Find("Table").GetComponent<TableCarrier>().AddBoxPlace();
             },
             "table_quantity",
             () => CurrentlevelData.tableStackLevel,
-            level => (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["table_quantity"]
+            level => (int)gameConfig.levels[GameManager.Instance.level - 1].upgrades["table_quantity"]
                 .prices[level - 1]
         );
     }
@@ -220,17 +220,17 @@ public class UpgradesMenu : MonoBehaviour
             newLevel =>
             {
                 CurrentlevelData.openBoxTimeNpc = newLevel;
-                foreach (GameObject npc in GameObject.Find(GameManager.Instance.currentLevel + "Port")
+                foreach (GameObject npc in GameObject.Find(GameManager.Instance.level + "Port")
                              .GetComponent<PortLoader>().HandyMan)
                 {
                     npc.GetComponent<TableNPC>().waitTime = (int)gameConfig
-                        .levels[GameManager.Instance.currentLevel - 1]
+                        .levels[GameManager.Instance.level - 1]
                         .upgrades["handyman_speed"].levels[CurrentlevelData.openBoxTimeNpc - 1];
                 }
             },
             "handyman_speed",
             () => CurrentlevelData.openBoxTimeNpc,
-            level => (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["handyman_speed"]
+            level => (int)gameConfig.levels[GameManager.Instance.level - 1].upgrades["handyman_speed"]
                 .prices[level - 1]
         );
     }
@@ -242,17 +242,17 @@ public class UpgradesMenu : MonoBehaviour
             newLevel =>
             {
                 CurrentlevelData.awarenessTimeNpc = newLevel;
-                foreach (GameObject npc in GameObject.Find(GameManager.Instance.currentLevel + "Port")
+                foreach (GameObject npc in GameObject.Find(GameManager.Instance.level + "Port")
                              .GetComponent<PortLoader>().HandyMan)
                 {
                     npc.GetComponent<TableNPC>().AwarenessSeconds = (int)gameConfig
-                        .levels[GameManager.Instance.currentLevel - 1].upgrades["handyman_awarness"]
+                        .levels[GameManager.Instance.level - 1].upgrades["handyman_awarness"]
                         .levels[CurrentlevelData.awarenessTimeNpc - 1];
                 }
             },
             "handyman_awarness",
             () => CurrentlevelData.awarenessTimeNpc,
-            level => (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["handyman_awarness"]
+            level => (int)gameConfig.levels[GameManager.Instance.level - 1].upgrades["handyman_awarness"]
                 .prices[level - 1]
         );
     }
@@ -266,12 +266,12 @@ public class UpgradesMenu : MonoBehaviour
             {
                 GameManager.Instance.playerSpeedLevel = newLevel;
                 GameObject.Find("Player").GetComponent<PlayerMover>().maxMovementSpeed = gameConfig
-                    .levels[GameManager.Instance.currentLevel - 1].upgrades["player_speed"]
+                    .levels[GameManager.Instance.level - 1].upgrades["player_speed"]
                     .levels[GameManager.Instance.playerSpeedLevel - 1];
             },
             "player_speed",
             () => GameManager.Instance.playerSpeedLevel,
-            level => (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["player_speed"]
+            level => (int)gameConfig.levels[GameManager.Instance.level - 1].upgrades["player_speed"]
                 .prices[level - 1]
         );
     }
@@ -287,7 +287,7 @@ public class UpgradesMenu : MonoBehaviour
             },
             "player_box_quantity",
             () => GameManager.Instance.playerBoxPlacesLevel,
-            level => (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["player_box_quantity"]
+            level => (int)gameConfig.levels[GameManager.Instance.level - 1].upgrades["player_box_quantity"]
                 .prices[level - 1]
         );
     }
@@ -299,13 +299,13 @@ public class UpgradesMenu : MonoBehaviour
             newLevel =>
             {
                 CurrentlevelData.forklifSpeedLevel = newLevel;
-                GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().ForkLift
-                    .GetComponent<NavMeshAgent>().speed = gameConfig.levels[GameManager.Instance.currentLevel - 1]
+                GameObject.Find(GameManager.Instance.level + "Port").GetComponent<PortLoader>().ForkLift
+                    .GetComponent<NavMeshAgent>().speed = gameConfig.levels[GameManager.Instance.level - 1]
                     .upgrades["forklift_speed"].levels[CurrentlevelData.forklifSpeedLevel - 1];
             },
             "forklift_speed",
             () => CurrentlevelData.forklifSpeedLevel,
-            level => (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["forklift_speed"]
+            level => (int)gameConfig.levels[GameManager.Instance.level - 1].upgrades["forklift_speed"]
                 .prices[level - 1]
         );
     }
@@ -317,12 +317,12 @@ public class UpgradesMenu : MonoBehaviour
             newLevel =>
             {
                 CurrentlevelData.forkliftBoxQuantityLevel = newLevel;
-                GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().ForkLift
+                GameObject.Find(GameManager.Instance.level + "Port").GetComponent<PortLoader>().ForkLift
                     .GetComponent<ForkliftCarrier>().addBoxPlace();
             },
             "forklift_box_quantity",
             () => CurrentlevelData.forkliftBoxQuantityLevel,
-            level => (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["forklift_box_quantity"]
+            level => (int)gameConfig.levels[GameManager.Instance.level - 1].upgrades["forklift_box_quantity"]
                 .prices[level - 1]
         );
     }
@@ -334,14 +334,14 @@ public class UpgradesMenu : MonoBehaviour
             newLevel =>
             {
                 CurrentlevelData.forkliftFuelTankLevel = newLevel;
-                GameObject.Find(GameManager.Instance.currentLevel + "Port").GetComponent<PortLoader>().ForkLift
+                GameObject.Find(GameManager.Instance.level + "Port").GetComponent<PortLoader>().ForkLift
                     .GetComponent<ForkliftMover>().FuelUpgrade((int)gameConfig
-                        .levels[GameManager.Instance.currentLevel - 1]
+                        .levels[GameManager.Instance.level - 1]
                         .upgrades["forklift_fuel_tank"].levels[CurrentlevelData.forkliftFuelTankLevel - 1]);
             },
             "forklift_fuel_tank",
             () => CurrentlevelData.forkliftFuelTankLevel,
-            level => (int)gameConfig.levels[GameManager.Instance.currentLevel - 1].upgrades["forklift_fuel_tank"]
+            level => (int)gameConfig.levels[GameManager.Instance.level - 1].upgrades["forklift_fuel_tank"]
                 .prices[level - 1]
         );
     }

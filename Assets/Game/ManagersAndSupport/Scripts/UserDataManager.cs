@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [DefaultExecutionOrder(-1)]
@@ -60,6 +61,8 @@ public class UserDataManager : MonoBehaviour
         string json = File.ReadAllText(Application.persistentDataPath + FILE_NAME);
         var userData = JsonConvert.DeserializeObject<UserData>(json);
 
+        Debug.Log(userData.money);
+        Debug.Log("loading user data current level: " + userData.currentLevel);
 
         ItemsManager.Instance.LoadData(userData);
         GameManager.Instance.LoadData(userData);

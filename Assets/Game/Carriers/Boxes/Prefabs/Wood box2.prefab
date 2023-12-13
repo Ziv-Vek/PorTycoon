@@ -12,26 +12,6 @@ PrefabInstance:
       propertyPath: uniqueID
       value: 8b2165a4-37b3-4997-b5dc-6088ee2fa561
       objectReference: {fileID: 0}
-    - target: {fileID: -4715561212247035619, guid: 143faf5b991d5c649a7ecd9e5ed2e0cd,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 5.02
-      objectReference: {fileID: 0}
-    - target: {fileID: -4715561212247035619, guid: 143faf5b991d5c649a7ecd9e5ed2e0cd,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 4.88
-      objectReference: {fileID: 0}
-    - target: {fileID: -4715561212247035619, guid: 143faf5b991d5c649a7ecd9e5ed2e0cd,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 4.79
-      objectReference: {fileID: 0}
-    - target: {fileID: -4715561212247035619, guid: 143faf5b991d5c649a7ecd9e5ed2e0cd,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 2.29
-      objectReference: {fileID: 0}
     - target: {fileID: 4165853758446169200, guid: 143faf5b991d5c649a7ecd9e5ed2e0cd,
         type: 3}
       propertyPath: m_Enabled
@@ -40,7 +20,7 @@ PrefabInstance:
     - target: {fileID: 4165853758446169201, guid: 143faf5b991d5c649a7ecd9e5ed2e0cd,
         type: 3}
       propertyPath: m_Name
-      value: Box Colorful
+      value: Wood box2
       objectReference: {fileID: 0}
     - target: {fileID: 4165853758446169202, guid: 143faf5b991d5c649a7ecd9e5ed2e0cd,
         type: 3}

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 [Serializable]
 public class UserData
@@ -12,6 +13,7 @@ public class UserData
     public int playerSpeedLevel;
     public int playerBoxPlacesLevel;
     public Dictionary<string, LevelData> LevelsData;
+    public int currentLevel;
 }
 
 public class LevelData

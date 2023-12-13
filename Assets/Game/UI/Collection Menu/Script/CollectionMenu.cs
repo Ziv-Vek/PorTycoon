@@ -152,7 +152,7 @@ public class CollectionMenu : MonoBehaviour
         button.interactable = false;
         transform.Find("UI Holder").Find("All Collections Button").GetComponent<Button>().interactable = true;
         AllCollectionsPanel.SetActive(false);
-        SetInCollectionList(MainCollection_List, GameManager.Instance.currentLevel);
+        SetInCollectionList(MainCollection_List, GameManager.Instance.level);
     }
 
     public void ItemPressed(GameObject Button)
