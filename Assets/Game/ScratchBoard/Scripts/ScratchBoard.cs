@@ -38,7 +38,7 @@ public class ScratchBoard : MonoBehaviour
 
     private void NextItem(int? portBoxLevel)
     {
-        portBoxLevel ??= GameManager.Instance.level;
+        portBoxLevel ??= GameManager.Instance.experience;
         CurrentItem = ItemsManager.Instance.GetRandomItemFromBox(CurrentBox.Type, portBoxLevel);
         scratchItemModel.ChangeModel(CurrentItem.imagePath);
         cardManager.ClearScratchCard();
@@ -82,13 +82,15 @@ public class ScratchBoard : MonoBehaviour
         {
             tableCarrier = GameObject.Find(box.level + "Port").GetComponent<PortLoader>().BoxTable.transform.Find("Table").GetComponent<TableCarrier>();
             conveyorBelt = GameObject.Find(box.level + "Port").GetComponent<PortLoader>().ConveyorTable.GetComponent<Conveyor>();
+            moneyPile = GameObject.Find(box.level + "Port").transform.Find("ScretchMoneyPile").GetComponent<MoneyPile>();
         }
         else
         {
-            tableCarrier = GameObject.Find(GameManager.Instance.level + "Port").GetComponent<PortLoader>().BoxTable.transform.Find("Table").GetComponent<TableCarrier>();
-            conveyorBelt = GameObject.Find(GameManager.Instance.level + "Port").GetComponent<PortLoader>().ConveyorTable.GetComponent<Conveyor>();
+            tableCarrier = GameObject.Find(GameManager.Instance.experience + "Port").GetComponent<PortLoader>().BoxTable.transform.Find("Table").GetComponent<TableCarrier>();
+            conveyorBelt = GameObject.Find(GameManager.Instance.experience + "Port").GetComponent<PortLoader>().ConveyorTable.GetComponent<Conveyor>();
+            moneyPile = GameObject.Find(GameManager.Instance.experience + "Port").transform.Find("ScretchMoneyPile").GetComponent<MoneyPile>();
         }
-            
+
 
 
         tableCarrier.RemovePlayer();

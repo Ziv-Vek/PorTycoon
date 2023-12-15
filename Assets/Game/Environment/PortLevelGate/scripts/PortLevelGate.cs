@@ -9,9 +9,7 @@ public class PortLevelGate : MonoBehaviour
         if(other.tag == "Player")
         {
             Debug.Log("Player entered");
-           // if(GameManager.Instance.level <= transform.parent.GetComponent<PortLoader>().PortLevel)
             GameManager.Instance.level = transform.parent.GetComponent<PortLoader>().PortLevel;
-            GetComponent<BoxCollider>().enabled = false;
             UserDataManager.Instance.SaveUserData();
         }
     }

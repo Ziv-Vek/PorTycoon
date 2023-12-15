@@ -68,9 +68,11 @@ public class MoneyPile : MonoBehaviour
             gameObject.GetComponent<AudioSource>().pitch = 1.1f;
             return;
         }
-
-        gameObject.GetComponent<AudioSource>().Play();
-        gameObject.GetComponent<AudioSource>().pitch += 0.002f;
+        if (!gameObject.GetComponent<AudioSource>().isPlaying)
+        {
+            gameObject.GetComponent<AudioSource>().Play();
+            gameObject.GetComponent<AudioSource>().pitch += 0.004f;
+        }
         if (TimePerStash - (0.2f * Time.deltaTime) > 0.05f)
         {
             CancelInvoke("TakingOneByOne");
