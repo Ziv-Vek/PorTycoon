@@ -117,7 +117,7 @@ public class PortLoader : MonoBehaviour
         if(PortLevel + 1 <= GameManager.Instance.AmountOfLevels)
         {
             GameManager.Instance.experience = PortLevel + 1;
-            GameManager.Instance.SetCurrentLevel(PortLevel + 1);
+            GameManager.Instance.CurrentLevel = PortLevel + 1;
         }
 
         UserDataManager.Instance.SaveUserData();
