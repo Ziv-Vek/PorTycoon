@@ -109,7 +109,7 @@ public class Buyer : MonoBehaviour
         {
         }
 
-        //check if the function was called from this calss
+        //check if the function was called from this class
         if (nameof(Buyer) == new System.Diagnostics.StackTrace().GetFrame(1).GetMethod().DeclaringType.Name)
         {
             if (gameObject.name == "Forklift Buyer")

@@ -48,8 +48,8 @@ public class Driving : IForkliftState
 
         if (!isHaveFuel)
         {
-            forkliftMover.NoFuelText.transform.parent.rotation = Quaternion.EulerAngles(0, forkliftMover.NoFuelText.transform.rotation.y + forkliftMover.plus, 0);
-            forkliftMover.NoFuelText.transform.parent.LookAt(forkliftMover.mainCamera.transform);
+            // forkliftMover.NoFuelText.transform.parent.rotation = Quaternion.EulerAngles(0, forkliftMover.NoFuelText.transform.rotation.y + forkliftMover.plus, 0);
+            // forkliftMover.NoFuelText.transform.parent.LookAt(forkliftMover.mainCamera.transform);
             if (Vector3.Distance(forkliftMover.forkliftArtTrans.position, forkliftMover.player.position) < forkliftMover.wakingDistance)
             {
                 HandleRefuel();
@@ -80,7 +80,7 @@ public class Driving : IForkliftState
     {
         forkliftMover.FuelSlider.value = forkliftMover.FuelSlider.maxValue;
         isHaveFuel = true;
-        forkliftMover.GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[GameManager.Instance.level - 1]
+        forkliftMover.GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[Mathf.Max(0, GameManager.Instance.level - 1)]
         .upgrades["forklift_speed"]
         .levels[GameManager.Instance.LevelsData["Port" + CurrentLevel].forklifSpeedLevel - 1];
         forkliftMover.NoFuelText.SetActive(false);
@@ -165,7 +165,7 @@ public class ForkliftMover : MonoBehaviour
     [SerializeField] public Slider FuelSlider;
     [SerializeField] public GameObject NoFuelText;
     public Transform player { get; private set; }
-    public Transform forkliftArtTrans { get; private set; }
+    public Transform forkliftArtTrans;
     [SerializeField] float backwardMovementSpeed = 5f;
     [SerializeField] private float backwardMovementDistance = 20f;
     [SerializeField] public float plus;
@@ -185,7 +185,6 @@ public class ForkliftMover : MonoBehaviour
     {   
         myCarrier = GetComponent<ForkliftCarrier>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        forkliftArtTrans = transform.GetChild(1).transform;
     }
 
     private void Start()
