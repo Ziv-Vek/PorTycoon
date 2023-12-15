@@ -286,7 +286,7 @@ public class ForkliftMover : MonoBehaviour
     {
         if (driving == null)
         {
-            GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[GameManager.Instance.level - 1]
+            GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[Mathf.Max(0, GameManager.Instance.level - 1)]
         .upgrades["forklift_speed"]
         .levels[GameManager.Instance.LevelsData["Port" + CurrentLevel].forklifSpeedLevel - 1];
             FuelSlider.maxValue = amount;

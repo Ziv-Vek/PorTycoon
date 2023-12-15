@@ -122,7 +122,8 @@ public class ItemsManager : MonoBehaviour
             return cachedItems;
         }
 
-        var distinctItemIds = _gameConfig.levels[levelNum - 1]
+
+        var distinctItemIds = _gameConfig.levels[Mathf.Max(0,levelNum - 1)]  
             .boxes
             .Values
             .SelectMany(box => box.items)
