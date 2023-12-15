@@ -69,9 +69,6 @@ public class GameManager : MonoBehaviour
 
     public void LoadData(UserData userData)
     {
-        Debug.Log("userdata loaded from gamenager. current level:" +
-            " " + userData.currentLevel);
-
         experience = userData.experience;
         GoneThroughTutorial = userData.GoneThroughTutorial;
         money = userData.money;
