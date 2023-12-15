@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
     }
     private void Update()
     {
-        UpdateCollectionState(ItemsManager.Instance.GetAllLevelItems(GameManager.Instance.level).Count, ItemsManager.Instance.GetUnlockedItemsNumber(GameManager.Instance.level));
+        UpdateCollectionState(ItemsManager.Instance.GetAllLevelItems(GameManager.Instance.experience).Count, ItemsManager.Instance.GetUnlockedItemsNumber(GameManager.Instance.experience));
     }
     public void UpdateUI()
     {
@@ -66,7 +66,7 @@ public class UIManager : MonoBehaviour
         playerMover.HideJoystick();
         CollectionCanvas.SetActive(true);
         CollectionCanvas.GetComponent<CollectionMenu>().SetInCollectionList(
-            CollectionCanvas.GetComponent<CollectionMenu>().MainCollection_List, GameManager.Instance.level);
+            CollectionCanvas.GetComponent<CollectionMenu>().MainCollection_List, GameManager.Instance.experience);
         CollectionCanvas.transform.Find("UI Holder").GetComponent<Animator>().Play("Open UI", 0);
         AudioManager.Instance.Play("Open UI Window");
         if (!GameManager.Instance.GoneThroughTutorial)

@@ -76,7 +76,6 @@ public class GameManager : MonoBehaviour
         LevelsData = userData.LevelsData;
         playerSpeedLevel = userData.playerSpeedLevel;
         playerBoxPlacesLevel = userData.playerBoxPlacesLevel;
-        level = userData.currentLevel;      
         GameObject.FindWithTag("Player").GetComponent<PlayerMover>().SpawnPlayer(CurrentLevel);
 
     }
