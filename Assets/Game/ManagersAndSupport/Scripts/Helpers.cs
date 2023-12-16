@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using Random = UnityEngine.Random;
 
 public static class Helpers
 {
+    private static System.Random systemRandom = new System.Random();
+    
     public static IList<T> Shuffle<T>(this IList<T> list)
     {
         int n = list.Count;
@@ -30,4 +32,14 @@ public static class Helpers
 
         return tempList.ToDictionary(pair => pair.Key, pair => pair.Value);
     }
+    
+    public static float GenerateRandomNumber(float min, float max)
+    {
+        // Generate a random number between 0.0 and 1.0
+        double randomNumber = systemRandom.NextDouble();
+
+        // Scale and shift the number to fit the range 0.2 to 0.8
+        return (float)(min + randomNumber * (max - min));
+    }
+    
 }

@@ -34,7 +34,7 @@ public class PortLoader : MonoBehaviour
         //ships values
         for (int i = 0; i < CurrentLevelData.ShipNumber; i++)
         {
-            ShipsBuyers[i].GetComponent<Buyer>().ActiveProduct();
+            ShipsBuyers[i].GetComponent<Buyer>().ActiveProduct(false);
         }
 
         for (int i = 0; i < CurrentLevelData.quantityLevel - 1; i++)
@@ -57,7 +57,7 @@ public class PortLoader : MonoBehaviour
         //forklift values
         if (CurrentLevelData.ForkliftIsEnabled)
         {
-            ForkLiftBuyer.GetComponent<Buyer>().ActiveProduct();
+            ForkLiftBuyer.GetComponent<Buyer>().ActiveProduct(false);
         }
 
         ForkLift.GetComponent<NavMeshAgent>().speed = gameConfig.levels[PortLevel - 1].upgrades["forklift_speed"]
@@ -79,7 +79,7 @@ public class PortLoader : MonoBehaviour
         //handyman values
         for (int i = 0; i < CurrentLevelData.HandyManNumber; i++)
         {
-            HandyManBuyers[i].GetComponent<Buyer>().ActiveProduct();
+            HandyManBuyers[i].GetComponent<Buyer>().ActiveProduct(false);
         }
 
         foreach (GameObject npc in HandyMan)
@@ -157,7 +157,6 @@ public class PortLoader : MonoBehaviour
             yield return null;
         }
     }
-
     
     public ShipCarrier[] GetShipsInPort()
     {

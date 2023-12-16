@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -32,6 +33,7 @@ public class Buyer : MonoBehaviour
         {
             try
             {
+                Debug.Log($"product {product.name} is active");
                 NextBuyer.SetActive(true);
             }
             catch
@@ -79,7 +81,7 @@ public class Buyer : MonoBehaviour
         SliderFill.value++;
         if (Price == moneyAmount)
         {
-            ActiveProduct();
+            ActiveProduct(true);
         }
 
         if (!gameObject.GetComponent<AudioSource>().isPlaying)
@@ -97,10 +99,24 @@ public class Buyer : MonoBehaviour
         Invoke("GivingOneByOne", TimePerStash);
     }
 
-    public void ActiveProduct()
+    public void ActiveProduct(bool isOnPurchaseActivation)
     {
+        Debug.Log(isOnPurchaseActivation + " " + product.name);
         product.SetActive(true);
-        product.transform.position = productClone.transform.position;
+
+        var productsCompArr = product.GetComponents<IProduct>();
+        if (productsCompArr.Length > 0)
+        {
+            foreach (var activeProduct in product.GetComponents<IProduct>())
+            {
+                activeProduct.OnProductActivation(isOnPurchaseActivation);
+            }    
+        }
+        else // spawn at default position
+        {
+            product.transform.position = productClone.transform.position;
+        }
+        
         try
         {
             NextBuyer.SetActive(true);
