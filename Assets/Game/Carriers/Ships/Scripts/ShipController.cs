@@ -15,7 +15,6 @@ public class ShipController : MonoBehaviour, IProduct
     [CanBeNull] public MeshRenderer cargoMeshRenderer;
     private ShipCarrier shipCarrier;
     public GameObject ShipEffects;
-    bool isFirstSpawnAfterPurchase = false;
     
     private const float MIN_DELTA_DISTANCE_FACTOR = 0.2f;
     private const float MAX_DELTA_DISTANCE_FACTOR = 0.8f;
@@ -35,8 +34,7 @@ public class ShipController : MonoBehaviour, IProduct
     {
         if (isOnPurchaseActivation)
         {
-            isFirstSpawnAfterPurchase = true;
-            SpawnShip(MIN_DELTA_DISTANCE_FACTOR);
+            SpawnShip(MAX_DELTA_DISTANCE_FACTOR);
         }
         else
         {
