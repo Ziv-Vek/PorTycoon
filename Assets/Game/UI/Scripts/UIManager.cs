@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI moneyText;
     [SerializeField] private TextMeshProUGUI starsText;
     [SerializeField] GameObject CollectionCanvas;
+    [SerializeField] GameObject SettingsCanvas;
     [SerializeField] private TextMeshProUGUI totalItemsText;
     [SerializeField] private TextMeshProUGUI unlockedItemsText;
     [SerializeField] private TextMeshProUGUI CollectionStateText;
@@ -71,6 +72,15 @@ public class UIManager : MonoBehaviour
         AudioManager.Instance.Play("Open UI Window");
         if (!GameManager.Instance.GoneThroughTutorial)
             FindAnyObjectByType<TutorialM>().DestroyItSelf();
+    }
+    public void OpenSettingsCanvas()
+    {
+        PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
+        playerMover.ToggleMovement(false);
+        playerMover.HideJoystick();
+        SettingsCanvas.SetActive(true);
+        SettingsCanvas.transform.Find("UI Holder").GetComponent<Animator>().Play("Open UI", 0);
+        AudioManager.Instance.Play("Open UI Window");
     }
 
     public static void ShowWinPanel()

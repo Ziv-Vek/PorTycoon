@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5689633082792912167}
   - component: {fileID: 966309578081047664}
   - component: {fileID: -823409659615120375}
+  - component: {fileID: 1421124434109515580}
+  - component: {fileID: 7366204505796694902}
   m_Layer: 0
   m_Name: Splash
   m_TagString: Untagged
@@ -73,7 +75,8 @@ AudioSource:
   m_GameObject: {fileID: 5689633082792912166}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3165942800488051908, guid: 7e984f512e89b60468e829489e8883e3,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 79b1002caa5f1d546b69bf83da6d2202, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -172,6 +175,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db30c96c12a84f2cad3dfb5bc64acccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
+  isPurchasedBox: 1
+--- !u!114 &1421124434109515580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5689633082792912166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db30c96c12a84f2cad3dfb5bc64acccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 0
+  isPurchasedBox: 1
+--- !u!114 &7366204505796694902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5689633082792912166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db30c96c12a84f2cad3dfb5bc64acccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 0
   isPurchasedBox: 1
 --- !u!1001 &5689633082328171929
 PrefabInstance:

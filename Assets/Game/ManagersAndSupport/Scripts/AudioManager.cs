@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using System;
 
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
     public static AudioManager Instance;
+    public AudioMixer mixer;
 
     void Awake()
     {
@@ -35,7 +37,22 @@ public class AudioManager : MonoBehaviour
                 s.sorce.Play();
         }
     }
+    private void Start()
+    {
+        foreach (Sound s in sounds)
+        {
+           s.sorce.outputAudioMixerGroup = mixer.FindMatchingGroups(s.AudioType.ToString())[0];
+        }
+        if (GameManager.Instance.Music)
+            mixer.SetFloat("MusicVolume", 0);
+        else
+            mixer.SetFloat("MusicVolume", -80);
 
+        if (GameManager.Instance.Sound)
+            mixer.SetFloat("SfxVolume", 0);
+        else
+            mixer.SetFloat("SfxVolume", -80);
+    }
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
@@ -80,5 +97,11 @@ public class Sound
     [Range(.1f, 3f)] public float pitch;
     public bool loop;
     public bool PlayOnAwake;
+    public SuondTypesOptions AudioType; // Music or Sfx
     [HideInInspector] public AudioSource sorce;
+}
+public enum SuondTypesOptions
+{
+    Music,
+    Sfx
 }

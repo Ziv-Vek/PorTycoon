@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     // player settings
     public bool GoneThroughTutorial;
+    public bool Sound = true;
+    public bool Music = true;
     public int money;
     public int stars;
     public int experience = 1;
@@ -59,6 +61,9 @@ public class GameManager : MonoBehaviour
     {
         userData.experience = experience;
         userData.GoneThroughTutorial = GoneThroughTutorial;
+        userData.Sound = Sound;
+        userData.Music = Music;
+        userData.Vibration = Vibration;
         userData.money = money;
         userData.stars = stars;
         userData.LevelsData = LevelsData;
@@ -71,6 +76,9 @@ public class GameManager : MonoBehaviour
     {
         experience = userData.experience;
         GoneThroughTutorial = userData.GoneThroughTutorial;
+        Sound = userData.Sound;
+        Music = userData.Music;
+        Vibration = userData.Vibration;
         money = userData.money;
         stars = userData.stars;
         LevelsData = userData.LevelsData;

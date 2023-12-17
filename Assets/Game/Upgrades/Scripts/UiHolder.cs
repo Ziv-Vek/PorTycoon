@@ -8,5 +8,7 @@ public class UiHolder : MonoBehaviour
             transform.parent.GetComponent<UpgradesMenu>().Exit();
         else if (transform.parent.name == "Collection Canvas")
             transform.parent.GetComponent<CollectionMenu>().Exit();
+        else if (transform.parent.name == "Settings Canvas")
+            transform.parent.GetComponent<Settings>().Exit();
     }
 }

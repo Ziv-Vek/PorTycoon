@@ -7,6 +7,9 @@ public class UserData
 {
     public Dictionary<string, Item> unlockedItems;
     public bool GoneThroughTutorial;
+    public bool Sound;
+    public bool Music;
+    public bool Vibration;
     public int money;
     public int stars;
     public int experience;
