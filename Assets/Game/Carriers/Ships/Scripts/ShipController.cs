@@ -3,9 +3,10 @@ using System.Collections;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(ShipCarrier))]
-public class ShipController : MonoBehaviour
+public class ShipController : MonoBehaviour, IProduct
 {
     public Transform targetPoint;
     public Transform dockingPoint;
@@ -14,6 +15,9 @@ public class ShipController : MonoBehaviour
     [CanBeNull] public MeshRenderer cargoMeshRenderer;
     private ShipCarrier shipCarrier;
     public GameObject ShipEffects;
+    
+    private const float MIN_DELTA_DISTANCE_FACTOR = 0.2f;
+    private const float MAX_DELTA_DISTANCE_FACTOR = 0.8f;
 
     public void setSpeed(float s)
     {
@@ -24,23 +28,31 @@ public class ShipController : MonoBehaviour
     {
         shipCarrier = GetComponent<ShipCarrier>();
     }
-
-    private void Start()
+    
+    // instantiate new ship to the target point
+    public void OnProductActivation(bool isOnPurchaseActivation)
     {
-        PlaceShip();
-        shipCarrier.InstantiateCargo();
+        if (isOnPurchaseActivation)
+        {
+            SpawnShip(MAX_DELTA_DISTANCE_FACTOR);
+        }
+        else
+        {
+            SpawnShip(Helpers.GenerateRandomNumber(MIN_DELTA_DISTANCE_FACTOR, MAX_DELTA_DISTANCE_FACTOR));
+        }
+
         StartCoroutine(GoToTargetAndWaitAndReturn());
+        shipCarrier.InstantiateCargo();
     }
 
-    private void PlaceShip()
+    private void SpawnShip(float deltaDistanceFactor)
     {
         var startingPoint = Vector3.MoveTowards(targetPoint.position, dockingPoint.position,
-            Vector3.Distance(targetPoint.position, dockingPoint.position) / 1.2f);
+            Vector3.Distance(targetPoint.position, dockingPoint.position) * deltaDistanceFactor);
 
         transform.SetPositionAndRotation(startingPoint, Quaternion.identity);
         transform.LookAt(dockingPoint.position, Vector3.up);
     }
-
 
     private IEnumerator GoToTargetAndWaitAndReturn()
     {
