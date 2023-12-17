@@ -15,6 +15,7 @@ public class ScratchBoard : MonoBehaviour
     [SerializeField] private Button throwButton;
     [SerializeField] private Button ExitButton;
     [SerializeField] private MoneyPile moneyPile;
+    [SerializeField] CanvasGroup UICanvas;
 
     [SerializeField] private GameObject EndButtons;
 
@@ -42,6 +43,11 @@ public class ScratchBoard : MonoBehaviour
         CurrentItem = ItemsManager.Instance.GetRandomItemFromBox(CurrentBox.Type, portBoxLevel);
         scratchItemModel.ChangeModel(CurrentItem.imagePath);
         cardManager.ClearScratchCard();
+
+        if (GameObject.Find("Settings Canvas") != null)
+            GameObject.Find("Settings Canvas").SetActive(false);   
+        if (GameObject.Find("Collection Canvas") != null)
+            GameObject.Find("Collection Canvas").SetActive(false);
     }
 
     private void Close()
@@ -65,7 +71,7 @@ public class ScratchBoard : MonoBehaviour
             playerMover.ShowJoystick();
             playerMover.joystick.DeactivateJoystick();
         }
-
+        UICanvas.blocksRaycasts = true;
         if (!GameManager.Instance.GoneThroughTutorial)
             FindAnyObjectByType<TutorialM>().ClickOn_CollectionPanel();
     }
@@ -95,7 +101,7 @@ public class ScratchBoard : MonoBehaviour
             moneyPile = GameObject.Find(GameManager.Instance.experience + "Port").transform.Find("ScretchMoneyPile").GetComponent<MoneyPile>();
         }
 
-
+        UICanvas.blocksRaycasts = false;
 
         tableCarrier.RemovePlayer();
         if(!box.isPurchasedBox)

@@ -7,11 +7,10 @@ using UnityEngine.UI;
 public class BackNavigationButtonHandler : MonoBehaviour
 {
     [SerializeField] private float maxClicksIntervalTime = 2.5f;
-    [SerializeField] private int buttonClicksRequiredForAction = 3;
+    [SerializeField] private int buttonClicksRequiredForAction = 2;
     private float timer = 0;
     private int clickCounter = 0;
-
-    [SerializeField] private TextMeshProUGUI confirmationText;
+    [SerializeField] GameObject UiHolder;
 
     private void OnEnable()
     {
@@ -26,7 +25,10 @@ public class BackNavigationButtonHandler : MonoBehaviour
     private void Update()
     {
         if (clickCounter == 0) return;
-
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            TouchPhoneBackNavBtnHandler();
+        }
         Timer();
         if (clickCounter >= buttonClicksRequiredForAction)
             ShowExitConfirmation();
@@ -50,17 +52,42 @@ public class BackNavigationButtonHandler : MonoBehaviour
 
     void ShowExitConfirmation()
     {
-        if (!confirmationText.enabled)
+        PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
+        playerMover.ToggleMovement(false);
+        playerMover.HideJoystick();
+        UiHolder.SetActive(true);
+        UiHolder.GetComponent<Animator>().Play("Open UI", 0);
+        AudioManager.Instance.Play("Open UI Window");
+        //   ExitGame();
+    }
+    public void RunCloseAnimation()
+    {
+        UiHolder.GetComponent<Animator>().Play("Close UI", 0);
+        VibrationManager.Instance.LightVibrate();
+        AudioManager.Instance.Play("Close UI Window");
+    }
+    public void CloseWindow()
+    {
+        PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
+        try
         {
-            confirmationText.enabled = true;
+            playerMover = GameObject.Find("Player_New").GetComponent<PlayerMover>();
         }
-
-        ExitGame();
+        catch
+        {
+        }
+        if(GameObject.Find("Collection Canvas") == null && GameObject.Find("HR Upgrades Canvas") == null && GameObject.Find("logistic Upgrades Canvas") == null && GameObject.Find("Settings Canvas") == null && GameObject.Find("ScratchBoard") == null && GameObject.Find("Fishing") == null && GameObject.Find("Collection Finish Canvas") == null)
+        {
+            playerMover.ToggleMovement(true);
+            playerMover.ShowJoystick();
+            playerMover.joystick.DeactivateJoystick();
+        }
+        UiHolder.SetActive(false);
     }
 
-    void ExitGame()
+    public void ExitGame()
     {
-        // GameManager.Instance.SaveUserData();
+        UserDataManager.Instance.SaveUserData();
         Application.Quit();
     }
 }

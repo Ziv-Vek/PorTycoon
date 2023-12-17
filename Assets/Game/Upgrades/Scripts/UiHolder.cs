@@ -10,5 +10,7 @@ public class UiHolder : MonoBehaviour
             transform.parent.GetComponent<CollectionMenu>().Exit();
         else if (transform.parent.name == "Settings Canvas")
             transform.parent.GetComponent<Settings>().Exit();
+        else if (transform.parent.name == "ExitConfirmationCanvas")
+            transform.parent.GetComponent<BackNavigationButtonHandler>().CloseWindow();
     }
 }
