@@ -22,6 +22,11 @@ public class UpgradesMenu : MonoBehaviour
         Money.text = "$" + GameManager.Instance.money;
         if (Money.text.Length > 8)
             Money.text = "$" + Money.text.Substring(0, 7) + "..";
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            RunCloseAnimation();
+        }
     }
 
     private void OnEnable()

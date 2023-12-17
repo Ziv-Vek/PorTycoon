@@ -72,6 +72,11 @@ public class ScratchBoard : MonoBehaviour
 
     public void Open(PortBox box)
     {
+        if (GameObject.Find("Settings Canvas") != null)
+        {
+         //   tableCarrier.RemovePlayer();
+            return;
+        }
         PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
         playerMover.ToggleMovement(false);
         playerMover.HideJoystick();
