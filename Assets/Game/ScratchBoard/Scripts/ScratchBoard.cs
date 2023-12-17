@@ -74,7 +74,6 @@ public class ScratchBoard : MonoBehaviour
     {
         if (GameObject.Find("Settings Canvas") != null)
         {
-         //   tableCarrier.RemovePlayer();
             return;
         }
         PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
