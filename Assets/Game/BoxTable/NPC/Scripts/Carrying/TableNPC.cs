@@ -12,6 +12,7 @@ public class TableNPC : MonoBehaviour, IBoxOpener
     [SerializeField] public int AwarenessSeconds = 70;
     [SerializeField] float Seconds = 0;
     public GameObject SleepPartical;
+    [SerializeField] ParticleSystem wrenchParticleSystem;
 
     public MoneyPile moneyPile;
     [SerializeField] Animator myAnimator;
@@ -63,6 +64,7 @@ public class TableNPC : MonoBehaviour, IBoxOpener
     {
         Debug.Log("Giving box to targetCarrier");
         myAnimator.Play("NPC_Idle");
+        wrenchParticleSystem.Stop();
 
         CurrentItem = _itemsManager.GetRandomItemFromBox(CurrentBox.Type, transform.parent.parent.GetComponent<PortLoader>().PortLevel);
         _itemsManager.UnlockItem(CurrentItem);
@@ -86,6 +88,8 @@ public class TableNPC : MonoBehaviour, IBoxOpener
     {
         if (!enabled || IsSleeping) return false; //TODO: Take enabled from global state
         Debug.Log("Taking box from targetCarrier");
+        myAnimator.Play("Worker_Reach_Box");
+        wrenchParticleSystem.Play();
         CurrentBox = box;
         box.CanBeOpened = false;
         Invoke(nameof(OnFinishedOpenBox), waitTime);
