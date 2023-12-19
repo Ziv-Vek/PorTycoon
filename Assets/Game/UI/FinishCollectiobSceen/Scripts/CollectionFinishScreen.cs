@@ -96,7 +96,7 @@ public class CollectionFinishScreen : MonoBehaviour
         YouWonXmoney.gameObject.SetActive(false);
         foreach (Transform child in MainCollection_List.transform)
             Destroy(child.gameObject);
-        GameObject.Find(GameManager.Instance.level + "Port").GetComponent<PortLoader>().OpenGatesWithCelebrating();
+        GameObject.Find(GameManager.Instance.experience + "Port").GetComponent<PortLoader>().OpenGatesWithCelebrating();
 
         if (GameObject.Find("ScratchBoard") == null && GameObject.Find("Collection Canvas") == null)// check if the player is not scratching at this time
         {

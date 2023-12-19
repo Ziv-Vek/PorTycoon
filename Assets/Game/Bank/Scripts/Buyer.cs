@@ -46,7 +46,7 @@ public class Buyer : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && ((!GameManager.Instance.GoneThroughTutorial && gameObject.tag == "Tutorial") || GameManager.Instance.GoneThroughTutorial))
         {
             if (moneyAmount != Price)
                 InvokeRepeating("GivingOneByOne", 0, 0.1f);

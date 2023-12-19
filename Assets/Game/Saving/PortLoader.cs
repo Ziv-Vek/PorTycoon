@@ -17,6 +17,8 @@ public class PortLoader : MonoBehaviour
     public GameObject ForkLiftBuyer;
     public GameObject ConveyorTable;
     public GameObject BoxTable;
+    public GameObject HR_office;
+    public GameObject Logistic_office;
     public GameObject Player;
     LevelData CurrentLevelData;
     public GameObject Gates;
@@ -99,7 +101,11 @@ public class PortLoader : MonoBehaviour
                 Player.GetComponent<PlayerCarrier>().addBoxPlace();
             }
             if (GameManager.Instance.GoneThroughTutorial)
+            {
                 FindAnyObjectByType<TutorialM>().DestroyItSelf();
+                HR_office.SetActive(true);
+                Logistic_office.SetActive(true);
+            }
         }
 
 
@@ -121,7 +127,7 @@ public class PortLoader : MonoBehaviour
             GameManager.Instance.experience = PortLevel + 1;
             GameManager.Instance.CurrentLevel = PortLevel + 1;
         }
-
+        AudioManager.Instance.Play("OpenGate");
         UserDataManager.Instance.SaveUserData();
     }
 

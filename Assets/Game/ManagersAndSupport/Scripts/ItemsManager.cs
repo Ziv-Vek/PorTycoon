@@ -95,7 +95,7 @@ public class ItemsManager : MonoBehaviour
         if (GetUnlockedItemsNumber(GameManager.Instance.experience) == GetAllLevelItems(GameManager.Instance.experience).Count && GameObject.Find("Fishing") == null)
         {
             FinishCollectionCanvas.SetActive(true);
-            FinishCollectionCanvas.GetComponent<CollectionFinishScreen>().StartAnimation(GetAllLevelItems(GameManager.Instance.level));
+            FinishCollectionCanvas.GetComponent<CollectionFinishScreen>().StartAnimation(GetAllLevelItems(GameManager.Instance.experience));
             UIManager.ShowWinPanel();
             Bank.Instance.AddMoneyToPile(GameObject.Find("ScretchMoneyPile").GetComponent<MoneyPile>(), "Win");
         }
