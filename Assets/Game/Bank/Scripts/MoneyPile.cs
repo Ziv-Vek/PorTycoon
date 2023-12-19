@@ -66,6 +66,8 @@ public class MoneyPile : MonoBehaviour
         {
             CancelInvoke();
             gameObject.GetComponent<AudioSource>().pitch = 1.1f;
+            if (!GameManager.Instance.GoneThroughTutorial && gameObject.name == "ScretchMoneyPile")
+            {FindAnyObjectByType<TutorialM>().SetBuyingHRoffice_Target();}
             return;
         }
         if (!gameObject.GetComponent<AudioSource>().isPlaying)
@@ -76,7 +78,7 @@ public class MoneyPile : MonoBehaviour
         if (TimePerStash - (0.2f * Time.deltaTime) > 0.05f)
         {
             CancelInvoke("TakingOneByOne");
-            TimePerStash -= 0.2f * Time.deltaTime;
+            TimePerStash -= 0.2f * Time.deltaTime;     
         }
 
         Invoke("TakingOneByOne", TimePerStash);

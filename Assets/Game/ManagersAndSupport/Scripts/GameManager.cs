@@ -37,12 +37,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        Vibration = true;    
     }
 
     private void Start()
     {
+
     }
 
     private void Update()
@@ -84,6 +83,9 @@ public class GameManager : MonoBehaviour
         LevelsData = userData.LevelsData;
         playerSpeedLevel = userData.playerSpeedLevel;
         playerBoxPlacesLevel = userData.playerBoxPlacesLevel;
+
+        if (GoneThroughTutorial == false)
+            UserDataManager.Instance.ResetUserData();
         GameObject.FindWithTag("Player").GetComponent<PlayerMover>().SpawnPlayer(CurrentLevel);
 
     }
@@ -91,7 +93,7 @@ public class GameManager : MonoBehaviour
     public void ResetData()
     {
         GoneThroughTutorial = false;
-        money = 30;
+        money = 140;
         stars = 0;
         experience = 1;
         playerSpeedLevel = 1;

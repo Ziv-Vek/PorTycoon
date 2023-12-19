@@ -71,7 +71,7 @@ public class UIManager : MonoBehaviour
         CollectionCanvas.transform.Find("UI Holder").GetComponent<Animator>().Play("Open UI", 0);
         AudioManager.Instance.Play("Open UI Window");
         if (!GameManager.Instance.GoneThroughTutorial)
-            FindAnyObjectByType<TutorialM>().DestroyItSelf();
+            FindAnyObjectByType<TutorialM>().SetScratchMoney_Target();
     }
     public void OpenSettingsCanvas()
     {

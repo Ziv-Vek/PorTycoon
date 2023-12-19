@@ -46,7 +46,7 @@ public class Buyer : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && ((!GameManager.Instance.GoneThroughTutorial && gameObject.tag == "Tutorial") || GameManager.Instance.GoneThroughTutorial))
         {
             if (moneyAmount != Price)
                 InvokeRepeating("GivingOneByOne", 0, 0.1f);
@@ -99,7 +99,7 @@ public class Buyer : MonoBehaviour
         Invoke("GivingOneByOne", TimePerStash);
     }
 
-    public void ActiveProduct(bool isOnPurchaseActivation)
+    public virtual void ActiveProduct(bool isOnPurchaseActivation)
     {
         Debug.Log(isOnPurchaseActivation + " " + product.name);
         product.SetActive(true);
