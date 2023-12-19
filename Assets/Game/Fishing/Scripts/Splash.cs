@@ -11,9 +11,9 @@ public class Splash : MonoBehaviour
     bool Catched;
 
 
-    void Start()
+    public void Initialize(FishingManager fishingManager)
     {
-        fishingManager = GameObject.Find("Fishing").GetComponent<FishingManager>();
+        this.fishingManager = fishingManager;
         Interacteble = true;
         Catched = false;
         opportunity = fishingManager.OpportunityTime;

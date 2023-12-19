@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FishingManager : MonoBehaviour
@@ -38,8 +39,9 @@ public class FishingManager : MonoBehaviour
     {
         float randomFloatX = (float)(new System.Random().NextDouble() * (-1046.54 + 1057.63) - 1057.63);
         float randomFloatZ = (float)(new System.Random().NextDouble() * (263.85 - 294.1) + 294.1);
-        Instantiate(Splash, new Vector3(randomFloatX, 0, randomFloatZ), Quaternion.identity, transform)
-            .GetComponent<Splash>().opportunity = OpportunityTime;
+        var splash = Instantiate(Splash, new Vector3(randomFloatX, 0, randomFloatZ), Quaternion.identity, transform) as GameObject;
+        splash.GetComponent<Splash>().Initialize(this);
+        splash.GetComponent<Splash>().opportunity = OpportunityTime;
         Step++;
         OpportunityTime -= MinusOpportunity;
         Delay -= MinusDelay;

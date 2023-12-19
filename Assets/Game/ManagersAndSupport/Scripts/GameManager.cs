@@ -44,18 +44,6 @@ public class GameManager : MonoBehaviour
         level = 1;
     }
 
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-        {
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                UserDataManager.Instance.ResetUserData();
-                Debug.Log("Data has been reset");
-            }
-        }
-    }
-
     public void SaveData(UserData userData)
     {
         userData.experience = experience;
@@ -84,12 +72,12 @@ public class GameManager : MonoBehaviour
         playerSpeedLevel = userData.playerSpeedLevel;
         playerBoxPlacesLevel = userData.playerBoxPlacesLevel;
 
+        Debug.Log("load called, level: " + userData.currentLevel + "GoneThroughTutorial: " + GoneThroughTutorial);
         if (GoneThroughTutorial == false)
             UserDataManager.Instance.ResetUserData();
         if (experience < 1)
             experience = 1;
         GameObject.FindWithTag("Player").GetComponent<PlayerMover>().SpawnPlayer(CurrentLevel);
-
     }
 
     public void ResetData()

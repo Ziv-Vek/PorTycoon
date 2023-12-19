@@ -11,7 +11,6 @@ public class ConfigManager : MonoBehaviour
 
     public GameConfig Config { get; private set; }
 
-
     private void Awake()
     {
         if (Instance == null)
@@ -23,7 +22,6 @@ public class ConfigManager : MonoBehaviour
         {
             Destroy(gameObject); // Ensure only one instance exists
         }
-
 
         LoadConfig();
         if (!IsConfigValid())
