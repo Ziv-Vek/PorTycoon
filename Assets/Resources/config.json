@@ -150,7 +150,7 @@
             27
           ],
           "prices": [
-            50,
+            40,
             500,
             1000,
             2000
@@ -342,23 +342,23 @@
           "items": [
             {
               "id": "Cake",
-              "probability": 16,
+              "probability": 18,
               "color": "green"
             },
             {
               "id": "Muffin",
-              "probability": 16,
+              "probability": 18,
               "color": "green"
             },
             {
               "id": "Chocolate",
-              "probability": 16,
+              "probability": 18,
               "color": "green"
             },
             {
               "id": "IceCream",
-              "probability": 12,
-              "color": "green"
+              "probability": 14,
+              "color": "cyan"
             },
             {
               "id": "Papsicle",
@@ -372,12 +372,12 @@
             },
             {
               "id": "Pancake",
-              "probability": 8,
+              "probability": 4,
               "color": "gold"
             },
             {
               "id": "Sunday",
-              "probability": 8,
+              "probability": 4,
               "color": "gold"
             }
           ]
@@ -423,8 +423,8 @@
             10
           ],
           "prices": [
-            50,
-            250,
+            70,
+            300,
             500,
             1000
           ]
@@ -438,8 +438,8 @@
             210
           ],
           "prices": [
-            50,
-            250,
+            60,
+            270,
             500,
             1000
           ]
@@ -453,9 +453,9 @@
             23.8464
           ],
           "prices": [
-            50,
-            100,
-            250,
+            70,
+            120,
+            280,
             500
           ]
         },
@@ -467,8 +467,8 @@
             4
           ],
           "prices": [
-            100,
-            250,
+            130,
+            280,
             500
           ]
         },
@@ -481,9 +481,9 @@
             1
           ],
           "prices": [
-            20,
-            40,
-            100,
+            30,
+            60,
+            120,
             250
           ]
         },
@@ -496,10 +496,10 @@
             1
           ],
           "prices": [
-            15,
-            30,
-            50,
-            200
+            20,
+            40,
+            60,
+            220
           ]
         },
         "table_quantity": {
@@ -511,9 +511,9 @@
             5
           ],
           "prices": [
-            20,
-            50,
-            100,
+            30,
+            60,
+            120,
             250
           ]
         },
@@ -526,10 +526,10 @@
             18
           ],
           "prices": [
-            50,
-            100,
-            250,
-            500
+            65,
+            130,
+            270,
+            520
           ]
         },
         "forklift_box_quantity": {
@@ -554,9 +554,9 @@
             180
           ],
           "prices": [
-            25,
-            50,
-            100,
+            30,
+            70,
+            120,
             250
           ]
         },

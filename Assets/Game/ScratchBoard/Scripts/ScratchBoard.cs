@@ -56,7 +56,7 @@ public class ScratchBoard : MonoBehaviour
         EndButtons.SetActive(false);
         EndButtons.transform.Find("NextBoxButton").gameObject.SetActive(false);
         Destroy(scratchItemModel.transform.GetChild(0).gameObject);
-
+        UICanvas.blocksRaycasts = true;
         tableCarrier.SetPlayer(playerCarrier);
         if (CurrentBox.isPurchasedBox)
         {
@@ -71,7 +71,6 @@ public class ScratchBoard : MonoBehaviour
             playerMover.ShowJoystick();
             playerMover.joystick.DeactivateJoystick();
         }
-        UICanvas.blocksRaycasts = true;
         if (!GameManager.Instance.GoneThroughTutorial)
             FindAnyObjectByType<TutorialM>().ClickOn_CollectionPanel();
     }
@@ -138,6 +137,7 @@ public class ScratchBoard : MonoBehaviour
         throwButton.gameObject.SetActive(false);
         GetComponent<PanelTouchHandler>().CanScratch = false;
         GetComponent<PanelTouchHandler>().ScratchPartical.Stop();
+        GetComponent<AudioSource>().Stop();
 
         Bank.Instance.AddMoneyToPile(moneyPile, "Scratch");
     }

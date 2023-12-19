@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9054929014782226051
+--- !u!1 &8255964470624552654
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9054929014782226053}
-  - component: {fileID: 9054929014782226054}
-  - component: {fileID: 9054929014782226055}
-  - component: {fileID: 9054929014782226048}
-  - component: {fileID: 9054929014782226049}
-  - component: {fileID: 9054929014782226050}
+  - component: {fileID: 2104025724730742689}
+  - component: {fileID: 3042912517696753583}
+  - component: {fileID: 1643892016130636656}
+  - component: {fileID: 5229762645475110176}
+  - component: {fileID: 8312165209132188055}
+  - component: {fileID: 1918966516909111352}
   m_Layer: 0
-  m_Name: Arrow
+  m_Name: ArrowFBX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9054929014782226053
+--- !u!4 &2104025724730742689
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9054929014782226051}
-  m_LocalRotation: {x: -0.00000004730234, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -108.99, y: 10.25, z: 24.06}
+  m_GameObject: {fileID: 8255964470624552654}
+  m_LocalRotation: {x: -0.00000004730234, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6060901, y: 0.7045028, z: 0.9484184}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9054929014782226054
+--- !u!114 &3042912517696753583
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9054929014782226051}
+  m_GameObject: {fileID: 8255964470624552654}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8233d90336aea43098adf6dbabd606a2, type: 3}
@@ -728,18 +728,18 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3748
+  m_VersionIndex: 3751
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!114 &9054929014782226055
+--- !u!114 &1643892016130636656
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9054929014782226051}
+  m_GameObject: {fileID: 8255964470624552654}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ca002da428252441b92f28d83c8a65f, type: 3}
@@ -760,13 +760,13 @@ MonoBehaviour:
     RefIds:
     - rid: 7205210969232900096
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
---- !u!23 &9054929014782226048
+--- !u!23 &5229762645475110176
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9054929014782226051}
+  m_GameObject: {fileID: 8255964470624552654}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -803,21 +803,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &9054929014782226049
+--- !u!33 &8312165209132188055
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9054929014782226051}
+  m_GameObject: {fileID: 8255964470624552654}
   m_Mesh: {fileID: 0}
---- !u!64 &9054929014782226050
+--- !u!64 &1918966516909111352
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9054929014782226051}
+  m_GameObject: {fileID: 8255964470624552654}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1

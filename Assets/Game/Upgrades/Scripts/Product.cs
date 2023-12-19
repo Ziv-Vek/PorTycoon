@@ -48,16 +48,8 @@ public class Product : MonoBehaviour
             transform.Find("FreeButton").gameObject.SetActive(false);
             transform.Find("Level (Text)").GetComponent<TextMeshProUGUI>().text = "MAX (" + Level + ")";
             transform.Find("Level (Text)").GetComponent<TextMeshProUGUI>().color = Color.red;
-        }
-    }
 
-    private void OnEnable()
-    {
-        transform.Find("BuyButton").gameObject.SetActive(true);
-        transform.Find("FreeButton").gameObject.SetActive(true);
-        transform.Find("FreeButton").GetComponent<Button>().interactable = true;
-        transform.Find("Level (Text)").GetComponent<TextMeshProUGUI>().color = Color.white;
-        gameConfig = ConfigManager.Instance.Config;
+        }  
         try
         {
             if ((Level < 4 && (gameObject.name == "ship_box_quantity" || gameObject.name == "forklift_box_quantity")) ||
@@ -68,5 +60,15 @@ public class Product : MonoBehaviour
         catch
         {
         }
+    }
+
+    public void OnEnable()
+    {
+        transform.Find("BuyButton").gameObject.SetActive(true);
+        transform.Find("FreeButton").gameObject.SetActive(true);
+        transform.Find("FreeButton").GetComponent<Button>().interactable = true;
+        transform.Find("Level (Text)").GetComponent<TextMeshProUGUI>().color = Color.white;
+        gameConfig = ConfigManager.Instance.Config;
+      
     }
 }

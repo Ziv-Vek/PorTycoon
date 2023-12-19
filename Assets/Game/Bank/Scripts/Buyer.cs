@@ -99,7 +99,7 @@ public class Buyer : MonoBehaviour
         Invoke("GivingOneByOne", TimePerStash);
     }
 
-    public void ActiveProduct(bool isOnPurchaseActivation)
+    public virtual void ActiveProduct(bool isOnPurchaseActivation)
     {
         Debug.Log(isOnPurchaseActivation + " " + product.name);
         product.SetActive(true);

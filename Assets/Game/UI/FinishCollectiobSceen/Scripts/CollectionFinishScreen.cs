@@ -85,6 +85,7 @@ public class CollectionFinishScreen : MonoBehaviour
     }
     public void ShowClosing()
     {
+        MoneyThatPlayerGet = MoneyThatPlayerGet * GameManager.Instance.experience;
         CloseButton.gameObject.SetActive(true);
         YouWonXmoney.gameObject.SetActive(true);
         YouWonXmoney.text = "You won $" + MoneyThatPlayerGet + "!";

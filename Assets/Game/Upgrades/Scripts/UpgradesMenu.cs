@@ -111,7 +111,9 @@ public class UpgradesMenu : MonoBehaviour
             AudioManager.Instance.Play("Buying Upgrade");
 
             if (currentLevel + 1 < maxLevel)
+            {
                 product.Price = getPrice(currentLevel);
+            }
         }
         else
         {
@@ -279,6 +281,8 @@ public class UpgradesMenu : MonoBehaviour
             level => (int)gameConfig.levels[GameManager.Instance.level - 1].upgrades["player_speed"]
                 .prices[level - 1]
         );
+        if (!GameManager.Instance.GoneThroughTutorial)
+            FindAnyObjectByType<TutorialM>().SetBuyingLogisticOffice_Target();
     }
 
     public void PlayerBoxPlaces(GameObject button)

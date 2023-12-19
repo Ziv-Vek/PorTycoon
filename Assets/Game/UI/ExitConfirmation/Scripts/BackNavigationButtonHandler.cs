@@ -57,7 +57,6 @@ public class BackNavigationButtonHandler : MonoBehaviour
         playerMover.HideJoystick();
         UiHolder.SetActive(true);
         UiHolder.GetComponent<Animator>().Play("Open UI", 0);
-        AudioManager.Instance.Play("Open UI Window");
         //   ExitGame();
     }
     public void RunCloseAnimation()
