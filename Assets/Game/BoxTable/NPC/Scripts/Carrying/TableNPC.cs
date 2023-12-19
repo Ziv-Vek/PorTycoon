@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,7 +7,7 @@ public class TableNPC : MonoBehaviour, IBoxOpener
     public TableCarrier tableCarrier;
     public new bool enabled = true;
 
-    public bool IsOpening;
+    public bool IsOpening = false;
     public Slider ProgressSlider;
     public bool IsSleeping;
     [SerializeField] public int AwarenessSeconds = 70;
@@ -45,19 +46,22 @@ public class TableNPC : MonoBehaviour, IBoxOpener
             tableCarrier.AddBoxOpener(this);
     }
 
-    public void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        Seconds += 1 * Time.deltaTime;
-        if (IsOpening)
-            ProgressSlider.value += 1 * Time.deltaTime;
-        if (Vector3.Distance(transform.GetChild(0).transform.position, player.position) <
-            wakingDistance && IsSleeping)
+        if (other.gameObject.CompareTag("Player") && IsSleeping)
         {
             SetIsSleeping(false);
             PunchEffect.Play();
             GetComponent<AudioSource>().clip = PunchSound;
             GetComponent<AudioSource>().Play();
         }
+    }
+
+    public void Update()
+    {
+        Seconds += 1 * Time.deltaTime;
+        if (IsOpening)
+            ProgressSlider.value += 1 * Time.deltaTime;
     }
 
     public void OnFinishedOpenBox()
@@ -116,11 +120,5 @@ public class TableNPC : MonoBehaviour, IBoxOpener
 
         Seconds = 0;
         Debug.Log("NPC of " + transform.parent.name + "is sleeping = " + b);
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, wakingDistance);
     }
 }
