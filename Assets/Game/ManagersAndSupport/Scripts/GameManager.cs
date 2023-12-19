@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public bool Music = true;
     public int money;
     public int stars;
-    public int experience = 1;
+    public int experience { get; set; } = 1;
     public int playerSpeedLevel = 1;
     public int playerBoxPlacesLevel = 1;
     [SerializeField] public int level = 1;
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-
+        level = 1;
     }
 
     private void Update()
@@ -86,6 +86,8 @@ public class GameManager : MonoBehaviour
 
         if (GoneThroughTutorial == false)
             UserDataManager.Instance.ResetUserData();
+        if (experience < 1)
+            experience = 1;
         GameObject.FindWithTag("Player").GetComponent<PlayerMover>().SpawnPlayer(CurrentLevel);
 
     }
