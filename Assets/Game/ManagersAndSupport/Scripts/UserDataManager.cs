@@ -78,7 +78,8 @@ public class UserDataManager : MonoBehaviour
         GameManager.Instance.ResetData();
 
         SaveUserData();
-        UIManager.Instance.UpdateUI();
+        //  UIManager.Instance.UpdateUI();
+        FindAnyObjectByType<UIManager>().UpdateUI();
     }
 
     public void OnApplicationPause(bool pauseStatus)

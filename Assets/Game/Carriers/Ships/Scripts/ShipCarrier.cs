@@ -29,7 +29,10 @@ public class ShipCarrier : Carrier
     public IEnumerator TransferBoxesToPier()
     {
         IsAttemptingToGiveCargo = true;
-        AudioManager.Instance.Play("Ship Horn");
+        if(transform.parent.GetComponent<PortLoader>().PortLevel == GameManager.Instance.level)
+        {
+            AudioManager.Instance.Play("Ship Horn");
+        }
         VibrationManager.Instance.DefaultVibrate();
         yield return BoxesTransferHandler.Instance.CheckTransfer(boxesReceiver, this);
     }
