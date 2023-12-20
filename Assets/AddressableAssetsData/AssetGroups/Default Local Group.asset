@@ -37,6 +37,10 @@ MonoBehaviour:
     m_Address: Assets/Bar Models/Materials/Materials_Basic_Colors/Purple_1_MAT.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: a5463b7ed0df45f469fc52730f846a1b
+    m_Address: Assets/Game/BoxTable/NPC/Materials/SleepingParticalMatirial.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 087e45da59c70d542a2fdb5792d27998, type: 2}
   m_SchemaSet:

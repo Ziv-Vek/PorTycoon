@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public bool Music = true;
     public int money;
     public int stars;
-    public int experience { get; set; } = 1;
+    public int experience = 1;
     public int playerSpeedLevel = 1;
     public int playerBoxPlacesLevel = 1;
     [SerializeField] public int level = 1;
