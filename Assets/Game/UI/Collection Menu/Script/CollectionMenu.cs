@@ -162,10 +162,11 @@ public class CollectionMenu : MonoBehaviour
     {
         AudioManager.Instance.Play("Panel Selected");
         MainPanel.SetActive(true);
+        if(button != null)
         button.interactable = false;
         transform.Find("UI Holder").Find("All Collections Button").GetComponent<Button>().interactable = true;
         AllCollectionsPanel.SetActive(false);
-        SetInCollectionList(MainCollection_List, GameManager.Instance.level);
+        SetInCollectionList(MainCollection_List, GameManager.Instance.CurrentLevel);
     }
 
     public void ItemPressed(GameObject Button)

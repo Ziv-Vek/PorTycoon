@@ -82,6 +82,8 @@ public class GameManager : MonoBehaviour
 
     public void ResetData()
     {
+        Sound = true;
+        Music = true;
         GoneThroughTutorial = false;
         money = 140;
         stars = 0;

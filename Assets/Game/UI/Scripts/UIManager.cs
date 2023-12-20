@@ -65,8 +65,9 @@ public class UIManager : MonoBehaviour
         playerMover.ToggleMovement(false);
         playerMover.HideJoystick();
         CollectionCanvas.SetActive(true);
-        CollectionCanvas.GetComponent<CollectionMenu>().SetInCollectionList(
-            CollectionCanvas.GetComponent<CollectionMenu>().MainCollection_List, GameManager.Instance.CurrentLevel);
+        //CollectionCanvas.GetComponent<CollectionMenu>().SetInCollectionList(
+        //    CollectionCanvas.GetComponent<CollectionMenu>().MainCollection_List, GameManager.Instance.CurrentLevel);
+        CollectionCanvas.GetComponent<CollectionMenu>().OpenMainPanel(null);
         CollectionCanvas.transform.Find("UI Holder").GetComponent<Animator>().Play("Open UI", 0);
         AudioManager.Instance.Play("Open UI Window");
         if (!GameManager.Instance.GoneThroughTutorial)
