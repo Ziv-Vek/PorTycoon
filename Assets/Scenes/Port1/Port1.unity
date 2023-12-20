@@ -14978,8 +14978,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GoneThroughTutorial: 0
-  Sound: 0
-  Music: 0
+  Sound: 1
+  Music: 1
   money: 30
   stars: 0
   experience: 1
@@ -18444,12 +18444,12 @@ PrefabInstance:
     - target: {fileID: 6466377929973846543, guid: 4ead8a977f0bf2a4881d34863a481089,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 84.049446
+      value: 84.04944
       objectReference: {fileID: 0}
     - target: {fileID: 6466377929973846543, guid: 4ead8a977f0bf2a4881d34863a481089,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 53.47147
+      value: 53.471466
       objectReference: {fileID: 0}
     - target: {fileID: 6466377929973846543, guid: 4ead8a977f0bf2a4881d34863a481089,
         type: 3}
@@ -18609,12 +18609,12 @@ PrefabInstance:
     - target: {fileID: 6766110649185010577, guid: 4ead8a977f0bf2a4881d34863a481089,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 84.049446
+      value: 84.04944
       objectReference: {fileID: 0}
     - target: {fileID: 6766110649185010577, guid: 4ead8a977f0bf2a4881d34863a481089,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 53.47147
+      value: 53.471466
       objectReference: {fileID: 0}
     - target: {fileID: 6766110649185010577, guid: 4ead8a977f0bf2a4881d34863a481089,
         type: 3}

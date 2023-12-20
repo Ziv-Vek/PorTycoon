@@ -25,7 +25,34 @@ public class UserDataManager : MonoBehaviour
             Destroy(gameObject); // Ensure only one instance exists
         }
 
+        CheckFirstBuildRun();
         LoadUserData();
+    }
+
+
+    void DeletePersistentDataSaveFile()
+    {
+        string path = Application.persistentDataPath + FILE_NAME;
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
+    }
+
+    void CheckFirstBuildRun()
+    {
+        string currentVersion = Application.version;
+        string savedVersion = PlayerPrefs.GetString("AppVersion", "");
+
+        if (currentVersion != savedVersion)
+        {
+            Debug.Log("First run after install or update");
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.SetString("AppVersion", currentVersion);
+            PlayerPrefs.Save();
+
+            DeletePersistentDataSaveFile();
+        }
     }
 
     private void SaveToFile(UserData userData)
@@ -46,12 +73,12 @@ public class UserDataManager : MonoBehaviour
         SaveToFile(userData);
     }
 
-    public bool HasLoadData()
+    private bool HasLoadData()
     {
         return File.Exists(Application.persistentDataPath + FILE_NAME);
     }
 
-    public void LoadUserData()
+    private void LoadUserData()
     {
         if (!HasLoadData())
         {
