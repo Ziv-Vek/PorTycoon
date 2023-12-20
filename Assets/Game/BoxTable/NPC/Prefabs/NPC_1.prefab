@@ -4901,6 +4901,7 @@ GameObject:
   - component: {fileID: 8100044455781592608}
   - component: {fileID: 3090759740164324543}
   - component: {fileID: 5943759088722688373}
+  - component: {fileID: 6350771082216630723}
   m_Layer: 0
   m_Name: NPC_1
   m_TagString: Untagged
@@ -5052,6 +5053,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &6350771082216630723
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2460705596591455957}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 8.63
+  m_Height: 12.7
+  m_Direction: 0
+  m_Center: {x: 0, y: 3.19, z: -1.96}
 --- !u!1 &3715986338897886055
 GameObject:
   m_ObjectHideFlags: 0

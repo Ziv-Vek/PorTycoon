@@ -15,7 +15,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI unlockedItemsText;
     [SerializeField] private TextMeshProUGUI CollectionStateText;
 
-
     private void Awake()
     {
         if (Instance == null)

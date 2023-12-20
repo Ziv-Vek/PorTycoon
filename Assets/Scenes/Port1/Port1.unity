@@ -16679,6 +16679,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 820443299}
   m_CullTransparentMesh: 1
+--- !u!1 &821076872 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3559490038169493491, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+    type: 3}
+  m_PrefabInstance: {fileID: 1085971638}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &823037934
 GameObject:
   m_ObjectHideFlags: 0
@@ -20539,7 +20545,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-17220
+  m_Name: pb_Mesh249684
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -24212,9 +24218,19 @@ PrefabInstance:
       objectReference: {fileID: 424056876}
     - target: {fileID: 5787664512616854561, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
+      propertyPath: HR_office
+      value: 
+      objectReference: {fileID: 1597835173}
+    - target: {fileID: 5787664512616854561, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+        type: 3}
       propertyPath: PortLevel
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5787664512616854561, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+        type: 3}
+      propertyPath: Logistic_office
+      value: 
+      objectReference: {fileID: 821076872}
     - target: {fileID: 5787664512616854561, guid: a3f7b9dfde1d4324bbd0b677507bc787,
         type: 3}
       propertyPath: HandyMan.Array.data[1]
@@ -35225,6 +35241,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcf1507ddf004264aaa11ddcabd5bf16, type: 3}
+--- !u!1 &1597835173 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3559490038032861999, guid: a3f7b9dfde1d4324bbd0b677507bc787,
+    type: 3}
+  m_PrefabInstance: {fileID: 1085971638}
+  m_PrefabAsset: {fileID: 0}
 --- !u!20 &1609982586 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 4248146779480239303, guid: 4ead8a977f0bf2a4881d34863a481089,
@@ -36539,7 +36561,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-15194
+  m_Name: pb_Mesh244002
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -39074,7 +39096,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-15026
+  m_Name: pb_Mesh241158
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

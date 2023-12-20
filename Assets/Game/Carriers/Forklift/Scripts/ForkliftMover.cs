@@ -285,7 +285,6 @@ public class ForkliftMover : MonoBehaviour
     {
         if (driving == null)
         {
-            Debug.Log($"{ConfigManager.Instance.Config.levels[GameManager.Instance.level]}");
             GetComponent<NavMeshAgent>().speed = ConfigManager.Instance.Config.levels[Mathf.Max(0, GameManager.Instance.level - 1)]
         .upgrades["forklift_speed"]
         .levels[GameManager.Instance.LevelsData["Port" + CurrentLevel].forklifSpeedLevel - 1];

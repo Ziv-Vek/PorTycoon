@@ -19,14 +19,13 @@ public class PortLoader : MonoBehaviour
     public GameObject BoxTable;
     public GameObject HR_office;
     public GameObject Logistic_office;
-    public GameObject Player;
+    [SerializeField] GameObject Player;
     LevelData CurrentLevelData;
     public GameObject Gates;
     public Transform PlayerSpawnPoint;
 
     private void Start()
     {
-        Player = GameObject.Find("Player");
         string portKey = "Port" + PortLevel;
         GameManager.Instance.LevelsData.TryAdd(portKey, new LevelData());
 
@@ -107,8 +106,6 @@ public class PortLoader : MonoBehaviour
                 Logistic_office.SetActive(true);
             }
         }
-
-
 
         if (GameManager.Instance.experience > PortLevel)
             OpenGates();

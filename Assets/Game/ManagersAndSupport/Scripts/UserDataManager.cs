@@ -79,6 +79,7 @@ public class UserDataManager : MonoBehaviour
 
         SaveUserData();
         //  UIManager.Instance.UpdateUI();
+        Debug.Log("reset UI called");
         FindAnyObjectByType<UIManager>().UpdateUI();
     }
 

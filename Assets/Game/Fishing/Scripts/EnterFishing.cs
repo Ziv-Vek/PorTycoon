@@ -6,9 +6,16 @@ public class EnterFishing : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            StartFishing(other.GetComponent<PlayerMover>());
+        }
+    }
+
+    private void StartFishing(PlayerMover playerMover)
+    {
         FishingGame.gameObject.SetActive(true);
         FishingGame.StartInvoke();
-        PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
         playerMover.ToggleMovement(false);
         playerMover.HideJoystick();
         AudioManager.Instance.ChangeSounds("General Music", "Fishing Music");
