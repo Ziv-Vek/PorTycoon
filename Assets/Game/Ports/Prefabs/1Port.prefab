@@ -1891,7 +1891,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3839
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -4656,6 +4656,8 @@ MonoBehaviour:
   ForkLiftBuyer: {fileID: 8170874857988800932}
   ConveyorTable: {fileID: 6421787963366444460}
   BoxTable: {fileID: 8082600677884953969}
+  HR_office: {fileID: 0}
+  Logistic_office: {fileID: 0}
   Player: {fileID: 5564473663792962628}
   Gates: {fileID: 5136919711076705276}
   PlayerSpawnPoint: {fileID: 5912820444927864194}

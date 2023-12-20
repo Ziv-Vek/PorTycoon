@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -74,7 +75,8 @@ public class TableNPC : MonoBehaviour, IBoxOpener
         IsOpening = false;
 
         _bank.AddMoneyToPile(moneyPile, "Scratch");
-        tableCarrier.RemoveBox(CurrentBox);
+        // tableCarrier.RemoveBox(CurrentBox);
+        Destroy(CurrentBox.transform.gameObject);
         tableCarrier.AddBoxOpener(this);
 
         if (Seconds >= AwarenessSeconds)
@@ -98,6 +100,9 @@ public class TableNPC : MonoBehaviour, IBoxOpener
         IsOpening = true;
         box.gameObject.transform.position = transform.Find("BoxPlace").position;
         box.gameObject.transform.rotation = transform.Find("BoxPlace").rotation;
+        int index = Array.FindIndex(tableCarrier.boxes, i => i == box);
+        tableCarrier.boxes[index] = null;
+        tableCarrier.boxesPlaces[index].Find("Place Visual").gameObject.SetActive(true);
         return true;
     }
 
