@@ -17,7 +17,7 @@ public class TutorialM : MonoBehaviour
     [SerializeField] GameObject ClickHere_Collection;
     [SerializeField] Transform ScratchMoneyPile;
     [SerializeField] Transform BuyingHRoffice;
-    [SerializeField] Transform HRofficeShopPos;
+    [SerializeField] Transform HRofficeShop;
     [SerializeField] GameObject ClickHere_HRshop;
     [SerializeField] Transform BuyingLogisticOffice;
 
@@ -108,7 +108,7 @@ public class TutorialM : MonoBehaviour
     {
         if (step == 5)
         {
-            Target = HRofficeShopPos;
+            Target = HRofficeShop;
             Arrow.transform.localScale = Vector3.one;
             GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
             ClickOn_HRshop();
