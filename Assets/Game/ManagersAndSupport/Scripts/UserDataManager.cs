@@ -128,6 +128,12 @@ public class UserDataManager : MonoBehaviour
         ItemsManager.Instance.LoadData(userData);
         GameManager.Instance.LoadData(userData);
     }
+    
+    public IEnumerator SaveUserDataWithDelay()
+    {
+        yield return null;
+        SaveUserData();
+    }
 
     public void ResetUserData()
     {

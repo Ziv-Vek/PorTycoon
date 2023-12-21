@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -98,7 +99,7 @@ public class Buyer : MonoBehaviour
         Invoke("GivingOneByOne", TimePerStash);
     }
 
-    public virtual async void ActiveProduct(bool isOnPurchaseActivation)
+    public virtual void ActiveProduct(bool isOnPurchaseActivation)
     {
         Debug.Log(isOnPurchaseActivation + " " + product.name);
         product.SetActive(true);
@@ -151,7 +152,7 @@ public class Buyer : MonoBehaviour
         if (!GameManager.Instance.GoneThroughTutorial)
             FindAnyObjectByType<TutorialM>().SetToShipment_Target();
 
-        await UserDataManager.Instance.SaveUserDataAsync();
+        StartCoroutine(UserDataManager.Instance.SaveUserDataWithDelay());
 
         Destroy(gameObject);
     }

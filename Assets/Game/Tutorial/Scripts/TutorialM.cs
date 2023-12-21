@@ -5,7 +5,7 @@ using UnityEngine;
 public class TutorialM : MonoBehaviour
 {
     public static TutorialM Instance;
-    public  int step;
+    public int step;
     [SerializeField] GameObject Arrow;
     [SerializeField] GameObject GreenArrow;
     [SerializeField] Transform playePosition;
@@ -93,7 +93,8 @@ public class TutorialM : MonoBehaviour
             GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
             step = 4;
         }
-    } 
+    }
+
     public void SetBuyingHRoffice_Target()
     {
         if (step == 4)
@@ -103,7 +104,8 @@ public class TutorialM : MonoBehaviour
             GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
             step = 5;
         }
-    } 
+    }
+
     public void SetHRofficeShop_Target()
     {
         if (step == 5)
@@ -149,7 +151,6 @@ public class TutorialM : MonoBehaviour
     public void DestroyItSelf()
     {
         GameManager.Instance.GoneThroughTutorial = true;
-        GameManager.Instance.LevelsData["Port1"].ShipNumber = 1;
         // Save
         UserDataManager.Instance.SaveUserDataAsync();
 
