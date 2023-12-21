@@ -99,7 +99,7 @@ public class ItemsManager : MonoBehaviour
             if (GameManager.Instance.CurrentLevel + 1 <= GameManager.Instance.AmountOfLevels)
             {
                 GameManager.Instance.experience = GameManager.Instance.CurrentLevel + 1;
-                GameManager.Instance.SetCurrentLevel(GameManager.Instance.CurrentLevel + 1);
+                GameManager.Instance.CurrentLevel += 1;
 
             }
             UIManager.ShowWinPanel();
