@@ -1591,7 +1591,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -149, y: -741.99994}
+  m_AnchoredPosition: {x: -149, y: -742}
   m_SizeDelta: {x: 80, y: 54.339966}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &76544831
@@ -18444,12 +18444,12 @@ PrefabInstance:
     - target: {fileID: 6466377929973846543, guid: 4ead8a977f0bf2a4881d34863a481089,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 84.04944
+      value: 84.049446
       objectReference: {fileID: 0}
     - target: {fileID: 6466377929973846543, guid: 4ead8a977f0bf2a4881d34863a481089,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 53.471466
+      value: 53.47147
       objectReference: {fileID: 0}
     - target: {fileID: 6466377929973846543, guid: 4ead8a977f0bf2a4881d34863a481089,
         type: 3}
@@ -18609,12 +18609,12 @@ PrefabInstance:
     - target: {fileID: 6766110649185010577, guid: 4ead8a977f0bf2a4881d34863a481089,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 84.04944
+      value: 84.049446
       objectReference: {fileID: 0}
     - target: {fileID: 6766110649185010577, guid: 4ead8a977f0bf2a4881d34863a481089,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 53.471466
+      value: 53.47147
       objectReference: {fileID: 0}
     - target: {fileID: 6766110649185010577, guid: 4ead8a977f0bf2a4881d34863a481089,
         type: 3}
@@ -27045,7 +27045,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-17398
+  m_Name: pb_Mesh-17406
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -30181,7 +30181,7 @@ MonoBehaviour:
   Arrow: {fileID: 1253638692}
   GreenArrow: {fileID: 1186539780}
   playePosition: {fileID: 2062891691}
-  Target: {fileID: 0}
+  Target: {fileID: 1583210830}
   BuyingShipPlace: {fileID: 1583210830}
   ShipmentPlace: {fileID: 605955105}
   ConveyorPlace: {fileID: 1616379152}
@@ -35585,7 +35585,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 122, y: -531.99994}
+  m_AnchoredPosition: {x: 122, y: -532}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1626586671
@@ -45820,7 +45820,7 @@ PrefabInstance:
     - target: {fileID: 4657535076880641062, guid: ea21c503f30f4844db0bba714460316d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21.327
+      value: 25.1
       objectReference: {fileID: 0}
     - target: {fileID: 4657535076880641062, guid: ea21c503f30f4844db0bba714460316d,
         type: 3}
