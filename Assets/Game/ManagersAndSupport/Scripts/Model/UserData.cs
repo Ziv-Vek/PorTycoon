@@ -7,16 +7,21 @@ public class UserData
 {
     public Dictionary<string, Item> unlockedItems;
     public bool GoneThroughTutorial;
-    public bool Sound = true;
-    public bool Music = true;
+    public bool Sound;
+    public bool Music;
     public bool Vibration;
     public int money;
     public int stars;
-    public int experience;
-    public int playerSpeedLevel;
-    public int playerBoxPlacesLevel;
+    public int experience = 1;
+    public int playerSpeedLevel = 1;
+    public int playerBoxPlacesLevel = 1;
     public Dictionary<string, LevelData> LevelsData;
-    public int currentLevel;
+    public int currentLevel = 1;
+
+    public UserData()
+    {
+        money = ConfigManager.Instance.Config.defaultValues.money;
+    }
 }
 
 public class LevelData

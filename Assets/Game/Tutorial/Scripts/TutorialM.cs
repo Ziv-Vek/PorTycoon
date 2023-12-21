@@ -77,11 +77,12 @@ public class TutorialM : MonoBehaviour
     public void ClickOn_CollectionPanel()
     {
         GreenArrow.SetActive(false);
-        ClickHere_Collection.SetActive(true); 
+        ClickHere_Collection.SetActive(true);
         PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
         playerMover.ToggleMovement(false);
         playerMover.HideJoystick();
     }
+
     public void SetScratchMoney_Target()
     {
         if (step == 3)
@@ -114,10 +115,12 @@ public class TutorialM : MonoBehaviour
             step = 6;
         }
     }
+
     public void ClickOn_HRshop()
     {
         ClickHere_HRshop.SetActive(true);
     }
+
     public void SetBuyingLogisticOffice_Target()
     {
         if (step == 6)
@@ -129,6 +132,7 @@ public class TutorialM : MonoBehaviour
             step = 7;
         }
     }
+
     public void StartEndAnimation()
     {
         if (step == 7)
@@ -141,9 +145,14 @@ public class TutorialM : MonoBehaviour
             step = 8;
         }
     }
+
     public void DestroyItSelf()
     {
         GameManager.Instance.GoneThroughTutorial = true;
+        GameManager.Instance.LevelsData["Port1"].ShipNumber = 1;
+        // Save
+        UserDataManager.Instance.SaveUserDataAsync();
+
         Destroy(ClickHere_Collection);
         Destroy(ClickHere_HRshop);
         Destroy(gameObject);

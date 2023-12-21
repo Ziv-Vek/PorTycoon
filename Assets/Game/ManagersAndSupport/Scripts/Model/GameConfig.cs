@@ -4,9 +4,16 @@ using System.Collections.Generic;
 [Serializable]
 public class GameConfig
 {
-    public Dictionary<string,string> colors;
+    public DefaultValues defaultValues;
+    public Dictionary<string, string> colors;
     public List<Item> items;
     public List<Level> levels;
+}
+
+[Serializable]
+public class DefaultValues
+{
+    public int money;
 }
 
 [Serializable]
@@ -27,12 +34,14 @@ public class Level
     public int levelId;
     public Dictionary<string, Box> boxes;
 }
+
 [Serializable]
 public class Upgrades
 {
     public List<float> levels;
     public List<float> prices;
 }
+
 [Serializable]
 public class Box
 {

@@ -86,7 +86,7 @@ public class BackNavigationButtonHandler : MonoBehaviour
 
     public void ExitGame()
     {
-        UserDataManager.Instance.SaveUserData();
+        UserDataManager.Instance.SaveUserDataAsync();
         Application.Quit();
     }
 }

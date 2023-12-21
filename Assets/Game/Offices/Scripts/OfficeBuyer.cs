@@ -12,7 +12,7 @@ public class OfficeBuyer : Buyer
                 InvokeRepeating("GivingOneByOne", 0, 0.1f);
         }
     }
-    public override void ActiveProduct(bool isOnPurchaseActivation)
+    public override async void ActiveProduct(bool isOnPurchaseActivation) 
     {
         Debug.Log(isOnPurchaseActivation + " " + product.name);
         product.SetActive(true);
@@ -54,7 +54,7 @@ public class OfficeBuyer : Buyer
             playerMover.HideJoystick();
         }
 
-        StartCoroutine(UserDataManager.Instance.SaveUserDataWithDelay());
+        await UserDataManager.Instance.SaveUserDataAsync();
 
         Destroy(gameObject);
     }

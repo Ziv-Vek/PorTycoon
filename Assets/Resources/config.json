@@ -1,13 +1,14 @@
 {
-  "colors": 
-    {
-      "gray": "#E0E0E0",
-      "green": "#3BFF3E",
-      "cyan": "#17C8FF",
-      "gold": "#FFF600",
-      "purple": "#FF53FD"
-    }
-  ,
+  "defaultValues": {
+    "money": 140
+  },
+  "colors": {
+    "gray": "#E0E0E0",
+    "green": "#3BFF3E",
+    "cyan": "#17C8FF",
+    "gold": "#FFF600",
+    "purple": "#FF53FD"
+  },
   "items": [
     {
       "id": "Bunny",

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -46,7 +43,9 @@ public class Buyer : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && ((!GameManager.Instance.GoneThroughTutorial && gameObject.tag == "Tutorial") || GameManager.Instance.GoneThroughTutorial))
+        if (other.gameObject.CompareTag("Player") &&
+            ((!GameManager.Instance.GoneThroughTutorial && gameObject.tag == "Tutorial") ||
+             GameManager.Instance.GoneThroughTutorial))
         {
             if (moneyAmount != Price)
                 InvokeRepeating("GivingOneByOne", 0, 0.1f);
@@ -99,7 +98,7 @@ public class Buyer : MonoBehaviour
         Invoke("GivingOneByOne", TimePerStash);
     }
 
-    public virtual void ActiveProduct(bool isOnPurchaseActivation)
+    public virtual async void ActiveProduct(bool isOnPurchaseActivation)
     {
         Debug.Log(isOnPurchaseActivation + " " + product.name);
         product.SetActive(true);
@@ -110,13 +109,13 @@ public class Buyer : MonoBehaviour
             foreach (var activeProduct in product.GetComponents<IProduct>())
             {
                 activeProduct.OnProductActivation(isOnPurchaseActivation);
-            }    
+            }
         }
         else // spawn at default position
         {
             product.transform.position = productClone.transform.position;
         }
-        
+
         try
         {
             NextBuyer.SetActive(true);
@@ -132,11 +131,13 @@ public class Buyer : MonoBehaviour
             {
                 GameManager.Instance.LevelsData["Port" + CurrentLevel].ForkliftIsEnabled = true;
             }
-            else if (gameObject.name == "Ship Buyer" && GameManager.Instance.LevelsData["Port" + CurrentLevel].ShipNumber < 3)
+            else if (gameObject.name == "Ship Buyer" &&
+                     GameManager.Instance.LevelsData["Port" + CurrentLevel].ShipNumber < 3)
             {
                 GameManager.Instance.LevelsData["Port" + CurrentLevel].ShipNumber++;
             }
-            else if (gameObject.name == "HandyMan Buyer" && GameManager.Instance.LevelsData["Port" + CurrentLevel].HandyManNumber < 2)
+            else if (gameObject.name == "HandyMan Buyer" &&
+                     GameManager.Instance.LevelsData["Port" + CurrentLevel].HandyManNumber < 2)
             {
                 GameManager.Instance.LevelsData["Port" + CurrentLevel].HandyManNumber++;
             }
@@ -150,7 +151,7 @@ public class Buyer : MonoBehaviour
         if (!GameManager.Instance.GoneThroughTutorial)
             FindAnyObjectByType<TutorialM>().SetToShipment_Target();
 
-        StartCoroutine(UserDataManager.Instance.SaveUserDataWithDelay());
+        await UserDataManager.Instance.SaveUserDataAsync();
 
         Destroy(gameObject);
     }

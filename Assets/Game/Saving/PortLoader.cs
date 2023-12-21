@@ -125,7 +125,7 @@ public class PortLoader : MonoBehaviour
             GameManager.Instance.CurrentLevel = PortLevel + 1;
         }
         AudioManager.Instance.Play("OpenGate");
-        UserDataManager.Instance.SaveUserData();
+        UserDataManager.Instance.SaveUserDataAsync();
     }
 
     public void OpenGates()
