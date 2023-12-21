@@ -17,6 +17,7 @@ public class PlayerCarrier : Carrier, IBoxOpener
     {
         playerMover = GetComponent<PlayerMover>();
         boxes = new PortBox[maxBoxesCapacity];
+        DontDestroyOnLoad(gameObject);
     }
 
     public bool OpenBox(PortBox box)

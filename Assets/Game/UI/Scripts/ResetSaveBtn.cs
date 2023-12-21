@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ResetSaveBtn : MonoBehaviour
@@ -14,7 +15,6 @@ public class ResetSaveBtn : MonoBehaviour
     void OnButtonClick()
     {
         UserDataManager.Instance.ResetUserData();
-        // hide button
-        btn.gameObject.SetActive(false);
+
     }
 }

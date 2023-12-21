@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 [DefaultExecutionOrder(-4)]
 public class GameManager : MonoBehaviour
@@ -68,13 +69,11 @@ public class GameManager : MonoBehaviour
         Vibration = userData.Vibration;
         money = userData.money;
         stars = userData.stars;
-        LevelsData = userData.LevelsData;
+        LevelsData = userData.LevelsData ?? new Dictionary<string, LevelData>();
         playerSpeedLevel = userData.playerSpeedLevel;
         playerBoxPlacesLevel = userData.playerBoxPlacesLevel;
 
         Debug.Log("load called, level: " + userData.currentLevel + "GoneThroughTutorial: " + GoneThroughTutorial);
-        if (GoneThroughTutorial == false)
-            UserDataManager.Instance.ResetUserData();
         if (experience < 1)
             experience = 1;
         GameObject.FindWithTag("Player").GetComponent<PlayerMover>().SpawnPlayer(CurrentLevel);
@@ -82,32 +81,19 @@ public class GameManager : MonoBehaviour
 
     public void ResetData()
     {
-        Sound = true;
-        Music = true;
-        GoneThroughTutorial = false;
-        money = 140;
-        stars = 0;
-        experience = 1;
-        playerSpeedLevel = 1;
-        playerBoxPlacesLevel = 1;
-        level = 1;
-        for (int i = 0; i < LevelsData.Count; i++)
+        UserData userData = new UserData();
+        Sound = userData.Sound;
+        Music = userData.Music;
+        GoneThroughTutorial =  userData.GoneThroughTutorial;
+        money = userData.money;
+        stars = userData.stars;
+        experience = userData.experience;
+        playerSpeedLevel = userData.playerSpeedLevel;
+        playerBoxPlacesLevel = userData.playerBoxPlacesLevel;
+        level = userData.currentLevel;
+        foreach (var key in LevelsData.Keys.ToList())
         {
-            LevelsData["Port" + (i + 1)].shipSpeedLevel = 1;
-            LevelsData["Port" + (i + 1)].quantityLevel = 1;
-            LevelsData["Port" + (i + 1)].qualityLevel = 1;
-            LevelsData["Port" + (i + 1)].convayorSpeedLevel = 1;
-            LevelsData["Port" + (i + 1)].scanningSpeedLevel = 1;
-            LevelsData["Port" + (i + 1)].tableStackLevel = 1;
-            LevelsData["Port" + (i + 1)].openBoxTimeNpc = 1;
-            LevelsData["Port" + (i + 1)].awarenessTimeNpc = 1;
-            LevelsData["Port" + (i + 1)].forklifSpeedLevel = 1;
-            LevelsData["Port" + (i + 1)].forkliftBoxQuantityLevel = 1;
-            LevelsData["Port" + (i + 1)].forkliftFuelTankLevel = 1;
-            LevelsData["Port" + (i + 1)].scratchSizeScaleLevel = 1;
-            LevelsData["Port" + (i + 1)].ForkliftIsEnabled = false;
-            LevelsData["Port" + (i + 1)].HandyManNumber = 0;
-            LevelsData["Port" + (i + 1)].ShipNumber = 0;
+            LevelsData[key] = new LevelData();
         }
     }
 

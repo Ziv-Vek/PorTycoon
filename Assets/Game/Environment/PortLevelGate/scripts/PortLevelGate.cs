@@ -10,7 +10,7 @@ public class PortLevelGate : MonoBehaviour
         {
             Debug.Log("Player entered");
             GameManager.Instance.level = transform.parent.GetComponent<PortLoader>().PortLevel;
-            UserDataManager.Instance.SaveUserData();
+            UserDataManager.Instance.SaveUserDataAsync();
         }
     }
 }

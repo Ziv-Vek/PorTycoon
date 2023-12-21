@@ -63,24 +63,27 @@ public class TutorialM : MonoBehaviour
     public void ClickOn_CollectionPanel()
     {
         GreenArrow.SetActive(false);
-        ClickHere_Collection.SetActive(true); 
+        ClickHere_Collection.SetActive(true);
         PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
         playerMover.ToggleMovement(false);
         playerMover.HideJoystick();
     }
+
     public void SetScratchMoney_Target()
     {
         ClickHere_Collection.SetActive(false);
         Target = ScratchMoneyPile;
         Arrow.transform.localScale = Vector3.one;
         GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
-    } 
+    }
+
     public void SetBuyingHRoffice_Target()
     {
         Target = BuyingHRoffice;
         Arrow.transform.localScale = Vector3.one;
         GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
-    } 
+    }
+
     public void SetHRofficeShop_Target()
     {
         Target = HRofficeShop;
@@ -88,10 +91,12 @@ public class TutorialM : MonoBehaviour
         GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
         ClickOn_HRshop();
     }
+
     public void ClickOn_HRshop()
     {
         ClickHere_HRshop.SetActive(true);
     }
+
     public void SetBuyingLogisticOffice_Target()
     {
         ClickHere_HRshop.SetActive(false);
@@ -99,6 +104,7 @@ public class TutorialM : MonoBehaviour
         Arrow.transform.localScale = Vector3.one;
         GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
     }
+
     public void StartEndAnimation()
     {
         transform.Find("End Tutorial Camera").gameObject.SetActive(true);
@@ -107,9 +113,14 @@ public class TutorialM : MonoBehaviour
         playerMover.ToggleMovement(false);
         playerMover.HideJoystick();
     }
+
     public void DestroyItSelf()
     {
         GameManager.Instance.GoneThroughTutorial = true;
+        GameManager.Instance.LevelsData["Port1"].ShipNumber = 1;
+        // Save
+        UserDataManager.Instance.SaveUserDataAsync();
+
         Destroy(ClickHere_Collection);
         Destroy(ClickHere_HRshop);
         Destroy(gameObject);
