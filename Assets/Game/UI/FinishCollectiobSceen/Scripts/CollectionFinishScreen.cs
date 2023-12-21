@@ -72,7 +72,7 @@ public class CollectionFinishScreen : MonoBehaviour
 
     private IEnumerator MoveItemToPlace(GameObject Model, GameObject Place, System.Action onComplete)
     {
-        while (Vector3.Distance(Model.transform.position, Place.transform.position) > 0.1f && Vector3.Distance(Model.transform.GetChild(0).rotation.eulerAngles, new Vector3(0,360,0)) > 0.1f)
+        while (Vector3.Distance(Model.transform.position, Place.transform.position) > 0.01f && Vector3.Distance(Model.transform.GetChild(0).rotation.eulerAngles, new Vector3(0,360,0)) > 0.1f)
         {
             // Calculate the new position using Lerp
             Vector3 newPosition = Vector3.Lerp(Model.transform.position, Place.transform.position, 7f * Time.deltaTime);
@@ -85,7 +85,7 @@ public class CollectionFinishScreen : MonoBehaviour
     }
     public void ShowClosing()
     {
-        MoneyThatPlayerGet = MoneyThatPlayerGet * GameManager.Instance.experience;
+        MoneyThatPlayerGet = MoneyThatPlayerGet * (GameManager.Instance.experience - 1);
         CloseButton.gameObject.SetActive(true);
         YouWonXmoney.gameObject.SetActive(true);
         YouWonXmoney.text = "You won $" + MoneyThatPlayerGet + "!";
@@ -96,7 +96,7 @@ public class CollectionFinishScreen : MonoBehaviour
         YouWonXmoney.gameObject.SetActive(false);
         foreach (Transform child in MainCollection_List.transform)
             Destroy(child.gameObject);
-        GameObject.Find(GameManager.Instance.experience + "Port").GetComponent<PortLoader>().OpenGatesWithCelebrating();
+        GameObject.Find((GameManager.Instance.experience -1) + "Port").GetComponent<PortLoader>().OpenGatesWithCelebrating();
 
         if (GameObject.Find("ScratchBoard") == null && GameObject.Find("Collection Canvas") == null)// check if the player is not scratching at this time
         {

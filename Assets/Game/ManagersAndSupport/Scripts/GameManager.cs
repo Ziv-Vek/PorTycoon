@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        level = 1;
     }
 
     public void SaveData(UserData userData)
@@ -57,7 +56,7 @@ public class GameManager : MonoBehaviour
         userData.LevelsData = LevelsData;
         userData.playerSpeedLevel = playerSpeedLevel;
         userData.playerBoxPlacesLevel = playerBoxPlacesLevel;
-        userData.currentLevel = level;
+        userData.currentLevel = CurrentLevel;
     }
 
     public void LoadData(UserData userData)
@@ -72,7 +71,8 @@ public class GameManager : MonoBehaviour
         LevelsData = userData.LevelsData ?? new Dictionary<string, LevelData>();
         playerSpeedLevel = userData.playerSpeedLevel;
         playerBoxPlacesLevel = userData.playerBoxPlacesLevel;
-
+        CurrentLevel = userData.currentLevel;
+        this.level = CurrentLevel;
         Debug.Log("load called, level: " + userData.currentLevel + "GoneThroughTutorial: " + GoneThroughTutorial);
         if (experience < 1)
             experience = 1;

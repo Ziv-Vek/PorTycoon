@@ -119,11 +119,6 @@ public class PortLoader : MonoBehaviour
 
         Gates.transform.Find("Gate Camera").gameObject.SetActive(true);
         StartCoroutine(WaitForXSeconds(5f));
-        if(PortLevel + 1 <= GameManager.Instance.AmountOfLevels)
-        {
-            GameManager.Instance.experience = PortLevel + 1;
-            GameManager.Instance.CurrentLevel = PortLevel + 1;
-        }
         AudioManager.Instance.Play("OpenGate");
         UserDataManager.Instance.SaveUserDataAsync();
     }
