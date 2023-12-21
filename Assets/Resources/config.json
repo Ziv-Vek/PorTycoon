@@ -341,12 +341,12 @@
           "probability": 100,
           "items": [
             {
-              "id": "Cake",
+              "id": "Muffin",
               "probability": 18,
               "color": "green"
-            },
+            }, 
             {
-              "id": "Muffin",
+              "id": "Cake",
               "probability": 18,
               "color": "green"
             },
