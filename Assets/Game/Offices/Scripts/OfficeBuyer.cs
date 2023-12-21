@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class OfficeBuyer : Buyer
 {
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && ((!GameManager.Instance.GoneThroughTutorial && gameObject.tag == "Tutorial") || GameManager.Instance.GoneThroughTutorial) && ((gameObject.name == "HR Office Buyer" && FindAnyObjectByType<TutorialM>().step == 5) || (gameObject.name == "Logistics Office Buyer" && FindAnyObjectByType<TutorialM>().step == 7)))
+        {
+            if (moneyAmount != Price)
+                InvokeRepeating("GivingOneByOne", 0, 0.1f);
+        }
+    }
     public override void ActiveProduct(bool isOnPurchaseActivation)
     {
         Debug.Log(isOnPurchaseActivation + " " + product.name);

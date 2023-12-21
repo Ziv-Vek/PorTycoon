@@ -5,6 +5,7 @@ using UnityEngine;
 public class TutorialM : MonoBehaviour
 {
     public static TutorialM Instance;
+    public  int step;
     [SerializeField] GameObject Arrow;
     [SerializeField] GameObject GreenArrow;
     [SerializeField] Transform playePosition;
@@ -16,7 +17,7 @@ public class TutorialM : MonoBehaviour
     [SerializeField] GameObject ClickHere_Collection;
     [SerializeField] Transform ScratchMoneyPile;
     [SerializeField] Transform BuyingHRoffice;
-    [SerializeField] Transform HRofficeShop;
+    [SerializeField] Transform HRofficeShopPos;
     [SerializeField] GameObject ClickHere_HRshop;
     [SerializeField] Transform BuyingLogisticOffice;
 
@@ -25,6 +26,7 @@ public class TutorialM : MonoBehaviour
     {
         Arrow = transform.Find("Arrow").gameObject;
         Target = BuyingShipPlace;
+        step = 0;
     }
 
     private void Update()
@@ -41,23 +43,35 @@ public class TutorialM : MonoBehaviour
 
     public void SetToShipment_Target()
     {
-        Target = ShipmentPlace;
-        GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
-        Arrow.transform.localScale = Vector3.one;
+        if (step == 0)
+        {
+            Target = ShipmentPlace;
+            GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
+            Arrow.transform.localScale = Vector3.one;
+            step = 1;
+        }
     }
 
     public void SetConveyor_Target()
     {
-        Target = ConveyorPlace;
-        Arrow.transform.localScale = Vector3.one;
-        GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
+        if (step == 1)
+        {
+            Target = ConveyorPlace;
+            Arrow.transform.localScale = Vector3.one;
+            GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
+            step = 2;
+        }
     }
 
     public void SetBoxTable_Target()
     {
-        Target = BoxTablePlace;
-        Arrow.transform.localScale = Vector3.one;
-        GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
+        if (step == 2)
+        {
+            Target = BoxTablePlace;
+            Arrow.transform.localScale = Vector3.one;
+            GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
+            step = 3;
+        }
     }
 
     public void ClickOn_CollectionPanel()
@@ -70,23 +84,35 @@ public class TutorialM : MonoBehaviour
     }
     public void SetScratchMoney_Target()
     {
-        ClickHere_Collection.SetActive(false);
-        Target = ScratchMoneyPile;
-        Arrow.transform.localScale = Vector3.one;
-        GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
+        if (step == 3)
+        {
+            ClickHere_Collection.SetActive(false);
+            Target = ScratchMoneyPile;
+            Arrow.transform.localScale = Vector3.one;
+            GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
+            step = 4;
+        }
     } 
     public void SetBuyingHRoffice_Target()
     {
-        Target = BuyingHRoffice;
-        Arrow.transform.localScale = Vector3.one;
-        GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
+        if (step == 4)
+        {
+            Target = BuyingHRoffice;
+            Arrow.transform.localScale = Vector3.one;
+            GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
+            step = 5;
+        }
     } 
     public void SetHRofficeShop_Target()
     {
-        Target = HRofficeShop;
-        Arrow.transform.localScale = Vector3.one;
-        GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
-        ClickOn_HRshop();
+        if (step == 5)
+        {
+            Target = HRofficeShopPos;
+            Arrow.transform.localScale = Vector3.one;
+            GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
+            ClickOn_HRshop();
+            step = 6;
+        }
     }
     public void ClickOn_HRshop()
     {
@@ -94,18 +120,26 @@ public class TutorialM : MonoBehaviour
     }
     public void SetBuyingLogisticOffice_Target()
     {
-        ClickHere_HRshop.SetActive(false);
-        Target = BuyingLogisticOffice;
-        Arrow.transform.localScale = Vector3.one;
-        GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
+        if (step == 6)
+        {
+            ClickHere_HRshop.SetActive(false);
+            Target = BuyingLogisticOffice;
+            Arrow.transform.localScale = Vector3.one;
+            GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
+            step = 7;
+        }
     }
     public void StartEndAnimation()
     {
-        transform.Find("End Tutorial Camera").gameObject.SetActive(true);
-        GreenArrow.SetActive(false);
-        PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
-        playerMover.ToggleMovement(false);
-        playerMover.HideJoystick();
+        if (step == 7)
+        {
+            transform.Find("End Tutorial Camera").gameObject.SetActive(true);
+            GreenArrow.SetActive(false);
+            PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
+            playerMover.ToggleMovement(false);
+            playerMover.HideJoystick();
+            step = 8;
+        }
     }
     public void DestroyItSelf()
     {
