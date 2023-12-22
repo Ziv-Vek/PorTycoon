@@ -98,9 +98,8 @@ public class ItemsManager : MonoBehaviour
             FinishCollectionCanvas.GetComponent<CollectionFinishScreen>().StartAnimation(GetAllLevelItems(GameManager.Instance.experience));
             if (GameManager.Instance.CurrentLevel + 1 <= GameManager.Instance.AmountOfLevels)
             {
-                GameManager.Instance.experience = GameManager.Instance.CurrentLevel + 1;
+              //  GameManager.Instance.experience = GameManager.Instance.CurrentLevel + 1;
                 GameManager.Instance.CurrentLevel += 1;
-
             }
             UIManager.ShowWinPanel();
             Bank.Instance.AddMoneyToPile(GameObject.Find("ScretchMoneyPile").GetComponent<MoneyPile>(), "Win");

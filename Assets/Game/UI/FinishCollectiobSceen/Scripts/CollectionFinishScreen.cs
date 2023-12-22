@@ -85,7 +85,7 @@ public class CollectionFinishScreen : MonoBehaviour
     }
     public void ShowClosing()
     {
-        MoneyThatPlayerGet = MoneyThatPlayerGet * (GameManager.Instance.experience - 1);
+        MoneyThatPlayerGet = MoneyThatPlayerGet * (GameManager.Instance.experience);
         CloseButton.gameObject.SetActive(true);
         YouWonXmoney.gameObject.SetActive(true);
         YouWonXmoney.text = "You won $" + MoneyThatPlayerGet + "!";
@@ -96,7 +96,7 @@ public class CollectionFinishScreen : MonoBehaviour
         YouWonXmoney.gameObject.SetActive(false);
         foreach (Transform child in MainCollection_List.transform)
             Destroy(child.gameObject);
-        GameObject.Find((GameManager.Instance.experience -1) + "Port").GetComponent<PortLoader>().OpenGatesWithCelebrating();
+        GameObject.Find((GameManager.Instance.experience) + "Port").GetComponent<PortLoader>().OpenGatesWithCelebrating();
 
         if (GameObject.Find("ScratchBoard") == null && GameObject.Find("Collection Canvas") == null)// check if the player is not scratching at this time
         {
@@ -108,6 +108,8 @@ public class CollectionFinishScreen : MonoBehaviour
         Places.Clear();
         CollectionCanvas.blocksRaycasts = true;
         Bank.Instance.DepositMoney(MoneyThatPlayerGet);
+        if (GameManager.Instance.experience + 1 <= GameManager.Instance.AmountOfLevels)
+            GameManager.Instance.experience++;
         gameObject.SetActive(false);
     }
     public void SetInCollectionList(GameObject CollectionList, List<Item> collection)

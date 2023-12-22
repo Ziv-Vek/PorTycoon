@@ -76,12 +76,16 @@ public class GameManager : MonoBehaviour
         Debug.Log("load called, level: " + userData.currentLevel + "GoneThroughTutorial: " + GoneThroughTutorial);
         if (experience < 1)
             experience = 1;
+        if (experience != CurrentLevel)
+            experience = CurrentLevel;
         GameObject.FindWithTag("Player").GetComponent<PlayerMover>().SpawnPlayer(CurrentLevel);
     }
 
     public void ResetData()
     {
         UserData userData = new UserData();
+        userData.Sound = true;
+        userData.Music = true;
         Sound = userData.Sound;
         Music = userData.Music;
         GoneThroughTutorial =  userData.GoneThroughTutorial;

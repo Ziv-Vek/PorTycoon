@@ -107,7 +107,7 @@ public class PortLoader : MonoBehaviour
             }
         }
 
-        if (GameManager.Instance.experience > PortLevel)
+        if (GameManager.Instance.CurrentLevel > PortLevel)
             OpenGates();
     }
 
