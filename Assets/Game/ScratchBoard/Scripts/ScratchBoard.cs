@@ -33,7 +33,8 @@ public class ScratchBoard : MonoBehaviour
 
     private void OnEnable()
     {
-        throwButton.gameObject.SetActive(true);
+        if(GameManager.Instance.GoneThroughTutorial)
+            throwButton.gameObject.SetActive(true);
         GetComponent<PanelTouchHandler>().CanScratch = true;
     }
 
@@ -52,6 +53,7 @@ public class ScratchBoard : MonoBehaviour
 
     private void Close()
     {
+        throwButton.gameObject.SetActive(false);
         gameObject.SetActive(false);
         EndButtons.SetActive(false);
         EndButtons.transform.Find("NextBoxButton").gameObject.SetActive(false);
