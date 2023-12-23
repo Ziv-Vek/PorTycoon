@@ -22,7 +22,7 @@ public class CollectionScreen : MonoBehaviour
     }
     private void Update()
     {
-        transform.LookAt(cameraT);
+       // transform.LookAt(cameraT);
     }
     public void UpdateCollectionList()
     {
