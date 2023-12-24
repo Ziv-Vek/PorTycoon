@@ -36,7 +36,7 @@ public class CollectionScreen : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-
+        transform.Find("Transparent BackGround trigger").GetComponent<TransBackground>().images.Clear();
         //Adding all of the collection Items to UI "list" in the Collection canvas
         for (int i = 0; i < ItemsManager.Instance.GetAllLevelItems(level).Count; i++)
         {
@@ -59,6 +59,8 @@ public class CollectionScreen : MonoBehaviour
             Color color;
             ColorUtility.TryParseHtmlString(ColorPath, out color);
             newItem.GetComponent<Image>().color = color;
+            transform.Find("Transparent BackGround trigger").GetComponent<TransBackground>().images.Add(newItem.GetComponent<Image>());
+            transform.Find("Transparent BackGround trigger").GetComponent<TransBackground>().images.Add(newItem.transform.Find("item Image").GetComponent<Image>());
         }
     }
 }
