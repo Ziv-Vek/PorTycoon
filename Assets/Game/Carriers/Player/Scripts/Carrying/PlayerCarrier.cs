@@ -13,13 +13,30 @@ public class PlayerCarrier : Carrier, IBoxOpener
     [SerializeField] AudioClip ReceiveBoxSound;
     [SerializeField] AudioClip GivingBoxSound;
 
+    GameObject Arrow;
+    [SerializeField] GameObject ArrowPrefab;
+
+    Transform ArrowTarget;
+    [SerializeField] private float TimeHolding = 0;
+    [SerializeField] private bool AllowToCount = false;
     public override void Awake()
     {
         playerMover = GetComponent<PlayerMover>();
         boxes = new PortBox[maxBoxesCapacity];
         DontDestroyOnLoad(gameObject);
     }
-
+    void Update()
+    {
+        if(AllowToCount)
+        {
+            TimeHolding += 1 * Time.deltaTime;
+            if(TimeHolding > 10 && Arrow == null)
+            {
+                Arrow = Instantiate(ArrowPrefab);
+                Arrow.GetComponent<ArrowNavigation>().Target = GameObject.Find(GameManager.Instance.level + "Port").transform.Find("ConveyorBelt").Find("ActionRect");
+            }
+        }
+    }
     public bool OpenBox(PortBox box)
     {
         if (scratchBoard.gameObject.activeSelf) return false;
@@ -73,6 +90,8 @@ public class PlayerCarrier : Carrier, IBoxOpener
         if (!GameManager.Instance.GoneThroughTutorial)
             FindAnyObjectByType<TutorialM>().SetBoxTable_Target();
 
+        resetArrow();
+
         return box;
     }
 
@@ -87,7 +106,19 @@ public class PlayerCarrier : Carrier, IBoxOpener
         playerMover.ToggleAnimatorHoldingBox(true);
         GetComponent<AudioSource>().clip = ReceiveBoxSound;
         GetComponent<AudioSource>().Play();
+        
+        if(GameManager.Instance.GoneThroughTutorial)
+        {
+            AllowToCount = true;
+        }
+
         if (!GameManager.Instance.GoneThroughTutorial)
             FindAnyObjectByType<TutorialM>().SetConveyor_Target();
+    }
+    public void resetArrow()
+    {
+        AllowToCount = false;
+        TimeHolding = 0;
+        Destroy(Arrow);
     }
 }

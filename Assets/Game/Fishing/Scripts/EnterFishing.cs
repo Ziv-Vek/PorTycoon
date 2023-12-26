@@ -2,22 +2,21 @@ using UnityEngine;
 
 public class EnterFishing : MonoBehaviour
 {
-    [SerializeField] FishingManager FishingGame;
-
+    public FishingMenu menu;
+    public GameObject ArrowPrefab;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && GameManager.Instance.GoneThroughTutorial)
         {
-            StartFishing(other.GetComponent<PlayerMover>());
+            PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
+            playerMover.ToggleMovement(false);
+            playerMover.HideJoystick();
+            menu.gameObject.SetActive(true);
+            menu.gameObject.transform.Find("UI Holder").GetComponent<Animator>().Play("Open UI", 0);
         }
     }
-
-    private void StartFishing(PlayerMover playerMover)
+    public void GoToFish()
     {
-        FishingGame.gameObject.SetActive(true);
-        FishingGame.StartInvoke();
-        playerMover.ToggleMovement(false);
-        playerMover.HideJoystick();
-        AudioManager.Instance.ChangeSounds("General Music", "Fishing Music");
+        Instantiate(ArrowPrefab).GetComponent<ArrowNavigation>().Target = gameObject.transform;
     }
 }

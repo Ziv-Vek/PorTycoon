@@ -119,7 +119,8 @@ public class Buyer : MonoBehaviour
 
         try
         {
-            NextBuyer.SetActive(true);
+            if(gameObject.name != "Ship Buyer" || (gameObject.name == "Ship Buyer" && GameManager.Instance.GoneThroughTutorial))
+                NextBuyer.SetActive(true);
         }
         catch
         {

@@ -198,7 +198,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab3d8df2acde8e447b6d335f0a84bfff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FishingGame: {fileID: 0}
+  menu: {fileID: 0}
+  ArrowPrefab: {fileID: 187512716195774922, guid: 580cf3cfda14161448274c4f393c8d3e,
+    type: 3}
 --- !u!1 &4718751580829853693
 GameObject:
   m_ObjectHideFlags: 0

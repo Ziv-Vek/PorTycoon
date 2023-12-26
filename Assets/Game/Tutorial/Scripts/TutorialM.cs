@@ -20,6 +20,9 @@ public class TutorialM : MonoBehaviour
     [SerializeField] Transform HRofficeShop;
     [SerializeField] GameObject ClickHere_HRshop;
     [SerializeField] Transform BuyingLogisticOffice;
+    [SerializeField] GameObject[] buyers;
+
+    [SerializeField] GameObject ArrowPrefab;
 
 
     private void Start()
@@ -27,6 +30,10 @@ public class TutorialM : MonoBehaviour
         Arrow = transform.Find("Arrow").gameObject;
         Target = BuyingShipPlace;
         step = 0;
+        foreach (GameObject buyer in buyers)
+        {
+            buyer.SetActive(false);
+        }
     }
 
     private void Update()
@@ -139,12 +146,17 @@ public class TutorialM : MonoBehaviour
     {
         if (step == 7)
         {
+            foreach (GameObject buyer in buyers)
+            {
+                buyer.SetActive(true);
+            }
             transform.Find("End Tutorial Camera").gameObject.SetActive(true);
             GreenArrow.SetActive(false);
             PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
             playerMover.ToggleMovement(false);
             playerMover.HideJoystick();
-            step = 8;
+            step = 8;    
+            Instantiate(ArrowPrefab).GetComponent<ArrowNavigation>().Target = ShipmentPlace;
         }
     }
 

@@ -8,7 +8,7 @@ public class BoxProduct : MonoBehaviour
     GameConfig gameConfig;
 
     // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         transform.Find("BuyButton").GetChild(0).GetComponent<TextMeshProUGUI>().text = Price.ToString();
     }
