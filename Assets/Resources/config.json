@@ -364,12 +364,12 @@
             {
               "id": "Papsicle",
               "probability": 12,
-              "color": "green"
+              "color": "cyan"
             },
             {
               "id": "GBM",
               "probability": 12,
-              "color": "green"
+              "color": "cyan"
             },
             {
               "id": "Pancake",
