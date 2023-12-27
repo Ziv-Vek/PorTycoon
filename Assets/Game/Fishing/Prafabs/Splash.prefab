@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: -1134134369763202094}
   - component: {fileID: -3764846626621564403}
   - component: {fileID: -4894766038399472318}
+  - component: {fileID: 5514665452488257215}
+  - component: {fileID: -8288213222715357585}
   m_Layer: 0
   m_Name: Splash
   m_TagString: Untagged
@@ -222,6 +224,34 @@ MonoBehaviour:
   level: 0
   isPurchasedBox: 1
 --- !u!114 &-4894766038399472318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5689633082792912166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db30c96c12a84f2cad3dfb5bc64acccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 0
+  isPurchasedBox: 1
+--- !u!114 &5514665452488257215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5689633082792912166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db30c96c12a84f2cad3dfb5bc64acccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 0
+  isPurchasedBox: 1
+--- !u!114 &-8288213222715357585
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

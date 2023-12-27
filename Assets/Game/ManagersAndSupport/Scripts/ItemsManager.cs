@@ -114,6 +114,10 @@ public class ItemsManager : MonoBehaviour
         {
             GameObject.Find(GameManager.Instance.CurrentLevel + "Port").transform.Find("Environment").Find("Enter Fishing").GetComponent<EnterFishing>().GoToFish();
         }
+        if(GetUnlockedItemsNumber(1) == 3)
+        {
+            UIManager.Instance.Invoke("BuyBox", 0.8f);
+        }
 
         CollectionScreen[] collectionScreens = FindObjectsOfType<CollectionScreen>();
         // Iterate through each object and call the UpdateCollectionList function

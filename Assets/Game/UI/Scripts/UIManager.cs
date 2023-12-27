@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI totalItemsText;
     [SerializeField] private TextMeshProUGUI unlockedItemsText;
     [SerializeField] private TextMeshProUGUI CollectionStateText;
+    [SerializeField] GameObject ClickHerePefab;
 
     private void Awake()
     {
@@ -86,5 +87,26 @@ public class UIManager : MonoBehaviour
     public static void ShowWinPanel()
     {
         Debug.Log("ShowWinPanel");
+    }
+    public void BuyBox()
+    {
+        Bank.Instance.DepositStars(5);
+        GameObject clickHere;
+        if(GameObject.Find("Collection Canvas") == null)
+        {
+            clickHere = Instantiate(ClickHerePefab);
+            clickHere.transform.SetParent(transform);
+            clickHere.transform.localScale = Vector3.one;
+            clickHere.transform.localPosition = Vector3.zero;
+            clickHere.transform.rotation = transform.rotation;
+            clickHere.GetComponent<ClickHere>().Target = transform.Find("Collection");
+        }
+        clickHere = Instantiate(ClickHerePefab);
+        clickHere.transform.SetParent(CollectionCanvas.transform.GetChild(0));
+        clickHere.transform.localScale = Vector3.one;
+        clickHere.transform.localPosition = Vector3.zero;
+        clickHere.transform.rotation = transform.rotation;
+        clickHere.GetComponent<ClickHere>().Target = CollectionCanvas.GetComponent<CollectionMenu>().BuyBoxButton.gameObject.transform;
+        clickHere.transform.GetChild(0).localScale = new Vector3(26, 48, 1); 
     }
 }

@@ -124,6 +124,14 @@ public class FishingMenu : MonoBehaviour
     private void UpdateCooldownText()
     {
         remainingTime = Mathf.Max(0, cooldownEndTime - Time.realtimeSinceStartup);
+        if(remainingTime > 0)
+        {
+            fishingPrice = (int)(remainingTime / 43);
+            if(fishingPrice == 0)
+                fishingPrice = 1;
+            BuyingButton.transform.GetChild(0).GetComponent<TMP_Text>().text = fishingPrice.ToString();
+        }
+
         TimeSpan timeSpan = TimeSpan.FromSeconds(remainingTime);
         string cooldownTextString = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
 
@@ -136,6 +144,8 @@ public class FishingMenu : MonoBehaviour
     {
         if ((Button.name == "Buyng Button" && GameManager.Instance.stars >= fishingPrice) || Button.name == "Play Button")
         {
+            if (Button.name == "Buyng Button")
+                Bank.Instance.DepositStars(-fishingPrice);
             // Start the mini-game
             StartFishing();
             // Activate cooldown
@@ -147,8 +157,6 @@ public class FishingMenu : MonoBehaviour
 
             // Update the cooldown timer immediately
             UpdateCooldownText();
-            if (Button.name == "Buyng Button")
-                Bank.Instance.DepositStars(-fishingPrice);
         }
     }
 }

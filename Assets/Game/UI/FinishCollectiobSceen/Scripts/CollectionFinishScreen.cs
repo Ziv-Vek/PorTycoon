@@ -26,6 +26,8 @@ public class CollectionFinishScreen : MonoBehaviour
     [SerializeField] TextMeshProUGUI YouWonXmoney;
     [SerializeField] int MoneyThatPlayerGet;
 
+    [SerializeField] GameObject ArrowPrefab;
+
     public void StartAnimation(List<Item> Collection)
     {
         CollectionCanvas.blocksRaycasts = false;
@@ -110,6 +112,9 @@ public class CollectionFinishScreen : MonoBehaviour
         Bank.Instance.DepositMoney(MoneyThatPlayerGet);
         if (GameManager.Instance.experience + 1 <= GameManager.Instance.AmountOfLevels)
             GameManager.Instance.experience++;
+
+        Instantiate(ArrowPrefab).GetComponent<ArrowNavigation>().Target = GameObject.Find((GameManager.Instance.experience) + "Port").transform.Find("Ship Buyer");
+
         gameObject.SetActive(false);
     }
     public void SetInCollectionList(GameObject CollectionList, List<Item> collection)

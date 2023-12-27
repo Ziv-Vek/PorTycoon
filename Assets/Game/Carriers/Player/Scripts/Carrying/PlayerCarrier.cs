@@ -30,7 +30,7 @@ public class PlayerCarrier : Carrier, IBoxOpener
         if(AllowToCount)
         {
             TimeHolding += 1 * Time.deltaTime;
-            if(TimeHolding > 10 && Arrow == null)
+            if (TimeHolding > 18 && Arrow == null && GameManager.Instance.GoneThroughTutorial)
             {
                 Arrow = Instantiate(ArrowPrefab);
                 Arrow.GetComponent<ArrowNavigation>().Target = GameObject.Find(GameManager.Instance.level + "Port").transform.Find("ConveyorBelt").Find("ActionRect");

@@ -163,7 +163,7 @@ PrefabInstance:
     - target: {fileID: 2695454905419622085, guid: ea21c503f30f4844db0bba714460316d,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 3766
+      value: 3769
       objectReference: {fileID: 0}
     - target: {fileID: 3279281658484626817, guid: ea21c503f30f4844db0bba714460316d,
         type: 3}
@@ -223,6 +223,16 @@ PrefabInstance:
     - target: {fileID: 4657535076880641062, guid: ea21c503f30f4844db0bba714460316d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8678860535317395625, guid: ea21c503f30f4844db0bba714460316d,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8678860535317395625, guid: ea21c503f30f4844db0bba714460316d,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9136880197823383439, guid: ea21c503f30f4844db0bba714460316d,

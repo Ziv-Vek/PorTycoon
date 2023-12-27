@@ -5,7 +5,9 @@ using UnityEngine.UI;
 using TMPro;
 
 public class CollectionMenu : MonoBehaviour
-{
+{   
+    public Button BuyBoxButton;
+
     [SerializeField] GameObject CollectionLine;
 
     //the collection in the main page
