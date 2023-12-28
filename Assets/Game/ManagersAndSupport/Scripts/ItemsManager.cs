@@ -17,6 +17,8 @@ public class ItemsManager : MonoBehaviour
     private List<List<Item>> _cachedAllItemsListByLevel;
     private Dictionary<int, List<Item>> _itemsCache = new();
     public Dictionary<string, Item> UnlockedItems { get; } = new();
+    
+    public event Action OnItemUnlocked; 
 
     private void Awake()
     {
@@ -87,7 +89,8 @@ public class ItemsManager : MonoBehaviour
             Bank.Instance.SpawnStar();
             return;
         }
-
+        
+        OnItemUnlocked?.Invoke();
         item.DateUnlocked = DateTime.Now;
         UnlockedItems.Add(item.id, item);
         UIManager.Instance.UpdateUI();

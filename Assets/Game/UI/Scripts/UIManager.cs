@@ -1,6 +1,6 @@
+using System;
 using TMPro;
 using UnityEngine;
-
 
 [DefaultExecutionOrder(1)]
 public class UIManager : MonoBehaviour
@@ -26,17 +26,26 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
 
+    private void OnEnable()
+    {
+        ItemsManager.Instance.OnItemUnlocked += UpdateCollectionState;
+    }
+
+    private void OnDisable()
+    {
+        ItemsManager.Instance.OnItemUnlocked -= UpdateCollectionState;
+    }
+
+    private void Start()
+    {
         UpdateUI();
     }
-    private void Update()
-    {
-        UpdateCollectionState(ItemsManager.Instance.GetAllLevelItems(GameManager.Instance.CurrentLevel).Count, ItemsManager.Instance.GetUnlockedItemsNumber(GameManager.Instance.CurrentLevel));
-    }
+    
     public void UpdateUI()
     {
-        UpdateCollectionState(ItemsManager.Instance.GetAllLevelItems(GameManager.Instance.CurrentLevel).Count,
-            ItemsManager.Instance.UnlockedItems.Count);
+        UpdateCollectionState();
         UpdateMoneyText(GameManager.Instance.money);
         UpdateStarsText(GameManager.Instance.stars);
     }
@@ -55,8 +64,10 @@ public class UIManager : MonoBehaviour
             starsText.text = moneyText.text.Substring(0, 6) + "..";
     }
 
-    public void UpdateCollectionState(int totalItems, int unlockedItems)
+    public void UpdateCollectionState()
     {
+        var totalItems = ItemsManager.Instance.GetAllLevelItems(GameManager.Instance.CurrentLevel).Count;
+        var unlockedItems = ItemsManager.Instance.GetUnlockedItemsNumber(GameManager.Instance.CurrentLevel);
         CollectionStateText.text = unlockedItems + " / " + totalItems;
     }
 
@@ -66,8 +77,6 @@ public class UIManager : MonoBehaviour
         playerMover.ToggleMovement(false);
         playerMover.HideJoystick();
         CollectionCanvas.SetActive(true);
-        //CollectionCanvas.GetComponent<CollectionMenu>().SetInCollectionList(
-        //    CollectionCanvas.GetComponent<CollectionMenu>().MainCollection_List, GameManager.Instance.CurrentLevel);
         CollectionCanvas.GetComponent<CollectionMenu>().OpenMainPanel(null);
         CollectionCanvas.transform.Find("UI Holder").GetComponent<Animator>().Play("Open UI", 0);
         AudioManager.Instance.Play("Open UI Window");
