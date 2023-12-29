@@ -31,6 +31,11 @@
       "imagePath": "LegoMan"
     },
     {
+      "id": "Xilofon",
+      "name": "Xilofon",
+      "imagePath": "Xilofon_Toy"
+    },
+    {
       "id": "Car",
       "name": "Car",
       "imagePath": "Car_Toy_Render"
@@ -114,7 +119,7 @@
               "color": "gray"
             },
             {
-              "id": "LegoMan",
+              "id": "Xilofon",
               "probability": 12,
               "color": "gray"
             },

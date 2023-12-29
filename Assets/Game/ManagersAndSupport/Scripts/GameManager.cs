@@ -99,6 +99,9 @@ public class GameManager : MonoBehaviour
         {
             LevelsData[key] = new LevelData();
         }
+        if(PlayerPrefs.HasKey("CooldownEndTime"))
+        PlayerPrefs.SetFloat("CooldownEndTime", 0);
+
     }
 
     public void SetCurrentLevel(int level)
