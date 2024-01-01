@@ -83,6 +83,7 @@ public class UIManager : MonoBehaviour
         if (!GameManager.Instance.GoneThroughTutorial)
             FindAnyObjectByType<TutorialM>().SetScratchMoney_Target();
     }
+    
     public void OpenSettingsCanvas()
     {
         PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
@@ -97,6 +98,7 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("ShowWinPanel");
     }
+    
     public void BuyBox()
     {
         Bank.Instance.DepositStars(5);
