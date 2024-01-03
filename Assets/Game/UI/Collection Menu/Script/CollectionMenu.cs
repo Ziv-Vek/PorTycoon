@@ -73,6 +73,9 @@ public class CollectionMenu : MonoBehaviour
 
         transform.Find("UI Holder").Find("All Collections Button").GetComponent<Button>().interactable = true;
         transform.Find("UI Holder").Find("Current Collection Button").GetComponent<Button>().interactable = false;
+
+        GameManager.Instance.ThereUIActive = false;
+
         gameObject.SetActive(false);
     }
 
@@ -173,6 +176,8 @@ public class CollectionMenu : MonoBehaviour
 
     public void ItemPressed(GameObject Button)
     {
+        FindAnyObjectByType<CameraManager>().PointerCoinCamera.enabled = true;
+
         ItemScreen.SetActive(true);
         ItemScreen.transform.Find("ItemPlace").rotation = Quaternion.EulerAngles(0, 0, 0);
         ItemScreen.transform.Find("RotateItemOnY").rotation = Quaternion.EulerAngles(0, 0, 0);
@@ -196,6 +201,8 @@ public class CollectionMenu : MonoBehaviour
 
     public void CloseItemScreen()
     {
+        FindAnyObjectByType<CameraManager>().PointerCoinCamera.enabled = false;
+
         Destroy(ItemScreen.transform.Find("ItemPlace").GetChild(0).gameObject);
         ItemScreen.transform.Find("ItemPlace").rotation = Quaternion.EulerAngles(0, 0, 0);
         ItemScreen.transform.Find("RotateItemOnY").rotation = Quaternion.EulerAngles(0, 0, 0);

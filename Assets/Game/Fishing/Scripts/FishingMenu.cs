@@ -40,6 +40,8 @@ public class FishingMenu : MonoBehaviour
         playerMover.ToggleMovement(true);
         playerMover.ShowJoystick();
         playerMover.joystick.DeactivateJoystick();
+        GameManager.Instance.ThereUIActive = false;
+
         gameObject.SetActive(false);
     }
     private void StartFishing()

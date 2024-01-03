@@ -31,11 +31,14 @@ public class NewItemScreen : MonoBehaviour
         playerMover.ToggleMovement(false);
         playerMover.HideJoystick();
 
+        GameManager.Instance.ThereUIActive = true;
+
         CollectionCanvas.blocksRaycasts = false;
     }
 
     public void CloseScreen()
     {
+
         Destroy(scratchItemModel.gameObject.transform.GetChild(0).gameObject);
         ItemsToShow.Remove(CurrentItem);
         if (ItemsToShow.Count > 0)
@@ -49,9 +52,9 @@ public class NewItemScreen : MonoBehaviour
         {
             PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
             playerMover.ToggleMovement(true);
-            playerMover.ShowJoystick();
+            playerMover.ShowJoystick();  
+            GameManager.Instance.ThereUIActive = false;
         }
-
         CollectionCanvas.blocksRaycasts = true;
 
         gameObject.SetActive(false);

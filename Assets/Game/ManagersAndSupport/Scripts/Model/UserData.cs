@@ -41,4 +41,5 @@ public class LevelData
     public bool ForkliftIsEnabled = false;
     public int HandyManNumber = 0;
     public int ShipNumber = 0;
+    public int StatueMoney = 0;
 }

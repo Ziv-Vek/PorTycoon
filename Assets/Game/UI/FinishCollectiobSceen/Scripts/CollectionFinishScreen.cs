@@ -31,10 +31,13 @@ public class CollectionFinishScreen : MonoBehaviour
     public void StartAnimation(List<Item> Collection)
     {
         CollectionCanvas.blocksRaycasts = false;
+        FindAnyObjectByType<CameraManager>().PointerCoinCamera.enabled = true;
 
         PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
         playerMover.ToggleMovement(false);
         playerMover.HideJoystick();
+
+        GameManager.Instance.ThereUIActive = true;
 
         AllCollection = Collection;
         SetInCollectionList(MainCollection_List, AllCollection);
@@ -94,6 +97,8 @@ public class CollectionFinishScreen : MonoBehaviour
     }
     public void CloseWindow()
     {
+        FindAnyObjectByType<CameraManager>().PointerCoinCamera.enabled = false;
+
         CloseButton.gameObject.SetActive(false);
         YouWonXmoney.gameObject.SetActive(false);
         foreach (Transform child in MainCollection_List.transform)
@@ -114,6 +119,8 @@ public class CollectionFinishScreen : MonoBehaviour
             GameManager.Instance.experience++;
 
         Instantiate(ArrowPrefab).GetComponent<ArrowNavigation>().Target = GameObject.Find((GameManager.Instance.experience) + "Port").transform.Find("Ship Buyer");
+
+        GameManager.Instance.ThereUIActive = false;
 
         gameObject.SetActive(false);
     }

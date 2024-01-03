@@ -167,6 +167,8 @@ public class FishingManager : MonoBehaviour
 
         CancelInvoke(nameof(MakeSplash));
         AudioManager.Instance.ChangeSounds("Fishing Music", "General Music");
+        GameManager.Instance.ThereUIActive = false;
+
         gameObject.SetActive(false);
     }
 

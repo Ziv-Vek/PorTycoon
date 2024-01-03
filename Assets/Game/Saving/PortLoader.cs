@@ -23,6 +23,7 @@ public class PortLoader : MonoBehaviour
     LevelData CurrentLevelData;
     public GameObject Gates;
     public Transform PlayerSpawnPoint;
+    public StarBuyer StatueBuyer;
 
     private void Start()
     {
@@ -109,6 +110,14 @@ public class PortLoader : MonoBehaviour
 
         if (GameManager.Instance.CurrentLevel > PortLevel)
             OpenGates();
+
+        if (GameManager.Instance.LevelsData[portKey].StatueMoney >= StatueBuyer.Price)
+        {
+            StatueBuyer.ActiveProduct(false);
+        }
+        else
+            StatueBuyer.UpdateMoneyAmount(GameManager.Instance.LevelsData[portKey].StatueMoney);
+
     }
 
     public void OpenGatesWithCelebrating()

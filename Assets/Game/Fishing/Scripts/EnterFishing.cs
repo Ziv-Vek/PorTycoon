@@ -13,6 +13,7 @@ public class EnterFishing : MonoBehaviour
             playerMover.HideJoystick();
             menu.gameObject.SetActive(true);
             menu.gameObject.transform.Find("UI Holder").GetComponent<Animator>().Play("Open UI", 0);
+            GameManager.Instance.ThereUIActive = true;
         }
     }
     public void GoToFish()

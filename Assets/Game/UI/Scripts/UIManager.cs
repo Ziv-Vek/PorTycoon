@@ -80,6 +80,8 @@ public class UIManager : MonoBehaviour
         CollectionCanvas.GetComponent<CollectionMenu>().OpenMainPanel(null);
         CollectionCanvas.transform.Find("UI Holder").GetComponent<Animator>().Play("Open UI", 0);
         AudioManager.Instance.Play("Open UI Window");
+        GameManager.Instance.ThereUIActive = true;
+
         if (!GameManager.Instance.GoneThroughTutorial)
             FindAnyObjectByType<TutorialM>().SetScratchMoney_Target();
     }
@@ -91,6 +93,8 @@ public class UIManager : MonoBehaviour
         playerMover.HideJoystick();
         SettingsCanvas.SetActive(true);
         SettingsCanvas.transform.Find("UI Holder").GetComponent<Animator>().Play("Open UI", 0);
+        GameManager.Instance.ThereUIActive = true;
+
         AudioManager.Instance.Play("Open UI Window");
     }
 

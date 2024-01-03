@@ -93,6 +93,8 @@ public class Settings : MonoBehaviour
         playerMover.ToggleMovement(true);
         playerMover.ShowJoystick();
         playerMover.joystick.DeactivateJoystick();
+        GameManager.Instance.ThereUIActive = false;
+
         gameObject.SetActive(false);
     }
 }

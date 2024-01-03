@@ -53,6 +53,12 @@ public class ScratchBoard : MonoBehaviour
 
     private void Close()
     {
+        if(GameObject.Find("New Item Canvas") == null && GameObject.Find("Collection Finish Canvas") == null)
+        {
+            FindAnyObjectByType<CameraManager>().ScratchBoardCamera.enabled = false;
+            FindAnyObjectByType<CameraManager>().PointerCoinCamera.enabled = false;
+        }
+
         throwButton.gameObject.SetActive(false);
         gameObject.SetActive(false);
         EndButtons.SetActive(false);
@@ -64,7 +70,8 @@ public class ScratchBoard : MonoBehaviour
         {
             UIManager.Instance.OpenCollectionCanvas();
             tableCarrier.RemovePlayer();
-            return;
+            return;    
+            GameManager.Instance.ThereUIActive = false;
         }
         else
         {
@@ -73,12 +80,15 @@ public class ScratchBoard : MonoBehaviour
             playerMover.ShowJoystick();
             playerMover.joystick.DeactivateJoystick();
         }
+
         if (!GameManager.Instance.GoneThroughTutorial)
             FindAnyObjectByType<TutorialM>().ClickOn_CollectionPanel();
     }
 
     public void Open(PortBox box)
     {
+        FindAnyObjectByType<CameraManager>().ScratchBoardCamera.enabled = true;
+        FindAnyObjectByType<CameraManager>().PointerCoinCamera.enabled = true;
         if (GameObject.Find("Settings Canvas") != null)
         {
             return;
@@ -86,6 +96,8 @@ public class ScratchBoard : MonoBehaviour
         PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
         playerMover.ToggleMovement(false);
         playerMover.HideJoystick();
+
+        GameManager.Instance.ThereUIActive = true;
 
         CurrentBox = box;
         CurrentBox.CanBeOpened = false;

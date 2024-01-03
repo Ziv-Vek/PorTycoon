@@ -76,6 +76,7 @@ public class UpgradesMenu : MonoBehaviour
             playerMover.ShowJoystick();
             playerMover.joystick.DeactivateJoystick();
         }
+        GameManager.Instance.ThereUIActive = false;
 
         gameObject.SetActive(false);
     }

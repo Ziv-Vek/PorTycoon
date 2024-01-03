@@ -75,7 +75,7 @@ public class BackNavigationButtonHandler : MonoBehaviour
         catch
         {
         }
-        if(GameObject.Find("Collection Canvas") == null && GameObject.Find("HR Upgrades Canvas") == null && GameObject.Find("logistic Upgrades Canvas") == null && GameObject.Find("Settings Canvas") == null && GameObject.Find("ScratchBoard") == null && GameObject.Find("Fishing") == null && GameObject.Find("Collection Finish Canvas") == null && GameObject.Find("FishingMenu Canvas") == null)
+        if(!GameManager.Instance.ThereUIActive)
         {
             playerMover.ToggleMovement(true);
             playerMover.ShowJoystick();

@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
 
     public bool Vibration = true;
 
+    public bool ThereUIActive = false;
+
     private void Awake()
     {
         if (Instance == null)

@@ -19,6 +19,8 @@ public class UpgradesPanelTrigger : MonoBehaviour
         playerMover.HideJoystick();
         playerMover.ToggleMovement(false);
         UpgradesPanel.transform.Find("UI Holder").GetComponent<Animator>().Play("Open UI", 0);
+        GameManager.Instance.ThereUIActive = true;
+
         AudioManager.Instance.Play("Open UI Window");
     }
 }

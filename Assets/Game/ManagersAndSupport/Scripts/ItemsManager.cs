@@ -105,15 +105,16 @@ public class ItemsManager : MonoBehaviour
             }
             UIManager.ShowWinPanel();
             Bank.Instance.AddMoneyToPile(GameObject.Find("ScretchMoneyPile").GetComponent<MoneyPile>(), "Win");
+            FindAnyObjectByType<CameraManager>().PointerCoinCamera.enabled = true;
         }
         // Showing the item if its new 
         else if (GameObject.Find("Fishing") == null) //Checking if the player is not fishing in this time
         {
             NewItemCanvas.SetActive(true);
-            NewItemCanvas.GetComponent<NewItemScreen>().AddItemToList(item);
+            NewItemCanvas.GetComponent<NewItemScreen>().AddItemToList(item); 
+            FindAnyObjectByType<CameraManager>().PointerCoinCamera.enabled = true;
         }
-
-        if(GetUnlockedItemsNumber(1) == 5)
+        if (GetUnlockedItemsNumber(1) == 5)
         {
             GameObject.Find(GameManager.Instance.CurrentLevel + "Port").transform.Find("Environment").Find("Enter Fishing").GetComponent<EnterFishing>().GoToFish();
         }
