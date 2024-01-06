@@ -58,7 +58,6 @@ public class ScratchBoard : MonoBehaviour
             FindAnyObjectByType<CameraManager>().ScratchBoardCamera.enabled = false;
             FindAnyObjectByType<CameraManager>().PointerCoinCamera.enabled = false;
         }
-
         throwButton.gameObject.SetActive(false);
         gameObject.SetActive(false);
         EndButtons.SetActive(false);

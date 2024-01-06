@@ -151,6 +151,8 @@ public class FishingManager : MonoBehaviour
 
     public void BackToPort()
     {
+        FindAnyObjectByType<CameraManager>().gameObject.GetComponent<Camera>().enabled = true;
+
         GameObject clone = transform.GetChild(transform.childCount - 1).gameObject;
         PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
         if (clone.name != "Box" || FindInArrayByName(clone) == null)

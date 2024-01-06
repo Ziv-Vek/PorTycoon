@@ -21978,7 +21978,7 @@ PrefabInstance:
     - target: {fileID: 6766110649185010580, guid: 4ead8a977f0bf2a4881d34863a481089,
         type: 3}
       propertyPath: m_RenderShadows
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6766110649185010580, guid: 4ead8a977f0bf2a4881d34863a481089,
         type: 3}

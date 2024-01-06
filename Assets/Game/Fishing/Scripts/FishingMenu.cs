@@ -52,6 +52,7 @@ public class FishingMenu : MonoBehaviour
         playerMover.ToggleMovement(false);
         playerMover.HideJoystick();
         AudioManager.Instance.ChangeSounds("General Music", "Fishing Music");
+        FindAnyObjectByType<CameraManager>().gameObject.GetComponent<Camera>().enabled = false;
         gameObject.SetActive(false);
 
     }
