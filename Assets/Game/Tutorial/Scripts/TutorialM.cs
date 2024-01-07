@@ -157,6 +157,7 @@ public class TutorialM : MonoBehaviour
             playerMover.HideJoystick();
             step = 8;    
             Instantiate(ArrowPrefab).GetComponent<ArrowNavigation>().Target = ShipmentPlace;
+            FindAnyObjectByType<CameraManager>().gameObject.GetComponent<Camera>().enabled = false;
         }
     }
 
@@ -165,6 +166,8 @@ public class TutorialM : MonoBehaviour
         GameManager.Instance.GoneThroughTutorial = true;
         // Save
         UserDataManager.Instance.SaveUserDataAsync();
+
+        FindAnyObjectByType<CameraManager>().gameObject.GetComponent<Camera>().enabled = true;
 
         Destroy(ClickHere_Collection);
         Destroy(ClickHere_HRshop);

@@ -5,6 +5,7 @@ using ScratchCardAsset.Tools;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using TMPro;
 
 namespace ScratchCardAsset
 {
@@ -276,7 +277,8 @@ namespace ScratchCardAsset
 
 			if (initialized)
 				return;
-			
+
+			brushSize = 1;
 			Init();
 		}
 

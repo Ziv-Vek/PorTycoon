@@ -11,6 +11,7 @@ public class PortLevelGate : MonoBehaviour
             Debug.Log("Player entered");
             GameManager.Instance.level = transform.parent.GetComponent<PortLoader>().PortLevel;
             UserDataManager.Instance.SaveUserDataAsync();
+            other.GetComponent<PlayerCarrier>().RemoveAllBoxes();
         }
     }
 }

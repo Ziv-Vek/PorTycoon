@@ -44,7 +44,19 @@ public class PlayerCarrier : Carrier, IBoxOpener
         scratchBoard.Open(box);
         return true;
     }
-
+    public  void RemoveAllBoxes()
+    {
+        for (int i = 0; i < boxes.Length; i++)
+        {
+            if (boxes[i] != null)
+            {
+                Destroy(boxes[i].transform.gameObject);
+            }
+            boxes[i] = null;
+        }
+        playerMover.ToggleAnimatorHoldingBox(false);
+        resetArrow();
+    }
     public void addBoxPlace()
     {
         Transform[] arrayPlaces = new Transform[boxesPlaces.Length + 1];
