@@ -62,6 +62,8 @@ public class TableCarrier : Carrier
             if (boxes[i] == box)
             {
                 Destroy(box.transform.gameObject);
+                if (boxesPlaces[i].GetChild(1) != null)
+                    Destroy(boxesPlaces[i].GetChild(1).gameObject);
                 boxes[i] = null;
                 boxesPlaces[i].Find("Place Visual").gameObject.SetActive(true);
                 break;

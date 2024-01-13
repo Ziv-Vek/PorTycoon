@@ -147,7 +147,10 @@ public class PortLoader : MonoBehaviour
         // Wait for 4 seconds
         yield return new WaitForSeconds(time);
         Gates.transform.Find("Gate Camera").gameObject.SetActive(false);
-        FindAnyObjectByType<CameraManager>().gameObject.GetComponent<Camera>().enabled = true;
+        if (GameObject.Find("ScratchBoard") == null)
+            FindAnyObjectByType<CameraManager>().gameObject.GetComponent<Camera>().enabled = true;
+        else
+            FindAnyObjectByType<CameraManager>().setPointerCoinCamera(true);
     }
 
     private IEnumerator ShowNextPort(GameObject Port)
