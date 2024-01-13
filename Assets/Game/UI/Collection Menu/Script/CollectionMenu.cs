@@ -27,6 +27,7 @@ public class CollectionMenu : MonoBehaviour
     public GameObject AllCollectionsPanel;
     GameObject CollectionUI_Holder;
     public GameObject ItemScreen;
+    public GameObject ItemHolder;
     [SerializeField] Color[] probabilityColors;
 
 
@@ -176,13 +177,11 @@ public class CollectionMenu : MonoBehaviour
 
     public void ItemPressed(GameObject Button)
     {
-        FindAnyObjectByType<CameraManager>().PointerCoinCamera.enabled = true;
-
         ItemScreen.SetActive(true);
-        ItemScreen.transform.Find("ItemPlace").rotation = Quaternion.EulerAngles(0, 0, 0);
+        ItemHolder.transform.rotation = Quaternion.EulerAngles(0, 0, 0);
         ItemScreen.transform.Find("RotateItemOnY").rotation = Quaternion.EulerAngles(0, 0, 0);
-        ItemScreen.transform.Find("ItemPlace").GetComponent<ScratchItemModel>().ChangeModel(Button.name);
-        ScratchItemModel ItemModel = ItemScreen.transform.Find("ItemPlace").GetComponent<ScratchItemModel>();
+        ItemHolder.GetComponent<ScratchItemModel>().ChangeModel(Button.name);
+        ScratchItemModel ItemModel = ItemHolder.GetComponent<ScratchItemModel>();
 
         ItemScreen.transform.Find("Frame").GetComponent<Image>().sprite = Button.GetComponent<Image>().sprite;
         ItemScreen.transform.Find("Frame").GetComponent<Image>().color = Button.GetComponent<Image>().color;
@@ -197,14 +196,19 @@ public class CollectionMenu : MonoBehaviour
 
         VibrationManager.Instance.LightVibrate();
         AudioManager.Instance.Play("Button Click");
+        //layer : "UI"
+        item.layer = 5;
+        item.transform.GetChild(0).gameObject.layer = 5;
     }
 
     public void CloseItemScreen()
     {
-        FindAnyObjectByType<CameraManager>().PointerCoinCamera.enabled = false;
-
-        Destroy(ItemScreen.transform.Find("ItemPlace").GetChild(0).gameObject);
-        ItemScreen.transform.Find("ItemPlace").rotation = Quaternion.EulerAngles(0, 0, 0);
+        try
+        {
+            Destroy(ItemHolder.transform.GetChild(0).gameObject);
+        }
+        catch { }
+        ItemHolder.transform.rotation = Quaternion.EulerAngles(0, 0, 0);
         ItemScreen.transform.Find("RotateItemOnY").rotation = Quaternion.EulerAngles(0, 0, 0);
         ItemScreen.SetActive(false);
         VibrationManager.Instance.LightVibrate();

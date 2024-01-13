@@ -104,7 +104,9 @@ public class PortLoader : MonoBehaviour
             {
                 FindAnyObjectByType<TutorialM>().DestroyItSelf();
                 HR_office.SetActive(true);
+                Destroy(GameObject.Find("HR Office Buyer"));
                 Logistic_office.SetActive(true);
+                Destroy(GameObject.Find("Logistics Office Buyer"));
             }
         }
 
@@ -126,6 +128,8 @@ public class PortLoader : MonoBehaviour
         Gates.transform.Find("Gate 2").GetComponent<Animator>().Play("OpenGate Animation", 0);
         Gates.transform.Find("Effects").gameObject.SetActive(true);
 
+        FindAnyObjectByType<CameraManager>().gameObject.GetComponent<Camera>().enabled = false;
+
         Gates.transform.Find("Gate Camera").gameObject.SetActive(true);
         StartCoroutine(WaitForXSeconds(5f));
         AudioManager.Instance.Play("OpenGate");
@@ -143,6 +147,7 @@ public class PortLoader : MonoBehaviour
         // Wait for 4 seconds
         yield return new WaitForSeconds(time);
         Gates.transform.Find("Gate Camera").gameObject.SetActive(false);
+        FindAnyObjectByType<CameraManager>().gameObject.GetComponent<Camera>().enabled = true;
     }
 
     private IEnumerator ShowNextPort(GameObject Port)

@@ -105,14 +105,14 @@ public class ItemsManager : MonoBehaviour
             }
             UIManager.ShowWinPanel();
             Bank.Instance.AddMoneyToPile(GameObject.Find("ScretchMoneyPile").GetComponent<MoneyPile>(), "Win");
-            FindAnyObjectByType<CameraManager>().PointerCoinCamera.enabled = true;
+            FindAnyObjectByType<CameraManager>().setPointerCoinCamera(true);
         }
         // Showing the item if its new 
         else if (GameObject.Find("Fishing") == null) //Checking if the player is not fishing in this time
         {
             NewItemCanvas.SetActive(true);
-            NewItemCanvas.GetComponent<NewItemScreen>().AddItemToList(item); 
-            FindAnyObjectByType<CameraManager>().PointerCoinCamera.enabled = true;
+            NewItemCanvas.GetComponent<NewItemScreen>().AddItemToList(item);
+            FindAnyObjectByType<CameraManager>().setPointerCoinCamera(true);
         }
         if (GetUnlockedItemsNumber(1) == 5)
         {
@@ -122,6 +122,8 @@ public class ItemsManager : MonoBehaviour
         {
             UIManager.Instance.Invoke("BuyBox", 0.8f);
         }
+
+        UIManager.Instance.UpdateCollectionState();
 
         CollectionScreen[] collectionScreens = FindObjectsOfType<CollectionScreen>();
         // Iterate through each object and call the UpdateCollectionList function

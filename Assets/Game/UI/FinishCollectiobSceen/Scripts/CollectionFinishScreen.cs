@@ -31,7 +31,7 @@ public class CollectionFinishScreen : MonoBehaviour
     public void StartAnimation(List<Item> Collection)
     {
         CollectionCanvas.blocksRaycasts = false;
-        FindAnyObjectByType<CameraManager>().PointerCoinCamera.enabled = true;
+        FindAnyObjectByType<CameraManager>().setPointerCoinCamera(true);
 
         PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
         playerMover.ToggleMovement(false);
@@ -97,7 +97,7 @@ public class CollectionFinishScreen : MonoBehaviour
     }
     public void CloseWindow()
     {
-        FindAnyObjectByType<CameraManager>().PointerCoinCamera.enabled = false;
+        FindAnyObjectByType<CameraManager>().setPointerCoinCamera(false);
 
         CloseButton.gameObject.SetActive(false);
         YouWonXmoney.gameObject.SetActive(false);

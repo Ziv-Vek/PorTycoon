@@ -56,7 +56,10 @@ public class NewItemScreen : MonoBehaviour
             GameManager.Instance.ThereUIActive = false;
         }
         CollectionCanvas.blocksRaycasts = true;
-
+        if (GameObject.Find("ScratchBoard") == null)
+        {
+            FindAnyObjectByType<CameraManager>().setPointerCoinCamera(false);
+        }
         gameObject.SetActive(false);
     }
 

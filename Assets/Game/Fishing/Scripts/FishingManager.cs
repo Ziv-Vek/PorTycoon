@@ -135,9 +135,9 @@ public class FishingManager : MonoBehaviour
     {
         GameObject clone = transform.GetChild(transform.childCount - 1).gameObject;
         if (clone.name == "Box")
-        {
-            BuyingBox1();
+        {     
             BackToPort();
+            BuyingBox1();
         }
         else if (clone.name == "Money")
         {

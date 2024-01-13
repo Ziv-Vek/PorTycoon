@@ -18,6 +18,8 @@ public class StarBuyer : MonoBehaviour
     public float TimePerStash = 0.15f;
     public int CurrentLevel;
 
+    public AudioClip Sound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,11 +81,7 @@ public class StarBuyer : MonoBehaviour
             ActiveProduct(true);
         }
 
-        if (!gameObject.GetComponent<AudioSource>().isPlaying)
-        {
-            gameObject.GetComponent<AudioSource>().pitch += 0.004f;
-            gameObject.GetComponent<AudioSource>().Play();
-        }
+        gameObject.GetComponent<AudioSource>().Play();
 
         if (TimePerStash - 0.1f * Time.deltaTime > 0.015f)
         {

@@ -9,18 +9,18 @@ public class RotateItemScreen : MonoBehaviour
     Vector2 PressMouse;
     Vector2 LastPos;
     public GameObject RotateOnY;
+    public Camera camera;
 
     private void OnEnable()
     {
-        item = transform.parent.Find("ItemPlace").gameObject;
         LastPos = item.transform.position;
     }
 
     private Vector2 GetPointerPosition()
     {
         var mouseScreenPos = Input.mousePosition;
-        mouseScreenPos.z = Camera.main.WorldToScreenPoint(transform.position).z;
-        return Camera.main.ScreenToWorldPoint(mouseScreenPos);
+        mouseScreenPos.z = camera.WorldToScreenPoint(transform.position).z;
+        return camera.ScreenToWorldPoint(mouseScreenPos);
     }
 
     private void Update()

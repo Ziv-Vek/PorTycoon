@@ -55,8 +55,7 @@ public class ScratchBoard : MonoBehaviour
     {
         if(GameObject.Find("New Item Canvas") == null && GameObject.Find("Collection Finish Canvas") == null)
         {
-            FindAnyObjectByType<CameraManager>().ScratchBoardCamera.enabled = false;
-            FindAnyObjectByType<CameraManager>().PointerCoinCamera.enabled = false;
+            FindAnyObjectByType<CameraManager>().setPointerCoinCamera(false);
         }
         throwButton.gameObject.SetActive(false);
         gameObject.SetActive(false);
@@ -86,8 +85,7 @@ public class ScratchBoard : MonoBehaviour
 
     public void Open(PortBox box)
     {
-        FindAnyObjectByType<CameraManager>().ScratchBoardCamera.enabled = true;
-        FindAnyObjectByType<CameraManager>().PointerCoinCamera.enabled = true;
+        FindAnyObjectByType<CameraManager>().setPointerCoinCamera(true);
         if (GameObject.Find("Settings Canvas") != null)
         {
             return;

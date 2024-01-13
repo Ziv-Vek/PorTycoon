@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    public Camera ScratchBoardCamera;
     public Camera PointerCoinCamera;
-    public Camera NewItemCamera;
+
+    public void setPointerCoinCamera(bool b)
+    {
+        PointerCoinCamera.enabled = b;
+        GetComponent<Camera>().enabled = !b;
+    }
+    
 }
