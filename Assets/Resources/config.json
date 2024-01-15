@@ -149,11 +149,11 @@
       "upgrades": {
         "player_speed": {
           "levels": [
-            16,
             19,
             21,
             24,
-            27
+            27,
+            30
           ],
           "prices": [
             40,
@@ -392,11 +392,11 @@
       "upgrades": {
         "player_speed": {
           "levels": [
-            16,
             19,
             21,
             24,
-            27
+            27,
+            30
           ],
           "prices": [
             50,
