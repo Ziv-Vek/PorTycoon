@@ -14,6 +14,7 @@ public class TCHandler : MonoBehaviour, IPointerClickHandler
     
     void Start()
     {
+        return;
         if (PlayerPrefs.HasKey(LATEST_PP_DATE) == false || PlayerPrefs.GetInt(LATEST_PP_DATE, 0) == 0)
         {
             PlayerPrefs.SetInt(LATEST_PP_DATE, 0);
