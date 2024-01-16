@@ -34,6 +34,8 @@ public class TutorialM : MonoBehaviour
         {
             buyer.SetActive(false);
         }
+        BuyingHRoffice.transform.gameObject.SetActive(false);
+        BuyingLogisticOffice.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -106,6 +108,8 @@ public class TutorialM : MonoBehaviour
     {
         if (step == 4)
         {
+            BuyingHRoffice.transform.gameObject.SetActive(true);
+            BuyingLogisticOffice.gameObject.SetActive(true);
             Target = BuyingHRoffice;
             Arrow.transform.localScale = Vector3.one;
             GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
