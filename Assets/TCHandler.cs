@@ -20,7 +20,7 @@ public class TCHandler : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            levelLoader.LoadNextScene();
+            AcceptAndContinue();
         }
     }
 
