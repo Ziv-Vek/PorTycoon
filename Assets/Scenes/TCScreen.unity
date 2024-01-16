@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -698,7 +698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0.7149544, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -994,8 +994,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1265.752}
-  m_SizeDelta: {x: -240, y: -766.5501}
+  m_AnchoredPosition: {x: 0, y: 566.99524}
+  m_SizeDelta: {x: -240, y: -67.7935}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1381648844
 MonoBehaviour:
@@ -1017,8 +1017,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "I hearby consent to Hoppa-Play Ltd.'s disclosure of the advertising IID
-    of my device ti advertising and games publishing companies for the purpose of
+  m_text: "I hearby consent to Hoppa-Play Ltd.'s disclosure of the advertising ID
+    of my device is advertising and games publishing companies for the purpose of
     of serving targeted advertisement in the game, as well the gathering of in-game
     data by the aforementioned companies.\n\nBy clicking the button below, I understand
     that I can withdraw my consent at any time by opting-out from behavioral advertising
@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 2.2771606, y: -153.14856, z: -5.6435547, w: -138.61377}
+  m_margin: {x: 2.2771606, y: -153.14856, z: -5.6435547, w: -748.4397}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1361,7 +1361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.29803923}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
