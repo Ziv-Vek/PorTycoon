@@ -9,7 +9,10 @@ public class LevelLoader : MonoBehaviour
 
     private void Update()
     {
-        LoadingImage.transform.Rotate(new Vector3(0, 0, -50) * Time.deltaTime);
+        if (LoadingImage != null)
+        {
+            LoadingImage.transform.Rotate(new Vector3(0, 0, -50) * Time.deltaTime);
+        }
     }
 
     public void LoadScendByIndex(int index)
@@ -17,7 +20,7 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(LoadScene(index));
     }
 
-    IEnumerator LoadScene(int index)
+    public IEnumerator LoadScene(int index)
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(index);
 
@@ -25,5 +28,10 @@ public class LevelLoader : MonoBehaviour
         {
             yield return null;
         }
+    }
+    
+    public IEnumerator LoadNextScene()
+    {
+        yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
