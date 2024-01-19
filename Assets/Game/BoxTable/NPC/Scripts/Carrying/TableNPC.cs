@@ -103,9 +103,13 @@ public class TableNPC : MonoBehaviour, IBoxOpener
         IsOpening = true;
         box.gameObject.transform.position = transform.Find("BoxPlace").position;
         box.gameObject.transform.rotation = transform.Find("BoxPlace").rotation;
+
+        CurrentBox.transform.SetParent(transform.Find("BoxPlace"));
+
         int index = Array.FindIndex(tableCarrier.boxes, i => i == box);
         tableCarrier.boxes[index] = null;
         tableCarrier.boxesPlaces[index].Find("Place Visual").gameObject.SetActive(true);
+
         return true;
     }
 
