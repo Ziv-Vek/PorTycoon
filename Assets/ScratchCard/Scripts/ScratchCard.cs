@@ -27,7 +27,7 @@ namespace ScratchCardAsset
 		[FormerlySerializedAs("Surface")] public Transform SurfaceTransform;
 		[FormerlySerializedAs("ScratchSurface")] public Material SurfaceMaterial;
 		[FormerlySerializedAs("Eraser")] public Material BrushMaterial;
-		[Min(0.001f)] public float BrushSize = 1f;
+		[Min(0.0375f)] public float BrushSize = 1f;
 		public Quality RenderTextureQuality = Quality.High;
 		
 		public RenderTexture RenderTexture { get; private set; }

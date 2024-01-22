@@ -62,6 +62,7 @@ namespace ScratchCardAsset.Core
 		/// </summary>
 		public void ScratchHole(Vector2 position, float pressure = 1f)
 		{
+			Debug.Log("ScratchHole texture size: " + (scratchCard.BrushMaterial.mainTexture.width * scratchCard.BrushSize * pressure / scratchCard.ScratchData.TextureSize.x).ToString() + " : " +  (scratchCard.BrushMaterial.mainTexture.height * scratchCard.BrushSize * pressure / scratchCard.ScratchData.TextureSize.y).ToString());
 			var positionRect = new Rect(
 				(position.x - 0.5f * scratchCard.BrushMaterial.mainTexture.width * scratchCard.BrushSize * pressure) / scratchCard.ScratchData.TextureSize.x,
 				(position.y - 0.5f * scratchCard.BrushMaterial.mainTexture.height * scratchCard.BrushSize * pressure) / scratchCard.ScratchData.TextureSize.y,
