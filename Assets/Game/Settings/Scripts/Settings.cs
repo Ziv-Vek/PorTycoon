@@ -71,7 +71,7 @@ public class Settings : MonoBehaviour
     }
     public void SeeTerms()
     {
-        //see terms & conditions
+        Application.OpenURL("http://www.hoppa-play.com/privacy-policy");
     }
     public void RunCloseAnimation()
     {

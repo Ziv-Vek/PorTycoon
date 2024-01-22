@@ -135,6 +135,8 @@ public class CollectionMenu : MonoBehaviour
 
     public void BuyingBox1(GameObject Button)
     {
+        if (HandleFreePurchase(Button) == false) return;
+        
         var boxProduct = Button.transform.parent.GetComponent<BoxProduct>();
 
         if ((boxProduct.Price <= GameManager.Instance.stars || Button.name == "FreeButton"))
@@ -213,5 +215,12 @@ public class CollectionMenu : MonoBehaviour
         ItemScreen.SetActive(false);
         VibrationManager.Instance.LightVibrate();
         AudioManager.Instance.Play("Button Click");
+    }
+    
+    private bool HandleFreePurchase(GameObject button)
+    {
+        if (button.GetComponent<FreePurchaseButton>()?.CanFreePurchase == false) return false;
+        
+        return true;
     }
 }

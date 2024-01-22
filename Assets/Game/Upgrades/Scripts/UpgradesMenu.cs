@@ -127,6 +127,8 @@ public class UpgradesMenu : MonoBehaviour
 
     public void ShipSpeed(GameObject button)
     {
+        if (HandleFreePurchase(button) == false) return;
+        
         HandleUpgrade(
             button,
             newLevel =>
@@ -147,8 +149,12 @@ public class UpgradesMenu : MonoBehaviour
         );
     }
 
+    
+
     public void ShipQuantity(GameObject button)
     {
+        if (HandleFreePurchase(button) == false) return;
+        
         HandleUpgrade(
             button,
             newLevel =>
@@ -169,6 +175,8 @@ public class UpgradesMenu : MonoBehaviour
 
     public void ConveyorSpeed(GameObject button)
     {
+        if (HandleFreePurchase(button) == false) return;
+        
         HandleUpgrade(
             button,
             newLevel =>
@@ -187,6 +195,8 @@ public class UpgradesMenu : MonoBehaviour
 
     public void ScanningSpeed(GameObject button)
     {
+        if (HandleFreePurchase(button) == false) return;
+        
         HandleUpgrade(
             button,
             newLevel =>
@@ -206,6 +216,8 @@ public class UpgradesMenu : MonoBehaviour
 
     public void BoxStackTable(GameObject button)
     {
+        if (HandleFreePurchase(button) == false) return;
+        
         HandleUpgrade(
             button,
             newLevel =>
@@ -223,6 +235,8 @@ public class UpgradesMenu : MonoBehaviour
 
     public void NPC_OpenBoxTime(GameObject button)
     {
+        if (HandleFreePurchase(button) == false) return;
+        
         HandleUpgrade(
             button,
             newLevel =>
@@ -245,6 +259,8 @@ public class UpgradesMenu : MonoBehaviour
 
     public void NPC_AwarenessTime(GameObject button)
     {
+        if (HandleFreePurchase(button) == false) return;
+        
         HandleUpgrade(
             button,
             newLevel =>
@@ -268,6 +284,8 @@ public class UpgradesMenu : MonoBehaviour
 
     public void PlayerSpeed(GameObject button)
     {
+        if (HandleFreePurchase(button) == false) return;
+        
         HandleUpgrade(
             button,
             newLevel =>
@@ -288,6 +306,8 @@ public class UpgradesMenu : MonoBehaviour
 
     public void PlayerBoxPlaces(GameObject button)
     {
+        if (HandleFreePurchase(button) == false) return;
+        
         HandleUpgrade(
             button,
             newLevel =>
@@ -304,6 +324,8 @@ public class UpgradesMenu : MonoBehaviour
 
     public void ForkliftSpeed(GameObject button)
     {
+        if (HandleFreePurchase(button) == false) return;
+        
         HandleUpgrade(
             button,
             newLevel =>
@@ -322,6 +344,8 @@ public class UpgradesMenu : MonoBehaviour
 
     public void ForkliftBoxPlaces(GameObject button)
     {
+        if (HandleFreePurchase(button) == false) return;
+        
         HandleUpgrade(
             button,
             newLevel =>
@@ -339,6 +363,8 @@ public class UpgradesMenu : MonoBehaviour
 
     public void ForkliftFuelTank(GameObject button)
     {
+        if (HandleFreePurchase(button) == false) return;
+        
         HandleUpgrade(
             button,
             newLevel =>
@@ -354,5 +380,12 @@ public class UpgradesMenu : MonoBehaviour
             level => (int)gameConfig.levels[GameManager.Instance.level - 1].upgrades["forklift_fuel_tank"]
                 .prices[level - 1]
         );
+    }
+    
+    private bool HandleFreePurchase(GameObject button)
+    {
+        if (button.GetComponent<FreePurchaseButton>()?.CanFreePurchase == false) return false;
+        
+        return true;
     }
 }
