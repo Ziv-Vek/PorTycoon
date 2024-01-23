@@ -65,7 +65,7 @@ public class Product : MonoBehaviour
     public void OnEnable()
     {
         transform.Find("BuyButton").gameObject.SetActive(true);
-        transform.Find("FreeButton").gameObject.SetActive(true);
+       // transform.Find("FreeButton").gameObject.SetActive(true);
         transform.Find("FreeButton").GetComponent<Button>().interactable = true;
         transform.Find("Level (Text)").GetComponent<TextMeshProUGUI>().color = Color.white;
         gameConfig = ConfigManager.Instance.Config;

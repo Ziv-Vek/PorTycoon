@@ -30,9 +30,13 @@ public class TutorialM : MonoBehaviour
         Arrow = transform.Find("Arrow").gameObject;
         Target = BuyingShipPlace;
         step = 0;
-        foreach (GameObject buyer in buyers)
+        if(!GameManager.Instance.GoneThroughTutorial)
         {
-            buyer.SetActive(false);
+            foreach (GameObject buyer in buyers)
+            {
+                buyer.SetActive(false);
+            }
+            
         }
         BuyingHRoffice.transform.gameObject.SetActive(false);
         BuyingLogisticOffice.gameObject.SetActive(false);
