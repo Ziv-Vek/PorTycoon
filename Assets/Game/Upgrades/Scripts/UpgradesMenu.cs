@@ -384,7 +384,10 @@ public class UpgradesMenu : MonoBehaviour
     
     private bool HandleFreePurchase(GameObject button)
     {
-        if (button.GetComponent<FreePurchaseButton>()?.CanFreePurchase == false) return false;
+        if (button.TryGetComponent<FreePurchaseButton>(out var freePurchaseBtn))
+        {
+            if (freePurchaseBtn.CanFreePurchase == false) return false;   
+        }
         
         return true;
     }
