@@ -100,7 +100,8 @@ public class StarBuyer : MonoBehaviour
     }
 
     public virtual void ActiveProduct(bool isOnPurchaseActivation)
-    {
+    {  
+        Destroy(gameObject);
         Debug.Log(isOnPurchaseActivation + " " + product.name);
         product.SetActive(true);
 
@@ -129,6 +130,5 @@ public class StarBuyer : MonoBehaviour
 
         StartCoroutine(UserDataManager.Instance.SaveUserDataWithDelay());
 
-        Destroy(gameObject);
     }
 }

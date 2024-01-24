@@ -10,6 +10,7 @@ public class MoneyPile : MonoBehaviour
     [SerializeField] int AmountForNewPile;
     [SerializeField] float PlusY;
     public Vector3 place;
+    public Vector3 ResetPlace;
     [SerializeField] int MoneyPerBill;
     public int moneyLimit;
     public float TimePerStash = 0.15f;
@@ -18,6 +19,7 @@ public class MoneyPile : MonoBehaviour
     {
         place = gameObject.transform.position;
         PlusY = 0;
+        ResetPlace = place;
     }
 
     void OnTriggerEnter(Collider other)
@@ -68,6 +70,7 @@ public class MoneyPile : MonoBehaviour
             gameObject.GetComponent<AudioSource>().pitch = 1.1f;
             if (!GameManager.Instance.GoneThroughTutorial && gameObject.name == "ScretchMoneyPile")
             {FindAnyObjectByType<TutorialM>().SetBuyingHRoffice_Target();}
+            place = ResetPlace;
             return;
         }
         if (!gameObject.GetComponent<AudioSource>().isPlaying)
