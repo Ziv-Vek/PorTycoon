@@ -89,47 +89,51 @@ public class TutorialM : MonoBehaviour
 
     public void ClickOn_CollectionPanel()
     {
-        GreenArrow.SetActive(false);
-        ClickHere_Collection.SetActive(true);
-        PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
-        playerMover.ToggleMovement(false);
-        playerMover.HideJoystick();
-    }
-
-    public void SetScratchMoney_Target()
-    {
         if (step == 3)
         {
-            ClickHere_Collection.SetActive(false);
-            Target = ScratchMoneyPile;
-            Arrow.transform.localScale = Vector3.one;
-            GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
+            GreenArrow.SetActive(false);
+            ClickHere_Collection.SetActive(true);
+            PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
+            playerMover.ToggleMovement(false);
+            playerMover.HideJoystick();
             step = 4;
         }
     }
 
-    public void SetBuyingHRoffice_Target()
+    public void SetScratchMoney_Target()
     {
         if (step == 4)
         {
-            BuyingHRoffice.transform.gameObject.SetActive(true);
-            BuyingLogisticOffice.gameObject.SetActive(true);
-            Target = BuyingHRoffice;
+            ClickHere_Collection.SetActive(false);
+            Target = ScratchMoneyPile;
             Arrow.transform.localScale = Vector3.one;
             GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
             step = 5;
         }
     }
 
-    public void SetHRofficeShop_Target()
+    public void SetBuyingHRoffice_Target()
     {
         if (step == 5)
+        {
+            BuyingHRoffice.transform.gameObject.SetActive(true);
+            BuyingLogisticOffice.gameObject.SetActive(true);
+            Target = BuyingHRoffice;
+            Arrow.transform.localScale = Vector3.one;
+            GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
+            step = 6;
+        }
+    }
+
+    public void SetHRofficeShop_Target()
+    {
+        if (step == 6)
         {
             Target = HRofficeShop;
             Arrow.transform.localScale = Vector3.one;
             GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
             ClickOn_HRshop();
-            step = 6;
+            step = 7;
         }
     }
 
@@ -140,19 +144,19 @@ public class TutorialM : MonoBehaviour
 
     public void SetBuyingLogisticOffice_Target()
     {
-        if (step == 6)
+        if (step == 7)
         {
             ClickHere_HRshop.SetActive(false);
             Target = BuyingLogisticOffice;
             Arrow.transform.localScale = Vector3.one;
             GreenArrow.transform.position = Target.position + new Vector3(0, 30, 0);
-            step = 7;
+            step = 8;
         }
     }
 
     public void StartEndAnimation()
     {
-        if (step == 7)
+        if (step == 8)
         {
             foreach (GameObject buyer in buyers)
             {
@@ -163,7 +167,7 @@ public class TutorialM : MonoBehaviour
             PlayerMover playerMover = GameObject.Find("Player").GetComponent<PlayerMover>();
             playerMover.ToggleMovement(false);
             playerMover.HideJoystick();
-            step = 8;    
+            step = 9;    
             Instantiate(ArrowPrefab).GetComponent<ArrowNavigation>().Target = ShipmentPlace;
             FindAnyObjectByType<CameraManager>().gameObject.GetComponent<Camera>().enabled = false;
         }
