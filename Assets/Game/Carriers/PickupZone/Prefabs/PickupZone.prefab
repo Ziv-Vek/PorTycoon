@@ -208,6 +208,7 @@ MonoBehaviour:
   boxes: []
   CargoPlacesHolder: {fileID: 0}
   actionRectZone: {fileID: 2400628047827812578}
+  ActionRectHalo: {fileID: 5095716747046829582}
   moneyPile: {fileID: 3051869224405474149}
 --- !u!65 &842401362973782816
 BoxCollider:
@@ -398,6 +399,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5711424427075201705}
     m_Modifications:
+    - target: {fileID: 1960800026132295960, guid: 16bc85b820cacad4d9fdddef1c800238,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6422704408787267961, guid: 16bc85b820cacad4d9fdddef1c800238,
         type: 3}
       propertyPath: m_Name
@@ -443,6 +449,12 @@ PrefabInstance:
 --- !u!4 &2400628047827812578 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7347799827980905388, guid: 16bc85b820cacad4d9fdddef1c800238,
+    type: 3}
+  m_PrefabInstance: {fileID: 4947238820717767502}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5095716747046829582 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 152981774268077376, guid: 16bc85b820cacad4d9fdddef1c800238,
     type: 3}
   m_PrefabInstance: {fileID: 4947238820717767502}
   m_PrefabAsset: {fileID: 0}

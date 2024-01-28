@@ -11,6 +11,7 @@ public class Pier : Carrier
     private float actionZoneScaleMultiplier = 1.1f;
     private Vector3 actionRectScaleUp;
     private Vector3 actionRectOriginalScale;
+    [SerializeField] Animator ActionRectHalo;
 
     [SerializeField] MoneyPile moneyPile;
 
@@ -64,5 +65,18 @@ public class Pier : Carrier
         cargo.transform.localRotation = gameObject.transform.rotation;
         Bank.Instance.AddMoneyToPile(moneyPile, "Cargo");
         onBoxDrop?.Invoke(CarriersTypes.Pier);
+        ActionRectHalo.Play("ActionRectBoxIn", 0);
+    }
+    public override PortBox GiveBox()
+    {
+        int index = Array.FindLastIndex(boxes, box => box != null);
+
+        PortBox box = boxes[index];
+        boxes[index] = null;
+        if(!CheckCanGiveBoxes())
+        {
+            ActionRectHalo.Play("Default", 0);
+        }
+        return box;
     }
 }
