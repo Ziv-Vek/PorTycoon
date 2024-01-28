@@ -20,7 +20,7 @@ public class PortBox : MonoBehaviour, IItemContainer
     public void DeactivateCollider()
     {
         GetComponent<BoxCollider>().enabled = false;
-       }
+    }
 
 
 }
