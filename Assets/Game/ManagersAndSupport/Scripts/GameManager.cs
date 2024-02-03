@@ -42,9 +42,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-    }
 
     public void SaveData(UserData userData)
     {
@@ -90,7 +87,7 @@ public class GameManager : MonoBehaviour
         userData.Music = true;
         Sound = userData.Sound;
         Music = userData.Music;
-        GoneThroughTutorial =  userData.GoneThroughTutorial;
+        GoneThroughTutorial = userData.GoneThroughTutorial;
         money = userData.money;
         stars = userData.stars;
         experience = userData.experience;
@@ -101,9 +98,9 @@ public class GameManager : MonoBehaviour
         {
             LevelsData[key] = new LevelData();
         }
-        if(PlayerPrefs.HasKey("CooldownEndTime"))
-        PlayerPrefs.SetFloat("CooldownEndTime", 0);
 
+        if (PlayerPrefs.HasKey("CooldownEndTime"))
+            PlayerPrefs.SetFloat("CooldownEndTime", 0);
     }
 
     public void SetCurrentLevel(int level)

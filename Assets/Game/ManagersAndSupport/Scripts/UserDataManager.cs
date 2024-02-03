@@ -27,7 +27,7 @@ public class UserDataManager : MonoBehaviour
         {
             Destroy(gameObject); // Ensure only one instance exists
         }
-
+        
         _persistentDataPath = Application.persistentDataPath;
         CheckFirstBuildRun();
         LoadUserData();

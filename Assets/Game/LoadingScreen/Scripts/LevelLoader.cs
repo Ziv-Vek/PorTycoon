@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class LevelLoader : MonoBehaviour
 {
     public Image LoadingImage;
+    private bool isLoading;
 
     private void Update()
     {
@@ -15,23 +16,34 @@ public class LevelLoader : MonoBehaviour
         }
     }
 
-    public void LoadScendByIndex(int index)
+    public void LoadSceneByIndex(int index)
     {
-        StartCoroutine(LoadScene(index));
+        if (!isLoading)
+        {
+            StartCoroutine(LoadScene(index));
+        }
     }
 
     public IEnumerator LoadScene(int index)
     {
+        isLoading = true;
         AsyncOperation operation = SceneManager.LoadSceneAsync(index);
 
         while (!operation.isDone)
         {
             yield return null;
         }
+
+        isLoading = false;
     }
-    
+
     public IEnumerator LoadNextScene()
     {
-        yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        if (!isLoading)
+        {
+            isLoading = true;
+            yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+            isLoading = false;
+        }
     }
 }
