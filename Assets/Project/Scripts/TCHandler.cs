@@ -37,20 +37,27 @@ public class TCHandler : MonoBehaviour, IPointerClickHandler
         int linkIndex = TMP_TextUtilities.FindIntersectingLink(textComp, new Vector3(eventData.position.x, eventData.position.y, Camera.main != null ? Camera.main.nearClipPlane : 0), null);
         if (linkIndex != -1)
         {
+            Debug.Log("found");
             switch (textComp.textInfo.linkInfo[linkIndex].GetLinkID())
             {
                 case "pp":
                 {
-                    Application.OpenURL("http://www.hoppa-play.com/privacy-policy");
+                    Debug.Log("ppp clicked");
+                    OpenPrivacyPolicy();
                     break;
                 }
-                case "tou":
+                default:
                 {
-                    Application.OpenURL("http://www.hoppa-play.com/terms-of-use");
                     break;
                 }
+                
             }
         }
             
+    }
+    
+    public void OpenPrivacyPolicy()
+    {
+        Application.OpenURL("http://www.hoppa-play.com/privacy-policy");
     }
 }
