@@ -157,7 +157,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.UnityTechnologies.com.unity.template.urpblank
+    Android: com.hoppaplay.portycoon
     Standalone: com.UnityTechnologies.com.unity.template.urp-blank
     iPhone: com.Unity-Technologies.com.unity.template.urp-blank
   buildNumber:
@@ -253,15 +253,15 @@ PlayerSettings:
   AndroidTargetDevices: 1
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: '{dedicated}: user.keystore'
+  AndroidKeyaliasName: hoppakeystore
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
-  androidUseCustomKeystore: 0
+  androidUseCustomKeystore: 1
   m_AndroidBanners:
   - width: 320
     height: 180
@@ -790,7 +790,7 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: UNITY_POST_PROCESSING_STACK_V2;UNITY_VISUAL_SCRIPTING;MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
+    Android: UNITY_POST_PROCESSING_STACK_V2;UNITY_VISUAL_SCRIPTING;MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;SW_STAGE_STAGE10;SW_STAGE_STAGE10_OR_ABOVE
     EmbeddedLinux: UNITY_POST_PROCESSING_STACK_V2;UNITY_VISUAL_SCRIPTING
     GameCoreXboxOne: UNITY_POST_PROCESSING_STACK_V2
     LinuxHeadlessSimulation: UNITY_VISUAL_SCRIPTING
@@ -800,11 +800,11 @@ PlayerSettings:
     PS5: UNITY_POST_PROCESSING_STACK_V2
     Server: UNITY_VISUAL_SCRIPTING
     Stadia: UNITY_POST_PROCESSING_STACK_V2;UNITY_VISUAL_SCRIPTING
-    Standalone: UNITY_POST_PROCESSING_STACK_V2;UNITY_VISUAL_SCRIPTING;MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
+    Standalone: UNITY_POST_PROCESSING_STACK_V2;UNITY_VISUAL_SCRIPTING;MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;SW_STAGE_STAGE10;SW_STAGE_STAGE10_OR_ABOVE
     WebGL: UNITY_POST_PROCESSING_STACK_V2;UNITY_VISUAL_SCRIPTING
     Windows Store Apps: UNITY_POST_PROCESSING_STACK_V2;UNITY_VISUAL_SCRIPTING
     XboxOne: UNITY_POST_PROCESSING_STACK_V2;UNITY_VISUAL_SCRIPTING
-    iPhone: UNITY_VISUAL_SCRIPTING;MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
+    iPhone: UNITY_VISUAL_SCRIPTING;MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;SW_STAGE_STAGE10;SW_STAGE_STAGE10_OR_ABOVE
     tvOS: UNITY_POST_PROCESSING_STACK_V2;UNITY_VISUAL_SCRIPTING
   additionalCompilerArguments: {}
   platformArchitecture: {}

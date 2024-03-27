@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="wisdom.library"
+    android:versionName="1.0"
+    android:versionCode="1">
+    
+    <!--  TODO: [Perry]  package="com.supersonic.wisdom.library" ?? -->
+    
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+    
+    <!-- Optional : -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application>
+        <receiver android:name="com.appsflyer.SingleInstallBroadcastReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name="com.unity3d.player.UnityPlayerActivity" android:clearTaskOnLaunch="false" android:alwaysRetainTaskState="true"/>
+
+        <provider
+            android:name=".WisdomInitProvider"
+            android:authorities="${applicationId}.com.supersonic.wisdom.sdk.initprovider"
+            android:enabled="true"
+            android:exported="false" />
+    </application>
+</manifest>

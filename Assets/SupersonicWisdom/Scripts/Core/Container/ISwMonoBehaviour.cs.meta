@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/SupersonicWisdom/Scripts/Core/Container/ISwMonoBehaviour.cs.meta
+guid: 1a5f454bdacc6470b8ee7493ffcbb3cd
+|||||||| f001ad54d:Assets/SupersonicWisdom/Scripts/Stage10/Tester/SwStage10TesterButtonsManager.cs.meta
+guid: b897eecea8a44497da9f13cde4f70370
+========
+guid: 4a936ed25d58414cb435584bb2e79911
+>>>>>>>> rc/7.7:Assets/SupersonicWisdom/Editor/Core/PreBuild/SwBaseVersionValidation.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
