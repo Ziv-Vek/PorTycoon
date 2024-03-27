@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Plugins/Android/SupersonicWisdom.androidlib/AndroidManifest.xml.meta
 guid: 22ae54d6621ae4c3c9cd2e731c474af2
+========
+guid: 976918645a06f4696b0bc1d9abe3d3f5
+folderAsset: yes
+>>>>>>>> 51f69ebb9c3d47de720959787283042914388a5a:Assets/AddressableAssetsData/iOS.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

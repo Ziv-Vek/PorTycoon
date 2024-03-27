@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedAppIndex: 0
   clientTokens:
-  - 
+  - 84e0c52778518f3174f969619bb5ea37
   appIds:
-  - 0
+  - 730894662185724
   appLabels:
-  - PortTycoon
+  - PotTycoon
   cookie: 1
   logging: 1
   status: 1
