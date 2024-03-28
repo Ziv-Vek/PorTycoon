@@ -12,16 +12,17 @@ public class TCHandler : MonoBehaviour, IPointerClickHandler
 
     private const string LATEST_PP_DATE = "PP16012024";
     
-    void Start()
+    public void Init()
     {
-        if (PlayerPrefs.HasKey(LATEST_PP_DATE) == false || PlayerPrefs.GetInt(LATEST_PP_DATE, 0) == 0)
-        {
-            PlayerPrefs.SetInt(LATEST_PP_DATE, 0);
-        }
-        else
-        {
-            AcceptAndContinue();
-        }
+        Debug.Log("called init");
+        // if (PlayerPrefs.HasKey(LATEST_PP_DATE) == false || PlayerPrefs.GetInt(LATEST_PP_DATE, 0) == 0)
+        // {
+        //     PlayerPrefs.SetInt(LATEST_PP_DATE, 0);
+        // }
+        // else
+        // {
+        //     AcceptAndContinue();
+        // }
     }
 
     public void AcceptAndContinue()

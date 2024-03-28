@@ -41,7 +41,7 @@ MonoBehaviour:
   iosChinaGameAnalyticsGameKey: 
   iosChinaGameAnalyticsSecretKey: 
   unityProjectId: 
-  isTimeBased: 0
+  isTimeBased: 1
   enableManagedInterstitialAds: 0
   enableManagedBannerAds: 0
   enableUnityAnalyticsIntegration: 0
