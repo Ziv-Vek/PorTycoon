@@ -14,15 +14,14 @@ public class TCHandler : MonoBehaviour, IPointerClickHandler
     
     public void Init()
     {
-        Debug.Log("called init");
-        // if (PlayerPrefs.HasKey(LATEST_PP_DATE) == false || PlayerPrefs.GetInt(LATEST_PP_DATE, 0) == 0)
-        // {
-        //     PlayerPrefs.SetInt(LATEST_PP_DATE, 0);
-        // }
-        // else
-        // {
-        //     AcceptAndContinue();
-        // }
+        if (PlayerPrefs.HasKey(LATEST_PP_DATE) == false || PlayerPrefs.GetInt(LATEST_PP_DATE, 0) == 0)
+        {
+            PlayerPrefs.SetInt(LATEST_PP_DATE, 0);
+        }
+        else
+        {
+            AcceptAndContinue();
+        }
     }
 
     public void AcceptAndContinue()
