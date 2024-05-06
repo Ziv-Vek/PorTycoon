@@ -80,6 +80,14 @@ namespace GameAnalyticsSDK.Wrapper
             }
         }
 
+        public static string getUserId() {
+            if (GameAnalytics.SettingsGA.InfoLogEditor) {
+                Debug.Log ("getUserId");
+            }
+
+            return "";
+        }
+
         private static void initialize (string gamekey, string gamesecret)
         {
             if (GameAnalytics.SettingsGA.InfoLogEditor) {
@@ -108,8 +116,16 @@ namespace GameAnalyticsSDK.Wrapper
             }
         }
 
+        private static void setGlobalCustomEventFields(string customFields)
+        {
+            if (GameAnalytics.SettingsGA.InfoLogEditor)
+            {
+                Debug.Log("setGlobalCustomEventFields(" + customFields + ")");
+            }
+        }
+
 #if UNITY_IOS || UNITY_TVOS
-        private static void addBusinessEvent(string currency, int amount, string itemType, string itemId, string cartType, string receipt, string fields)
+        private static void addBusinessEvent(string currency, int amount, string itemType, string itemId, string cartType, string receipt, string fields, bool mergeFields)
         {
             if (GameAnalytics.SettingsGA.InfoLogEditor)
             {
@@ -117,7 +133,7 @@ namespace GameAnalyticsSDK.Wrapper
             }
         }
 
-        private static void addBusinessEventAndAutoFetchReceipt(string currency, int amount, string itemType, string itemId, string cartType, string fields)
+        private static void addBusinessEventAndAutoFetchReceipt(string currency, int amount, string itemType, string itemId, string cartType, string fields, bool mergeFields)
         {
             if (GameAnalytics.SettingsGA.InfoLogEditor)
             {
@@ -129,7 +145,7 @@ namespace GameAnalyticsSDK.Wrapper
 
 
 #elif UNITY_ANDROID
-        private static void addBusinessEventWithReceipt(string currency, int amount, string itemType, string itemId, string cartType, string receipt, string store, string signature, string fields)
+        private static void addBusinessEventWithReceipt(string currency, int amount, string itemType, string itemId, string cartType, string receipt, string store, string signature, string fields, bool mergeFields)
         {
             if (GameAnalytics.SettingsGA.InfoLogEditor)
             {
@@ -139,7 +155,7 @@ namespace GameAnalyticsSDK.Wrapper
 #endif
 
 #if !UNITY_IOS && !UNITY_TVOS
-        private static void addBusinessEvent (string currency, int amount, string itemType, string itemId, string cartType, string fields)
+        private static void addBusinessEvent (string currency, int amount, string itemType, string itemId, string cartType, string fields, bool mergeFields)
         {
             if (GameAnalytics.SettingsGA.InfoLogEditor) {
                 Debug.Log ("addBusinessEvent(" + currency + "," + amount + "," + itemType + "," + itemId + "," + cartType + ")");
@@ -147,49 +163,49 @@ namespace GameAnalyticsSDK.Wrapper
         }
         #endif
 
-        private static void addResourceEvent (int flowType, string currency, float amount, string itemType, string itemId, string fields)
+        private static void addResourceEvent (int flowType, string currency, float amount, string itemType, string itemId, string fields, bool mergeFields)
         {
             if (GameAnalytics.SettingsGA.InfoLogEditor) {
                 Debug.Log ("addResourceEvent(" + flowType + "," + currency + "," + amount + "," + itemType + "," + itemId + ")");
             }
         }
 
-        private static void addProgressionEvent (int progressionStatus, string progression01, string progression02, string progression03, string fields)
+        private static void addProgressionEvent (int progressionStatus, string progression01, string progression02, string progression03, string fields, bool mergeFields)
         {
             if (GameAnalytics.SettingsGA.InfoLogEditor) {
                 Debug.Log ("addProgressionEvent(" + progressionStatus + "," + progression01 + "," + progression02 + "," + progression03 + ")");
             }
         }
 
-        private static void addProgressionEventWithScore (int progressionStatus, string progression01, string progression02, string progression03, int score, string fields)
+        private static void addProgressionEventWithScore (int progressionStatus, string progression01, string progression02, string progression03, int score, string fields, bool mergeFields)
         {
             if (GameAnalytics.SettingsGA.InfoLogEditor) {
                 Debug.Log ("addProgressionEvent(" + progressionStatus + "," + progression01 + "," + progression02 + "," + progression03 + "," + score + ")");
             }
         }
 
-        private static void addDesignEvent (string eventId, string fields)
+        private static void addDesignEvent (string eventId, string fields, bool mergeFields)
         {
             if (GameAnalytics.SettingsGA.InfoLogEditor) {
                 Debug.Log ("addDesignEvent(" + eventId + ")");
             }
         }
 
-        private static void addDesignEventWithValue (string eventId, float value, string fields)
+        private static void addDesignEventWithValue (string eventId, float value, string fields, bool mergeFields)
         {
             if (GameAnalytics.SettingsGA.InfoLogEditor) {
                 Debug.Log ("addDesignEventWithValue(" + eventId + "," + value + ")");
             }
         }
 
-        private static void addErrorEvent (int severity, string message, string fields)
+        private static void addErrorEvent (int severity, string message, string fields, bool mergeFields)
         {
             if (GameAnalytics.SettingsGA.InfoLogEditor) {
                 Debug.Log ("addErrorEvent(" + severity + "," + message + ")");
             }
         }
 
-        private static void addAdEventWithDuration(int adAction, int adType, string adSdkName, string adPlacement, long duration)
+        private static void addAdEventWithDuration(int adAction, int adType, string adSdkName, string adPlacement, long duration, string fields, bool mergeFields)
         {
             if (GameAnalytics.SettingsGA.InfoLogEditor)
             {
@@ -197,7 +213,7 @@ namespace GameAnalyticsSDK.Wrapper
             }
         }
 
-        private static void addAdEventWithReason(int adAction, int adType, string adSdkName, string adPlacement, int noAdReason)
+        private static void addAdEventWithReason(int adAction, int adType, string adSdkName, string adPlacement, int noAdReason, string fields, bool mergeFields)
         {
             if (GameAnalytics.SettingsGA.InfoLogEditor)
             {
@@ -205,7 +221,7 @@ namespace GameAnalyticsSDK.Wrapper
             }
         }
 
-        private static void addAdEvent(int adAction, int adType, string adSdkName, string adPlacement)
+        private static void addAdEvent(int adAction, int adType, string adSdkName, string adPlacement, string fields, bool mergeFields)
         {
             if (GameAnalytics.SettingsGA.InfoLogEditor)
             {
@@ -395,6 +411,15 @@ namespace GameAnalyticsSDK.Wrapper
             setEventSubmission (enabled);
         }
 
+        public static void SetEnabledEventSubmission (bool enabled, bool doCache)
+        {
+            #if !UNITY_EDITOR && (UNITY_IOS || UNITY_ANDROID)
+                setEventSubmission (enabled, doCache);
+            #else
+                setEventSubmission (enabled);
+            #endif
+        }
+
         public static void SetAutoDetectAppVersion (bool flag)
         {
             configureAutoDetectAppVersion (flag);
@@ -445,147 +470,156 @@ namespace GameAnalyticsSDK.Wrapper
             setCustomDimension03 (customDimension);
         }
 
-#if UNITY_IOS || UNITY_TVOS
-        public static void AddBusinessEvent(string currency, int amount, string itemType, string itemId, string cartType, string receipt, IDictionary<string, object> fields)
+        public static void SetGlobalCustomEventFields(IDictionary<string, object> customFields)
         {
-            string fieldsAsString = DictionaryToJsonString(fields);
-            addBusinessEvent(currency, amount, itemType, itemId, cartType, receipt, fieldsAsString);
+            string fieldsAsString = DictionaryToJsonString(customFields);
+            setGlobalCustomEventFields(fieldsAsString);
         }
 
-        public static void AddBusinessEventAndAutoFetchReceipt(string currency, int amount, string itemType, string itemId, string cartType, IDictionary<string, object> fields)
+#if UNITY_IOS || UNITY_TVOS
+        public static void AddBusinessEvent(string currency, int amount, string itemType, string itemId, string cartType, string receipt, IDictionary<string, object> fields, bool mergeFields)
         {
             string fieldsAsString = DictionaryToJsonString(fields);
-            addBusinessEventAndAutoFetchReceipt(currency, amount, itemType, itemId, cartType, fieldsAsString);
+            addBusinessEvent(currency, amount, itemType, itemId, cartType, receipt, fieldsAsString, mergeFields);
+        }
+
+        public static void AddBusinessEventAndAutoFetchReceipt(string currency, int amount, string itemType, string itemId, string cartType, IDictionary<string, object> fields, bool mergeFields)
+        {
+            string fieldsAsString = DictionaryToJsonString(fields);
+            addBusinessEventAndAutoFetchReceipt(currency, amount, itemType, itemId, cartType, fieldsAsString, mergeFields);
         }
 
 
 #elif UNITY_ANDROID
-        public static void AddBusinessEventWithReceipt(string currency, int amount, string itemType, string itemId, string cartType, string receipt, string store, string signature, IDictionary<string, object> fields)
+        public static void AddBusinessEventWithReceipt(string currency, int amount, string itemType, string itemId, string cartType, string receipt, string store, string signature, IDictionary<string, object> fields, bool mergeFields)
         {
             string fieldsAsString = DictionaryToJsonString(fields);
-            addBusinessEventWithReceipt(currency, amount, itemType, itemId, cartType, receipt, store, signature, fieldsAsString);
+            addBusinessEventWithReceipt(currency, amount, itemType, itemId, cartType, receipt, store, signature, fieldsAsString, mergeFields);
         }
 #endif
 
 #if !UNITY_IOS && !UNITY_TVOS
-        public static void AddBusinessEvent (string currency, int amount, string itemType, string itemId, string cartType, IDictionary<string, object> fields)
+        public static void AddBusinessEvent (string currency, int amount, string itemType, string itemId, string cartType, IDictionary<string, object> fields, bool mergeFields)
         {
             string fieldsAsString = DictionaryToJsonString(fields);
 #if UNITY_EDITOR
             if (GAValidator.ValidateBusinessEvent (currency, amount, cartType, itemType, itemId)) {
-                addBusinessEvent (currency, amount, itemType, itemId, cartType, fieldsAsString);
+                addBusinessEvent (currency, amount, itemType, itemId, cartType, fieldsAsString, mergeFields);
             }
 #else
-                addBusinessEvent (currency, amount, itemType, itemId, cartType, fieldsAsString);
+                addBusinessEvent (currency, amount, itemType, itemId, cartType, fieldsAsString, mergeFields);
 #endif
         }
 #endif
 
-        public static void AddResourceEvent (GAResourceFlowType flowType, string currency, float amount, string itemType, string itemId, IDictionary<string, object> fields)
+        public static void AddResourceEvent (GAResourceFlowType flowType, string currency, float amount, string itemType, string itemId, IDictionary<string, object> fields, bool mergeFields)
         {
             string fieldsAsString = DictionaryToJsonString(fields);
 #if UNITY_EDITOR
             if (GAValidator.ValidateResourceEvent (flowType, currency, amount, itemType, itemId)) {
-                addResourceEvent ((int)flowType, currency, amount, itemType, itemId, fieldsAsString);
+                addResourceEvent ((int)flowType, currency, amount, itemType, itemId, fieldsAsString, mergeFields);
             }
 #else
-                addResourceEvent ((int)flowType, currency, amount, itemType, itemId, fieldsAsString);
+                addResourceEvent ((int)flowType, currency, amount, itemType, itemId, fieldsAsString, mergeFields);
 #endif
         }
 
-        public static void AddProgressionEvent (GAProgressionStatus progressionStatus, string progression01, string progression02, string progression03, IDictionary<string, object> fields)
+        public static void AddProgressionEvent (GAProgressionStatus progressionStatus, string progression01, string progression02, string progression03, IDictionary<string, object> fields, bool mergeFields)
         {
             string fieldsAsString = DictionaryToJsonString(fields);
 #if UNITY_EDITOR
             if (GAValidator.ValidateProgressionEvent (progressionStatus, progression01, progression02, progression03)) {
-                addProgressionEvent ((int)progressionStatus, progression01, progression02, progression03, fieldsAsString);
+                addProgressionEvent ((int)progressionStatus, progression01, progression02, progression03, fieldsAsString, mergeFields);
             }
 #else
-                addProgressionEvent ((int)progressionStatus, progression01, progression02, progression03, fieldsAsString);
+                addProgressionEvent ((int)progressionStatus, progression01, progression02, progression03, fieldsAsString, mergeFields);
 #endif
         }
 
-        public static void AddProgressionEventWithScore (GAProgressionStatus progressionStatus, string progression01, string progression02, string progression03, int score, IDictionary<string, object> fields)
+        public static void AddProgressionEventWithScore (GAProgressionStatus progressionStatus, string progression01, string progression02, string progression03, int score, IDictionary<string, object> fields, bool mergeFields)
         {
             string fieldsAsString = DictionaryToJsonString(fields);
 #if UNITY_EDITOR
             if (GAValidator.ValidateProgressionEvent (progressionStatus, progression01, progression02, progression03)) {
-                addProgressionEventWithScore ((int)progressionStatus, progression01, progression02, progression03, score, fieldsAsString);
+                addProgressionEventWithScore ((int)progressionStatus, progression01, progression02, progression03, score, fieldsAsString, mergeFields);
             }
 #else
-                addProgressionEventWithScore ((int)progressionStatus, progression01, progression02, progression03, score, fieldsAsString);
+                addProgressionEventWithScore ((int)progressionStatus, progression01, progression02, progression03, score, fieldsAsString, mergeFields);
 #endif
         }
 
-        public static void AddDesignEvent (string eventID, float eventValue, IDictionary<string, object> fields)
+        public static void AddDesignEvent (string eventID, float eventValue, IDictionary<string, object> fields, bool mergeFields)
         {
             string fieldsAsString = DictionaryToJsonString(fields);
 #if UNITY_EDITOR
             if (GAValidator.ValidateDesignEvent (eventID)) {
-                addDesignEventWithValue (eventID, eventValue, fieldsAsString);
+                addDesignEventWithValue (eventID, eventValue, fieldsAsString, mergeFields);
             }
 #else
-                addDesignEventWithValue (eventID, eventValue, fieldsAsString);
+                addDesignEventWithValue (eventID, eventValue, fieldsAsString, mergeFields);
 #endif
         }
 
-        public static void AddDesignEvent (string eventID, IDictionary<string, object> fields)
+        public static void AddDesignEvent (string eventID, IDictionary<string, object> fields, bool mergeFields)
         {
             string fieldsAsString = DictionaryToJsonString(fields);
 #if UNITY_EDITOR
             if (GAValidator.ValidateDesignEvent (eventID)) {
-                addDesignEvent (eventID, fieldsAsString);
+                addDesignEvent (eventID, fieldsAsString, mergeFields);
             }
 #else
-                addDesignEvent (eventID, fieldsAsString);
+                addDesignEvent (eventID, fieldsAsString, mergeFields);
 #endif
         }
 
-        public static void AddErrorEvent (GAErrorSeverity severity, string message, IDictionary<string, object> fields)
+        public static void AddErrorEvent (GAErrorSeverity severity, string message, IDictionary<string, object> fields, bool mergeFields)
         {
             string fieldsAsString = DictionaryToJsonString(fields);
 #if UNITY_EDITOR
             if (GAValidator.ValidateErrorEvent(severity,message)) {
-                addErrorEvent ((int)severity, message, fieldsAsString);
+                addErrorEvent ((int)severity, message, fieldsAsString, mergeFields);
             }
 #else
-                addErrorEvent ((int)severity, message, fieldsAsString);
+                addErrorEvent ((int)severity, message, fieldsAsString, mergeFields);
 #endif
         }
 
-        public static void AddAdEventWithDuration(GAAdAction adAction, GAAdType adType, string adSdkName, string adPlacement, long duration)
+        public static void AddAdEventWithDuration(GAAdAction adAction, GAAdType adType, string adSdkName, string adPlacement, long duration, IDictionary<string, object> fields, bool mergeFields)
         {
+            string fieldsAsString = DictionaryToJsonString(fields);
 #if UNITY_EDITOR
             if (GAValidator.ValidateAdEvent(adAction, adType, adSdkName, adPlacement))
             {
-                addAdEventWithDuration((int)adAction, (int)adType, adSdkName, adPlacement, duration);
+                addAdEventWithDuration((int)adAction, (int)adType, adSdkName, adPlacement, duration, fieldsAsString, mergeFields);
             }
 #elif UNITY_IOS || UNITY_ANDROID
-                addAdEventWithDuration((int)adAction, (int)adType, adSdkName, adPlacement, duration);
+                addAdEventWithDuration((int)adAction, (int)adType, adSdkName, adPlacement, duration, fieldsAsString, mergeFields);
 #endif
         }
 
-        public static void AddAdEventWithReason(GAAdAction adAction, GAAdType adType, string adSdkName, string adPlacement, GAAdError noAdReason)
+        public static void AddAdEventWithReason(GAAdAction adAction, GAAdType adType, string adSdkName, string adPlacement, GAAdError noAdReason, IDictionary<string, object> fields, bool mergeFields)
         {
+            string fieldsAsString = DictionaryToJsonString(fields);
 #if UNITY_EDITOR
             if (GAValidator.ValidateAdEvent(adAction, adType, adSdkName, adPlacement))
             {
-                addAdEventWithReason((int)adAction, (int)adType, adSdkName, adPlacement, (int)noAdReason);
+                addAdEventWithReason((int)adAction, (int)adType, adSdkName, adPlacement, (int)noAdReason, fieldsAsString, mergeFields);
             }
 #elif UNITY_IOS || UNITY_ANDROID
-                addAdEventWithReason((int)adAction, (int)adType, adSdkName, adPlacement, (int)noAdReason);
+                addAdEventWithReason((int)adAction, (int)adType, adSdkName, adPlacement, (int)noAdReason, fieldsAsString, mergeFields);
 #endif
         }
 
-        public static void AddAdEvent(GAAdAction adAction, GAAdType adType, string adSdkName, string adPlacement)
+        public static void AddAdEvent(GAAdAction adAction, GAAdType adType, string adSdkName, string adPlacement, IDictionary<string, object> fields, bool mergeFields)
         {
+            string fieldsAsString = DictionaryToJsonString(fields);
 #if UNITY_EDITOR
             if (GAValidator.ValidateAdEvent(adAction, adType, adSdkName, adPlacement))
             {
-                addAdEvent((int)adAction, (int)adType, adSdkName, adPlacement);
+                addAdEvent((int)adAction, (int)adType, adSdkName, adPlacement, fieldsAsString, mergeFields);
             }
 #elif UNITY_IOS || UNITY_ANDROID
-                addAdEvent((int)adAction, (int)adType, adSdkName, adPlacement);
+                addAdEvent((int)adAction, (int)adType, adSdkName, adPlacement, fieldsAsString, mergeFields);
 #endif
         }
 
@@ -619,6 +653,16 @@ namespace GameAnalyticsSDK.Wrapper
             return getRemoteConfigsContentAsString();
         }
 
+        public static string GetRemoteConfigsContentAsJSON()
+        {
+            #if UNITY_IOS && !(UNITY_EDITOR)
+                return getRemoteConfigsContentAsJSON();
+            #else
+                return GetRemoteConfigsContentAsString();
+            #endif
+        }
+
+
         public static string GetABTestingId()
         {
             return getABTestingId();
@@ -627,6 +671,24 @@ namespace GameAnalyticsSDK.Wrapper
         public static string GetABTestingVariantId()
         {
             return getABTestingVariantId();
+        }
+
+        public static void SetExternalUserId(string userId)
+        {
+            #if (UNITY_IOS || UNITY_ANDROID) && !(UNITY_EDITOR)
+                configureExternalUserId(userId);
+            #else
+                return;
+            #endif
+        }
+
+        public static string GetExternalUserId()
+        {
+            #if (UNITY_IOS || UNITY_ANDROID) && !(UNITY_EDITOR)
+                return getExternalUserId();
+            #else
+                return "";
+            #endif
         }
 
         private static string DictionaryToJsonString(IDictionary<string, object> dict)
@@ -680,5 +742,36 @@ namespace GameAnalyticsSDK.Wrapper
             return 0;
 #endif
         }
+
+        ///// HEALTH
+
+        public static void EnableSDKInitEvent(bool flag)
+        {
+            #if !UNITY_EDITOR && (UNITY_IOS || UNITY_ANDROID)
+                enableSDKInitEvent(flag);
+            #endif
+        }
+
+        public static void EnableFpsHistogram(bool flag)
+        {
+            #if !UNITY_EDITOR && (UNITY_IOS || UNITY_ANDROID)
+                enableFpsHistogram(flag);
+            #endif
+        }
+
+        public static void EnableMemoryHistogram(bool flag)
+        {
+            #if !UNITY_EDITOR && (UNITY_IOS || UNITY_ANDROID)
+                enableMemoryHistogram(flag);
+            #endif
+        }
+
+        public static void EnableHealthHardwareInfo(bool flag)
+        {
+            #if !UNITY_EDITOR && (UNITY_IOS || UNITY_ANDROID)
+                enableHealthHardwareInfo(flag);
+            #endif
+        }
     }
+
 }

@@ -13,7 +13,6 @@ namespace GameAnalyticsSDK.Wrapper
 
         private static readonly AndroidJavaClass GA = new AndroidJavaClass("com.gameanalytics.sdk.GameAnalytics");
         private static readonly AndroidJavaClass UNITY_GA = new AndroidJavaClass("com.gameanalytics.sdk.unity.UnityGameAnalytics");
-        private static readonly AndroidJavaClass GA_IMEI = new AndroidJavaClass("com.gameanalytics.sdk.imei.GAImei");
 #if gameanalytics_mopub_enabled
         private static readonly AndroidJavaClass MoPubClass = new AndroidJavaClass("com.mopub.unity.MoPubUnityPlugin");
 #endif
@@ -104,16 +103,6 @@ namespace GameAnalyticsSDK.Wrapper
 
         private static void initialize(string gamekey, string gamesecret)
         {
-            if(GameAnalytics.SettingsGA.UseIMEI)
-            {
-                try
-                {
-                    GA_IMEI.CallStatic("readImei");
-                }
-                catch(Exception)
-                {
-                }
-            }
             UNITY_GA.CallStatic("initialize");
 
             AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
@@ -140,59 +129,64 @@ namespace GameAnalyticsSDK.Wrapper
             GA.CallStatic("setCustomDimension03", customDimension);
         }
 
-        private static void addBusinessEvent(string currency, int amount, string itemType, string itemId, string cartType, string fields)
+        private static void setGlobalCustomEventFields(string customFields)
         {
-            GA.CallStatic("addBusinessEvent", currency, amount, itemType, itemId, cartType/*, fields*/);
+            GA.CallStatic("setGlobalCustomEventFields", customFields);
         }
 
-        private static void addBusinessEventWithReceipt(string currency, int amount, string itemType, string itemId, string cartType, string receipt, string store, string signature, string fields)
+        private static void addBusinessEvent(string currency, int amount, string itemType, string itemId, string cartType, string fields, bool mergeFields)
         {
-            GA.CallStatic("addBusinessEvent", currency, amount, itemType, itemId, cartType, receipt, store, signature/*, fields*/);
+            GA.CallStatic("addBusinessEvent", currency, amount, itemType, itemId, cartType, fields, mergeFields);
         }
 
-        private static void addResourceEvent(int flowType, string currency, float amount, string itemType, string itemId, string fields)
+        private static void addBusinessEventWithReceipt(string currency, int amount, string itemType, string itemId, string cartType, string receipt, string store, string signature, string fields, bool mergeFields)
         {
-            GA.CallStatic("addResourceEvent", flowType, currency, amount, itemType, itemId/*, fields*/);
+            GA.CallStatic("addBusinessEvent", currency, amount, itemType, itemId, cartType, receipt, store, signature, fields, mergeFields);
         }
 
-        private static void addProgressionEvent(int progressionStatus, string progression01, string progression02, string progression03, string fields)
+        private static void addResourceEvent(int flowType, string currency, float amount, string itemType, string itemId, string fields, bool mergeFields)
         {
-            GA.CallStatic("addProgressionEvent", progressionStatus, progression01, progression02, progression03/*, fields*/);
+            GA.CallStatic("addResourceEvent", flowType, currency, amount, itemType, itemId, fields, mergeFields);
         }
 
-        private static void addProgressionEventWithScore(int progressionStatus, string progression01, string progression02, string progression03, int score, string fields)
+        private static void addProgressionEvent(int progressionStatus, string progression01, string progression02, string progression03, string fields, bool mergeFields)
         {
-            GA.CallStatic("addProgressionEvent", progressionStatus, progression01, progression02, progression03, (double)score/*, fields*/);
+            GA.CallStatic("addProgressionEvent", progressionStatus, progression01, progression02, progression03, fields, mergeFields);
         }
 
-        private static void addDesignEvent(string eventId, string fields)
+        private static void addProgressionEventWithScore(int progressionStatus, string progression01, string progression02, string progression03, int score, string fields, bool mergeFields)
         {
-            GA.CallStatic("addDesignEvent", eventId/*, fields*/);
+            GA.CallStatic("addProgressionEvent", progressionStatus, progression01, progression02, progression03, (double)score, fields, mergeFields);
         }
 
-        private static void addDesignEventWithValue(string eventId, float value, string fields)
+        private static void addDesignEvent(string eventId, string fields, bool mergeFields)
         {
-            GA.CallStatic("addDesignEvent", eventId, (double)value/*, fields*/);
+            GA.CallStatic("addDesignEvent", eventId, fields, mergeFields);
         }
 
-        private static void addErrorEvent(int severity, string message, string fields)
+        private static void addDesignEventWithValue(string eventId, float value, string fields, bool mergeFields)
         {
-            GA.CallStatic("addErrorEvent", severity, message/*, fields*/);
+            GA.CallStatic("addDesignEvent", eventId, (double)value, fields, mergeFields);
         }
 
-        private static void addAdEventWithDuration(int adAction, int adType, string adSdkName, string adPlacement, long duration)
+        private static void addErrorEvent(int severity, string message, string fields, bool mergeFields)
         {
-            GA.CallStatic("addAdEvent", adAction, adType, adSdkName, adPlacement, duration);
+            GA.CallStatic("addErrorEvent", severity, message, fields, mergeFields);
         }
 
-        private static void addAdEventWithReason(int adAction, int adType, string adSdkName, string adPlacement, int noAdReason)
+        private static void addAdEventWithDuration(int adAction, int adType, string adSdkName, string adPlacement, long duration, string fields, bool mergeFields)
         {
-            GA.CallStatic("addAdEvent", adAction, adType, adSdkName, adPlacement, noAdReason);
+            GA.CallStatic("addAdEvent", adAction, adType, adSdkName, adPlacement, duration, fields, mergeFields);
         }
 
-        private static void addAdEvent(int adAction, int adType, string adSdkName, string adPlacement)
+        private static void addAdEventWithReason(int adAction, int adType, string adSdkName, string adPlacement, int noAdReason, string fields, bool mergeFields)
         {
-            GA.CallStatic("addAdEvent", adAction, adType, adSdkName, adPlacement);
+            GA.CallStatic("addAdEvent", adAction, adType, adSdkName, adPlacement, noAdReason, fields, mergeFields);
+        }
+
+        private static void addAdEvent(int adAction, int adType, string adSdkName, string adPlacement, string fields, bool mergeFields)
+        {
+            GA.CallStatic("addAdEvent", adAction, adType, adSdkName, adPlacement, fields, mergeFields);
         }
 
         private static void setEnabledInfoLog(bool enabled)
@@ -213,6 +207,11 @@ namespace GameAnalyticsSDK.Wrapper
         private static void setEventSubmission(bool enabled)
         {
             GA.CallStatic("setEnabledEventSubmission", enabled);
+        }
+
+        private static void setEventSubmission(bool enabled, bool doCacheLocally)
+        {
+            GA.CallStatic("setEnabledEventSubmission", enabled, doCacheLocally);
         }
 
         private static void gameAnalyticsStartSession()
@@ -250,6 +249,16 @@ namespace GameAnalyticsSDK.Wrapper
             return GA.CallStatic<string>("getABTestingVariantId");
         }
 
+        private static string getExternalUserId()
+        {
+            return GA.CallStatic<string>("getExternalUserId");
+        }
+
+        private static void configureExternalUserId(string externalUserId)
+        {
+            GA.CallStatic("configureExternalUserId", externalUserId);
+        }
+
         private static void startTimer(string key)
         {
             GA.CallStatic("startTimer", key);
@@ -268,6 +277,36 @@ namespace GameAnalyticsSDK.Wrapper
         private static long stopTimer(string key)
         {
             return GA.CallStatic<long>("stopTimer", key);
+        }
+
+        public static String getUserId()
+        {
+            return GA.CallStatic<string>("getUserId");
+        }
+
+        public static void enableGAIDTracking(bool flag)
+        {
+            GA.CallStatic("setGAIDTracking", flag);
+        }
+
+        public static void enableSDKInitEvent(bool flag)
+        {
+            GA.CallStatic("enableSDKInitEvent", flag);
+        }
+
+        public static void enableFpsHistogram(bool flag)
+        {
+            GA.CallStatic("enableFpsHistogram", flag);
+        }
+
+        public static void enableMemoryHistogram(bool flag)
+        {
+            GA.CallStatic("enableMemoryHistogram", flag);
+        }
+
+        public static void enableHealthHardwareInfo(bool flag)
+        {
+            GA.CallStatic("enableHealthHardwareInfo", flag);
         }
 #endif
     }

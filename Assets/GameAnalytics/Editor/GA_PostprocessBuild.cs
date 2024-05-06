@@ -19,6 +19,8 @@ namespace GameAnalyticsSDK.Editor
         private static string gameanalytics_topon = "gameanalytics_topon_enabled";
         private static string gameanalytics_max = "gameanalytics_max_enabled";
         private static string gameanalytics_aequus = "gameanalytics_aequus_enabled";
+        private static string gameanalytics_hyperbid = "gameanalytics_hyperbid_enabled";
+        private static string gameanalytics_admob = "gameanalytics_admob_enabled";
 
 #if UNITY_2018_1_OR_NEWER
         public int callbackOrder
@@ -46,6 +48,8 @@ namespace GameAnalyticsSDK.Editor
             UpdateTopOn();
             UpdateMax();
             UpdateAequus();
+            UpdateHyperBid();
+            UpdateAdMob();
         }
 
         private static void UpdateDefines(string entry, bool enabled, BuildTargetGroup[] groups)
@@ -168,6 +172,38 @@ namespace GameAnalyticsSDK.Editor
             }
         }
 
+        /// <summary>
+        /// Sets the scripting define symbol `gameanalytics_hyperbid_enabled` to true if HyperBid classes are detected within the Unity project
+        /// </summary>
+        private static void UpdateHyperBid()
+        {
+            var topOnTypes = new string[] { "HyperBid.Api.HBBannerAd", "HyperBid.Api.HBInterstitialAd", "HyperBid.Api.HBRewardedVideo", "HyperBid.Api.HBNativeAd" };
+            if (TypeExists(topOnTypes))
+            {
+                UpdateDefines(gameanalytics_hyperbid, true, new BuildTargetGroup[] { BuildTargetGroup.iOS, BuildTargetGroup.Android });
+            }
+            else
+            {
+                UpdateDefines(gameanalytics_hyperbid, false, new BuildTargetGroup[] { BuildTargetGroup.iOS, BuildTargetGroup.Android });
+            }
+        }
+
+        /// <summary>
+        /// Sets the scripting define symbol `gameanalytics_admob_enabled` to true if AdMob classes are detected within the Unity project
+        /// </summary>
+        private static void UpdateAdMob()
+        {
+            var topOnTypes = new string[] { "GoogleMobileAds.Api.AdRequest", "GoogleMobileAds.Api.BannerView", "GoogleMobileAds.Api.InterstitialAd", "GoogleMobileAds.Api.RewardedAd", "GoogleMobileAds.Api.RewardedInterstitialAd" };
+            if (TypeExists(topOnTypes))
+            {
+                UpdateDefines(gameanalytics_admob, true, new BuildTargetGroup[] { BuildTargetGroup.iOS, BuildTargetGroup.Android });
+            }
+            else
+            {
+                UpdateDefines(gameanalytics_admob, false, new BuildTargetGroup[] { BuildTargetGroup.iOS, BuildTargetGroup.Android });
+            }
+        }
+
         private static bool TypeExists(params string[] types)
         {
             if (types == null || types.Length == 0)
@@ -210,10 +246,36 @@ namespace GameAnalyticsSDK.Editor
                 proj.AddFrameworkToProject(target, "AppTrackingTransparency.framework", true);
                 //proj.SetBuildProperty(target, "ENABLE_BITCODE", "YES");
 #if gameanalytics_topon_enabled
-                string toponHelperFilePath = Path.Combine(path, "Libraries/GameAnalytics/Plugins/iOS/GameAnalyticsTopOnHelper.m");
-                string contents = File.ReadAllText(toponHelperFilePath);
-                contents = contents.Replace("#if gameanalytics_topon_enabled", "").Replace("#endif", "");
-                File.WriteAllText(toponHelperFilePath, contents);
+                string toponSubPath = "Libraries/GameAnalytics/Plugins/iOS/GameAnalyticsTopOnHelper.m";
+                string[] topOnGuids = AssetDatabase.FindAssets("GameAnalyticsTopOnHelper", null);
+                if (topOnGuids.Length > 0)
+                {
+                    string[] p = AssetDatabase.GUIDToAssetPath(topOnGuids[0]).Split(new char[] { '/' }, 2);
+                    if(p.Length > 1)
+                    {
+                        toponSubPath = "Libraries/" + p[1];
+                    }
+                }
+                string toponHelperFilePath = Path.Combine(path, toponSubPath);
+                string topOncontents = File.ReadAllText(toponHelperFilePath);
+                topOncontents = topOncontents.Replace("#if gameanalytics_topon_enabled", "").Replace("#endif", "");
+                File.WriteAllText(toponHelperFilePath, topOncontents);
+#endif
+#if gameanalytics_hyperbid_enabled
+                string hyperbidSubPath = "Libraries/GameAnalytics/Plugins/iOS/GameAnalyticsHyperBidHelper.m";
+                string[] hyperBidGuids = AssetDatabase.FindAssets("GameAnalyticsHyperBidHelper", null);
+                if (hyperBidGuids.Length > 0)
+                {
+                    string[] p = AssetDatabase.GUIDToAssetPath(hyperBidGuids[0]).Split(new char[] { '/' }, 2);
+                    if(p.Length > 1)
+                    {
+                        hyperbidSubPath = "Libraries/" + p[1];
+                    }
+                }
+                string hyperbidHelperFilePath = Path.Combine(path, hyperbidSubPath);
+                string hyperbidContents = File.ReadAllText(hyperbidHelperFilePath);
+                hyperbidContents = hyperbidContents.Replace("#if gameanalytics_hyperbid_enabled", "").Replace("#endif", "");
+                File.WriteAllText(hyperbidHelperFilePath, hyperbidContents);
 #endif
 
                 File.WriteAllText(projPath, proj.WriteToString());

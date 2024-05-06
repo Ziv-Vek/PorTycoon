@@ -53,7 +53,7 @@ namespace GameAnalyticsSDK.Setup
         /// The version of the GA Unity Wrapper plugin
         /// </summary>
         [HideInInspector]
-        public static string VERSION = "6.7.0";
+        public static string VERSION = "7.9.1";
 
         [HideInInspector]
         public static bool CheckingForUpdates = false;
@@ -132,7 +132,6 @@ namespace GameAnalyticsSDK.Setup
         public bool VerboseLogBuild = false;
         public bool UseManualSessionHandling = false;
         public bool SendExampleGameDataToMyGame = false;
-        public bool UseIMEI = false;
         //public bool UseBundleVersion = false;
 
         public bool InternetConnectivity;
@@ -185,8 +184,8 @@ namespace GameAnalyticsSDK.Setup
         public bool SubmitErrors = true;
         public bool NativeErrorReporting = false;
         public int MaxErrorCount = 10;
-        public bool SubmitFpsAverage = true;
-        public bool SubmitFpsCritical = true;
+        public bool SubmitFpsAverage = false;
+        public bool SubmitFpsCritical = false;
         public bool IncludeGooglePlay = true;
         public int FpsCriticalThreshold = 20;
         public int FpsCirticalSubmitInterval = 1;
@@ -199,6 +198,19 @@ namespace GameAnalyticsSDK.Setup
 
         public bool ResourceItemTypesFoldOut = false;
         public bool ResourceCurrenciesFoldOut = false;
+
+        public bool EnableMemoryHistogram = false;
+        public bool EnableHealthEvent = false;
+
+        public bool EnableFPSHistogram = false;
+
+        public bool EnableSDKInitEvent = false;
+
+        public bool EnableHardwareTracking = false;
+
+        public bool EnableMemoryTracking = false;
+
+
 
         #endregion
 
@@ -365,6 +377,12 @@ namespace GameAnalyticsSDK.Setup
             return valid;
         }
 
+        public static void UpdateKeys(int index, string gameKey, string secretKey)
+        {
+            GameAnalytics.SettingsGA.gameKey[index] = gameKey;
+            GameAnalytics.SettingsGA.secretKey[index] = secretKey;
+        }
+
         public void UpdateGameKey(int index, string value)
         {
             if(!string.IsNullOrEmpty(value))
@@ -519,11 +537,10 @@ namespace GameAnalyticsSDK.Setup
                 string[] names = new string[studios.Count + 1];
                 names[0] = "-";
 
-                string spaceAdd = "";
                 for(int i = 0; i < studios.Count; i++)
                 {
-                    names[i + 1] = studios[i].Name + spaceAdd;
-                    spaceAdd += " ";
+                    int j = i + 1;
+                    names[j] = j + ". " + studios[i].Name;
                 }
 
                 return names;
@@ -532,11 +549,10 @@ namespace GameAnalyticsSDK.Setup
             {
                 string[] names = new string[studios.Count];
 
-                string spaceAdd = "";
                 for(int i = 0; i < studios.Count; i++)
                 {
-                    names[i] = studios[i].Name + spaceAdd;
-                    spaceAdd += " ";
+                    int j = i + 1;
+                    names[i] = j + ". " + studios[i].Name;
                 }
 
                 return names;
@@ -553,11 +569,10 @@ namespace GameAnalyticsSDK.Setup
             string[] names = new string[studios[index].Games.Count + 1];
             names[0] = "-";
 
-            string spaceAdd = "";
             for(int i = 0; i < studios[index].Games.Count; i++)
             {
-                names[i + 1] = studios[index].Games[i].Name + spaceAdd;
-                spaceAdd += " ";
+                int j = i + 1;
+                names[j] = j + ". " + studios[index].Games[i].Name;
             }
 
             return names;

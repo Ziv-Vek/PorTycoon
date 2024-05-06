@@ -36,6 +36,9 @@ namespace GameAnalyticsSDK.Wrapper
         private static extern void configureUserId(string userId);
 
         [DllImport ("__Internal")]
+        private static extern void configureExternalUserId(string userId);
+
+        [DllImport ("__Internal")]
         private static extern void configureAutoDetectAppVersion(bool flag);
 
         [DllImport ("__Internal")]
@@ -51,40 +54,43 @@ namespace GameAnalyticsSDK.Wrapper
         private static extern void setCustomDimension03(string customDimension);
 
         [DllImport ("__Internal")]
-        private static extern void addBusinessEvent(string currency, int amount, string itemType, string itemId, string cartType, string receipt, string fields);
+        private static extern void setGlobalCustomEventFields(string customFields);
 
         [DllImport ("__Internal")]
-        private static extern void addBusinessEventAndAutoFetchReceipt(string currency, int amount, string itemType, string itemId, string cartType, string fields);
+        private static extern void addBusinessEvent(string currency, int amount, string itemType, string itemId, string cartType, string receipt, string fields, bool mergeFields);
 
         [DllImport ("__Internal")]
-        private static extern void addResourceEvent(int flowType, string currency, float amount, string itemType, string itemId, string fields);
+        private static extern void addBusinessEventAndAutoFetchReceipt(string currency, int amount, string itemType, string itemId, string cartType, string fields, bool mergeFields);
 
         [DllImport ("__Internal")]
-        private static extern void addProgressionEvent(int progressionStatus, string progression01, string progression02, string progression03, string fields);
+        private static extern void addResourceEvent(int flowType, string currency, float amount, string itemType, string itemId, string fields, bool mergeFields);
 
         [DllImport ("__Internal")]
-        private static extern void addProgressionEventWithScore(int progressionStatus, string progression01, string progression02, string progression03, int score, string fields);
+        private static extern void addProgressionEvent(int progressionStatus, string progression01, string progression02, string progression03, string fields, bool mergeFields);
 
         [DllImport ("__Internal")]
-        private static extern void addDesignEvent(string eventId, string fields);
+        private static extern void addProgressionEventWithScore(int progressionStatus, string progression01, string progression02, string progression03, int score, string fields, bool mergeFields);
 
         [DllImport ("__Internal")]
-        private static extern void addDesignEventWithValue(string eventId, float value, string fields);
+        private static extern void addDesignEvent(string eventId, string fields, bool mergeFields);
 
         [DllImport ("__Internal")]
-        private static extern void addErrorEvent(int severity, string message, string fields);
+        private static extern void addDesignEventWithValue(string eventId, float value, string fields, bool mergeFields);
 
         [DllImport ("__Internal")]
-        private static extern void addAdEventWithDuration(int adAction, int adType, string adSdkName, string adPlacement, long duration);
+        private static extern void addErrorEvent(int severity, string message, string fields, bool mergeFields);
 
         [DllImport ("__Internal")]
-        private static extern void addAdEventWithReason(int adAction, int adType, string adSdkName, string adPlacement, int noAdReason);
+        private static extern void addAdEventWithDuration(int adAction, int adType, string adSdkName, string adPlacement, long duration, string fields, bool mergeFields);
 
         [DllImport ("__Internal")]
-        private static extern void addAdEvent(int adAction, int adType, string adSdkName, string adPlacement);
+        private static extern void addAdEventWithReason(int adAction, int adType, string adSdkName, string adPlacement, int noAdReason, string fields, bool mergeFields);
 
         [DllImport ("__Internal")]
-        private static extern void addImpressionEvent(string adNetworkName, string adNetworkVersion, string impressionData);
+        private static extern void addAdEvent(int adAction, int adType, string adSdkName, string adPlacement, string fields, bool mergeFields);
+
+        [DllImport ("__Internal")]
+        private static extern void addImpressionEvent(string adNetworkName, string adNetworkVersion, string impressionData, string fields, bool mergeFields);
 
         [DllImport ("__Internal")]
         private static extern void setEnabledInfoLog(bool enabled);
@@ -97,6 +103,9 @@ namespace GameAnalyticsSDK.Wrapper
 
         [DllImport ("__Internal")]
         private static extern void setEventSubmission(bool enabled);
+
+        [DllImport ("__Internal")]
+        private static extern void setEventSubmission(bool enabled, bool doCache);
 
         [DllImport ("__Internal")]
         private static extern void gameAnalyticsStartSession();
@@ -117,6 +126,10 @@ namespace GameAnalyticsSDK.Wrapper
 
         [DllImport ("__Internal")]
         [return: MarshalAs(UnmanagedType.LPStr)]
+        private static extern string getRemoteConfigsContentAsJSON();
+
+        [DllImport ("__Internal")]
+        [return: MarshalAs(UnmanagedType.LPStr)]
         private static extern string getABTestingId();
 
         [DllImport ("__Internal")]
@@ -134,6 +147,29 @@ namespace GameAnalyticsSDK.Wrapper
 
         [DllImport ("__Internal")]
         private static extern long stopTimer(string key);
+
+        [DllImport ("__Internal")]
+        [return: MarshalAs(UnmanagedType.LPStr)]
+        public static extern string getUserId();
+
+        [DllImport ("__Internal")]
+        [return: MarshalAs(UnmanagedType.LPStr)]
+        public static extern string getExternalUserId();
+
+        [DllImport ("__Internal")]
+        public static extern void useRandomizedId(bool flag);
+
+        [DllImport ("__Internal")]
+        public static extern void enableSDKInitEvent(bool flag);
+
+        [DllImport ("__Internal")]
+        public static extern void enableFpsHistogram(bool flag);
+
+        [DllImport ("__Internal")]
+        public static extern void enableMemoryHistogram(bool flag);
+
+        [DllImport ("__Internal")]
+        public static extern void enableHealthHardwareInfo(bool flag);
 
         private static void initialize(string gamekey, string gamesecret)
         {

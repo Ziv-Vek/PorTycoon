@@ -13,11 +13,12 @@ namespace GameAnalyticsSDK
 #if gameanalytics_mopub_enabled
         private static readonly AndroidJavaClass MoPubClass = new AndroidJavaClass("com.mopub.unity.MoPubUnityPlugin");
 #endif
+
 #if gameanalytics_topon_enabled
         private static readonly AndroidJavaClass TopOnClass = new AndroidJavaClass("com.anythink.core.api.ATSDK");
 #endif
-#if gameanalytics_aequus_enabled
-        private static readonly AndroidJavaClass AequusClass = new AndroidJavaClass("mobi.aequus.sdk.BuildConfig");
+#if gameanalytics_hyperbid_enabled
+        private static readonly AndroidJavaClass HyperBidClass = new AndroidJavaClass("com.hyperbid.core.api.HBSDK");
 #endif
 
         private static void subscribeMoPubImpressions()
@@ -94,21 +95,72 @@ namespace GameAnalyticsSDK
             GAAequusIntegration.ListenForImpressions(AequusImpressionHandler);
         }
 
-        private static void AequusImpressionHandler(string json)
+        private static void AequusImpressionHandler(string sdkVersion, string json)
         {
             if(!string.IsNullOrEmpty(json))
             {
 #if gameanalytics_aequus_enabled
-                GA.CallStatic("addImpressionAequusEvent", AequusClass.GetStatic<string>("SDK_VERSION_NAME"), json);
+                GA.CallStatic("addImpressionAequusEvent", sdkVersion, json);
 #endif
             }
         }
+
+        private static void subscribeHyperBidImpressions()
+        {
+            GAHyperBidIntegration.ListenForImpressions(HyperBidImpressionHandler);
+        }
+
+        private static void HyperBidImpressionHandler(string json)
+        {
+            if(!string.IsNullOrEmpty(json))
+            {
+#if gameanalytics_hyperbid_enabled
+                GA.CallStatic("addImpressionHyperBidEvent", HyperBidClass.CallStatic<string>("getVersion").Replace("HB_", ""), json);
+#endif
+            }
+        }
+
+#if gameanalytics_admob_enabled
+        private static void subscribeAdMobImpressions(string adUnitId, GoogleMobileAds.Api.BannerView ad)
+        {
+            GAAdMobIntegration.ListenForImpressions(adUnitId, ad, AdMobImpressionHandler);
+        }
+
+        private static void subscribeAdMobImpressions(string adUnitId, GoogleMobileAds.Api.InterstitialAd ad)
+        {
+            GAAdMobIntegration.ListenForImpressions(adUnitId, ad, AdMobImpressionHandler);
+        }
+
+        private static void subscribeAdMobImpressions(string adUnitId, GoogleMobileAds.Api.RewardedAd ad)
+        {
+            GAAdMobIntegration.ListenForImpressions(adUnitId, ad, AdMobImpressionHandler);
+        }
+
+        private static void subscribeAdMobImpressions(string adUnitId, GoogleMobileAds.Api.RewardedInterstitialAd ad)
+        {
+            GAAdMobIntegration.ListenForImpressions(adUnitId, ad, AdMobImpressionHandler);
+        }
+
+        private static void subscribeAdMobImpressions(string adUnitId, GoogleMobileAds.Api.AppOpenAd ad)
+        {
+            GAAdMobIntegration.ListenForImpressions(adUnitId, ad, AdMobImpressionHandler);
+        }
+
+        private static void AdMobImpressionHandler(string sdkVersion, string json)
+        {
+            if(!string.IsNullOrEmpty(json))
+            {
+                GA.CallStatic("addImpressionAdMobEvent", sdkVersion, json);
+            }
+        }
+#endif
+
 #endif
 
         // --------- IOS NATIVE METHODS ---------
 #if (UNITY_IOS) && (!UNITY_EDITOR)
         [DllImport ("__Internal")]
-        private static extern void addImpressionEvent(string adNetworkName, string adNetworkVersion, string impressionData);
+        private static extern void addImpressionEvent(string adNetworkName, string adNetworkVersion, string impressionData, string customFields);
 #if gameanalytics_mopub_enabled
         [DllImport("__Internal")]
         private static extern string _moPubGetSDKVersion();
@@ -117,6 +169,11 @@ namespace GameAnalyticsSDK
 #if gameanalytics_topon_enabled
         [DllImport("__Internal")]
         private static extern string getTopOnSdkVersion();
+#endif
+
+#if gameanalytics_hyperbid_enabled
+        [DllImport("__Internal")]
+        private static extern string getHyperBidSdkVersion();
 #endif
 
         private static void subscribeMoPubImpressions()
@@ -129,7 +186,7 @@ namespace GameAnalyticsSDK
             if(!string.IsNullOrEmpty(json))
             {
 #if gameanalytics_mopub_enabled
-                addImpressionEvent("mopub", _moPubGetSDKVersion(), json);
+                addImpressionEvent("mopub", _moPubGetSDKVersion(), json, null);
 #endif
             }
         }
@@ -144,7 +201,7 @@ namespace GameAnalyticsSDK
             if(!string.IsNullOrEmpty(json))
             {
 #if gameanalytics_fyber_enabled
-                addImpressionEvent("fyber", Fyber.FairBid.Version, json);
+                addImpressionEvent("fyber", Fyber.FairBid.Version, json, null);
 #endif
             }
         }
@@ -168,7 +225,7 @@ namespace GameAnalyticsSDK
                     v = v.Substring(0, index);
                 }
 
-                addImpressionEvent("ironsource", v, json);
+                addImpressionEvent("ironsource", v, json, null);
 #endif
             }
         }
@@ -183,7 +240,7 @@ namespace GameAnalyticsSDK
             if(!string.IsNullOrEmpty(json))
             {
 #if gameanalytics_topon_enabled
-                addImpressionEvent("topon", getTopOnSdkVersion(), json);
+                addImpressionEvent("topon", getTopOnSdkVersion(), json, null);
 #endif
             }
         }
@@ -198,7 +255,7 @@ namespace GameAnalyticsSDK
             if(!string.IsNullOrEmpty(json))
             {
 #if gameanalytics_max_enabled
-                addImpressionEvent("max", MaxSdk.Version, json);
+                addImpressionEvent("max", MaxSdk.Version, json, null);
 #endif
             }
         }
@@ -208,15 +265,66 @@ namespace GameAnalyticsSDK
             GAAequusIntegration.ListenForImpressions(AequusImpressionHandler);
         }
 
-        private static void AequusImpressionHandler(string json)
+        private static void AequusImpressionHandler(string sdkVersion, string json)
         {
             if(!string.IsNullOrEmpty(json))
             {
 #if gameanalytics_aequus_enabled
-                // TODO: iOS not supported yet for Aequus
+                addImpressionEvent("aequus", sdkVersion, json, null);
 #endif
             }
         }
+
+        private static void subscribeHyperBidImpressions()
+        {
+            GAHyperBidIntegration.ListenForImpressions(HyperBidImpressionHandler);
+        }
+
+        private static void HyperBidImpressionHandler(string json)
+        {
+            if(!string.IsNullOrEmpty(json))
+            {
+#if gameanalytics_hyperbid_enabled
+                addImpressionEvent("hyperbid", getHyperBidSdkVersion(), json, null);
+#endif
+            }
+        }
+
+#if gameanalytics_admob_enabled
+        private static void subscribeAdMobImpressions(string adUnitId, GoogleMobileAds.Api.BannerView ad)
+        {
+            GAAdMobIntegration.ListenForImpressions(adUnitId, ad, AdMobImpressionHandler);
+        }
+
+        private static void subscribeAdMobImpressions(string adUnitId, GoogleMobileAds.Api.InterstitialAd ad)
+        {
+            GAAdMobIntegration.ListenForImpressions(adUnitId, ad, AdMobImpressionHandler);
+        }
+
+        private static void subscribeAdMobImpressions(string adUnitId, GoogleMobileAds.Api.RewardedAd ad)
+        {
+            GAAdMobIntegration.ListenForImpressions(adUnitId, ad, AdMobImpressionHandler);
+        }
+
+        private static void subscribeAdMobImpressions(string adUnitId, GoogleMobileAds.Api.RewardedInterstitialAd ad)
+        {
+            GAAdMobIntegration.ListenForImpressions(adUnitId, ad, AdMobImpressionHandler);
+        }
+
+        private static void subscribeAdMobImpressions(string adUnitId, GoogleMobileAds.Api.AppOpenAd ad)
+        {
+            GAAdMobIntegration.ListenForImpressions(adUnitId, ad, AdMobImpressionHandler);
+        }
+
+        private static void AdMobImpressionHandler(string sdkVersion, string json)
+        {
+            if(!string.IsNullOrEmpty(json))
+            {
+                addImpressionEvent("admob", sdkVersion, json, null);
+            }
+        }
+#endif
+
 #endif
 
         // ----------------------- MOPUB AD IMPRESSIONS ---------------------- //
@@ -273,11 +381,68 @@ namespace GameAnalyticsSDK
         public static void SubscribeAequusImpressions()
         {
 #if UNITY_EDITOR
-            Debug.Log("subscribeAequusImpressions()");
+            Debug.Log("subscribeAequusImpressions()"); 
 #elif UNITY_IOS || UNITY_ANDROID
             subscribeAequusImpressions();
 #endif
         }
+
+        // ----------------------- HYPERBID AD IMPRESSIONS ---------------------- //
+        public static void SubscribeHyperBidImpressions()
+        {
+#if UNITY_EDITOR
+            Debug.Log("subscribeHyperBidImpressions()");
+#elif UNITY_IOS || UNITY_ANDROID
+            subscribeHyperBidImpressions();
+#endif
+        }
+
+        // ----------------------- ADMOB AD IMPRESSIONS ---------------------- //
+#if gameanalytics_admob_enabled
+        public static void SubscribeAdMobImpressions(string adUnitId, GoogleMobileAds.Api.BannerView bannerView)
+        {
+#if UNITY_EDITOR
+            Debug.Log("subscribeAdMobImpressions(adUnitId, bannerView)");
+#elif UNITY_IOS || UNITY_ANDROID
+            subscribeAdMobImpressions(adUnitId, bannerView);
+#endif
+        }
+
+        public static void SubscribeAdMobImpressions(string adUnitId, GoogleMobileAds.Api.InterstitialAd interstitialAd)
+        {
+#if UNITY_EDITOR
+            Debug.Log("subscribeAdMobImpressions(adUnitId, interstitialAd)");
+#elif UNITY_IOS || UNITY_ANDROID
+            subscribeAdMobImpressions(adUnitId, interstitialAd);
+#endif
+        }
+
+        public static void SubscribeAdMobImpressions(string adUnitId, GoogleMobileAds.Api.RewardedAd rewardedAd)
+        {
+#if UNITY_EDITOR
+            Debug.Log("subscribeAdMobImpressions(adUnitId, rewardedAd)");
+#elif UNITY_IOS || UNITY_ANDROID
+            subscribeAdMobImpressions(adUnitId, rewardedAd);
+#endif
+        }
+
+        public static void SubscribeAdMobImpressions(string adUnitId, GoogleMobileAds.Api.RewardedInterstitialAd rewardedInterstitialAd)
+        {
+#if UNITY_EDITOR
+            Debug.Log("subscribeAdMobImpressions(adUnitId, rewardedInterstitialAd)");
+#elif UNITY_IOS || UNITY_ANDROID
+            subscribeAdMobImpressions(adUnitId, rewardedInterstitialAd);
+#endif
+        }
+
+        public static void SubscribeAdMobImpressions(string adUnitId, GoogleMobileAds.Api.AppOpenAd appOpenAd)
+        {
+            #if UNITY_EDITOR
+                        Debug.Log("subscribeAdMobImpressions(adUnitId, appOpenAd)");
+            #elif UNITY_IOS || UNITY_ANDROID
+                        subscribeAdMobImpressions(adUnitId, appOpenAd);
+            #endif
+        }
+#endif
     }
 }
-

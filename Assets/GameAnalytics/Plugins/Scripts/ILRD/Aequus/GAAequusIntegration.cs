@@ -10,9 +10,9 @@ public class GAAequusIntegration
 
     private class GAAequusListener : Mobi.Aequus.Sdk.AequusILRDListener
     {
-        private Action<string> callback;
+        private Action<string, string> callback;
 
-        public GAAequusListener(Action<string> callback)
+        public GAAequusListener(Action<string, string> callback)
         {
             this.callback = callback;
         }
@@ -23,12 +23,12 @@ public class GAAequusIntegration
 
         public void OnAequusILRDImpressionShow(Mobi.Aequus.Sdk.ImpressionData impressionData)
         {
-            callback(impressionData.GetJsonRepresentation());
+            callback(impressionData.AequusSdkVersion, impressionData.GetJsonRepresentation());
         }
     }
 #endif
 
-    public static void ListenForImpressions(Action<string> callback)
+    public static void ListenForImpressions(Action<string, string> callback)
     {
 #if gameanalytics_aequus_enabled && !(UNITY_EDITOR)
         if (_subscribed)

@@ -16,7 +16,7 @@ public class GAIronSourceIntegration
             return;
         }
 
-        IronSourceEvents.onImpressionSuccessEvent += (arg1) => callback(arg1.allData);
+        IronSourceEvents.onImpressionDataReadyEvent += (arg1) => callback(arg1.allData);
         _subscribed = true;
 #endif
 

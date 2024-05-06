@@ -8,17 +8,29 @@ public class GAMaxIntegration
 #if gameanalytics_max_enabled && !(UNITY_EDITOR)
     private static bool _subscribed = false;
 
+    [Serializable]
+    public class MaxImpressionData
+    {
+        public string country;
+        public string network_name;
+        public string adunit_id;
+        public string adunit_format;
+        public string placement;
+        public string creative_id;
+        public float revenue;
+    }
+
     private static void runCallback(string format, MaxSdkBase.AdInfo adInfo, Action<string> callback)
     {
-        Dictionary<string, object> dict = new Dictionary<string, object>();
-        dict.Add("country", MaxSdk.GetSdkConfiguration().CountryCode);
-        dict.Add("network_name", adInfo.NetworkName);
-        dict.Add("adunit_id", adInfo.AdUnitIdentifier);
-        dict.Add("adunit_format", format);
-        dict.Add("placement", adInfo.Placement);
-        dict.Add("creative_id", adInfo.CreativeIdentifier);
-        dict.Add("revenue", adInfo.Revenue);
-        string json = GA_MiniJSON.Serialize(dict);
+        MaxImpressionData data = new MaxImpressionData();
+        data.country = MaxSdk.GetSdkConfiguration().CountryCode;
+        data.network_name = adInfo.NetworkName;
+        data.adunit_id =  adInfo.AdUnitIdentifier;
+        data.adunit_format = format;
+        data.placement = adInfo.Placement;
+        data.creative_id = adInfo.CreativeIdentifier;
+        data.revenue = (float)adInfo.Revenue;
+        string json = JsonUtility.ToJson(data);
         callback(json);
     }
 #endif
@@ -31,7 +43,7 @@ public class GAMaxIntegration
             Debug.Log("Ignoring duplicate gameanalytics subscription");
             return;
         }
-        
+
         MaxSdkCallbacks.Interstitial.OnAdRevenuePaidEvent += (adUnitId, adInfo) => runCallback("INTER", adInfo, callback);
         MaxSdkCallbacks.Banner.OnAdRevenuePaidEvent += (adUnitId, adInfo) => runCallback("BANNER", adInfo, callback);
         MaxSdkCallbacks.Rewarded.OnAdRevenuePaidEvent += (adUnitId, adInfo) => runCallback("REWARDED", adInfo, callback);
