@@ -12,12 +12,15 @@ namespace SupersonicWisdomSDK
             {
                 if (IsDisabled) return;
                 
-                if (IsEnabled || IsPaused || DidFinish)
+                if (IsEnabled || DidFinish)
                 {
                     SwInfra.Logger.Log(EWisdomLogType.Time, $"StartTimer due to touch | {Name}");
                     StartTimer();
-
-                    return;
+                }
+                else if (IsPaused)
+                {
+                    Elapsed = 0;
+                    DidFinish = false;
                 }
             }
 

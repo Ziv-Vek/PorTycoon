@@ -277,7 +277,6 @@ MonoBehaviour:
   VerboseLogBuild: 0
   UseManualSessionHandling: 0
   SendExampleGameDataToMyGame: 0
-  UseIMEI: 0
   InternetConnectivity: 0
   CustomDimensions01: []
   CustomDimensions02: []
@@ -319,3 +318,9 @@ MonoBehaviour:
   CustomDimensions03FoldOut: 0
   ResourceItemTypesFoldOut: 0
   ResourceCurrenciesFoldOut: 0
+  EnableMemoryHistogram: 0
+  EnableHealthEvent: 0
+  EnableFPSHistogram: 0
+  EnableSDKInitEvent: 0
+  EnableHardwareTracking: 0
+  EnableMemoryTracking: 0

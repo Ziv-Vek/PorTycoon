@@ -128,8 +128,7 @@ namespace SupersonicWisdomSDK.Editor
             public const string VERIFY_GA_SETTINGS = "The following GameAnalytics Advanced Settings should be set to true:\nSend Version\nSubmit Errors\n";
             public const string WELCOME_MESSAGE = "Please go to settings window and Login with your Supersonic platform credentials to automatically retrieve the relevant credential IDs";
             public const string WELCOME_TITLE = "Welcome to Supersonic Wisdom SDK!";
-            public const string UNITY_MINIMUM_VERSION_MESSAGE =
-                "Your Unity Version is not supported by Wisdom.\nPlease update to Unity {0} LTS.";
+            public const string UNITY_MINIMUM_VERSION_MESSAGE = "Your Unity Version is not supported by Wisdom.\nPlease update to Unity {0} LTS, or later.";
             public const string MINIMUM_EDITOR_VERSION_URL = "https://unity.com/releases/editor/archive#download-archive-{0}";
             public const string NATIVE = "Native";
             public const string SESSION_TEXT = "Session";

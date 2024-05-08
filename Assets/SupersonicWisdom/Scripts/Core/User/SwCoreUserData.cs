@@ -45,7 +45,8 @@ namespace SupersonicWisdomSDK
         private bool _completeInitOnce;
 
         private SwUserActiveDay _activeDay;
-        
+        private string _installSdkVersion;
+
         #endregion
 
 
@@ -90,6 +91,27 @@ namespace SupersonicWisdomSDK
             }
         }
 
+        public string InstallSdkVersion
+        {
+            get { return _installSdkVersion; }
+            private set
+            {
+                _installSdkVersion = value;
+                SwInfra.KeyValueStore.SetString(SwStoreKeys.InstallSdkVersion, _installSdkVersion);
+                SwInfra.KeyValueStore.Save();
+            }
+        }
+        
+        public long InstallSdkVersionId { get; private set; }
+        
+        public string InstallDate
+        {
+            get
+            {
+                return InstallDateTime.SwToString(SwConstants.INSTALL_DATE_FORMAT);
+            }
+        }
+
         public string InstallDateTimeString
         {
             get { return _installDateTimeString; }
@@ -101,14 +123,6 @@ namespace SupersonicWisdomSDK
             }
         }
         
-        public string InstallDate
-        {
-            get
-            {
-                return InstallDateTime.SwToString(SwConstants.INSTALL_DATE_FORMAT);
-            }
-        }
-
         #endregion
 
 
@@ -138,6 +152,7 @@ namespace SupersonicWisdomSDK
             LoadActiveDays();
             LoadCustomUuid();
             LoadUserState();
+            LoadInstallSdkVersion();
         }
 
         public long GetSecondsFromInstall()
@@ -200,7 +215,7 @@ namespace SupersonicWisdomSDK
             return didChange;
         }
 
-        public (SwJsonDictionary dataDictionary, IEnumerable<string> keysToEncrypt) AddExtraDataToTrackEvent()
+        public (SwJsonDictionary dataDictionary, IEnumerable<string> keysToEncrypt) ConditionallyAddExtraDataToTrackEvent(SwCoreUserData coreUserData)
         {
             var extraData = new SwJsonDictionary
             {
@@ -214,7 +229,7 @@ namespace SupersonicWisdomSDK
                 yield break;
             }
         }
-
+        
         #endregion
 
 
@@ -367,6 +382,22 @@ namespace SupersonicWisdomSDK
             _activeDay.Load();
         }
 
+        private void LoadInstallSdkVersion()
+        {
+            if (IsNew)
+            {
+                InstallSdkVersion = SwConstants.SDK_VERSION;
+            }
+            else
+            {
+                if (!SwInfra.KeyValueStore.HasKey(SwStoreKeys.InstallSdkVersion)) return;
+                
+                _installSdkVersion = SwInfra.KeyValueStore.GetString(SwStoreKeys.InstallSdkVersion);
+            }
+            
+            InstallSdkVersionId = SwUtils.System.ComputeVersionId(InstallSdkVersion);
+        }
+        
         #endregion
     }
 }

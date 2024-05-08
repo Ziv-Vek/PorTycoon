@@ -7,14 +7,13 @@ namespace AppsFlyerSDK
     public class AppsFlyer : MonoBehaviour
     {
 
-        public static readonly string kAppsFlyerPluginVersion = "6.10.10";
+        public static readonly string kAppsFlyerPluginVersion = "6.14.0";
         public static string CallBackObjectName = null;
         private static EventHandler onRequestResponse;
         private static EventHandler onInAppResponse;
         private static EventHandler onDeepLinkReceived;
         public static IAppsFlyerNativeBridge instance = null;
         public delegate void unityCallBack(string message);
-
 
 
         /// <summary>
@@ -226,6 +225,21 @@ namespace AppsFlyerSDK
         }
 
         /// <summary>
+        /// Set the deepLink timeout value that should be used for DDL.
+        /// </summary>
+        /// <param name="deepLinkTimeout">deepLink timeout in milliseconds.</param>
+        public static void setDeepLinkTimeout(long deepLinkTimeout)
+        {
+
+            if (instance != null)
+            {
+                instance.setDeepLinkTimeout(deepLinkTimeout);
+            }
+
+
+        }
+
+        /// <summary>
         /// Set additional data to be sent to AppsFlyer.
         /// </summary>
         /// <param name="customData">additional data Dictionary.</param>
@@ -308,6 +322,18 @@ namespace AppsFlyerSDK
         }
 
         /// <summary>
+        /// Sets or updates the user consent data related to GDPR and DMA regulations for advertising and data usage purposes within the application.
+        /// </summary>
+        /// <param name = "appsFlyerConsent" >instance of AppsFlyerConsent.</param>
+        public static void setConsentData(AppsFlyerConsent appsFlyerConsent)
+        {
+            if (instance != null)
+            {
+                instance.setConsentData(appsFlyerConsent);
+            }
+        }
+
+        /// <summary>
         /// Manually record the location of the user.
         /// </summary>
         /// <param name="latitude">latitude as double.</param>
@@ -338,6 +364,19 @@ namespace AppsFlyerSDK
             }
 
 
+        }
+
+        /// <summary>
+        /// Calling enableTCFDataCollection(true) will enable collecting and sending any TCF related data.
+        /// Calling enableTCFDataCollection(false) will disable the collection of TCF related data and from sending it.
+        /// </summary>
+        /// <param name = "shouldCollectTcfData" >should start TCF Data collection boolean.</param>
+        public static void enableTCFDataCollection(bool shouldCollectTcfData)
+        {
+            if (instance != null)
+            {
+                instance.enableTCFDataCollection(shouldCollectTcfData);
+            }
         }
 
         /// <summary>
@@ -874,6 +913,24 @@ namespace AppsFlyerSDK
                 IAppsFlyerAndroidBridge appsFlyerAndroidInstance = (IAppsFlyerAndroidBridge)instance;
                 appsFlyerAndroidInstance.setDisableNetworkData(disable);
             }
+        }
+
+
+        /// <summary>
+        /// Use to disable app vendor identifier (IDFV) collection, 'true' to disable.
+        /// </summary>
+        public static void disableIDFVCollection(bool isDisabled) 
+        {
+#if UNITY_IOS || UNITY_STANDALONE_OSX
+            if (instance == null) { 
+                instance = new AppsFlyeriOS();
+            }
+            if (instance != null && instance is IAppsFlyerIOSBridge) {
+                IAppsFlyerIOSBridge appsFlyeriOSInstance = (IAppsFlyerIOSBridge)instance;
+                appsFlyeriOSInstance.disableIDFVCollection(isDisabled);
+            }
+#else
+#endif
         }
 
         /// <summary>

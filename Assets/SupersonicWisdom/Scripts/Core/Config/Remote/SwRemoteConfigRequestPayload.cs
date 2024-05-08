@@ -38,6 +38,10 @@ namespace SupersonicWisdomSDK
         public long stage;
         [JsonProperty("abTestVariant", NullValueHandling = NullValueHandling.Ignore)]
         public string abTestVariant;
+        [JsonProperty("installSdkVersion", NullValueHandling = NullValueHandling.Ignore)]
+        public string installSdkVersion;
+        [JsonProperty("installSdkVersionId", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public long installSdkVersionId;
 
 #if UNITY_IOS
         public string idfv;

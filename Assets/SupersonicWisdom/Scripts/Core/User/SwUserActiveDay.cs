@@ -65,11 +65,19 @@ namespace SupersonicWisdomSDK
             }
         }
 
-        public (SwJsonDictionary, IEnumerable<string>) AddExtraDataToTrackEvent()
+        public (SwJsonDictionary, IEnumerable<string>) ConditionallyAddExtraDataToTrackEvent(SwCoreUserData coreUserData)
         {
+            var shouldTrackPastMinimumSdkVersion = SwTrackerConstants.ShouldTrackPastMinimumSdkVersion(coreUserData);
+            
+            if (!shouldTrackPastMinimumSdkVersion)
+            {
+                SwInfra.Logger.Log(EWisdomLogType.ActiveDay, $"Not tracking ActiveDay as SDK version is below minimum required");
+                return (new SwJsonDictionary(), KeysToEncrypt());
+            }
+            
             var dataDictionary = new SwJsonDictionary
             {
-                { ACTIVE_DAY_WISDOM_ANALYTICS_KEY , ActiveDay },
+                { ACTIVE_DAY_WISDOM_ANALYTICS_KEY, ActiveDay },
             };
 
             return (dataDictionary, KeysToEncrypt());

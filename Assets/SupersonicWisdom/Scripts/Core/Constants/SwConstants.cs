@@ -13,10 +13,10 @@ namespace SupersonicWisdomSDK
         public const int DEFAULT_REQUEST_TIMEOUT = 10;
         public const string FEATURE = "";
         public const long FEATURE_VERSION = 0;
-        public const string BUILD_NUMBER = "9689";
-        public const string GIT_COMMIT = "8e242de";
+        public const string BUILD_NUMBER = "275";
+        public const string GIT_COMMIT = "3420478";
 
-        public const string SDK_VERSION = "7.7.12";
+        public const string SDK_VERSION = "7.7.26";
         public const string SETTINGS_RESOURCE_PATH = "SupersonicWisdom/Settings";
         public const string SUPERSONIC_WISDOM_SCRIPTS_PATH = "Assets/SupersonicWisdom/Scripts";
         public const string EXTRACTED_RESOURCES_DIR_NAME = "Extracted";

@@ -11,6 +11,7 @@ namespace SupersonicWisdomSDK
         public static string LatestSuccessfulConfigResponse = "SupersonicWisdomLatestConfig";
         public static string ActiveDay = "ActiveDay";
         public static string LastActiveDate = "LastActiveDate";
+        public const string InstallSdkVersion = "InstallSdkVersion";
 
         #endregion
     }

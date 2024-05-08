@@ -215,6 +215,8 @@ namespace SupersonicWisdomSDK
                 abName = _abName ?? "",
                 abVariant = _abVariant ?? "",
                 configStatus = _configStatus.ToString(),
+                installSdkVersion = CoreUserData.InstallSdkVersion,
+                installSdkVersionId = CoreUserData.InstallSdkVersionId,
             };
             
             var organizationAdvertisingId = CoreUserData.OrganizationAdvertisingId;

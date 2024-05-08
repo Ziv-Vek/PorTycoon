@@ -234,7 +234,7 @@ namespace SupersonicWisdomSDK
             {
                 try
                 {
-                    var (listenerData, keysToEncrypt) = listener.AddExtraDataToTrackEvent();
+                    var (listenerData, keysToEncrypt) = listener.ConditionallyAddExtraDataToTrackEvent(_coreUserData);
                     
                     foreach (var key in keysToEncrypt)
                     {

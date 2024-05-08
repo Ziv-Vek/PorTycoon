@@ -17,7 +17,7 @@ namespace SupersonicWisdomSDK
 
         #region --- Public Methods ---
 
-        ISwTimer PauseTimer ();
+        ISwTimer PauseTimer (bool disableTimer);
         ISwTimer ResumeTimer ();
         void SetDuration (float duration);
         void SetElapsed(float elapsed);

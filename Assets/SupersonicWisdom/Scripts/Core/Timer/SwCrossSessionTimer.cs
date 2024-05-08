@@ -28,7 +28,7 @@ namespace SupersonicWisdomSDK
             }
             else if (Elapsed > 0)
             {
-                Pause();
+                Pause(true);
             }
             
             OnFinishEvent += ClearElapsed;

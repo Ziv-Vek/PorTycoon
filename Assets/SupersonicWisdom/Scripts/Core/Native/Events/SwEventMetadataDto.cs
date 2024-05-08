@@ -35,6 +35,10 @@ namespace SupersonicWisdomSDK
         public string deeplink;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string tester;
+        [JsonProperty("installSdkVersion", NullValueHandling = NullValueHandling.Ignore)]
+        public string installSdkVersion;
+        [JsonProperty("installSdkVersionId", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public long installSdkVersionId;
         
 #if UNITY_IOS
         public string sandbox;

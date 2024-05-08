@@ -325,8 +325,10 @@ namespace SupersonicWisdomSDK
                 sdkVersionId = SwConstants.SdkVersionId,
                 stage = SwStageUtils.CurrentStage.sdkStage,
                 sysLang = Application.systemLanguage.ToString(),
-                isNew = _coreUserData.IsNew ? "0" : "1",
+                isNew = _coreUserData.IsNew ? "1" : "0",
                 apiVersion = API_VERSION,
+                installSdkVersion = _coreUserData.InstallSdkVersion,
+                installSdkVersionId = _coreUserData.InstallSdkVersionId,
 #if UNITY_IOS
                 idfv = organizationAdvertisingId,
 #endif
@@ -476,7 +478,7 @@ namespace SupersonicWisdomSDK
 
         private SwCoreConfig DeserializeConfigJson(string remoteConfigJsonString)
         {
-            return ParseConfig(remoteConfigJsonString);
+            return remoteConfigJsonString.SwIsNullOrEmpty() ? null : ParseConfig(remoteConfigJsonString);
         }
 
         protected virtual void NotifyInternalListeners()

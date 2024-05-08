@@ -9,6 +9,7 @@ namespace SupersonicWisdomSDK
         #region --- Fields ---
         
         private readonly ISwNativeApi _wisdomNativeApi;
+        private readonly SwCoreUserData _coreUserData;
         private List<ISwTrackerDataProvider>  _trackerDataProviders;
         
         #endregion
@@ -16,9 +17,10 @@ namespace SupersonicWisdomSDK
         
         #region --- Construction ---
         
-        internal SwNativeAdditionalDataProvider(ISwNativeApi wisdomNativeApi)
+        internal SwNativeAdditionalDataProvider(ISwNativeApi wisdomNativeApi, SwCoreUserData coreUserData)
         {
             _wisdomNativeApi = wisdomNativeApi;
+            _coreUserData = coreUserData;
         }
         
         #endregion
@@ -44,7 +46,7 @@ namespace SupersonicWisdomSDK
             {
                 try
                 {
-                    var (providerData, keysToEncrypt) = provider.AddExtraDataToTrackEvent();
+                    var (providerData, keysToEncrypt) = provider.ConditionallyAddExtraDataToTrackEvent(_coreUserData);
                     
                     foreach (var key in keysToEncrypt)
                     {

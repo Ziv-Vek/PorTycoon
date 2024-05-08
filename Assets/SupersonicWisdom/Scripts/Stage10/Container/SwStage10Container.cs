@@ -136,7 +136,7 @@ namespace SupersonicWisdomSDK
             var sessionListener = new SwStage10SessionListener(userData);
             var timerManager = new SwTimerManager(mono);
             var revenueCalculator = new SwStage10RevenueCalculator(userData);
-            var nativeAdditionalDataAssistant = new SwNativeAdditionalDataProvider(wisdomNativeApi);
+            var nativeAdditionalDataAssistant = new SwNativeAdditionalDataProvider(wisdomNativeApi, userData);
             ISwSessionListener[] swSessionListeners = { sessionListener, timerManager };
             var testUserState = new SwStage10TestUserState();
             var wisdomNativeAdapter = new SwStage10NativeAdapter(wisdomNativeApi, settingsManager.Settings, userData, swSessionListeners, testUserState, nativeAdditionalDataAssistant);

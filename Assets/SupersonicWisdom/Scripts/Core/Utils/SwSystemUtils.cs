@@ -123,7 +123,7 @@ namespace SupersonicWisdomSDK
             get { return Application.identifier; }
         }
         
-        public static bool IsDevelopmentBuild
+        public bool IsDevelopmentBuild
         {
             get
             {
@@ -134,6 +134,14 @@ namespace SupersonicWisdomSDK
                     false;
 #endif
 
+            }
+        }
+        
+        public bool IsSdkDevelopmentBuild
+        {
+            get
+            {
+                return SwConstants.SdkVersionId == 0;
             }
         }
 

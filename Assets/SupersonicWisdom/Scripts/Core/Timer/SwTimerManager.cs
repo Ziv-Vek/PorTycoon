@@ -77,21 +77,26 @@ namespace SupersonicWisdomSDK
             _mono.ApplicationPausedEvent -= OnApplicationPaused;
         }
 
-        (SwJsonDictionary, IEnumerable<string>) ISwTrackerDataProvider.AddExtraDataToTrackEvent()
+        (SwJsonDictionary, IEnumerable<string>) ISwTrackerDataProvider.ConditionallyAddExtraDataToTrackEvent(SwCoreUserData coreUserData)
         {
             SwInfra.Logger.Log(EWisdomLogType.Test, CurrentSessionPlaytime.SwToString());
             SwInfra.Logger.Log(EWisdomLogType.Test, CurrentSessionPlaytimeNeto.SwToString());
-            
-            var extraData = new SwJsonDictionary
+
+            var shouldTrackPastMinimumSdkVersion = SwTrackerConstants.ShouldTrackPastMinimumSdkVersion(coreUserData);
+            var extraDataToSendTracker = new SwJsonDictionary
             {
                 { MEGA_NETO_PLAYTIME_KEY, (int)Mathf.Round(CurrentSessionPlaytimeNeto) },
-                { TOTAL_NETO_PLAYTIME_KEY, (int)Mathf.Round(AllSessionsPlaytimeNeto) },
                 { MEGA_PLAYTIME_KEY, (int)Mathf.Round(CurrentSessionPlaytime) },
             };
 
-            return (extraData, KeysToEncrypt());
+            if (shouldTrackPastMinimumSdkVersion)
+            {
+                extraDataToSendTracker.Add(TOTAL_NETO_PLAYTIME_KEY, (int)Mathf.Round(AllSessionsPlaytimeNeto));
+            }
 
-            IEnumerable<string> KeysToEncrypt()
+            return (extraDataToSendTracker, KeysToEncrypt(shouldTrackPastMinimumSdkVersion));
+
+            IEnumerable<string> KeysToEncrypt(bool shouldEncryptAll)
             {
                 yield break; 
             }
@@ -114,7 +119,7 @@ namespace SupersonicWisdomSDK
         {
             if (pauseStatus)
             {
-                _currentSessionPlaytimeStopWatch.PauseTimer();
+                _currentSessionPlaytimeStopWatch.PauseTimer(true);
             }
             else
             {

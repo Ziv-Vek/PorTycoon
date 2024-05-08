@@ -97,7 +97,6 @@ namespace SupersonicWisdomSDK
                 }
 
                 AppsFlyer.setIsDebug(SettingsManager.Settings.enableDebug);
-                AppsFlyer.setCurrencyCode(SwEconomyUtils.USD_CURRENCY_ISO);
                 AppsFlyer.initSDK(APPS_FLYER_DEV_KEY, SettingsManager.Settings.IosAppId, _eventDispatcher);
                 SwInternalEvent.Invoke(SwStage10AppsFlyerConstants.APPSFLYER_INIT_INTERNAL_EVENT_NAME);
                 AppsFlyer.startSDK();

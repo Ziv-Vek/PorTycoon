@@ -36,7 +36,7 @@ namespace SupersonicWisdomSDK
             get { return Duration > 0 && !IsEnabled && Elapsed == 0; }
         }
 
-        public bool DidFinish { get; private set; }
+        public bool DidFinish { get; protected set; }
 
         public bool IsPaused
         {
@@ -153,12 +153,12 @@ namespace SupersonicWisdomSDK
             return instance;
         }
 
-        public ISwTimer PauseTimer ()
+        public ISwTimer PauseTimer (bool disableTimer)
         {
             if (!IsEnabled || IsPaused) return this;
 
             SwInfra.Logger.Log(EWisdomLogType.Time, Name);
-            Pause();
+            Pause(disableTimer);
 
             return this;
         }
@@ -213,12 +213,16 @@ namespace SupersonicWisdomSDK
         protected virtual void BeforeInvokeTick ()
         { }
 
-        protected void Pause ()
+        protected void Pause (bool disableTimer)
         {
             SwInfra.Logger.Log(EWisdomLogType.Time, Name);
             DidFinish = false;
             IsPaused = true;
-            StopTick();
+
+            if (disableTimer)
+            {
+                StopTick();
+            }
         }
 
         protected void Resume ()
