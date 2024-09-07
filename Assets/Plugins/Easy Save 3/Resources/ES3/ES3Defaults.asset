@@ -41,12 +41,13 @@ MonoBehaviour:
     - CFXRRuntime
     - Cinemachine
     - FbxBuildTestAssets
-    - GameAnalytics-CSharp
+    - GameUtils.Scripts
     - GrabbitAssembly
     - io.sentry.unity.runtime
     - KinoBloom.Runtime
     - Lofelt.NiceVibrations
     - Lofelt.NiceVibrations.Demo
+    - MaxSdk.Scripts
     - MoreMountains.Feedbacks
     - MoreMountains.Feedbacks.Authorizations
     - MoreMountains.Feedbacks.Cinemachine
@@ -60,7 +61,6 @@ MonoBehaviour:
     - NavMeshComponents
     - NavMeshComponentsExamples
     - NavMeshComponentsTestsPlaymode
-    - SupersonicWisdom
     - vhacd
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0

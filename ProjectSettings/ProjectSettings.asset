@@ -141,7 +141,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 0.31.40
+  bundleVersion: 0.35.1
   preloadedAssets:
   - {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}
   metroInputSource: 0
@@ -173,9 +173,9 @@ PlayerSettings:
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 10
-  AndroidMinSdkVersion: 31
-  AndroidTargetSdkVersion: 33
+  AndroidBundleVersionCode: 11
+  AndroidMinSdkVersion: 32
+  AndroidTargetSdkVersion: 35
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 1
@@ -238,6 +238,7 @@ PlayerSettings:
   iOSMetalForceHardShadows: 0
   metalEditorSupport: 1
   metalAPIValidation: 1
+  metalCompileShaderBinary: 0
   iOSRenderExtraFrameOnPause: 0
   iosCopyPluginsCodeInsteadOfSymlink: 0
   appleDeveloperTeamID: 
@@ -261,7 +262,7 @@ PlayerSettings:
   useCustomLauncherGradleManifest: 1
   useCustomBaseGradleTemplate: 1
   useCustomGradlePropertiesTemplate: 1
-  useCustomGradleSettingsTemplate: 0
+  useCustomGradleSettingsTemplate: 1
   useCustomProguardFile: 0
   AndroidTargetArchitectures: 3
   AndroidTargetDevices: 0
@@ -768,7 +769,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: UNITY_VISUAL_SCRIPTING;UNITY_POST_PROCESSING_STACK_V2;SW_STAGE_STAGE10;SW_STAGE_STAGE10_OR_ABOVE;SW_IS_TIME_BASED;MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
+    Android: UNITY_VISUAL_SCRIPTING;UNITY_POST_PROCESSING_STACK_V2;SW_STAGE_STAGE10;SW_STAGE_STAGE10_OR_ABOVE;SW_IS_TIME_BASED;MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;YC_NEWTONSOFT;gameanalytics_max_enabled;tenjin_applovin_enabled
     EmbeddedLinux: UNITY_VISUAL_SCRIPTING;UNITY_POST_PROCESSING_STACK_V2
     GameCoreXboxOne: UNITY_POST_PROCESSING_STACK_V2
     LinuxHeadlessSimulation: UNITY_VISUAL_SCRIPTING
@@ -778,12 +779,12 @@ PlayerSettings:
     QNX: UNITY_VISUAL_SCRIPTING;UNITY_POST_PROCESSING_STACK_V2
     Server: UNITY_VISUAL_SCRIPTING
     Stadia: UNITY_VISUAL_SCRIPTING;UNITY_POST_PROCESSING_STACK_V2
-    Standalone: UNITY_VISUAL_SCRIPTING;UNITY_POST_PROCESSING_STACK_V2;SW_STAGE_STAGE10;SW_STAGE_STAGE10_OR_ABOVE
+    Standalone: UNITY_VISUAL_SCRIPTING;UNITY_POST_PROCESSING_STACK_V2;SW_STAGE_STAGE10;SW_STAGE_STAGE10_OR_ABOVE;MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;YC_NEWTONSOFT
     VisionOS: UNITY_VISUAL_SCRIPTING;UNITY_POST_PROCESSING_STACK_V2
     WebGL: UNITY_VISUAL_SCRIPTING;UNITY_POST_PROCESSING_STACK_V2
     Windows Store Apps: UNITY_VISUAL_SCRIPTING
     XboxOne: UNITY_VISUAL_SCRIPTING;UNITY_POST_PROCESSING_STACK_V2
-    iPhone: UNITY_VISUAL_SCRIPTING;SW_STAGE_STAGE10;SW_STAGE_STAGE10_OR_ABOVE;SW_IS_TIME_BASED;MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
+    iPhone: UNITY_VISUAL_SCRIPTING;SW_STAGE_STAGE10;SW_STAGE_STAGE10_OR_ABOVE;SW_IS_TIME_BASED;MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;YC_NEWTONSOFT;gameanalytics_max_enabled;tenjin_applovin_enabled
     tvOS: UNITY_VISUAL_SCRIPTING;UNITY_POST_PROCESSING_STACK_V2
   additionalCompilerArguments: {}
   platformArchitecture: {}
@@ -825,6 +826,7 @@ PlayerSettings:
   metroSplashScreenBackgroundColor: {r: 0.12941177, g: 0.17254902, b: 0.21568628,
     a: 1}
   metroSplashScreenUseBackgroundColor: 0
+  syncCapabilities: 0
   platformCapabilities: {}
   metroTargetDeviceFamilies: {}
   metroFTAName: 

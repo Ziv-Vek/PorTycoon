@@ -1,10 +1,28 @@
 <dependencies>
   <packages>
+    <package>androidx.recyclerview:recyclerview:1.2.1</package>
     <package>com.android.installreferrer:installreferrer:2.1</package>
     <package>com.android.support:appcompat-v7:25.3.1</package>
     <package>com.android.support:cardview-v7:25.3.1</package>
     <package>com.android.support:customtabs:25.3.1</package>
+    <package>com.android.support:customtabs:28.+</package>
+    <package>com.android.support:recyclerview-v7:28.+</package>
     <package>com.android.support:support-v4:25.3.1</package>
+    <package>com.applovin.mediation:bidmachine-adapter:3.0.0.0</package>
+    <package>com.applovin.mediation:bytedance-adapter:6.2.0.4.0</package>
+    <package>com.applovin.mediation:facebook-adapter:[6.17.0.0]</package>
+    <package>com.applovin.mediation:fyber-adapter:8.3.1.0</package>
+    <package>com.applovin.mediation:inmobi-adapter:10.7.5.0</package>
+    <package>com.applovin.mediation:ironsource-adapter:8.2.1.0.0</package>
+    <package>com.applovin.mediation:line-adapter:2024.8.27.0</package>
+    <package>com.applovin.mediation:mintegral-adapter:16.8.31.0</package>
+    <package>com.applovin.mediation:mobilefuse-adapter:1.7.6.0</package>
+    <package>com.applovin.mediation:ogury-presage-adapter:5.8.0.0</package>
+    <package>com.applovin.mediation:unityads-adapter:4.12.2.0</package>
+    <package>com.applovin.mediation:verve-adapter:3.0.2.0</package>
+    <package>com.applovin.mediation:vungle-adapter:7.4.0.0</package>
+    <package>com.applovin.mediation:yso-network-adapter:1.2.4.1</package>
+    <package>com.applovin:applovin-sdk:12.6.1</package>
     <package>com.appsflyer:adrevenue:6.9.1</package>
     <package>com.appsflyer:af-android-sdk:6.13.0</package>
     <package>com.appsflyer:unity-adrevenue-generic-wrapper:6.9.1</package>
@@ -14,10 +32,10 @@
     <package>com.facebook.android:facebook-gamingservices:[14.1, 15)</package>
     <package>com.facebook.android:facebook-login:[14.1, 15)</package>
     <package>com.facebook.android:facebook-share:[14.1, 15)</package>
-    <package>com.google.android.gms:play-services-ads-identifier:17.0.0</package>
-    <package>com.google.android.gms:play-services-appset:16.0.2</package>
-    <package>com.google.android.instantapps:instantapps:1.1.0</package>
+    <package>com.google.android.ump:user-messaging-platform:2.+</package>
     <package>com.parse.bolts:bolts-android:1.4.0</package>
+    <package>com.squareup.picasso:picasso:2.71828</package>
+    <package>com.tenjin:android-sdk:1.16.1</package>
   </packages>
   <files />
   <settings>

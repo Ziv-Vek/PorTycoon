@@ -8,7 +8,21 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public int CurrentLevel { get; set; } = 1;
+    private int _currentLevel = 1;
+
+    public int CurrentLevel
+    {
+        get => _currentLevel;
+        set
+        {
+            YsoCorp.GameUtils.YCManager.instance.OnGameStarted(_currentLevel);
+            if (_currentLevel != value)
+            {
+                _currentLevel = value;
+            }
+        }
+    }
+
 
     // player settings
     public bool GoneThroughTutorial;
@@ -23,11 +37,11 @@ public class GameManager : MonoBehaviour
 
     public int AmountOfLevels;
 
-    public Dictionary<string, LevelData> LevelsData { get; private set; } = new Dictionary<string, LevelData>();
+    public Dictionary<string, LevelData> LevelsData { get; private set; } = new();
 
     public bool Vibration = true;
 
-    public bool ThereUIActive = false;
+    public bool ThereUIActive;
 
     private void Awake()
     {
@@ -101,12 +115,5 @@ public class GameManager : MonoBehaviour
 
         if (PlayerPrefs.HasKey("CooldownEndTime"))
             PlayerPrefs.SetFloat("CooldownEndTime", 0);
-    }
-
-    public void SetCurrentLevel(int level)
-    {
-        Debug.Log("SetCurrentLevel: " + level);
-        this.level = level;
-        CurrentLevel = level;
     }
 }

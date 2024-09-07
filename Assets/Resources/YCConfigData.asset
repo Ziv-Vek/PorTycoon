@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfcf417bceeba474b8d12501c906cef3, type: 3}
+  m_Name: YCConfigData
+  m_EditorClassIdentifier: 
+  gameYcId: 506e4d
+  InAppRemoveAds: 
+  InAppRemoveAdsCanRemoveInBanner: 1
+  InappDebug: 1
+  ABVersion: 1
+  ABForcedSample: 
+  ABSamples: []
+  ABDebugLog: 1
+  UseBanners: 1
+  UseBannersInEditor: 1
+  <TransparentBannerBackground>k__BackingField: 0
+  InterstitialInterval: 40
+  rewardedResetDelay: 1
+  activeLogs: 0
+  Name: porTycoon
+  FbAppId: 876377997274173
+  FbClientToken: d9a5b42bb309234a9ec7ecdc09872045
+  appleId: 
+  MmpTenjin: 1
+  AdMobAndroidAppId: 
+  AdMobIosAppId: 
+  IosInterstitial: 
+  IosRewarded: 
+  IosBanner: 
+  AndroidInterstitial: 
+  AndroidRewarded: 
+  AndroidBanner: 
+  AmazonIosAppID: 
+  AmazonIosInterstitial: 
+  AmazonIosRewarded: 
+  AmazonIosBanner: 
+  AmazonAndroidAppID: 
+  AmazonAndroidInterstitial: 
+  AmazonAndroidRewarded: 
+  AmazonAndroidBanner: 

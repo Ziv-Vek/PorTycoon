@@ -38,7 +38,7 @@ public class NewItemScreen : MonoBehaviour
 
     public void CloseScreen()
     {
-
+        Debug.Log("we are here");
         Destroy(scratchItemModel.gameObject.transform.GetChild(0).gameObject);
         ItemsToShow.Remove(CurrentItem);
         if (ItemsToShow.Count > 0)

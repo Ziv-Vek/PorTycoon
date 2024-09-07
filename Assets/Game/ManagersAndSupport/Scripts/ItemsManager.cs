@@ -97,6 +97,7 @@ public class ItemsManager : MonoBehaviour
         FindAnyObjectByType<CollectionScreen>().UpdateCollectionList();
         if (GetUnlockedItemsNumber(GameManager.Instance.experience) == GetAllLevelItems(GameManager.Instance.experience).Count && GameObject.Find("Fishing") == null)
         {
+            YsoCorp.GameUtils.YCManager.instance.OnGameFinished(true);
             FinishCollectionCanvas.SetActive(true);
             FinishCollectionCanvas.GetComponent<CollectionFinishScreen>().StartAnimation(GetAllLevelItems(GameManager.Instance.experience));
             if (GameManager.Instance.CurrentLevel + 1 <= GameManager.Instance.AmountOfLevels)

@@ -1,0 +1,26 @@
+{
+    "name": "GameUtils.Scripts",
+    "rootNamespace": "",
+    "references": [
+        "MaxSdk.Scripts",
+        "Lofelt.NiceVibrations",
+        "Unity.TextMeshPro",
+        "Unity.Services.Core",
+        "Unity.Services.Core.Environments",
+        "Purchasing.Common",
+        "UnityEngine.Purchasing",
+        "UnityEngine.Purchasing.Stores",
+        "Unity.Notifications.Android",
+        "Unity.Notifications.iOS",
+        "Amazon.Scripts"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

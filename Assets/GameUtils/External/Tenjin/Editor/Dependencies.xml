@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dependencies>
+    <androidPackages>
+        <androidPackage spec="com.tenjin:android-sdk:1.16.1" />
+    </androidPackages>
+</dependencies>

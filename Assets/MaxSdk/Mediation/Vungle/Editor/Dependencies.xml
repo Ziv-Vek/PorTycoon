@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dependencies>
+    <androidPackages>
+        <androidPackage spec="com.applovin.mediation:vungle-adapter:7.4.0.0" />
+    </androidPackages>
+    <iosPods>
+        <iosPod name="AppLovinMediationVungleAdapter" version="7.4.0.0" />
+    </iosPods>
+</dependencies>
